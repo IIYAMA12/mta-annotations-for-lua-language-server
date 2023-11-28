@@ -382,7 +382,7 @@ function deleteResource () end
 ---@type fun(thePlayer: player): boolean
 function isPlayerMuted () end
 
----@type fun(): player
+---@type fun(): player | false
 function getRandomPlayer () end
 
 ---@type fun(theResource: resource): table
