@@ -49,7 +49,7 @@ function getAccountName () end
 ---@type fun(serial: string): table
 function getAccountsBySerial () end
 
----@type fun(username?: string, password?: string, caseSensitive?: boolean): account
+---@type fun(username: string, password?: string, caseSensitive?: boolean): account
 function getAccount () end
 
 ---@type fun(theAccount: account): table
@@ -58,7 +58,7 @@ function getAllAccountData () end
 ---@type fun(theAccount: account): boolean
 function removeAccount () end
 
----@type fun(theAccount: account, password?: string, passwordType?: string): boolean
+---@type fun(theAccount: account, password: string, passwordType?: string): boolean
 function setAccountPassword () end
 
 ---@type fun(thePlayer: player): boolean
@@ -136,10 +136,10 @@ function setUnbanTime () end
 ---@type fun(theBan: ban, theAdmin: string): boolean
 function setBanAdmin () end
 
----@type fun(kickedPlayer: player, responsiblePlayer?: player | string, reason?: string): boolean
+---@type (fun(kickedPlayer: player): boolean) | (fun(kickedPlayer: player, reason: string): boolean) | (fun(kickedPlayer: player, responsiblePlayer: player | string, reason: string): boolean)
 function kickPlayer () end
 
----@type fun(theBan?: ban, responsibleElement?: player): boolean
+---@type fun(theBan: ban, responsibleElement?: player): boolean
 function removeBan () end
 
 ---@type fun(): string
@@ -154,7 +154,7 @@ function setElementVisibleTo () end
 ---@type fun(bannedPlayer: player, IP?: boolean, Username?: boolean, Serial?: boolean, responsiblePlayer?: player | string, reason?: string, seconds?: integer): ban
 function banPlayer () end
 
----@type fun(theVehicle: vehicle, x: number, y: number, z?: number, rx?: number, ry?: number, rz?: number): boolean
+---@type fun(theVehicle: vehicle, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number): boolean
 function spawnVehicle () end
 
 ---@type fun(key: string, value: string): boolean
@@ -163,7 +163,7 @@ function setRuleValue () end
 ---@type fun(mapName: string): boolean
 function setMapName () end
 
----@type fun(query?: string, ...?: string | number): table
+---@type fun(query: string, ...?: string | number): table
 function executeSQLQuery () end
 
 ---@type fun(settingName: string): unknown
@@ -202,7 +202,7 @@ function setElementSyncer () end
 ---@type fun(theTextitem: textitem): number
 function textItemGetScale () end
 
----@type fun(resourceName?: string, organizationalDir?: string): resource
+---@type fun(resourceName: string, organizationalDir?: string): resource
 function createResource () end
 
 ---@type fun(theResource: resource): integer
@@ -283,7 +283,7 @@ function textItemSetText () end
 ---@type fun(theTextitem: textitem, scale: number): boolean
 function textItemSetScale () end
 
----@type fun(node: xmlnode, baseElement?: element, childrenOnly?: boolean): boolean
+---@type fun(node: xmlnode, baseElement: element, childrenOnly?: boolean): boolean
 function saveMapData () end
 
 ---@type fun(theResource: resource, mapName: string): element
@@ -292,7 +292,7 @@ function getResourceMapRootElement () end
 ---@type fun(thePlayer: player, key: string, keyState?: string, handler?: function): boolean
 function isKeyBound () end
 
----@type fun(thePlayer: ped, weapon?: integer, ammo?: integer, setAsCurrent?: boolean): boolean
+---@type fun(thePlayer: ped, weapon: integer, ammo?: integer, setAsCurrent?: boolean): boolean
 function giveWeapon () end
 
 ---@type fun(thePed: ped, choking: boolean): boolean
@@ -304,7 +304,7 @@ function addResourceMap () end
 ---@type fun(thePed: ped): boolean
 function reloadPedWeapon () end
 
----@type fun(theResource: resource, newResourceName?: string, organizationalDir?: string): resource
+---@type fun(theResource: resource, newResourceName: string, organizationalDir?: string): resource
 function copyResource () end
 
 ---@type fun(theTeam: team, colorR: integer, colorG: integer, colorB: integer): boolean
@@ -313,7 +313,7 @@ function setTeamColor () end
 ---@type fun(theVehicle: vehicle, sirenCount: integer, sirenType: integer, flag360?: boolean, checkLosFlag?: boolean, useRandomiser?: boolean, silentFlag?: boolean): boolean
 function addVehicleSirens () end
 
----@type fun(thePlayer: player, weaponId?: integer, ammo?: integer): boolean
+---@type fun(thePlayer: player, weaponId: integer, ammo?: integer): boolean
 function takeWeapon () end
 
 ---@type fun(theVehicle: vehicle): boolean
@@ -388,7 +388,7 @@ function getRandomPlayer () end
 ---@type fun(theResource: resource): table
 function getResourceACLRequests () end
 
----@type fun(host?: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, resourceName: string, functionName: string, callbackFunction: function, ...?: any): boolean
+---@type fun(host: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, resourceName: string, functionName: string, callbackFunction: function, ...?: any): boolean
 function callRemote () end
 
 ---@type fun(thePlayer: player, serverIP: string, serverPort: integer, serverPassword?: string): boolean
@@ -451,7 +451,7 @@ function aclGroupRemoveACL () end
 ---@type fun(theGroup: aclgroup, theObjectString: string): boolean
 function aclGroupRemoveObject () end
 
----@type fun(theObject: string | element, theAction?: string, defaultPermission?: boolean): boolean
+---@type fun(theObject: string | element, theAction: string, defaultPermission?: boolean): boolean
 function hasObjectPermissionTo () end
 
 ---@type fun(theObject: string, theGrou: aclgroup): boolean
@@ -460,10 +460,10 @@ function isObjectInACLGroup () end
 ---@type fun(): string
 function getCancelReason () end
 
----@type fun(sendTo?: table | element, name: string, sourceElement: element, ...?: any): boolean
+---@type (fun( name: string, sourceElement: element, ...?: any): boolean) | (fun(sendTo: table | element, name: string, sourceElement: element, ...?: any): boolean)
 function triggerClientEvent () end
 
----@type fun(sendTo?: table | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...?: any): boolean
+---@type (fun(name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...?: any): boolean) | (fun(sendTo: table | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...?: any): boolean)
 function triggerLatentClientEvent () end
 
 ---@type fun(thePlayer?: player): boolean
@@ -499,7 +499,7 @@ function setPlayerVoiceIgnoreFrom () end
 ---@type fun(thePlayer: player, stars: integer): boolean
 function setPlayerWantedLevel () end
 
----@type fun(thePlayer: player, x: number, y: number, z: number, integerrotation, skinID?: integer, interior?: integer, dimension?: integer, theTeam?: team): boolean
+---@type fun(thePlayer: player, x: number, y: number, z: number, rotation?:integer, skinID?: integer, interior?: integer, dimension?: integer, theTeam?: team): boolean
 function spawnPlayer () end
 
 ---@type fun(thePlayer: player, width: integer, height: integer, tag?: string, quality?: integer, maxBandwith?: integer): boolean
@@ -547,16 +547,16 @@ function setServerPassword () end
 ---@type fun(reason?: string, exitCode?: number): boolean
 function shutdown () end
 
----@type fun(databaseType: string, host?: string, username?: string, password?: string, options?: string): databaseConnection
+---@type fun(databaseType: string, host: string, username?: string, password?: string, options?: string): databaseConnection
 function dbConnect () end
 
----@type fun(databaseConnection: databaseConnection, query?: string, ...?: string | number): boolean
+---@type fun(databaseConnection: databaseConnection, query: string, ...?: string | number): boolean
 function dbExec () end
 
----@type fun(callbackFunction?: function, callbackArguments?: table, databaseConnection?: databaseConnection, query?: string, ...?: string | number): handle
+---@type (fun(databaseConnection: databaseConnection, query?: string, ...?: string | number): handle) | (fun(callbackFunction: function, databaseConnection: databaseConnection, query?: string, ...?: string | number): handle) | (fun(callbackFunction: function, callbackArguments: table, databaseConnection: databaseConnection, query?: string, ...?: string | number): handle)
 function dbQuery () end
 
----@type fun(queryHandle: handle, timeout?: integer, multipleResults?: boolean): table
+---@type fun(queryHandle: handle, timeout: integer, multipleResults?: boolean): table
 function dbPoll () end
 
 ---@type fun(queryHandle: handle): boolean
@@ -601,7 +601,7 @@ function setVehicleIdleRespawnDelay () end
 ---@type fun(theVehicle: vehicle, timeDelay: integer): boolean
 function setVehicleRespawnDelay () end
 
----@type fun(theVehicle: vehicle, x: number, y: number, z?: number, rx?: number, ry?: number, rz?: number): boolean
+---@type fun(theVehicle: vehicle, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number): boolean
 function setVehicleRespawnPosition () end
 
 ---@type fun(): boolean
@@ -619,7 +619,7 @@ function httpSetResponseCookie () end
 ---@type fun(headerName: string, headerValue: string): boolean
 function httpSetResponseHeader () end
 
----@type fun(data?: string, length?: integer): boolean
+---@type fun(data: string, length?: integer): boolean
 function httpWrite () end
 
 ---@type fun(thePlayer: player, theFunction: function): string
@@ -628,7 +628,7 @@ function getKeyBoundToFunction () end
 ---@type fun(clearFor?: element): boolean
 function clearChatBox () end
 
----@type fun(text?: string, visibleTo?: element, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
+---@type fun(text: string, visibleTo?: element, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
 function outputChatBox () end
 
 ---@type fun(thePed: ped, state: boolean): boolean
@@ -643,7 +643,7 @@ function getAccountByID () end
 ---@type fun(theAccount: account): integer
 function getAccountID () end
 
----@type fun(theAccount: account, name?: string, allowCaseVariations?: boolean): boolean
+---@type fun(theAccount: account, name: string, allowCaseVariations?: boolean): boolean
 function setAccountName () end
 
 ---@type fun(dataName: string, value: string): table

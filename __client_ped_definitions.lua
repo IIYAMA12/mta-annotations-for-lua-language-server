@@ -20,7 +20,7 @@ function getPedWeaponMuzzlePosition () end
 ---@type fun(thePed: ped): boolean
 function canPedBeKnockedOffBike () end
 
----@type fun(thePed: ped, weapon?: integer, ammo?: integer, setAsCurrent?: boolean): boolean
+---@type fun(thePed: ped, weapon: integer, ammo?: integer, setAsCurrent?: boolean): boolean
 function givePedWeapon () end
 
 ---@type fun(targetingPed: ped): number, number, number
@@ -68,7 +68,7 @@ function setPedCanBeKnockedOffBike () end
 ---@type fun(thePed: ped, control: string, state: number): boolean
 function setPedAnalogControlState () end
 
----@type fun(thePed: ped, x: number, y: number, z?: number, time?: integer, blend?: integer, target: element): boolean
+---@type fun(thePed: ped, x: number, y: number, z: number, time?: integer, blend?: integer, target: element): boolean
 function setPedLookAt () end
 
 ---@type fun(thePed: ped): number

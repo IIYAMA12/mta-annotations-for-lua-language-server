@@ -10,16 +10,16 @@ function passwordHash () end
 ---@type fun(password: string, hash: string, callback?: function): boolean
 function passwordVerify () end
 
----@type fun(numberx, y?: number): vector2
+---@type fun(x?:number, y?: number): vector2
 function Vector2 () end
 
----@type fun(numberx, y?: number, z?: number): vector3
+---@type fun(x?:number, y?: number, z?: number): vector3
 function Vector3 () end
 
----@type fun(numberx, y?: number, z?: number, w?: number): vector4
+---@type fun(x?:number, y?: number, z?: number, w?: number): vector4
 function Vector4 () end
 
----@type fun(position?: vector3, rotation?: vector3): matrix
+---@type fun(position?: vector3, rotation: vector3): matrix
 function Matrix () end
 
 ---@type fun(miliseconds: integer): boolean
@@ -43,10 +43,10 @@ function getAircraftMaxHeight () end
 ---@type fun(theXMLNode: xmlnode): string
 function xmlNodeGetValue () end
 
----@type fun(model: integer, x: number, y: number, z?: number, rx?: number, ry?: number, rz?: number, numberplate?: string, bDirection?: boolean, variant1?: integer, variant2?: integer): vehicle
+---@type fun(model: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, bDirection?: boolean, variant1?: integer, variant2?: integer): vehicle
 function createVehicle () end
 
----@type fun(x: number, y: number, z?: number, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
+---@type fun(x: number, y: number, z: number, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
 function createBlip () end
 
 ---@type fun(theElement: element): table
@@ -79,7 +79,7 @@ function addPedClothes () end
 ---@type fun(theBlip: blip): integer
 function getBlipOrdering () end
 
----@type fun(elementToAttachTo?: element, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
+---@type fun(elementToAttachTo: element, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
 function createBlipAttachedTo () end
 
 ---@type fun(theElement: element, theAttachToElement?: element): boolean
@@ -91,7 +91,7 @@ function getElementAlpha () end
 ---@type fun(theElement: element): number, number, number, number, number, number
 function getElementAttachedOffsets () end
 
----@type fun(thePlayer: player, fadeIn: boolean, numbertimeToFade, red?: integer, green?: integer, blue?: integer): boolean
+---@type (fun(fadeIn: boolean, numbertimeToFade, red?: integer, green?: integer, blue?: integer): boolean)|(fun(thePlayer: player, fadeIn: boolean, numbertimeToFade, red?: integer, green?: integer, blue?: integer): boolean)
 function fadeCamera () end
 
 ---@type fun(thePlayer: player): string
@@ -163,7 +163,7 @@ function triggerEvent () end
 ---@type fun(theElement: element): integer
 function getElementDimension () end
 
----@type fun(theElement: element, numberxPosOffset, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
+---@type fun(theElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
 function setElementAttachedOffsets () end
 
 ---@type fun(theElement: element, speedX: number, speedY: number, speedZ: number): boolean
@@ -200,13 +200,13 @@ function isElementAttached () end
 ---@type fun(thePlayer: player, amount: integer): boolean
 function takePlayerMoney () end
 
----@type fun(modelid: integer, x: number, y: number, z: number, numberrx, ry?: number, rz?: number, isLowLOD?: boolean): object
+---@type fun(modelid: integer, x: number, y: number, z: number, rx:number, ry?: number, rz?: number, isLowLOD?: boolean): object
 function createObject () end
 
 ---@type fun(theMarker: marker, x: number, y: number, z: number): boolean
 function setMarkerTarget () end
 
----@type fun(filePath: string, copyToFilePath?: string, overwrite?: boolean): boolean
+---@type fun(filePath: string, copyToFilePath: string, overwrite?: boolean): boolean
 function fileCopy () end
 
 ---@type fun(thePlayer: player): table
@@ -221,16 +221,16 @@ function createColCuboid () end
 ---@type fun(theElement: element): string
 function getElementType () end
 
----@type fun(theElement: element, theAttachToElement: element, numberxPosOffset, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
+---@type fun(theElement: element, theAttachToElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
 function attachElements () end
 
 ---@type fun(thePed: ped, clothesType: integer, clothesTexture?: string, clothesModel?: string): boolean
 function removePedClothes () end
 
----@type fun(theElement: element, interior?: integer, x?: number, y?: number, z?: number): boolean
+---@type fun(theElement: element, interior: integer, x?: number, y?: number, z?: number): boolean
 function setElementInterior () end
 
----@type fun(parent?: element, theType?: string): table
+---@type fun(parent: element, theType?: string): table
 function getElementChildren () end
 
 ---@type fun(elementType: string, elementID?: string): element
@@ -254,13 +254,13 @@ function getSlotFromWeapon () end
 ---@type fun(modelID: integer): table
 function getOriginalHandling () end
 
----@type fun(x1: integer, y1: integer, z1: number, x2: integer, y2: integer, z2: number, x3: integer, y3: integer, z3?: number, x4?: integer, y4?: integer, z4?: number, bShallow: boolean): water
+---@type fun(x1: integer, y1: integer, z1: number, x2: integer, y2: integer, z2: number, x3: integer, y3: integer, z3: number, x4?: integer, y4?: integer, z4?: number, bShallow: boolean): water
 function createWater () end
 
----@type fun(x: number, y: number, z: number, theType?: integer, creator?: player): boolean
+---@type fun(x: number, y: number, z: number, theType: integer, creator?: player): boolean
 function createExplosion () end
 
----@type fun(id?: string, index?: integer): element
+---@type fun(id: string, index?: integer): element
 function getElementByID () end
 
 ---@type fun(theElement: element): integer
@@ -275,7 +275,7 @@ function getElementData () end
 ---@type fun(theElement: element, lowLODElement: element): boolean
 function setLowLODElement () end
 
----@type fun(eventName?: string, allowRemoteTrigger?: boolean): boolean
+---@type fun(eventName: string, allowRemoteTrigger?: boolean): boolean
 function addEvent () end
 
 ---@type fun(theElement: element): element
@@ -290,7 +290,7 @@ function addEventHandler () end
 ---@type fun(theElement: element): number
 function getElementHealth () end
 
----@type fun(theElement: element, key: string, value?: any, synchronize?: boolean): boolean
+---@type fun(theElement: element, key: string, value: any, synchronize?: boolean): boolean
 function setElementData () end
 
 ---@type fun(parent: element, index: integer): element
@@ -341,7 +341,7 @@ function isPedChoking () end
 ---@type fun(theElement: element): element
 function getElementParent () end
 
----@type fun(theElement?: element, legacy?: boolean): table
+---@type fun(theElement: element, legacy?: boolean): table
 function getElementMatrix () end
 
 ---@type fun(shape: colshape, elemType?: string): table
@@ -359,32 +359,32 @@ function setMarkerSize () end
 ---@type fun(theMarker: marker): integer, integer, integer, integer
 function getMarkerColor () end
 
----@type fun(x: number, y: number, z?: number, theType?: string, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo): marker
+---@type fun(x: number, y: number, z: number, theType?: string, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo): marker
 function createMarker () end
 
 ---@type fun(theobject: object): boolean
 function stopObject () end
 
----@type fun(thePlayer: player, key?: string, keyState?: string, handler?: function): boolean
+---@type fun(thePlayer: player, key: string, keyState?: string, handler?: function): boolean
 function unbindKey () end
 
----@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, numbermoverx, movery?: number, moverz?: number, strEasingType?: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean
+---@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?:number, movery?: number, moverz?: number, strEasingType?: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean
 function moveObject () end
 
----@type fun(theObject: object, scale?: number, scaleY?: number, scaleZ?: number): boolean
+---@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean
 function setObjectScale () end
 
----@type fun(thePed?: ped, weaponSlot?: integer): integer
+---@type fun(thePed: ped, weaponSlot?: integer): integer
 function getPedAmmoInClip () end
 
 ---@type fun(theMarker: marker): string
 function getMarkerType () end
 
 -- Serverside has optional argument `synced`
----@type (fun(modelid: integer, x: number, y: number, z?: number, rot?: number): ped)|(fun(modelid: integer, x: number, y: number, z?: number, rot?: number, synced?: boolean): ped)
+---@type (fun(modelid: integer, x: number, y: number, z: number, rot?: number): ped)|(fun(modelid: integer, x: number, y: number, z?: number, rot?: number, synced?: boolean): ped)
 function createPed () end
 
----@type fun(thePed?: ped, block?: string, anim?: string, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
+---@type fun(thePed: ped, block?: string, anim?: string, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
 function setPedAnimation () end
 
 ---@type fun(thePed: ped): boolean
@@ -405,7 +405,7 @@ function getTeamFromName () end
 ---@type fun(data: string): string
 function base64Decode () end
 
----@type fun(text: string, integerlevel, red?: integer, green?: integer, blue?: integer): boolean
+---@type fun(text: string, level:integer, red?: integer, green?: integer, blue?: integer): boolean
 function outputDebugString () end
 
 ---@type fun(text: string): boolean
@@ -432,13 +432,13 @@ function removePedFromVehicle () end
 ---@type fun(thePlayer: player, showing: boolean): boolean
 function setPlayerNametagShowing () end
 
----@type fun(thePlayer: player, show?: boolean, inputBlocked?: boolean): boolean
+---@type (fun(show: boolean, inputBlocked?: boolean): boolean) | (fun(thePlayer: player, show: boolean, inputBlocked?: boolean): boolean)
 function showChat () end
 
----@type fun(thePed?: ped, anim?: string, progress?: number): boolean
+---@type fun(thePed: ped, anim?: string, progress?: number): boolean
 function setPedAnimationProgress () end
 
----@type fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, integerr, g?: integer, b?: integer, a?: integer, visibleTo?: element): radararea
+---@type fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radararea
 function createRadarArea () end
 
 ---@type fun(thePed: ped, state: boolean): boolean
@@ -489,7 +489,7 @@ function getElementsByType () end
 ---@type fun(parent: element): integer
 function getElementChildrenCount () end
 
----@type fun(theElement?: element, rotOrder?: string): number, number, number
+---@type fun(theElement: element, rotOrder?: string): number, number, number
 function getElementRotation () end
 
 ---@type fun(theElement: element): integer
@@ -558,7 +558,7 @@ function isElementLowLOD () end
 ---@type fun(theElement: element, alpha: integer): boolean
 function setElementAlpha () end
 
----@type fun(theElement: element, x: number, y: number, z?: number, warp?: boolean): boolean
+---@type fun(theElement: element, x: number, y: number, z: number, warp?: boolean): boolean
 function setElementPosition () end
 
 ---@type fun(theElement: element, parent: element): boolean
@@ -567,7 +567,7 @@ function setElementParent () end
 ---@type fun(theElement: element, newHealth: number): boolean
 function setElementHealth () end
 
----@type fun(theElement: element, rotX: number, rotY: number, rotZ?: number, rotOrder?: string, conformPedRotation?: boolean): boolean
+---@type fun(theElement: element, rotX: number, rotY: number, rotZ: number, rotOrder?: string, conformPedRotation?: boolean): boolean
 function setElementRotation () end
 
 ---@type fun(thePed: ped): boolean
@@ -588,7 +588,7 @@ function getJetpackMaxHeight () end
 ---@type fun(thePlayer: player): team
 function getPlayerTeam () end
 
----@type fun(theXMLNode: xmlnode, value?: string, setCDATA?: boolean): boolean
+---@type fun(theXMLNode: xmlnode, value: string, setCDATA?: boolean): boolean
 function xmlNodeSetValue () end
 
 ---@type fun(rootNode: xmlnode): boolean
@@ -630,7 +630,7 @@ function getMinuteDuration () end
 ---@type fun(node: xmlnode): boolean
 function xmlUnloadFile () end
 
----@type fun(theVehicle?: vehicle, theTrailer?: vehicle): boolean
+---@type fun(theVehicle: vehicle, theTrailer?: vehicle): boolean
 function detachTrailerFromVehicle () end
 
 ---@type fun(filePath: string, rootNodeName: string): xmlnode
@@ -645,7 +645,7 @@ function setPedOnFire () end
 ---@type fun(thePlayer: player): integer | boolean
 function getPlayerMoney () end
 
----@type fun(thePlayer: player, amount?: integer, instant?: boolean): boolean
+---@type fun(thePlayer: player, amount: integer, instant?: boolean): boolean
 function setPlayerMoney () end
 
 ---@type fun(theElement: element, dimension: integer): boolean
@@ -754,16 +754,16 @@ function getCameraInterior () end
 ---@type fun(): integer, integer
 function getWeather () end
 
----@type fun(intensity: integer, integerrandomShift, speedMin?: integer, speedMax?: integer, scanSizeX?: integer, scanSizeY?: integer, renderSizeX?: integer, renderSizeY?: integer, bShowInside?: boolean): boolean
+---@type fun(intensity: integer, randomShift?: integer, speedMin?: integer, speedMax?: integer, scanSizeX?: integer, scanSizeY?: integer, renderSizeX?: integer, renderSizeY?: integer, bShowInside?: boolean): boolean
 function setHeatHaze () end
 
----@type fun(thePlayer?: player, target?: player): boolean
+---@type fun(thePlayer: player, target?: player): boolean
 function setCameraTarget () end
 
----@type fun(thePlayer: player, positionX: number, positionY: number, positionZ?: number, lookAtX?: number, lookAtY?: number, lookAtZ?: number, roll?: number, fov?: number): boolean
+---@type fun(thePlayer: player, positionX: number, positionY: number, positionZ: number, lookAtX?: number, lookAtY?: number, lookAtZ?: number, roll?: number, fov?: number): boolean
 function setCameraMatrix () end
 
----@type fun(var?: any, options?: table): string
+---@type fun(var: any, options?: table): string
 function inspect () end
 
 ---@type fun(thePlayer: player): element
@@ -811,10 +811,10 @@ function getDistanceBetweenPoints2D () end
 ---@type fun(milliseconds: integer): boolean
 function setMinuteDuration () end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z?: number, iInterior?: integer): boolean
+---@type fun(modelID: integer, radius: number, x: number, y: number, z: number, iInterior?: integer): boolean
 function restoreWorldModel () end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z?: number, interior?: integer): boolean
+---@type fun(modelID: integer, radius: number, x: number, y: number, z: number, interior?: integer): boolean
 function removeWorldModel () end
 
 ---@type fun(): boolean
@@ -847,13 +847,13 @@ function setTime () end
 ---@type fun(): number
 function getRainLevel () end
 
----@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, fProgress: number, strEasingType: string, numberfEasingPeriod, fEasingAmplitude?: number, fEasingOvershoot?: number): number, number, number
+---@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, fProgress: number, strEasingType: string, numberfEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number, number, number
 function interpolateBetween () end
 
 ---@type fun(Size: integer): boolean
 function setSunSize () end
 
----@type fun(category?: string, options?: string, filter?: string): table, table
+---@type fun(category: string, options?: string, filter?: string): table, table
 function getPerformanceStats () end
 
 ---@type fun(fProgress: number, strEasingType: string, fEasingPeriod: number, fEasingAmplitude: number, fEasingOvershoot: number): number
@@ -865,7 +865,7 @@ function setCameraInterior () end
 ---@type fun(): integer, integer
 function getTime () end
 
----@type fun(integertopRed, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean
+---@type fun(topRed?: integer, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean
 function setSkyGradient () end
 
 ---@type fun(theTimer: timer): integer, integer, integer
@@ -979,7 +979,7 @@ function setAircraftMaxVelocity () end
 ---@type fun(level: number): boolean
 function setGravity () end
 
----@type fun(URL?: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, callbackFunction: function, postData?: string, postIsBinary?: boolean, ...?: any): boolean
+---@type fun(URL: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, callbackFunction: function, postData?: string, postIsBinary?: boolean, ...?: any): boolean
 function fetchRemote () end
 
 ---@type fun(commandName: string, thePlayer: player, args?: string): boolean
@@ -1043,7 +1043,7 @@ function getKeyBoundToFunction () end
 ---@type fun()
 function call () end
 
----@type fun(commandName?: string, handler?: function): boolean
+---@type fun(commandName: string, handler?: function): boolean
 function removeCommandHandler () end
 
 ---@type fun(fpsLimit: integer): boolean
@@ -1052,7 +1052,7 @@ function setFPSLimit () end
 ---@type fun(value: any, compact?: boolean, prettyType: string): string
 function toJSON () end
 
----@type fun(fProgress: number, strEasingType?: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number
+---@type fun(fProgress: number, strEasingType: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number
 function getEasingValue () end
 
 ---@type fun(integerseconds, localTime?: boolean): table
@@ -1103,13 +1103,13 @@ function utfSeek () end
 ---@type fun(theString: string, Start: integer, End: integer): string
 function utfSub () end
 
----@type fun(subject: string, pattern?: string, flags?: integer | string): boolean
+---@type fun(subject: string, pattern: string, flags?: integer | string): boolean
 function pregFind () end
 
----@type fun(subject: string, pattern: string, replacement?: string, flags?: integer | string): string
+---@type fun(subject: string, pattern: string, replacement: string, flags?: integer | string): string
 function pregReplace () end
 
----@type fun(base: string, pattern?: string, flags?: integer | string, maxResults?: integer): table
+---@type fun(base: string, pattern: string, flags?: integer | string, maxResults?: integer): table
 function pregMatch () end
 
 ---@type fun(var1: uint, var2: uint, ...): uint
@@ -1142,13 +1142,13 @@ function bitRShift () end
 ---@type fun(value: integer, n: integer): integer
 function bitArShift () end
 
----@type fun(var: uint, field?: integer, width?: integer): uint
+---@type fun(var: uint, field: integer, width?: integer): uint
 function bitExtract () end
 
 ---@type fun(var: uint, replaceValue: uint, field: integer, width: integer): uint
 function bitReplace () end
 
----@type fun(hookType: string, callbackFunction?: function, nameList?: table): boolean
+---@type fun(hookType: string, callbackFunction: function, nameList?: table): boolean
 function addDebugHook () end
 
 ---@type fun(hookType: string, callbackFunction: function): boolean
@@ -1307,7 +1307,7 @@ function setVehicleColor () end
 ---@type fun(theVehicle: vehicle, damageProof: boolean): boolean
 function setVehicleDamageProof () end
 
----@type fun(theVehicle: vehicle, door: integer, state?: integer, spawnFlyingComponent?: boolean): boolean
+---@type fun(theVehicle: vehicle, door: integer, state: integer, spawnFlyingComponent?: boolean): boolean
 function setVehicleDoorState () end
 
 ---@type fun(theVehicle: vehicle, state: boolean): boolean
@@ -1346,13 +1346,13 @@ function setVehicleSirensOn () end
 ---@type fun(turretVehicle: vehicle, positionX: number, positionY: number): boolean
 function setVehicleTurretPosition () end
 
----@type fun(theVehicle: vehicle, door: integer, ratio?: number, time?: integer): boolean
+---@type fun(theVehicle: vehicle, door: integer, ratio: number, time?: integer): boolean
 function setVehicleDoorOpenRatio () end
 
 ---@type fun(theVehicle: vehicle, rx: number, ry: number, rz: number): boolean
 function setVehicleTurnVelocity () end
 
----@type fun(theVehicle: vehicle, frontLeft: integer, integerrearLeft, frontRight?: integer, rearRight?: integer): boolean
+---@type fun(theVehicle: vehicle, frontLeft: integer, rearLeft?: integer, frontRight?: integer, rearRight?: integer): boolean
 function setVehicleWheelStates () end
 
 ---@type fun(theVehicle: vehicle, red: integer, green: integer, blue: integer): boolean
@@ -1379,7 +1379,7 @@ function resetWaterColor () end
 ---@type fun(red: integer, green: integer, blue: integer, integeralpha): boolean
 function setWaterColor () end
 
----@type fun(level?: number, includeWaterFeatures?: boolean, includeWaterElements?: boolean, includeWorldSea?: boolean, includeOutsideWorld?: boolean): boolean
+---@type (fun(theWater: water, level: number)) | (fun(level: number, includeWaterFeatures?: boolean, includeWaterElements?: boolean, includeWorldSea?: boolean, includeOutsideWorld?: boolean): boolean)
 function setWaterLevel () end
 
 ---@type fun(theWater: water, vertexIndex: integer, x: integer, y: integer, z: number): boolean
@@ -1418,10 +1418,10 @@ function isPedWearingJetpack () end
 ---@type fun(theVehicle: element, property: string, value: any): boolean
 function setVehicleHandling () end
 
----@type fun(algorithm: string, input: string, options?: table, callback?: function): string
+---@type fun(algorithm: string, input: string, options: table, callback?: function): string
 function encodeString () end
 
----@type fun(algorithm: string, input: string, options?: table, callback?: function): string
+---@type fun(algorithm: string, input: string, options: table, callback?: function): string
 function decodeString () end
 
 ---@type fun(shape: colshape): integer
@@ -1433,17 +1433,17 @@ function getElementAngularVelocity () end
 ---@type fun(theElement: element, rx: number, ry: number, rz: number): boolean
 function setElementAngularVelocity () end
 
----@type fun(x: number, y: number, z: number, range?: number, elemType?: string, dimension?: integer): table
+---@type fun(x: number, y: number, z: number, range: number, elemType?: string, dimension?: integer): table
 function getElementsWithinRange () end
 
 ---@type fun(theShape: colshape, posX: number, posY: number, posZ: number): boolean
 function isInsideColShape () end
 
----@type fun(thePed?: ped, anim?: string, speed?: number): boolean
+---@type fun(thePed: ped, anim?: string, speed?: number): boolean
 function setPedAnimationSpeed () end
 
----@type fun(shape: colshape, fX: number, fY?: number, index?: integer): boolean
-function addColPolygonPoin () end
+---@type fun(shape: colshape, fX: number, fY: number, index?: integer): boolean
+function addColPolygonPoint () end
 
 ---@type fun(shape: colshape): number
 function getColShapeRadius () end
@@ -1454,10 +1454,10 @@ function getColShapeSize () end
 ---@type fun(shape: colshape, radius: number): boolean
 function setColShapeRadius () end
 
----@type fun(shape?: colshape, width?: number, depth?: number, height?: number): boolean
+---@type fun(shape: colshape, width: number, depth: number, height: number): boolean
 function setColShapeSize () end
 
----@type fun(theElement: element, key?: string, inherit?: boolean): boolean
+---@type fun(theElement: element, key: string, inherit?: boolean): boolean
 function hasElementData () end
 
 ---@type fun(theResource?: resource): table
@@ -1481,7 +1481,7 @@ function setPlayerHudComponentVisible () end
 ---@type fun(theResource?: resource): table
 function getRemoteRequests () end
 
----@type fun(theRequest?: request, postDataLength?: integer, includeHeaders?: boolean): table
+---@type fun(theRequest: request, postDataLength?: integer, includeHeaders?: boolean): table
 function getRemoteRequestInfo () end
 
 ---@type fun(theRequest: request): boolean
@@ -1496,7 +1496,7 @@ function isOOPEnabled () end
 ---@type fun(objectToReference: any): integer
 function ref () end
 
----@type fun(red: integer, green: integer, blue?: integer, alpha?: integer): color
+---@type fun(red: integer, green: integer, blue: integer, alpha?: integer): color
 function tocolor () end
 
 ---@type fun(xmlString: string): xmlnode
@@ -1517,7 +1517,7 @@ function removeColPolygonPoint () end
 ---@type fun(shape: colshape, index: integer, fX: number, fY: number): boolean
 function setColPolygonPointPosition () end
 
----@type fun(theVehicle?: vehicle, variant1?: integer, variant2?: integer): boolean
+---@type fun(theVehicle: vehicle, variant1?: integer, variant2?: integer): boolean
 function setVehicleVariant () end
 
 ---@type fun(): boolean

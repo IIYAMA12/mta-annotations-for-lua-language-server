@@ -31,10 +31,10 @@ function getVehicleAdjustableProperty () end
 ---@type fun(theVehicle: vehicle): table
 function getVehicleComponents () end
 
----@type fun(theVehicle: vehicle, theComponent?: string, base?: string): number, number, number
+---@type fun(theVehicle: vehicle, theComponent: string, base?: string): number, number, number
 function getVehicleComponentPosition () end
 
----@type fun(theVehicle: vehicle, theComponent?: string, base?: string): number, number, number
+---@type fun(theVehicle: vehicle, theComponent: string, base?: string): number, number, number
 function getVehicleComponentRotation () end
 
 ---@type fun(theVehicle: vehicle, theComponent: string): boolean
@@ -76,10 +76,10 @@ function setHelicopterRotorSpeed () end
 ---@type fun(theVehicle: element, value: integer): boolean
 function setVehicleAdjustableProperty () end
 
----@type fun(theVehicle: vehicle, theComponent: string, posX: number, posY: number, posZ?: number, base?: string): boolean
+---@type fun(theVehicle: vehicle, theComponent: string, posX: number, posY: number, posZ: number, base?: string): boolean
 function setVehicleComponentPosition () end
 
----@type fun(theVehicle: vehicle, theComponent: string, rotX: number, rotY: number, rotZ?: number, base?: string): boolean
+---@type fun(theVehicle: vehicle, theComponent: string, rotX: number, rotY: number, rotZ: number, base?: string): boolean
 function setVehicleComponentRotation () end
 
 ---@type fun(theVehicle: vehicle, theComponent: string, visible: boolean): boolean
@@ -109,7 +109,7 @@ function isVehicleWheelOnGround () end
 ---@type fun(theVehicle: vehicle): boolean
 function areVehicleLightsOn () end
 
----@type fun(theVehicle: vehicle, theComponent?: string, base?: string): number, number, number
+---@type fun(theVehicle: vehicle, theComponent: string, base?: string): number, number, number
 function getVehicleComponentScale () end
 
 ---@type fun(modelID: integer, dummy: string): number, number, number
@@ -118,7 +118,7 @@ function getVehicleModelDummyPosition () end
 ---@type fun(theVehicle: vehicle, theComponent: string): boolean
 function resetVehicleComponentScale () end
 
----@type fun(theVehicle: vehicle, theComponent: string, scaleX: number, scaleY: number, scaleZ?: number, base?: string): boolean
+---@type fun(theVehicle: vehicle, theComponent: string, scaleX: number, scaleY: number, scaleZ: number, base?: string): boolean
 function setVehicleComponentScale () end
 
 ---@type fun(modelID: integer, dummy: string, x: number, y: number, z: number): boolean

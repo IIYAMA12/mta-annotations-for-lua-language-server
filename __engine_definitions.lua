@@ -10,7 +10,7 @@ function engineGetVisibleTextureNames () end
 ---@type fun(rawDataOrColFile : string): col
 function engineLoadCOL () end
 
----@type fun(shader: element, textureName?: string, targetElement?: element): boolean
+---@type fun(shader: element, textureName: string, targetElement?: element): boolean
 function engineRemoveShaderFromWorldTexture () end
 
 ---@type fun(texture: txd, model_id: integer): boolean
@@ -43,7 +43,7 @@ function engineGetModelNameFromID () end
 ---@type fun(modelID: integer): boolean
 function engineRestoreModel () end
 
----@type fun(shader: element, textureName?: string, targetElement?: element, appendLayers?: boolean): boolean
+---@type fun(shader: element, textureName: string, targetElement?: element, appendLayers?: boolean): boolean
 function engineApplyShaderToWorldTexture () end
 
 ---@type fun(modelName: string): integer
@@ -85,7 +85,7 @@ function engineRequestModel () end
 ---@type fun(modelID: integer): boolean
 function engineFreeModel () end
 
----@type fun(modelNameOrModelID?: string | integer, textureNames?: string | table): table
+---@type fun(modelNameOrModelID: string | integer, textureNames?: string | table): table
 function engineGetModelTextures () end
 
 ---@type fun(surfaceID: integer, property: string, value: any, ...?: any): boolean

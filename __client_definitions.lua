@@ -44,10 +44,10 @@ function isPlayerMapVisible () end
 ---@type fun(sound: element): table
 function getSoundMetaTags () end
 
----@type fun(creator: element, weaponType?: integer, posX?: number, posY?: number, posZ?: number, force?: number, target?: element, rotX?: number, rotY?: number, rotZ?: number, velX?: number, velY?: number, velZ?: number, model?: integer): projectile
+---@type fun(creator: element, weaponType: integer, posX?: number, posY?: number, posZ?: number, force?: number, target?: element, rotX?: number, rotY?: number, rotZ?: number, velX?: number, velY?: number, velZ?: number, model?: integer): projectile
 function createProjectile () end
 
----@type fun(sound: element, iSamples?: integer, iBands?: integer): table
+---@type fun(sound: element, iSamples: integer, iBands?: integer): table
 function getSoundFFTData () end
 
 ---@type fun(sound: element): integer
@@ -119,13 +119,13 @@ function setSoundMaxDistance () end
 ---@type fun(sound: element): integer
 function getSoundMinDistance () end
 
----@type fun(containerName: string, bankId: integer, soundId?: integer, looped?: boolean): element
+---@type fun(containerName: string, bankId: integer, soundId: integer, looped?: boolean): element
 function playSFX () end
 
 ---@type fun(theSound: element): number
 function getSoundPosition () end
 
----@type fun(containerName: string, bankId: integer, soundId: integer, x: number, y: number, z?: number, looped?: boolean): element
+---@type fun(containerName: string, bankId: integer, soundId: integer, x: number, y: number, z: number, looped?: boolean): element
 function playSFX3D () end
 
 ---@type fun(sound: element, enable: boolean): boolean
@@ -200,7 +200,7 @@ function fxAddGlass () end
 ---@type fun(theElement: element): number, number, number, number, number, number
 function getElementBoundingBox () end
 
----@type fun(width: integer, height: integer, isLocal?: boolean, transparent?: boolean): element
+---@type fun(width: integer, height: integer, isLocal: boolean, transparent?: boolean): element
 function createBrowser () end
 
 ---@type fun(posX: number, posY: number, posZ: number, dirX: number, dirY: number, dirZ: number, count?: integer, brightness?: number): boolean
@@ -215,7 +215,7 @@ function fxAddBlood () end
 ---@type fun(posX: number, posY: number, posZ: number): boolean
 function fxAddWaterSplash () end
 
----@type fun(x: number, y: number, z?: number, size?: number): boolean
+---@type fun(x: number, y: number, z: number, size?: number): boolean
 function createFire () end
 
 ---@type fun(posX: number, posY: number, posZ: number, dirX: number, dirY: number, dirZ: number): boolean
@@ -224,7 +224,7 @@ function fxAddPunchImpact () end
 ---@type fun(theEffect: effect, speed: number): boolean
 function setEffectSpeed () end
 
----@type fun(name: string, x: number, y: number, z?: number, rX?: number, rY?: number, rZ?: number, drawDistance?: number, soundEnabled): effect
+---@type fun(name: string, x: number, y: number, z: number, rX?: number, rY?: number, rZ?: number, drawDistance?: number, soundEnabled): effect
 function createEffect () end
 
 ---@type fun(theObject: object): number
@@ -278,7 +278,7 @@ function isElementCollidableWith () end
 ---@type fun(theSearchLight: searchlight): number, number, number
 function getSearchLightEndPosition () end
 
----@type fun(control?: string, state?: number, forceOverrideNextFrame?: boolean): boolean
+---@type fun(control: string, state?: number, forceOverrideNextFrame?: boolean): boolean
 function setAnalogControlState () end
 
 ---@type fun(theSearchLight: searchlight): searchlight
@@ -290,7 +290,7 @@ function getProjectileTarget () end
 ---@type fun(theObject: object, respawn: boolean): boolean
 function toggleObjectRespawn () end
 
----@type fun(event: string, bandwidth?: integer, persist?: boolean, arguments...): boolean
+---@type (fun(event: string, arguments...): boolean) | (fun(event: string, bandwidth: integer, persist: boolean, arguments...): boolean)
 function triggerLatentServerEvent () end
 
 ---@type fun(theElement: element, streamable: boolean): boolean
@@ -344,7 +344,7 @@ function getKeyState () end
 ---@type fun(theLight: light, r: number, g: number, b: number): boolean
 function setLightColor () end
 
----@type fun(lightType: integer, posX: number, posY: number, posZ?: number, radius?: number, r?: integer, g?: integer, b?: integer, dirX?: number, dirY?: number, dirZ?: number, createsShadow?: boolean): light
+---@type fun(lightType: integer, posX: number, posY: number, posZ: number, radius?: number, r?: integer, g?: integer, b?: integer, dirX?: number, dirY?: number, dirZ?: number, createsShadow?: boolean): light
 function createLight () end
 
 ---@type fun(): boolean
@@ -386,7 +386,7 @@ function isConsoleActive () end
 ---@type fun(): boolean
 function isMainMenuActive () end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, startRadius: number, endRadius?: number, renderSpot?: boolean): searchlight
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, startRadius: number, endRadius: number, renderSpot?: boolean): searchlight
 function createSearchLight () end
 
 ---@type fun(): boolean
@@ -419,7 +419,7 @@ function isObjectBreakable () end
 ---@type fun(theObject: object): boolean
 function respawnObject () end
 
----@type fun(address?: string, isURL?: boolean): boolean
+---@type fun(address: string, isURL?: boolean): boolean
 function isBrowserDomainBlocked () end
 
 ---@type fun(webBrowser: browser): boolean
@@ -452,7 +452,7 @@ function injectBrowserMouseUp () end
 ---@type fun(webBrowser: browser, verticalScroll: integer, horizontalScroll: integer): boolean
 function injectBrowserMouseWheel () end
 
----@type fun(webBrowser: browser, url?: string, postData?: string, urlEncoded?: boolean): boolean
+---@type fun(webBrowser: browser, url: string, postData?: string, urlEncoded?: boolean): boolean
 function loadBrowserURL () end
 
 ---@type fun(webBrowser: browser): boolean
@@ -467,10 +467,10 @@ function setBrowserRenderingPaused () end
 ---@type (fun(webBrowser: browser, volume: number): boolean) | (fun( volume: number): boolean)
 function setBrowserVolume () end
 
----@type fun(pages?: table, parseAsURL?: boolean, callback?: function): boolean
+---@type fun(pages: table, parseAsURL?: boolean, callback?: function): boolean
 function requestBrowserDomains () end
 
----@type fun(webBrowser: browser, url?: string, handler?: function): boolean
+---@type fun(webBrowser: browser, url: string, handler?: function): boolean
 function setBrowserAjaxHandler () end
 
 ---@type fun(webBrowser: browser, callback: function): boolean
@@ -497,7 +497,7 @@ function getCameraShakeLevel () end
 ---@type fun(objects?: boolean, vehicles?: boolean): boolean
 function setCameraClip () end
 
----@type fun(vehicleCameraMode?: integer, pedCameraMode?: integer): boolean
+---@type fun(vehicleCameraMode: integer, pedCameraMode?: integer): boolean
 function setCameraViewMode () end
 
 ---@type fun(cameraMode: string, fieldOfView: number): boolean
@@ -575,7 +575,7 @@ function resetWeaponFiringRate () end
 ---@type fun(theWeapon: weapon, theState: string): boolean
 function setWeaponState () end
 
----@type fun(theWeapon: weapon, theTarget?: element, theComponent?: integer): boolean
+---@type fun(theWeapon: weapon, theTarget: element, theComponent?: integer): boolean
 function setWeaponTarget () end
 
 ---@type fun(theWeapon: weapon, theFlag: string, enable: boolean): boolean
@@ -590,7 +590,7 @@ function setWeaponClipAmmo () end
 ---@type fun(): number
 function getNearClipDistance () end
 
----@type fun(x: number, y: number, z?: number, edgeTolerance?: number, relative?: boolean): number, number, number
+---@type fun(x: number, y: number, z: number, edgeTolerance?: number, relative?: boolean): number, number, number
 function getScreenFromWorldPosition () end
 
 ---@type fun(x: number, y: number, depth: number): number, number, number
@@ -638,7 +638,7 @@ function getKeyBoundToFunction () end
 ---@type fun(): boolean
 function clearChatBox () end
 
----@type fun(text?: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
+---@type fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
 function outputChatBox () end
 
 ---@type (fun(): boolean) |  (fun(x: number, y: number, z: number, radius?: number): boolean)
@@ -647,7 +647,7 @@ function extinguishFire () end
 ---@type (fun(group: integer, enable: boolean, immediate? : boolean) : boolean) | (fun(group: integer, index: integer, enable: boolean, immediate? : boolean) : boolean)
 function setWorldSoundEnabled () end
 
----@type fun(goggleEffect?: string, noiseEnabled?: boolean): boolean
+---@type fun(goggleEffect: string, noiseEnabled?: boolean): boolean
 function setCameraGoggleEffect () end
 
 ---@type fun(theSound: element): number
@@ -756,10 +756,10 @@ function svgGetDocumentXML () end
 ---@type fun(svgElement: svg): integer, integer
 function svgGetSize () end
 
----@type fun(svgElement: svg, xmlDocument?: xmlnode, callBack?: fun(svg: svg) ): boolean
+---@type fun(svgElement: svg, xmlDocument: xmlnode, callBack?: fun(svg: svg) ): boolean
 function svgSetDocumentXML () end
 
----@type fun(svgElement: svg, width: integer, height?: integer, callBack?: fun(svgElement: svg) ): boolean
+---@type fun(svgElement: svg, width: integer, height: integer, callBack?: fun(svgElement: svg) ): boolean
 function svgSetSize () end
 
 ---@type fun(): boolean

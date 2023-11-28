@@ -7,7 +7,7 @@ function guiMoveToBack () end
 ---@type fun(guielement: element, alpha: number): boolean
 function guiSetAlpha () end
 
----@type fun(filepath?: string, size?: integer): element
+---@type fun(filepath: string, size?: integer): element
 function guiCreateFont () end
 
 ---@type fun(guiElement: element): boolean
@@ -145,7 +145,7 @@ function guiCreateGridList () end
 ---@type fun(gridList: element, title: string, width: number): integer
 function guiGridListAddColumn () end
 
----@type fun(gridList?: element, itemText1?: integer | string, itemText2?: integer | string, ...?: integer | string): integer
+---@type fun(gridList: element, itemText1?: integer | string, itemText2?: integer | string, ...?: integer | string): integer
 function guiGridListAddRow () end
 
 ---@type fun(gridList: element, columnIndex: integer): boolean
@@ -184,7 +184,7 @@ function guiGridListSetItemText () end
 ---@type fun(guiGridlist: element, horizontalBar: boolean, verticalBar: boolean): boolean
 function guiGridListSetScrollBars () end
 
----@type fun(gridList: element, rowIndex: integer, columnIndex?: integer, bReset?: boolean): boolean
+---@type fun(gridList: element, rowIndex: integer, columnIndex: integer, bReset?: boolean): boolean
 function guiGridListSetSelectedItem () end
 
 ---@type fun(gridlist: element, mode: integer): boolean
@@ -208,7 +208,7 @@ function guiGridListGetColumnCount () end
 ---@type fun(gridList: element, rowIndex: integer, columnIndex: integer): integer, integer, integer, integer
 function guiGridListGetItemColor () end
 
----@type fun(gridList: element, rowIndex: integer, columnIndex: integer, red: integer, green: integer, blue?: integer, alpha?: integer): boolean
+---@type fun(gridList: element, rowIndex: integer, columnIndex: integer, red: integer, green: integer, blue: integer, alpha?: integer): boolean
 function guiGridListSetItemColor () end
 
 ---@type fun(guiGridlist: element, columnIndex: integer): string
