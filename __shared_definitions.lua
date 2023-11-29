@@ -160,8 +160,6 @@ function xmlDestroyNode () end
 ---@type fun(eventName: string, baseElement: element, ...: any): boolean
 function triggerEvent () end
 
-triggerEvent()
-
 ---@type fun(theElement: element): integer
 function getElementDimension () end
 
