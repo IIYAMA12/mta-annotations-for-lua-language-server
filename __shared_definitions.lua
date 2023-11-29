@@ -157,8 +157,10 @@ function xmlNodeGetAttribute () end
 ---@type fun(theXMLNode: xmlnode): boolean
 function xmlDestroyNode () end
 
----@type fun(eventName: string, baseElement: element, ...?: any): boolean
+---@type fun(eventName: string, baseElement: element, ...: any): boolean
 function triggerEvent () end
+
+triggerEvent()
 
 ---@type fun(theElement: element): integer
 function getElementDimension () end
@@ -299,7 +301,7 @@ function getElementChild () end
 ---@type fun(theFile: file): boolean
 function fileFlush () end
 
----@type fun(theFile: file, ...?: string): integer
+---@type fun(theFile: file, ...: string): integer
 function fileWrite () end
 
 ---@type fun(theFile: file, offset: integer): integer
@@ -332,7 +334,7 @@ function getMarkerSize () end
 ---@type fun(theMarker: marker, icon: string): boolean
 function setMarkerIcon () end
 
----@type fun(thePlayer: player, key: string, keyState: string, handlerFunction: function, ...?:any): boolean
+---@type fun(thePlayer: player, key: string, keyState: string, handlerFunction: function, ...:any): boolean
 function bindKey () end
 
 ---@type fun(thePed: ped): boolean
@@ -802,7 +804,7 @@ function getNetworkUsageData () end
 ---@type fun(thePlayer: player, enabled: boolean, gtaControls?: boolean, mtaControls?: boolean): boolean
 function toggleAllControls () end
 
----@type fun(...?: any): boolean
+---@type fun(...: any): boolean
 function iprint () end
 
 ---@type fun(x1: number, y1: number, x2: number, y2: number): number
@@ -979,7 +981,7 @@ function setAircraftMaxVelocity () end
 ---@type fun(level: number): boolean
 function setGravity () end
 
----@type fun(URL: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, callbackFunction: function, postData?: string, postIsBinary?: boolean, ...?: any): boolean
+---@type fun(URL: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, callbackFunction: function, postData?: string, postIsBinary?: boolean, ...: any): boolean
 function fetchRemote () end
 
 ---@type fun(commandName: string, thePlayer: player, args?: string): boolean
@@ -1067,7 +1069,7 @@ function killTimer () end
 ---@type fun(theTimer: timer): boolean
 function resetTimer () end
 
----@type fun(theFunction: function, timeInterval: integer, timesToExecute: integer, ...?: any ): timer
+---@type fun(theFunction: function, timeInterval: integer, timesToExecute: integer, ...: any ): timer
 function setTimer () end
 
 ---@type fun(stringToSplit: string, separatingChar: string | integer): table

@@ -1,7 +1,7 @@
 ---@meta serverConfigs
 ---@diagnostic disable: missing-return
 
----@type fun(databaseConnection: element, query: string, ...?: string | number): string
+---@type fun(databaseConnection: element, query: string, ...: string | number): string
 function dbPrepareString () end
 
 ---@type fun(thePlayer: player): boolean Returns true if the AC info will be resent, false otherwise. 
@@ -163,7 +163,7 @@ function setRuleValue () end
 ---@type fun(mapName: string): boolean Returns true if map name was set successfully, false otherwise. 
 function setMapName () end
 
----@type fun(query: string, ...?: string | number): table Returns a table with the result of the query if it was a SELECT query, or false if otherwise. In case of a SELECT query the result table may be empty (if there are no result rows). 
+---@type fun(query: string, ...: string | number): table Returns a table with the result of the query if it was a SELECT query, or false if otherwise. In case of a SELECT query the result table may be empty (if there are no result rows). 
 function executeSQLQuery () end
 
 ---@type fun(settingName: string): unknown Returns the value of the setting if a single setting was specified and found, or a table (in associative-array form). It returns false if the specified setting or settings group doesn't exist, or if the settings group you are trying to retrieve doesn't have any public or protected settings. 
@@ -388,7 +388,7 @@ function getRandomPlayer () end
 ---@type fun(theResource: resource): table Returns a table with the ACL requests for the given resource.
 function getResourceACLRequests () end
 
----@type fun(host: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, resourceName: string, functionName: string, callbackFunction: function, ...?: any): boolean Returns true if the function has been called, false otherwise. 
+---@type fun(host: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, resourceName: string, functionName: string, callbackFunction: function, ...: any): boolean Returns true if the function has been called, false otherwise. 
 function callRemote () end
 
 ---@type fun(thePlayer: player, serverIP: string, serverPort: integer, serverPassword?: string): boolean Returns true if the player was redirected successfully, false if bad arguments were passed. 
@@ -460,10 +460,10 @@ function isObjectInACLGroup () end
 ---@type fun(): string Returns the reason that was given with cancelEvent
 function getCancelReason () end
 
----@type (fun( name: string, sourceElement: element, ...?: any): boolean) | (fun(sendTo: table | element, name: string, sourceElement: element, ...?: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified. 
+---@type (fun( name: string, sourceElement: element, ...: any): boolean) | (fun(sendTo: table | element, name: string, sourceElement: element, ...: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified. 
 function triggerClientEvent () end
 
----@type (fun(name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...?: any): boolean) | (fun(sendTo: table | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...?: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified. 
+---@type (fun(name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...: any): boolean) | (fun(sendTo: table | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified. 
 function triggerLatentClientEvent () end
 
 ---@type fun(thePlayer?: player): boolean Returns true if the map info was reset successfully, otherwise false. 
@@ -550,10 +550,10 @@ function shutdown () end
 ---@type fun(databaseType: string, host: string, username?: string, password?: string, options?: string): databaseConnection | false Returns a database connection element unless there are problems, in which case it return false. 
 function dbConnect () end
 
----@type fun(databaseConnection: databaseConnection, query: string, ...?: string | number): boolean Returns true unless the connection is incorrect, in which case it returns false. 
+---@type fun(databaseConnection: databaseConnection, query: string, ...: string | number): boolean Returns true unless the connection is incorrect, in which case it returns false. 
 function dbExec () end
 
----@type (fun(databaseConnection: databaseConnection, query?: string, ...?: string | number): handle) | (fun(callbackFunction: function, databaseConnection: databaseConnection, query?: string, ...?: string | number): handle) | (fun(callbackFunction: function, callbackArguments: table, databaseConnection: databaseConnection, query?: string, ...?: string | number): handle) Returns a query handle unless the connection is incorrect.
+---@type (fun(databaseConnection: databaseConnection, query?: string, ...: string | number): handle) | (fun(callbackFunction: function, databaseConnection: databaseConnection, query?: string, ...: string | number): handle) | (fun(callbackFunction: function, callbackArguments: table, databaseConnection: databaseConnection, query?: string, ...: string | number): handle) Returns a query handle unless the connection is incorrect.
 function dbQuery () end
 
 ---@type fun(queryHandle: handle, timeout: integer, multipleResults?: boolean): table | nil | false More info: https://wiki.multitheftauto.com/wiki/DbPoll

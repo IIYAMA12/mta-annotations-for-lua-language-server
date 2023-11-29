@@ -55,7 +55,7 @@ function dxGetBlendMode () end
 ---@type fun(screenSource: element, resampleNow?: boolean): boolean
 function dxUpdateScreenSource () end
 
----@type fun(theShader: element, parameterName: string, value : element|boolean|number, ...?: element|boolean|number ): boolean
+---@type fun(theShader: element, parameterName: string, value : element|boolean|number, ...: element|boolean|number ): boolean
 function dxSetShaderValue () end
 
 ---@type fun(width: integer, height: integer, withAlpha?: boolean): element
@@ -106,16 +106,16 @@ function dxGetStatus () end
 ---@type fun(posX: number, posY: number, radius: number, startAngle?: number, stopAngle?: number, theColor?: color, theCenterColor?: color, segments?: integer, ratio?: integer, postGUI): boolean
 function dxDrawCircle () end
 
----@type fun(pType: string, material: mixMaterial, postGUI: boolean, vertice1: table, vertice2?: table, ...?: table): boolean
+---@type fun(pType: string, material: mixMaterial, postGUI: boolean, vertice1: table, vertice2?: table, ...: table): boolean
 function dxDrawMaterialPrimitive () end
 
----@type fun(pType: string, postGUI: boolean, vertice1: table, ...?: table): boolean
+---@type fun(pType: string, postGUI: boolean, vertice1: table, ...: table): boolean
 function dxDrawPrimitive () end
 
----@type fun(primitiveType: string, material: mixMaterial, postGUI: boolean, vertex1: table, ...?: table): boolean
+---@type fun(primitiveType: string, material: mixMaterial, postGUI: boolean, vertex1: table, ...: table): boolean
 function dxDrawMaterialPrimitive3D () end
 
----@type fun(primitiveType: string, postGUI: boolean, vertex1: table, vertex2: table, vertex3?: table, vertex4?: table, ...?: table): boolean
+---@type fun(primitiveType: string, postGUI: boolean, vertex1: table, vertex2: table, vertex3?: table, vertex4?: table, ...: table): boolean
 function dxDrawPrimitive3D () end
 
 ---@type fun(x: number, y: number, z: number, radius: number, theColor: color, fLineWidth: number, iterations: 1 | 2 | 3 | 4): boolean
