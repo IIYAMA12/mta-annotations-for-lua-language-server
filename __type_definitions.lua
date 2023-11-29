@@ -22,6 +22,7 @@
 ---@alias radararea userdata
 ---@alias svg userdata
 ---@alias resource userdata
+---@alias root userdata
 
 ---@class matrix 
 ---@class xmlnode
