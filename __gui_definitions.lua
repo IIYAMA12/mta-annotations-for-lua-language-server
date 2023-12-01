@@ -1,145 +1,156 @@
 ---@meta guiConfigs
 ---@diagnostic disable: missing-return
 
----@type fun(guiElement: element): boolean
+---@type fun(guiElement: element): boolean Returns true if the function was successful, false otherwise. 
 function guiMoveToBack () end
 
----@type fun(guielement: element, alpha: number): boolean
+---@type fun(guielement: element, alpha: number): boolean Returns true if the gui element's alpha was successfully changed, false otherwise. 
 function guiSetAlpha () end
 
----@type fun(filepath: string, size?: integer): element
+---@type fun(filepath: string, size?: integer): element | false Returns a GUI font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available. 
 function guiCreateFont () end
 
----@type fun(guiElement: element): boolean
+---@type fun(guiElement: element): boolean Returns true if the element is enabled, false otherwise. 
 function guiGetEnabled () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if input is focused on GUI, false if it's focused on the game. 
 function guiGetInputEnabled () end
 
----@type fun(guiElement: element): string, element
+---@type fun(guiElement: element): string, element | nil A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
 function guiGetFont () end
 
----@type fun(): string
+---@type fun(): "allow_binds" | "no_binds" | "no_binds_when_editing"
 function guiGetInputMode () end
 
----@type fun(guiElement: element): boolean
+---@type fun(guiElement: element): visibility:boolean Returns true if the element is visible, false otherwise. 
 function guiGetVisible () end
 
----@type fun(): number, number
+---@type fun(): width:number, height:number This returns two floats representing the player's screen resolution, width and height. 
 function guiGetScreenSize () end
 
----@type fun(): string
+--- // "none" = cursor has no image
+--- // "arrow" = default cursor
+--- // "sizing_ns" = N-S (up-down) sizing cursor
+--- // "sizing_ew" = E-W (left-right) sizing cursor
+--- // "sizing_nwse" = NW-SE diagonal sizing cursor
+--- // "sizing_nesw" = NE-SW diagonal sizing cursor
+--- // "sizing_eswe" = ES-WE horizontal sizing cursor
+--- // "move" = move cursor
+--- // "container_drag" = drag container cursor (note: not in use)
+--- // "segment_moving" = segment moving cursor (note: not in use)
+--- // "segment_sizing" = segment sizing cursor (note: not in use)
+---@type fun(): "none" | "arrow" | "sizing_ns" |  "sizing_ew" | "sizing_nwse" | "sizing_nesw" | "sizing_eswe" | "move" | "container_drag" | "segment_moving" | "segment_sizing" 
 function guiGetCursorType () end
 
----@type fun(guiElement: element, relative: boolean): number, number
+---@type fun(guiElement: element, relative: boolean): x:number, y:number Returns floats representing the x and y position of the element.
 function guiGetPosition () end
 
----@type fun(guiElement: element): table
+---@type fun(guiElement: element): {[string] : string} If the function succeeds, the return value is a table. Its keys are property names, the corresponding values are the values of the properties (both names and values are always strings).
 function guiGetProperties () end
 
----@type fun(guiElement: element, property: string): string
+---@type fun(guiElement: element, property: string): string If the function succeeds, it returns a string with the value of the property.
 function guiGetProperty () end
 
----@type fun(guiElement: element): string
+---@type fun(guiElement: element): string Returns a string containing the requested element's text.
 function guiGetText () end
 
----@type fun(guiElement: element): boolean
+---@type fun(guiElement: element): boolean Returns true if the function was successful, false otherwise. 
 function guiBringToFront () end
 
----@type fun(mode: string): boolean
+---@type fun(mode: "allow_binds" | "no_binds" | "no_binds_when_editing"): boolean Returns true if input mode could be changed, false if invalid parameters are passed. 
 function guiSetInputMode () end
 
----@type fun(guiElement: element): number
+---@type fun(guiElement: element): number This function returns a positive float in between 0 and 1 of the gui element's current alpha.
 function guiGetAlpha () end
 
----@type fun(guiElement: element, state: boolean): boolean
+---@type fun(guiElement: element, state: boolean): boolean Returns true if the element's visibility could be changed, false otherwise. 
 function guiSetVisible () end
 
----@type fun(guiElement: element, width: number, height: number, relative: boolean): boolean
+---@type fun(guiElement: element, width: number, height: number, relative: boolean): boolean Returns true if the gui element's size was set successfully.
 function guiSetSize () end
 
----@type fun(guiElement: element, font: mixFont): boolean
+---@type fun(guiElement: element, font: mixFont): boolean Returns true if the font has been successfully set on the gui element, false otherwise.
 function guiSetFont () end
 
----@type fun(theElement: element, relative: boolean): number, number
+---@type fun(theElement: element, relative: boolean): number, number Returns the GUI element size x and y if the function has been successful.
 function guiGetSize () end
 
----@type fun(guiElement: element, enabled: boolean): boolean
+---@type fun(guiElement: element, enabled: boolean): boolean If the function succeeds it returns true, if it fails it returns false. 
 function guiSetEnabled () end
 
----@type fun(guiElement: element, property: string, value: string): boolean
+---@type fun(guiElement: element, property: string, value: string): boolean If the function succeeds it returns true, if it fails it returns false. 
 function guiSetProperty () end
 
----@type fun(enabled: boolean): boolean
+---@type fun(enabled: boolean): boolean Returns true if input mode could be changed, false if invalid parameters are passed. 
 function guiSetInputEnabled () end
 
----@type fun(guiElement: element, text: string): boolean
+---@type fun(guiElement: element, text: string): boolean Returns true if text has been successfully set on the gui element, false otherwise. 
 function guiSetText () end
 
----@type fun(theElement: element, x: number, y: number, relative: boolean): boolean
+---@type fun(theElement: element, x: number, y: number, relative: boolean): boolean Returns true if the position has been successfully set, false otherwise. 
 function guiSetPosition () end
 
----@type fun(x: number, y: number, width: number, height: number, isLocal: boolean, isTransparent: boolean, isRelative: boolean, parent?: element): guiBrowser | false Returns a gui-browser element if it was created successfully, false otherwise. Returns also false, if the user disabled remote pages and isLocal was set to false. 
+---@type fun(x: number, y: number, width: number, height: number, isLocal: boolean, isTransparent: boolean, isRelative?: boolean, parent?: element): guiBrowser | false Returns a gui-browser element if it was created successfully. Returns also false, if the user disabled remote pages and isLocal was set to false. 
 function guiCreateBrowser () end
 
----@type fun(theBrowser: guiBrowser): browser
+---@type fun(theBrowser: guiBrowser): browser Returns the Browser element if a correct gui-browser has been passed.
 function guiGetBrowser () end
 
----@type fun(x: number, y: number, width: number, height: number, text: string, relative: boolean, parent?: element): element
+---@type fun(x: number, y: number, width: number, height: number, text: string, relative?: boolean, parent?: element): element Returns an element of the created button if it was successfully created
 function guiCreateButton () end
 
----@type fun(theCheckbox: element): boolean
+---@type fun(theCheckbox: element): boolean Returns true if the checkbox is selected, false if it is not. 
 function guiCheckBoxGetSelected () end
 
----@type fun(theCheckbox: element, state: boolean): boolean
+---@type fun(theCheckbox: element, state: boolean): boolean Returns true if the checkbox's selection state was successfully set, false otherwise. 
 function guiCheckBoxSetSelected () end
 
----@type fun(x: number, y: number, width: number, height: number, text: string, selected: boolean, relative: boolean, parent?: element): element
+---@type fun(x: number, y: number, width: number, height: number, text: string, selected: boolean, relative?: boolean, parent?: element): element Returns element of the checkbox if it was created succesfully
 function guiCreateCheckBox () end
 
----@type fun(x: number, y: number, width: number, height: number, caption: string, relative: boolean, parent?: element): element
+---@type fun(x: number, y: number, width: number, height: number, caption: string, relative?: boolean, parent?: element): element Returns an element of the created combobox if it was successfully created.
 function guiCreateComboBox () end
 
----@type fun(comboBox: element, value: string): integer
+---@type fun(comboBox: element, value: string): integer Returns the item ID if it has been created, false otherwise.
 function guiComboBoxAddItem () end
 
----@type fun(comboBox: element): boolean
+---@type fun(comboBox: element): boolean Returns true if the combobox element is valid and has been cleared successfully, false otherwise. 
 function guiComboBoxClear () end
 
----@type fun(comboBox: element, itemId: integer): string
+---@type fun(comboBox: element, itemId: integer): string Returns the text of the item if the arguments are right.
 function guiComboBoxGetItemText () end
 
----@type fun(comboBox: element, itemId: integer, text: string): boolean
+---@type fun(comboBox: element, itemId: integer, text: string): boolean Returns true if the text was set successfully, false otherwise. 
 function guiComboBoxSetItemText () end
 
----@type fun(comboBox: element, itemId: integer): boolean
+---@type fun(comboBox: element, itemId: integer): boolean Returns true if the item was removes successfully, false otherwise. 
 function guiComboBoxRemoveItem () end
 
----@type fun(comboBox: element): integer
+---@type fun(comboBox: element): integer Returns the index of the selected item if the specified combobox is valid and has a selected item, -1 if no item is selected, nil otherwise. 
 function guiComboBoxGetSelected () end
 
----@type fun(comboBox: element, itemIndex: integer): boolean
+---@type fun(comboBox: element, itemIndex: integer): boolean Returns true if the selected item has been changed successfully, false otherwise. 
 function guiComboBoxSetSelected () end
 
----@type fun(x: number, y: number, width: number, height: number, text: string, relative?: boolean, parent?: element): element
+---@type fun(x: number, y: number, width: number, height: number, text: string, relative?: boolean, parent?: element): element Returns a gui-edit element of the created edit box if it was successfully created
 function guiCreateEdit () end
 
----@type fun(theElement: element, status: boolean): boolean
+---@type fun(theElement: element, status: boolean): boolean Returns true if the function is successful, false otherwise. 
 function guiEditSetMasked () end
 
----@type fun(guiEdit: element, length: integer): boolean
+---@type fun(guiEdit: element, length: integer): boolean Returns true if the max length was set successfully, false otherwise. 
 function guiEditSetMaxLength () end
 
----@type fun(editField: element, status: boolean): boolean
+---@type fun(editField: element, status: boolean): boolean Returns true if edit field's read-only status was changed successfully, false otherwise. 
 function guiEditSetReadOnly () end
 
----@type fun(theElement: element, index: integer): boolean
+---@type fun(theElement: element, index: integer): boolean Returns true if the index was successfully set, false otherwise. 
 function guiEditSetCaretIndex () end
 
----@type fun(theElement: element): integer
+---@type fun(theElement: element): integer Returns the caret index on success.
 function guiEditGetCaretIndex () end
 
----@type fun(x: number, y: number, width: number, height: number, relative: boolean, parent?: element): element
+---@type fun(x: number, y: number, width: number, height: number, relative?: boolean, parent?: element): element Returns an element of the created gridlist if it was successfully created.
 function guiCreateGridList () end
 
 ---@type fun(gridList: element, title: string, width: number): integer Returns the column id if it was created.

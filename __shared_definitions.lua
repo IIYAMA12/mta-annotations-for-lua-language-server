@@ -169,7 +169,7 @@ function setElementAttachedOffsets () end
 ---@type fun(theElement: element, speedX: number, speedY: number, speedZ: number): boolean
 function setElementVelocity () end
 
----@type fun(eventName: string, attachedTo: element): table
+---@type fun(eventName: string, attachedTo: element): { [integer]: function }
 function getEventHandlers () end
 
 ---@type fun(filePath: string): boolean
@@ -314,7 +314,7 @@ function fileGetSize () end
 ---@type fun(theFile: file): boolean
 function fileIsEOF () end
 
----@type fun(filePath: string, readOnly?: boolean): file
+---@type fun(filePath: string, readOnly?: boolean): file | false If successful, returns a file handle for the file. Otherwise returns false (f.e. if the file doesn't exist). 
 function fileOpen () end
 
 ---@type fun(theFile: file, count: integer): string
@@ -405,7 +405,7 @@ function getTeamFromName () end
 ---@type fun(data: string): string
 function base64Decode () end
 
----@type fun(text: string, level:integer, red?: integer, green?: integer, blue?: integer): boolean
+---@type fun(text: string, level?:integer, red?: integer, green?: integer, blue?: integer): boolean
 function outputDebugString () end
 
 ---@type fun(text: string): boolean
