@@ -964,7 +964,8 @@ function restoreAllWorldModels () end
 ---@type fun(): resource
 function getThisResource () end
 
----@type fun(commandName: string, handlerFunction: function, restricted?: boolean, caseSensitive?: boolean): boolean
+---Serverside has `restricted` arguments and passes the `playerSource` to the `handlerFunction`.
+---@type (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...:string ), restricted?: boolean, caseSensitive?: boolean): boolean) | (fun(commandName: string, handlerFunction:  fun(commandName: string, ...:string ), caseSensitive?: boolean): boolean) Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler () end
 
 ---@type fun(filePath: string): xmlnode
