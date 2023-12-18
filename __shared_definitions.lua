@@ -1050,7 +1050,7 @@ function removeCommandHandler () end
 ---@type fun(fpsLimit: integer): boolean
 function setFPSLimit () end
 
----@type fun(value: any, compact?: boolean, prettyType: string): string
+---@type fun(value: any, compact?: boolean, prettyType?: string): string
 function toJSON () end
 
 ---@type fun(fProgress: number, strEasingType: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number
@@ -1434,7 +1434,7 @@ function getElementAngularVelocity () end
 ---@type fun(theElement: element, rx: number, ry: number, rz: number): boolean
 function setElementAngularVelocity () end
 
----@type fun(x: number, y: number, z: number, range: number, elemType?: string, dimension?: integer): table
+---@type fun(x: number, y: number, z: number, range: number, elemType?: string, interior?: integer, dimension?: integer): table
 function getElementsWithinRange () end
 
 ---@type fun(theShape: colshape, posX: number, posY: number, posZ: number): boolean
