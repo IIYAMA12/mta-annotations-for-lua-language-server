@@ -1,11 +1,16 @@
 ---@meta clientConfigs
 ---@diagnostic disable: missing-return
 
+---@alias soundEffectName "gargle" | "compressor" | "echo" | "i3dl2reverb" | "distortion" | "chorus" | "parameq" | "reverb" | "flanger"
+---@alias boneId 0|1|2|3|4|5|6|7|8|21|22|23|24|25|26|31|32|33|34|35|36|41|42|43|44|51|52|53|54|201|301|302
+---@alias objectProperty "mass" | "turn_mass" | "air_resistance" | "elasticity" | "center_of_mass" | "buoyancy"
+---@alias goggleEffect "normal" | "nightvision" | "thermalvision"
+---@alias worldSoundGroup 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44
 
----@type fun(shouldFlash: boolean, count?: integer): boolean
+---@type fun(shouldFlash: boolean, count?: integer): boolean Default count: 10 Returns false if the window is already in focus or the client has disabled this feature.
 function setWindowFlashing () end
 
----@type fun(webBrowser: browser): boolean
+---@type fun(webBrowser: browser): boolean Returns true if the browser can navigate back
 function canBrowserNavigateBack () end
 
 ---@type fun(webBrowser: browser): boolean
@@ -641,133 +646,136 @@ function clearChatBox () end
 ---@type fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
 function outputChatBox () end
 
----@type (fun(): boolean) |  (fun(x: number, y: number, z: number, radius?: number): boolean)
+---@type (fun(): boolean) |  (fun(x: number, y: number, z: number, radius?: number): boolean) Returns true if successful
 function extinguishFire () end
 
----@type (fun(group: integer, enable: boolean, immediate? : boolean) : boolean) | (fun(group: integer, index: integer, enable: boolean, immediate? : boolean) : boolean)
+---@type (fun(group: worldSoundGroup, enable: boolean, immediate? : boolean) : boolean) | (fun(group: worldSoundGroup, index: integer, enable: boolean, immediate? : boolean) : boolean) Returns true if the world sound was correctly enabled/disabled
 function setWorldSoundEnabled () end
 
----@type fun(goggleEffect: string, noiseEnabled?: boolean): boolean
+---@type fun(goggleEffect: goggleEffect, noiseEnabled?: boolean): boolean Returns true if the effect was set correctly.
 function setCameraGoggleEffect () end
 
----@type fun(theSound: element): number
+---@type fun(theSound: sound): number | false Returns a float value indicating the buffer playback length of the sound in seconds or false if the sound is not a stream.
 function getSoundBufferLength () end
 
 --- Returns on success: table for all, 3 floats for center_of_mass or float for other properties 
----@type (fun(theObject: object, property: 'all' ): table) | (fun(theObject: object, property: 'center_of_mass' ): number, number, number) | (fun(theObject: object, property: string ): number)
+---@type (fun(theObject: object, property: 'all' ): table) | (fun(theObject: object, property: 'center_of_mass' ): number, number, number) | (fun(theObject: object, property: "mass" | "turn_mass" | "air_resistance" | "elasticity" | "buoyancy" ): number)
 function getObjectProperty () end
 
----@type fun(theObject: object, property: string, value: any): boolean
+---@type (fun(theObject: object, property: "mass" | "turn_mass" | "air_resistance" | "elasticity" | "buoyancy", value: number): boolean) | (fun(theObject: object, property: "center_of_mass", x: number, y: number, z: number): boolean) Returns true if the property was set successfully
 function setObjectProperty () end
 
----@type fun(fileName: string): boolean
+---@type fun(fileName: string): boolean Returns true if file download has been queued
 function downloadFile () end
 
----@type fun(): table
+---@type fun(): {["readingLayout"]: "ltr" | "rtl" | "ttb-rtl-ltr" | "ttb-ltr"} Returns a table with keyboard layout
 function getKeyboardLayout () end
 
----@type fun(): boolean
+---@type fun(): true Returns always true.
 function resetNearClipDistance () end
 
----@type fun(): integer
+--- Player element has to be provided on serverside.
+---@type (fun(): integer) | (fun(player: player): integer) Returns the blur level. 
 function getBlurLevel () end
 
----@type fun(): boolean
+---@type fun(): boolean Default blur level is 36. Returns true if the blur level was reset successfully
 function resetBlurLevel () end
 
----@type fun(level: integer): boolean
+--- Player element has to be provided on serverside. Level between 0-255.
+---@type (fun(level: integer): boolean) | (fun(player: player, level: integer): boolean) Returns true if the function was successful
 function setBlurLevel () end
 
----@type fun(aRed: integer, aGreen: integer, aBlue: integer, aAlpha: integer, bRed: integer, bGreen: integer, bBlue: integer, bAlpha: integer): boolean
+---@type fun(aRed: integer, aGreen: integer, aBlue: integer, aAlpha: integer, bRed: integer, bGreen: integer, bBlue: integer, bAlpha: integer): boolean Values between 0-255. Returns true if the color filter was set
 function setColorFilter () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the color filtering was reset
 function resetColorFilter () end
 
----@type fun(theElement: element, bone: integer): table
+---@type fun(theElement: element, bone: boneId): table Returns a multi-dimensional array (which can be transformed into a proper matrix class using Matrix.create method) containing a 4x4 matrix.
 function getElementBoneMatrix () end
 
----@type fun(theElement: element, bone: integer): x:number, y:number, z:number
+---@type fun(theElement: element, bone: boneId): x:number, y:number, z:number Returns 3 floats, representing the X, Y, Z world position of the bone. 
 function getElementBonePosition () end
 
----@type fun(theElement: element, bone: integer): x:number, y:number, z:number
+---@type fun(theElement: element, bone: boneId): yaw:number, pitch:number, roll:number Returns 3 floats, representing the yaw, pitch, roll rotation values. 
 function getElementBoneRotation () end
 
----@type fun(theElement: element, bone: integer, matrix: matrix): boolean
+---@type fun(theElement: element, bone: boneId, matrix: matrix): boolean Returns true if the function was successful
 function setElementBoneMatrix () end
 
----@type fun(theElement: element, bone: integer, x: number, y: number, z: number): boolean
+---@type fun(theElement: element, bone: boneId, x: number, y: number, z: number): boolean Returns true if the function was successful
 function setElementBonePosition () end
 
----@type fun(theElement: element, bone: integer, yaw: number, pitch: number, roll: number): boolean
+---@type fun(theElement: element, bone: boneId, yaw: number, pitch: number, roll: number): boolean Returns true if the function was successful
 function setElementBoneRotation () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if successful
 function updateElementRpHAnim () end
 
----@type fun(x: number, y: number, z: number): number
+---@type fun(x: number, y: number, z: number): number|false Returns a float with the lowest roof-level Z coord if parameters are valid, false if the point you tried to test is outside the loaded world map. 
 function getRoofPosition () end
 
----@type fun(theSound: element, loop: boolean): boolean
+---@type fun(theSound: sound, loop: boolean): boolean Returns true if the sound element loop state was successfully changed
 function setSoundLooped () end
 
----@type fun(theSound: element): boolean
+---@type fun(theSound: sound): boolean Returns true if the sound element is looped
 function isSoundLooped () end
 
----@type fun(theObject: object): boolean
+---@type fun(theObject: object): boolean Returns true if the object is moving
 function isObjectMoving () end
 
----@type fun(webBrowser: browser): boolean
+---@type fun(webBrowser: browser): boolean Returns true if the browser rendering is paused
 function isBrowserRenderingPaused () end
 
----@type fun(sound: element, effectName: string, effectParam: string, paramValue: any): boolean
+---@type fun(sound: sound, effectName: soundEffectName, effectParam: string, paramValue: integer|number|boolean): boolean Returns true if effect have been set successfully
 function setSoundEffectParameter () end
 
----@type fun(sound: element, effectName: string): table
+---@type fun(sound: sound, effectName: soundEffectName): {[string]: integer|number|boolean} Returns a table with the parameter names as the keys, and their values.
 function getSoundEffectParameters () end
 
----@type fun(): boolean
+---@type fun(): true Always returns true.
 function clearDebugBox () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the chat input is blocked, false otherwise. 
 function isChatInputBlocked () end
 
----@type fun(): integer
+---@type fun(): integer Returns an integer with a value from 0 to 255, where 0 is fully transparent and 255 is fully opaque. 
 function getPlayerMapOpacity () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the collision previews are enabled.  (This function only works in development mode.)
 function isShowCollisionsEnabled () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if world sound IDs should be printed in the debug window.  (This function only works in development mode.)
 function isShowSoundEnabled () end
 
----@type fun(state: boolean): boolean
+---@type fun(state: boolean): boolean Returns true if the function is successful. (This function only works in development mode.)
 function showSound () end
 
----@type fun(state: boolean): boolean
+---@type fun(state: boolean): boolean Returns true if the function is successful. (This function only works in development mode.)
 function showCol () end
 
----@type (fun( width: integer,  height: integer): svgElement:svg) | (fun( width: integer,  height: integer, pathOrRawdata: string, callback: fun(svgElement: svg)): svgElement:svg)
+---@type (fun( width: integer,  height: integer, pathOrRawdata?: string, callback?: fun(svgElement: svg)): svgElement:svg) Returns an svg if created successfully
 function svgCreate () end
 
----@type fun(svgElement: svg): xmlnode
+---@type fun(svgElement: svg): xmlnode Returns an xmlnode if successful
 function svgGetDocumentXML () end
 
----@type fun(svgElement: svg): integer, integer
+---@type fun(svgElement: svg): width:integer, height:integer Returns two ints, representing width and height
 function svgGetSize () end
 
----@type fun(svgElement: svg, xmlDocument: xmlnode, callBack?: fun(svg: svg) ): boolean
+---@type fun(svgElement: svg, xmlDocument: xmlnode, callBack?: fun(svg: svg) ): boolean Returns true if successful
 function svgSetDocumentXML () end
 
----@type fun(svgElement: svg, width: integer, height: integer, callBack?: fun(svgElement: svg) ): boolean
+---@type fun(svgElement: svg, width: integer, height: integer, callBack?: fun(svgElement: svg) ): boolean Returns true if successful
 function svgSetSize () end
 
 ---@type fun(): boolean
 function isTransferBoxAlwaysVisible () end
 
+-- See status for implementation of this function: https://github.com/multitheftauto/mtasa-blue/pull/2595
 ---@type fun(svgElement: svg): function
 function svgGetUpdateCallback () end
 
----@type fun(svgElement: svg, callback: function | boolean): boolean
+---@type fun(svgElement: svg, callback: function | boolean): boolean Returns true if successful
 function svgSetUpdateCallback () end
 

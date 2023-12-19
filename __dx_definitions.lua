@@ -8,7 +8,7 @@
 ---@alias textureType "2d" | "3d" | "cube"
 ---@alias blendMode "blend" | "add" | "modulate_add" | "overwrite"
 ---@alias testMode "none" | "no_mem" | "low_mem" | "no_shader"
----@alias vertex table There are multiple type of vertexes
+---@alias vertex table There are multiple types of vertexes
 
 ---@type fun(filepath: string, size?: integer, bold?: boolean, quality?: string): font | false Returns a DX font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available. 
 function dxCreateFont () end
