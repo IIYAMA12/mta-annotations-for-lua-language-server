@@ -38,13 +38,13 @@ function getPedAnimation () end
 ---@type fun(enabled: boolean): boolean Returns true if the markers were enabled, false if weren't or if invalid arguments are passed. 
 function setPedTargetingMarkerEnabled () end
 
----@type fun(thePed: ped, control: string, state: boolean): boolean Returns true if successful, false if otherwise. 
+---@type fun(thePed: ped, control: controlName, state: boolean): boolean Returns true if successful, false if otherwise. 
 function setPedControlState () end
 
 ---@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target starts, or false if it was unsuccessful. 
 function getPedTargetStart () end
 
----@type fun(thePed: ped, control: string): boolean Returns true if the ped is pressing the specified control, false if not or an invalid argument was passed. 
+---@type fun(thePed: ped, control: controlName): boolean Returns true if the ped is pressing the specified control, false if not or an invalid argument was passed. 
 function getPedControlState () end
 
 ---@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target ends according to his range, or false if it was unsuccessful. 
@@ -53,7 +53,7 @@ function getPedTargetEnd () end
 ---@type fun(thePed: ped, voiceType: string, voiceName: string): boolean Returns true when the voice was successfully set, false otherwise. 
 function setPedVoice () end
 
----@type fun(thePed: ped, controlName: string): number Returns a float between 0 (full release) and 1 (full push) indicating the amount the control is pushed. 
+---@type fun(thePed: ped, controlName: controlName): number Returns a float between 0 (full release) and 1 (full push) indicating the amount the control is pushed. 
 function getPedAnalogControlState () end
 
 ---@type fun(thePed: ped): string | false Returns a string indicating the ped's move state, or false if the ped is not streamed in, the movement type is unknown, the ped is in a vehicle or the ped is invalid. 
@@ -65,7 +65,7 @@ function getPedOxygenLevel () end
 ---@type fun(thePed: ped, canBeKnockedOffBike: boolean): boolean
 function setPedCanBeKnockedOffBike () end
 
----@type fun(thePed: ped, control: string, state: number): boolean Returns true if the control state was successfully set, false otherwise. 
+---@type fun(thePed: ped, control: controlName, state: number): boolean Returns true if the control state was successfully set, false otherwise. 
 function setPedAnalogControlState () end
 
 ---@type (fun(thePed: ped, x: number, y: number, z: number): boolean) | (fun(thePed: ped, x: number, y: number, z: number, time: integer, target?: element): boolean) | (fun(thePed: ped, x: number, y: number, z: number, time: integer, blend: integer, target?: element): boolean)

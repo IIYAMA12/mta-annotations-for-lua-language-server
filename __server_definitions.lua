@@ -623,7 +623,7 @@ function httpSetResponseHeader () end
 function httpWrite () end
 
 --- Player has to be defined on serverside.
----@type (fun(theFunction: function): string | false | nil) | (fun(thePlayer: player, theFunction: function): string | false | nil) It is not documented which value is returned when there is no key bound to a specific function.
+---@type (fun(theFunction: function): string | false) | (fun(thePlayer: player, theFunction: function): string | false)
 function getKeyBoundToFunction () end
 
 --- Player/root argument has to be given on serverside or none at all.
@@ -670,10 +670,10 @@ function hasElementDataSubscriber () end
 ---@type fun(theElement: element, key: string, thePlayer: player): boolean Returns true if the player was unsubscribed, false otherwise. 
 function removeElementDataSubscriber () end
 
----@type fun(thePlayer: player, control: string, state: boolean): boolean Returns true if the control state was successfully set, false otherwise. 
+---@type fun(thePlayer: player, control: controlName, state: boolean): boolean Returns true if the control state was successfully set, false otherwise. 
 function setControlState () end
 
----@type fun(thePlayer: player, controlName: string): boolean Returns the state of the control, false if the control doesn't exist or if the player is dead. 
+---@type fun(thePlayer: player, controlName: controlName): boolean Returns the state of the control, false if the control doesn't exist or if the player is dead. 
 function getControlState () end
 
 --- Player argument has to be given on serverside

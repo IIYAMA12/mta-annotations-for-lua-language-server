@@ -6,6 +6,12 @@
 ---@alias objectProperty "mass" | "turn_mass" | "air_resistance" | "elasticity" | "center_of_mass" | "buoyancy"
 ---@alias goggleEffect "normal" | "nightvision" | "thermalvision"
 ---@alias worldSoundGroup 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44
+---@alias roomTypeId 0|1|2|3|4 
+---@alias ambientSoundType "gunfire" | "general"
+---@alias weaponFlag "disable_model" | "flags" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked"
+---@alias weaponFlag_ "disable_model" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked" Synax without "flags"
+---@alias weaponState "reloading" | "firing" | "ready"
+---@alias weaponCreateType "colt 45" | "silenced" | "deagle" | "uzi" | "mp5" | "ak-47" | "m4" | "tec-9" | "rifle" | "sniper" | "minigun"
 
 ---@type fun(shouldFlash: boolean, count?: integer): boolean Default count: 10 Returns false if the window is already in focus or the client has disabled this feature.
 function setWindowFlashing () end
@@ -31,7 +37,7 @@ function createTrayNotification () end
 ---@type fun(): boolean
 function isTrayNotificationEnabled () end
 
----@type fun(propertyName: string, enabled: boolean): boolean
+---@type fun(propertyName: worldSpecialProperty, enabled: boolean): boolean
 function setWorldSpecialPropertyEnabled () end
 
 ---@type fun(sound: element): table
@@ -283,7 +289,7 @@ function isElementCollidableWith () end
 ---@type fun(theSearchLight: searchlight): number, number, number
 function getSearchLightEndPosition () end
 
----@type fun(control: string, state?: number, forceOverrideNextFrame?: boolean): boolean
+---@type fun(control: controlName, state?: number, forceOverrideNextFrame?: boolean): boolean
 function setAnalogControlState () end
 
 ---@type fun(theSearchLight: searchlight): searchlight
@@ -340,7 +346,7 @@ function createSWATRope () end
 ---@type fun(garageID: integer): number, number, number
 function getGarageSize () end
 
----@type fun(commandControl: string): table
+---@type fun(commandControl: string | controlName): table
 function getBoundKeys () end
 
 ---@type fun(keyName: string): boolean
@@ -523,118 +529,129 @@ function getCommandsBoundToKey () end
 ---@type fun(command: string): string
 function getKeyBoundToCommand () end
 
----@type fun(control: string): number
+---@type fun(control: controlName, rawValue?: boolean): number Returns a float between 0 and 1 indicating the amount the control is pressed. 
 function getAnalogControlState () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the chat is visible
 function isChatVisible () end
 
----@type fun(theResource?: resource): element
+---@type fun(theResource?: resource): element Returns the root GUI element that contains all the other GUI elements. 
 function getResourceGUIElement () end
 
----@type fun(): table
+---@type fun(): { code: string, name: string} Returns a table
 function getLocalization () end
 
----@type fun(theText: string): boolean
+---@type fun(theText: string): boolean Returns true if the text in the clip board was set correctly. 
 function setClipboard () end
 
----@type fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold?: boolean): number
+---@type (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: false): waterLevel: number | false) | (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: true): waterLevel: number) | (fun(waterElement: water): waterLevel: number) Returns an integer of the water level if the localPlayer/position is near the water (-3 to 20 on the Z coordinate) else false if there's no water near the localPlayer/position. 
 function getWaterLevel () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if water is drawn last in the rendering order
 function isWaterDrawnLast () end
 
----@type fun(bEnabled: boolean): boolean
+---@type fun(bEnabled: boolean): boolean Returns true if the rendering order was changed successfully
 function setWaterDrawnLast () end
 
----@type fun(theType: string, x: number, y: number, z: number): weapon
+---@type fun(theType: weaponCreateType, x: number, y: number, z: number): weapon Returns a custom weapon element
 function createWeapon () end
 
----@type fun(theWeapon: weapon): boolean
+---@type fun(theWeapon: weapon): boolean Returns true if the shot weapon is valid and therefore the shot was fired
 function fireWeapon () end
 
----@type fun(theWeapon: weapon): string
+---@type fun(theWeapon: weapon): weaponState A string if the weapon is valid, indicating the weapon state
 function getWeaponState () end
 
----@type fun(theWeapon: weapon): nil | element | number
+---@type (fun(theWeapon: weapon): target: nil | element) | (fun(theWeapon: weapon): x:number, y:number, z:number) Returns the target of the custom weapon, which can be: `nil` if the weapon is in rotation based targeting. `3 floats` if the weapon is firing at a fixed point. An `element` if the weapon is firing an entity.
 function getWeaponTarget () end
 
----@type fun(theWeapon: weapon): boolean
+---@type fun(theWeapon: weapon): boolean This function was intended to return the player which owns the custom weapon
 function getWeaponOwner () end
 
----@type fun(theWeapon: weapon, theFlag: string): boolean
+---@type (fun(theWeapon: weapon, theFlag: weaponFlag_): enabled: boolean) | (fun(theWeapon: weapon, theFlag: "flags"):  checkBuildings: boolean, checkCarTires: boolean, checkDummies: boolean, checkObjects: boolean, checkPeds: boolean, checkVehicles: boolean, checkSeeThroughStuff: boolean, checkShootThroughStuff: boolean) Returns the true or false on success (flags flag returns 8 values) if the flag is enabled or not.
 function getWeaponFlags () end
 
----@type fun(theWeapon: weapon): integer
+---@type fun(theWeapon: weapon): integer Returns an integer with the firing rate of the custom weapon
 function getWeaponFiringRate () end
 
----@type fun(theWeapon: weapon): integer
+---@type fun(theWeapon: weapon): integer Returns an integer containing how many ammo left has the weapon
 function getWeaponAmmo () end
 
----@type fun(theWeapon: weapon): integer
+---@type fun(theWeapon: weapon): integer Returns the amount of ammo in the custom weapon's clip
 function getWeaponClipAmmo () end
 
----@type fun(theWeapon: weapon): boolean
+---@type fun(theWeapon: weapon): boolean Returns true on success
 function resetWeaponFiringRate () end
 
----@type fun(theWeapon: weapon, theState: string): boolean
+---@type fun(theWeapon: weapon, theState: weaponState): boolean Returns true on success
 function setWeaponState () end
 
----@type fun(theWeapon: weapon, theTarget: element, theComponent?: integer): boolean
+---@type (fun(theWeapon: weapon, theTarget: element, theComponent?: boneId | wheelId | 255): boolean) | (fun(theWeapon: weapon, targetX: number, targetY: number, targetZ: number): boolean) | (fun(theWeapon: weapon, reset: nil): boolean) Returns true on success
 function setWeaponTarget () end
 
----@type fun(theWeapon: weapon, theFlag: string, enable: boolean): boolean
+---@type (fun(theWeapon: weapon, theFlag: weaponFlag_, enable: boolean): boolean) |  (fun(theWeapon: weapon, theFlag: "flags", checkBuildings: boolean, checkCarTires: boolean, checkDummies: boolean, checkObjects: boolean, checkPeds: boolean, checkVehicles: boolean, checkSeeThroughStuff: boolean, checkShootThroughStuff: boolean ): boolean) Returns true if all arguments are valid and the flags where changed
 function setWeaponFlags () end
 
----@type fun(theWeapon: weapon, firingRate: integer): boolean
+---@type fun(theWeapon: weapon, firingRate: integer): boolean Returns true on success
 function setWeaponFiringRate () end
 
----@type fun(theWeapon: weapon, clipAmmo: integer): boolean
+---@type fun(theWeapon: weapon, clipAmmo: integer): boolean This function returns true if the arguments are valid and the weapon clip ammo could be changed
 function setWeaponClipAmmo () end
 
----@type fun(): number
+---@type fun(): number This function returns a float containing the actual near clip distance. 
 function getNearClipDistance () end
 
----@type fun(x: number, y: number, z: number, edgeTolerance?: number, relative?: boolean): number, number, number
+---@type (fun(x: number, y: number, z: number, edgeTolerance?: number, relative?: boolean): number|false, number?, number?) Returns two x, y floats indicating the screen position and float distance between screen and given position if successful
 function getScreenFromWorldPosition () end
 
----@type fun(x: number, y: number, depth: number): number, number, number
+---@type fun(x: number, y: number, depth: number): number, number, number Returns three x, y, z floats indicating the world position if successful
 function getWorldFromScreenPosition () end
 
----@type fun(theType: string): boolean
+---@type fun(theType: ambientSoundType): boolean Returns true if the ambient sound is enabled
 function isAmbientSoundEnabled () end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPeds?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, ignoredElement?: element): boolean
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPeds?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, ignoredElement?: element): boolean Returns true if the line between the specified points is clear
 function isLineOfSightClear () end
 
----@type fun(group: integer, integerindex): boolean
+---@type fun(group: worldSoundGroup, index: integer): boolean Returns true if the world sounds are enabled
 function isWorldSoundEnabled () end
 
----@type fun(propname: string): boolean
+---@type fun(propname: worldSpecialProperty): boolean Returns true if the property is enabled
 function isWorldSpecialPropertyEnabled () end
 
 ---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean): hit:boolean, x:number, y:number, z:number, element, nx:number, ny:number, nz:number, mat:integer, lighting:number, piece:integer, worldModel:integer, x:number, y:number, z:number, rx:number, ry:number, rz:number, worldLOD:integer
 function processLineOfSight () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the ambient sounds were reset
 function resetAmbientSounds () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the world sounds were reset
 function resetWorldSounds () end
 
----@type fun(theType: string, enable: boolean): boolean
+---@type fun(theType: ambientSoundType, enable: boolean): boolean Returns true if the ambient sound was set correctly
 function setAmbientSoundEnabled () end
 
----@type fun(enable: boolean): boolean
+---@type fun(enable: boolean): boolean Returns true if the birds state was changed succesfully
 function setBirdsEnabled () end
 
----@type fun(roomID: integer, enabled: boolean): boolean
+--[[
+    roomID: The room type which you want disable or enable the furniture in:
+    0: shop
+    1: office
+    2: lounge
+    3: bedroom
+    4: kitchen
+]]
+---@type fun(roomID: roomTypeId, enabled: boolean): boolean Returns true if successful.
 function setInteriorFurnitureEnabled () end
 
----@type fun(distance: number): boolean
+--[[
+    `distance` must be between 0.1 and 20 for the function to do any effect. Default value is 0.3.
+]]
+---@type fun(distance: number): boolean This function returns true if the argument is valid.
 function setNearClipDistance () end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): boolean, number, number, number
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): boolean, x:number, y:number, z:number Returns true and the position of the intersection point of the line and the water surface if there is a collision
 function testLineAgainstWater () end
 
 ---@type fun(theFunction: function): string
