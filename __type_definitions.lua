@@ -1,5 +1,9 @@
 ---@meta typeConfigs
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@alias element userdata
 ---@alias player userdata
 ---@alias ped userdata

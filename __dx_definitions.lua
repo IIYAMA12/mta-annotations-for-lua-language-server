@@ -1,6 +1,10 @@
 ---@meta dxConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@alias textureFormat "argb" | "dxt1" | "dxt3" | "dxt5"
 ---@alias pixelsFormat "plain" | "dds"
 ---@alias textureEdge "wrap" | "clamp" | "mirror"

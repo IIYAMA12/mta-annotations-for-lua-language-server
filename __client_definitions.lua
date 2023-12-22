@@ -1,6 +1,10 @@
 ---@meta clientConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@alias soundEffectName "gargle" | "compressor" | "echo" | "i3dl2reverb" | "distortion" | "chorus" | "parameq" | "reverb" | "flanger"
 ---@alias boneId 0|1|2|3|4|5|6|7|8|21|22|23|24|25|26|31|32|33|34|35|36|41|42|43|44|51|52|53|54|201|301|302
 ---@alias objectProperty "mass" | "turn_mass" | "air_resistance" | "elasticity" | "center_of_mass" | "buoyancy"
@@ -523,10 +527,10 @@ function setCursorAlpha () end
 ---@type fun(): integer
 function getCursorAlpha () end
 
----@type fun(theKey: string, keyState: string): table
+---@type fun(theKey: keyName, keyState: keyState): { [string]?: controlName } Returns a table of the commands bound on that key. 
 function getCommandsBoundToKey () end
 
----@type fun(command: string): string
+---@type fun(command: string): keyName | false Returns a string of first key binded to current command. 
 function getKeyBoundToCommand () end
 
 ---@type fun(control: controlName, rawValue?: boolean): number Returns a float between 0 and 1 indicating the amount the control is pressed. 
@@ -653,15 +657,6 @@ function setNearClipDistance () end
 
 ---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): boolean, x:number, y:number, z:number Returns true and the position of the intersection point of the line and the water surface if there is a collision
 function testLineAgainstWater () end
-
----@type fun(theFunction: function): string
-function getKeyBoundToFunction () end
-
----@type fun(): boolean
-function clearChatBox () end
-
----@type fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean)
-function outputChatBox () end
 
 ---@type (fun(): boolean) |  (fun(x: number, y: number, z: number, radius?: number): boolean) Returns true if successful
 function extinguishFire () end

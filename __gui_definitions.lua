@@ -1,6 +1,10 @@
 ---@meta guiConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@type fun(guiElement: element): boolean Returns true if the function was successful, false otherwise. 
 function guiMoveToBack () end
 

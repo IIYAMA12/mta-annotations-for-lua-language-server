@@ -1,6 +1,9 @@
 ---@meta clientPedConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
 
 ---@type fun(thePed: ped, x: number, y: number, z: number): boolean Returns true if the function was successful, false otherwise. 
 function setPedAimTarget () end

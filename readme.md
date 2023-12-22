@@ -13,3 +13,5 @@ https://github.com/LuaLS/lua-language-server
 ## Thanks to:
 Many thanks to Subtixx's dataset. These saved me a lot of time creating all those definitions. 
 https://github.com/Subtixx/vscode-mtalua/tree/master
+
+Many thanks to the community for all the syntax and descriptions.

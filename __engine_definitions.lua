@@ -1,6 +1,10 @@
 ---@meta dxConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@type fun(theModel: dff, modelID: integer, alphaTransparency?: boolean): boolean
 function engineReplaceModel () end
 

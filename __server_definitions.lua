@@ -1,6 +1,10 @@
 ---@meta serverConfigs
 ---@diagnostic disable: missing-return
 
+--[[
+    Credits to the community for all the available syntax and descriptions
+]]
+
 ---@type fun(databaseConnection: element, query: string, ...: string | number): string
 function dbPrepareString () end
 
@@ -621,18 +625,6 @@ function httpSetResponseHeader () end
 
 ---@type fun(data: string, length?: integer): boolean Returns true if the text was added to the output buffer successfully, false otherwise. 
 function httpWrite () end
-
---- Player has to be defined on serverside.
----@type (fun(theFunction: function): string | false) | (fun(thePlayer: player, theFunction: function): string | false)
-function getKeyBoundToFunction () end
-
---- Player/root argument has to be given on serverside or none at all.
----@type (fun(): boolean) | (fun(clearFor?: player | root): boolean) Returns true if the player's chat was cleared successfully, false otherwise. 
-function clearChatBox () end
-
---- Player/root argument has to be given on serverside or none at all.
----@type (fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean) | (fun(text: string, visibleTo?: player | root, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
-function outputChatBox () end
 
 ---@type fun(thePed: ped, state: boolean): boolean Returns true if a jetpack was successfully set for the ped, false if setting it failed. 
 function setPedWearingJetpack () end
