@@ -31,19 +31,20 @@ function getVehiclesLODDistance () end
 function setVehicleModelExhaustFumesPosition () end
 
 --[[
-    0: Radio Off |
-    1: Playback FM |
-    2: K-Rose |
-    3: K-DST |
-    4: Bounce FM |
-    5: SF-UR |
-    6: Radio Los Santos |
-    7: Radio X |
-    8: CSR 103.9 |
-    9: K-Jah West |
-    10: Master Sounds 98.3 |
-    11: WCTR |
-    12: User Track Player
+radioChannel:
+* 0: Radio Off
+* 1: Playback FM
+* 2: K-Rose 
+* 3: K-DST
+* 4: Bounce FM
+* 5: SF-UR
+* 6: Radio Los Santos
+* 7: Radio X
+* 8: CSR 103.9
+* 9: K-Jah West
+* 10: Master Sounds 98.3
+* 11: WCTR
+* 12: User Track Player
 ]]
 ---@type fun(ID: radioChannel): boolean  Returns true if channel was set successfully
 function setRadioChannel () end
@@ -60,10 +61,10 @@ function getVehicleAdjustableProperty () end
 ---@type fun(theVehicle: vehicle): {[vehicleComponent] : any} Returns a table containing the name of the component as the key and visibility flag of that component as the value 
 function getVehicleComponents () end
 
----@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): number, number, number Returns three floats indicating the position of the component, x, y and z respectively. 
+---@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): x:number, y:number, z:number Returns three floats indicating the position of the component, x, y and z respectively. 
 function getVehicleComponentPosition () end
 
----@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): number, number, number Returns three floats indicating the rotation of the component, x, y and z respectively. 
+---@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): rx:number, ry:number, rz:number Returns three floats indicating the rotation of the component, x, y and z respectively. 
 function getVehicleComponentRotation () end
 
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent): boolean Returns a bool indicating the visible state of the component. 

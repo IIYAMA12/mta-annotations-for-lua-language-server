@@ -1560,6 +1560,10 @@ function setColPolygonHeight () end
 ---@type fun(): number, number
 function getColPolygonHeight () end
 
+--- Since 1.6.0 r21765 also available as a server-side function
+---@type fun(theObject: object, breakable: boolean): boolean
+function setObjectBreakable () end
+
 ---@param ... integer
 local char = function ( ... ) end
 utf8 = {
