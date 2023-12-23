@@ -7,10 +7,13 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
 * [Possible text editors support](https://microsoft.github.io/language-server-protocol/implementors/tools/)
 
 ## How to use the definition files?
-In the extension settings you can set a destination folder for the definition files.
+- [ ] In the extension settings you can set a destination folder for the definition files.
 [More info](https://luals.github.io/wiki/settings/#workspacelibrary) 
 
 If that doesn't work / can't find it. Just drop the definition folder right in your project.
+
+- [ ] Make sure to set the correct Lua runtime version in the extension config, for MTA it is: Lua 5.1
+![Lua 5.1](images/mta-version.png)
 
 
 ## Repo for lua-language-server plugin can be found here:
