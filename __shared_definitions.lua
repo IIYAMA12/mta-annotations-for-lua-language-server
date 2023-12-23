@@ -979,7 +979,7 @@ function getThisResource () end
 ---@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...:string ), restricted?: boolean, caseSensitive?: boolean): boolean)
 ---@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ...:string ), caseSensitive?: boolean): boolean)
 
----Serverside has `restricted` arguments and passes the `playerSource` to the `handlerFunction`.
+---Serverside has a `restricted` argument and passes the `playerSource` to the `handlerFunction`.
 ---@type addCommandHandler_server | addCommandHandler_client Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler () end
 
