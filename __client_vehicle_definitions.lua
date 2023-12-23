@@ -5,15 +5,6 @@
     Credits to the community for all the available syntax and descriptions
 ]]
 
----@alias vehicleComponent "boot_dummy" | "ug_nitro" | "wheel_rf_dummy" | "wheel_lf_dummy" | "wheel_rb_dummy" | "wheel_lb_dummy" | "chassis" | "chassis_vlo" | "ug_roof" | "door_rf_dummy" | "door_lf_dummy" | "door_rr_dummy" | "door_lr_dummy" | "bonnet_dummy" | "ug_wing_right" | "bump_front_dummy" | "bump_rear_dummy" | "windscreen_dummy" | "misc_a" | "ug_wing_left" | "exhaust_ok"
----@alias radioChannel 1|2|3|4|5|6|7|8|9|10|11|12
----@alias vehicleWindow 0|1|2|3|4|5|6
-
----@alias wheelId 0|1|2|3
----@alias wheel "front_left" | "rear_left" | "front_right" | "rear_right"|wheelId
----@alias vehicleDummy "light_front_main"|"light_rear_main"|"light_front_second"|"light_rear_second"|"seat_front"|"seat_rear"|"exhaust"|"engine"|"gas_cap"|"trailer_attach"|"hand_rest"|"exhaust_second"|"wing_airtrail"|"veh_gun"
----@alias scaleBase "parent" | "root" | "world"
----@alias wheelGroup "front_axle" | "rear_axle" | "all_wheels"
 
 ---@type fun(theVehicle: vehicle, window: vehicleWindow, open: boolean): boolean
 function setVehicleWindowOpen () end
@@ -30,23 +21,8 @@ function getVehiclesLODDistance () end
 ---@type fun(modelID: integer, posX: number, posY: number, posZ: number): boolean Returns true if everything went fine
 function setVehicleModelExhaustFumesPosition () end
 
---[[
-radioChannel:
-* 0: Radio Off
-* 1: Playback FM
-* 2: K-Rose 
-* 3: K-DST
-* 4: Bounce FM
-* 5: SF-UR
-* 6: Radio Los Santos
-* 7: Radio X
-* 8: CSR 103.9
-* 9: K-Jah West
-* 10: Master Sounds 98.3
-* 11: WCTR
-* 12: User Track Player
-]]
----@type fun(ID: radioChannel): boolean  Returns true if channel was set successfully
+---@see radioChannel for definitions
+---@type fun(ID: radioChannel): boolean  Returns true if channel was set successfully.
 function setRadioChannel () end
 
 ---@type fun(heli: vehicle): number Returns the rotor speed if successful. This is 0 when the helicopter is parked, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise
@@ -166,7 +142,8 @@ function setVehicleModelWheelSize () end
 ---@type fun(theVehicle: vehicle, wheelScale: number): boolean Returns true if the wheel scale has been set successfully
 function setVehicleWheelScale () end
 
----@type fun(theVehicle: vehicle, wheel: wheelId): 0 | 1 | 2 | 3 Returns a int indicating the wheel friction state. This value can be: 0: Normal friction | 1: Slip with acceleration (only for driving wheels) | 2: Slip without acceleration | 3: Locked wheel (on brake or handbrake).
+---@see wheelFrictionState for definitions
+---@type fun(theVehicle: vehicle, wheel: wheelId): wheelFrictionState Returns an integer indicating the wheel friction state.
 function getVehicleWheelFrictionState () end
 
 ---@type fun(theVehicle: vehicle, dummy: vehicleDummy): number, number, number Returns 3 floats indicating the position X, Y and Z of the vehicle's dummy

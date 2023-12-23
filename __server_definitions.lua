@@ -317,7 +317,7 @@ function setTeamColor () end
 ---@type fun(theVehicle: vehicle, sirenCount: integer, sirenType: integer, flag360?: boolean, checkLosFlag?: boolean, useRandomiser?: boolean, silentFlag?: boolean): boolean Returns true if sirens were successfully added to the vehicle, false otherwise. 
 function addVehicleSirens () end
 
----@type fun(thePlayer: player, weaponId: integer, ammo?: integer): boolean Returns a true if the weapon/ammo was removed successfully, false otherwise. 
+---@type fun(thePlayer: player, weaponId: weaponId, ammo?: integer): boolean Returns a true if the weapon/ammo was removed successfully, false otherwise. 
 function takeWeapon () end
 
 ---@type fun(theVehicle: vehicle): boolean Returns true if sirens were successfully removed from the vehicle, false otherwise. 
@@ -668,15 +668,19 @@ function setControlState () end
 ---@type fun(thePlayer: player, controlName: controlName): boolean Returns the state of the control, false if the control doesn't exist or if the player is dead. 
 function getControlState () end
 
+---@alias getPlayerBlurLevel_server (fun(): integer)
+---@alias getPlayerBlurLevel_client (fun(thePlayer: player): integer)
 --- Player argument has to be given on serverside
----@type (fun(): integer) | (fun(thePlayer: player): integer)
+---@type getPlayerBlurLevel_server | getPlayerBlurLevel_client
 function getPlayerBlurLevel () end
 
 ---@type fun(thePlayer: player): integer Returns an int with the player debug script level.
 function getPlayerScriptDebugLevel () end
 
+---@alias setPlayerBlurLevel_server (fun(thePlayer: player, level: integer): boolean)
+---@alias setPlayerBlurLevel_client (fun(level: integer): boolean)
 --- Player argument has to be given on serverside
----@type (fun(level: integer): boolean) | (fun(thePlayer: player, level: integer): boolean)
+---@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
 function setPlayerBlurLevel () end
 
 ---@type fun(thePlayer: player, level: integer): boolean Returns true if successful, false otherwise. 
