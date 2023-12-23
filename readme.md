@@ -16,7 +16,7 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 ![Lua 5.1](images/mta-version.png)
 
 
-## Repo for lua-language-server plugin can be found here:
+## Repo for Lua-Language-Server extension can be found here:
 https://github.com/LuaLS/lua-language-server
 
 
@@ -28,7 +28,7 @@ outputChatBox--[[@as outputChatBox_server]]("Serverside", player)
 - Make sure to always have an empty new line at the end of your files. See [issue](https://github.com/LuaLS/lua-language-server/issues/2326).
 
 ## Other
-- The plugin is not as clever as typescript, there are some points in your code were you need to use @cast:
+- The extension is not as clever as typescript, there are some points in your code were you need to use @cast:
 
 ```Lua
 if type(name) ~= "" then return end
