@@ -35,7 +35,7 @@ function getPedTask () end
 ---@type fun(thePed: ped, oxygen: number): boolean Returns true if the oxygen level was changed succesfully. Returns false if an invalid ped and/or oxygen level was specified. 
 function setPedOxygenLevel () end
 
----@type fun(thePed: ped): block:string, anim:string, time:integer, loop:boolean, updatePosition:boolean, interruptable:boolean, freezeLastFrame:boolean, blendTime:integer, restoreTaskOnAnimEnd:boolean
+---@type fun(thePed: ped): block:pedAnimBlockName, anim:pedAnimName, time:integer, loop:boolean, updatePosition:boolean, interruptable:boolean, freezeLastFrame:boolean, blendTime:integer, restoreTaskOnAnimEnd:boolean
 function getPedAnimation () end
 
 ---@type fun(enabled: boolean): boolean Returns true if the markers were enabled, false if weren't or if invalid arguments are passed. 

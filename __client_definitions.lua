@@ -638,7 +638,7 @@ function getCameraFieldOfView () end
 ---@type fun(): integer Returns an integer representing the camera drunk level, from 0 (no drunk effect) to 255 (maximum drunk effect). By default, the camera has no drunk effect
 function getCameraDrunkLevel () end
 
---- Please use getCameraDrunkLevel instead. Deprecated as of 1.6.0 r21795. 
+---@deprecated Please use getCameraDrunkLevel instead. Deprecated as of 1.6.0 r21795. 
 ---@type fun(): integer Returns an integer representing the camera shake level, from 0 (no shaking effect) to 255 (maximum shaking effect). By default, the camera has no shaking effect. 
 function getCameraShakeLevel () end
 
@@ -675,7 +675,7 @@ function setCameraFieldOfView () end
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera drunk level was changed
 function setCameraDrunkLevel () end
 
--- Deprecated as of 1.6.0 r21795. Use setCameraShakeLevel instead.
+---@deprecated Use setCameraShakeLevel instead. Deprecated as of 1.6.0 r21795. 
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera shake level was changed.
 function setCameraShakeLevel () end
 

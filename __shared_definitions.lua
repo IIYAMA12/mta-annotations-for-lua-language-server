@@ -47,7 +47,7 @@ function getAircraftMaxHeight () end
 ---@type fun(theXMLNode: xmlnode): string
 function xmlNodeGetValue () end
 
----@see vehicleId for definitions
+---@see vehicleId
 ---@type fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, bDirection?: boolean, variant1?: integer, variant2?: integer): vehicle
 function createVehicle () end
 
@@ -395,11 +395,11 @@ function getMarkerType () end
 --[[
     Serverside has optional argument `synced`
 ]]
----@see pedId for definitions
+---@see pedId
 ---@type createPed_server | createPed_client
 function createPed () end
 
----@type fun(thePed: ped, block?: string, anim?: string, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
+---@type fun(thePed: ped, block?: pedAnimBlockName, anim?: pedAnimName, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
 function setPedAnimation () end
 
 ---@type fun(thePed: ped): boolean
@@ -1176,392 +1176,599 @@ function bitExtract () end
 ---@type fun(var: uint, replaceValue: uint, field: integer, width: integer): uint
 function bitReplace () end
 
----@type fun(hookType: string, callbackFunction: function, nameList?: table): boolean
+--- hookType: "preFunction" or "postFunction"
+---@alias debugHookCallback_func fun( sourceResource: resource, functionName: string, isAllowedByACL: boolean, luaFilename: string, luaLineNumber: integer, ...): nil | "skip"
+--- hookType: "preEvent" or "postEvent"
+---@alias debugHookCallback_event fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, luaFilename: string, luaLineNumber: integer, ...): nil | "skip"
+--- hookType: "preEventFunction" or "postEventFunction"
+---@alias debugHookCallback_eventFunc fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, eventFilename: string, eventLineNumber: integer, functionResource: resource, functionFilename: string, functionLineNumber: integer, ...): nil | "skip"
+
+--[[
+    Returns true if the hook was successfully added
+]]
+---@type (fun(hookType: "preFunction" | "postFunction", callbackFunction: debugHookCallback_func, nameList?: string[]): boolean) | (fun(hookType: "preEvent" | "postEvent", callbackFunction: debugHookCallback_event, nameList?: string[]): boolean) | (fun(hookType: "preEventFunction" | "postEventFunction", callbackFunction: debugHookCallback_eventFunc, nameList?: string[]): boolean)
 function addDebugHook () end
 
----@type fun(hookType: string, callbackFunction: function): boolean
+--[[
+    Returns true if the hook was successfully removed
+]]
+---@type (fun(hookType: "preFunction" | "postFunction", callbackFunction: debugHookCallback_func): boolean) | (fun(hookType: "preEvent" | "postEvent", callbackFunction:  debugHookCallback_event): boolean) | (fun(hookType: "preEventFunction" | "postEventFunction", callbackFunction: debugHookCallback_eventFunc): boolean)
 function removeDebugHook () end
 
----@type fun(vehicleToCheck: vehicle): boolean
+---@type fun(vehicleToCheck: vehicle): boolean Returns true if the train is derailable
 function isTrainDerailable () end
 
----@type fun(vehicleToCheck: vehicle): boolean
+---@type fun(vehicleToCheck: vehicle): boolean Returns true if the train is derailed
 function isTrainDerailed () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle specified has blown up
 function isVehicleBlown () end
 
----@type fun(taxi: vehicle): boolean
+--[[
+    vehicle ID's are: 420, 438
+]]
+---@type fun(taxi: vehicle): boolean Returns true if the light is on
 function isVehicleTaxiLightOn () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle is damage proof
 function isVehicleDamageProof () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the specified vehicle is valid and its fuel tank is explodable
 function isVehicleFuelTankExplodable () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle specified is locked
 function isVehicleLocked () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if vehicle is on the ground
 function isVehicleOnGround () end
 
+---@deprecated Function has been disabled.
 ---@type fun(train: vehicle): integer
 function getTrainTrack () end
 
----@type fun(train: vehicle): number
+---@type fun(train: vehicle): number | false Returns a float that represents how along the track it is, false if there is problem with train element. 
 function getTrainPosition () end
 
----@type fun(theVehicle: vehicle): integer, integer, integer, integer
+
+--[[
+* Returns 12 ints (if `bRGB` is true) indicating the red, green and blue components of each of the 4 vehicle colors.
+* Returns 4 ints (if `bRGB` is false) indicating the color ids of each of the 4 vehicle colors.
+]]
+--- RGB
+---@alias getVehicleColor_rgb fun(theVehicle: vehicle, bRGB: true): r1:integer, g1:integer, b1:integer, r2:integer, g2:integer, b2:integer, r3:integer, g3:integer, b3:integer, r4:integer, g4:integer, b4:integer
+--- Palette
+---@alias getVehicleColor_palette fun(theVehicle: vehicle, bRGB: false): vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor
+---@type getVehicleColor_rgb | getVehicleColor_palette
 function getVehicleColor () end
 
----@type fun(theVehicle: vehicle, integerslot): table
+---@type fun(theVehicle: vehicle, slot: vehicleSlotId): table Returns a table with all the compatible upgrades
 function getVehicleCompatibleUpgrades () end
 
----@type fun(theVehicle: vehicle): player
+---@type fun(theVehicle: vehicle): player | ped | false Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise. 
 function getVehicleController () end
 
----@type fun(theVehicle: vehicle, door: integer): integer
+---@see vehicleDoorId
+---@see vehicleDoorStateId
+---@type fun(theVehicle: vehicle, door: vehicleDoorId): vehicleDoorStateId
 function getVehicleDoorState () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle's engine is started
 function getVehicleEngineState () end
 
----@type fun(theVehicle: vehicle): boolean
+--[[
+Returns
+* Returns true if landing gear is down, false if the landing gear is up.
+* Returns nil if the vehicle has no landing gear, or is invalid. 
+]]
+---@type fun(theVehicle: vehicle): boolean | nil
 function getVehicleLandingGearDown () end
 
----@type fun(theVehicle: vehicle, light: integer): integer
+---@see vehicleLightId
+---@see vehicleLightStateId
+---@type fun(theVehicle: vehicle, light: vehicleLightId): vehicleLightStateId Returns 0 (working) or 1 (broken) 
 function getVehicleLightState () end
 
----@type fun(modelIDOrTheVehicle: integer | vehicle): integer
+---@see vehicleId
+---@type fun(modelIDOrTheVehicle: vehicleId | vehicle): integer Returns an integer indicating the maximum number of passengers that can enter a vehicle.
 function getVehicleMaxPassengers () end
 
----@type fun(theVehicle: vehicle): string
+---@type fun(theVehicle: vehicle): vehicleName Returns a string containing the requested vehicle's name
 function getVehicleName () end
 
----@type fun(theVehicle: vehicle, integerseat): player
+---@see vehicleSeatId
+---@type fun(theVehicle: vehicle, seat: vehicleSeatId): player | ped Returns the player/ped sitting in the vehicle, or false if the seat is unoccupied or doesn't exist. 
 function getVehicleOccupant () end
 
----@type fun(theVehicle: vehicle): table
+---@see vehicleSeatId
+---@type fun(theVehicle: vehicle): {[vehicleSeatId]: player | ped | nil } Returns a table with seat ID as an index and the occupant as an element
 function getVehicleOccupants () end
 
----@type fun(theVehicle: vehicle): integer
+---@see vehicleOverrideLightStateId
+---@type fun(theVehicle: vehicle): vehicleOverrideLightStateId Returns an integer value: 0 (No override), 1 (Force off) or 2 (Force on). 
 function getVehicleOverrideLights () end
 
----@type fun(theVehicle: vehicle): integer
+--[[
+Returns an integer representing the current paintjob on the vehicle.
+
+* 0: The first paintjob
+* 1: The second paintjob
+* 2: The third paintjob
+* 3: Default paintjob (no paintjob)
+]]
+---@see vehiclePaintjobId
+---@type fun(theVehicle: vehicle): vehiclePaintjobId
 function getVehiclePaintjob () end
 
----@type fun(theVehicle: vehicle, panel: integer): integer
+---@see vehiclePanelId
+---@type fun(theVehicle: vehicle, panel: vehiclePanelId): vehiclePanelStateId Returns an int indicating the state of the specified the panel. This is a value between 0 and 3, with 0 indicating the panel is undamaged and 3 indicating it is very damaged. 
 function getVehiclePanelState () end
 
----@type fun(theVehicle: vehicle): string
+---@type fun(theVehicle: vehicle): string Returns a string that corresponds to the plate on the text
 function getVehiclePlateText () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the sirens are turned on for the specified vehicle, false if the sirens are turned off for the specified vehicle, if the vehicle doesn't have sirens or if invalid arguments are specified. 
 function getVehicleSirensOn () end
 
----@type fun(theVehicle: vehicle): vehicle
+---@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is towing, false if it isn't towing a vehicle. 
 function getVehicleTowedByVehicle () end
 
----@type fun(theVehicle: vehicle): vehicle
+---@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is being towed by. false if it isn't being towed.
 function getVehicleTowingVehicle () end
 
+---@deprecated Use getElementAngularVelocity instead
 ---@type fun(theVehicle: vehicle): number, number, number
 function getVehicleTurnVelocity () end
 
----@type fun(turretVehicle: vehicle): number, number
+---@type fun(turretVehicle: vehicle): rx:number, ry:number Returns two floats for the X (horizontal) and Y (vertical) axis rotation respectively. These values are in radians. The function will return 0, 0 if the vehicle is not a vehicle with a turret. 
 function getVehicleTurretPosition () end
 
----@type fun(theVehicle: vehicle): string
+---@type fun(theVehicle: vehicle): vehicleType Returns a string with vehicle type
 function getVehicleType () end
 
----@type fun(theVehicle: vehicle, slot: integer): integer
+---@see vehicleSlotId
+---@type fun(theVehicle: vehicle, slot: vehicleSlotId): integer | false Returns an integer with the upgrade on the slot if correct arguments were passed
 function getVehicleUpgradeOnSlot () end
 
----@type fun(theVehicle: vehicle): table
+---@type fun(theVehicle: vehicle): integer[] Returns a table of all the upgrades on each slot of a vehicle, which may be empty
 function getVehicleUpgrades () end
 
----@type fun(slotOrUpgrade: integer): string
+---@see vehicleSlotId
+---@type fun(slotOrUpgrade: vehicleSlotId | integer): vehicleSlotName Returns a string with the slot name if a valid slot or upgrade ID was given
 function getVehicleUpgradeSlotName () end
 
----@type fun(theVehicle: vehicle): integer, integer, integer, integer
+---@see vehicleWheelStateId
+---@type fun(theVehicle: vehicle): frontLeft: vehicleWheelStateId, rearLeft: vehicleWheelStateId, frontRight: vehicleWheelStateId, rearRight: vehicleWheelStateId Returns 4 ints indicating the states of the wheels
 function getVehicleWheelStates () end
 
----@type fun(theVehicle: vehicle, door: integer): number
+---@see vehicleDoorId
+---@type fun(theVehicle: vehicle, door: vehicleDoorId): number Returns a number between 0 and 1 that indicates how open the door is. 0 is closed, and 1 is fully open.
 function getVehicleDoorOpenRatio () end
 
----@type fun(theVehicle: element): table
+---@see vehicleHandlingProperty
+---@type fun(theVehicle: vehicle): {[vehicleHandlingProperty]: any} Returns a table containing all the handling data
 function getVehicleHandling () end
 
----@type fun(theVehicle: vehicle): integer, integer, integer
+---@type fun(theVehicle: vehicle): red:integer, green:integer, blue:integer Returns three integers for the red, green and blue of the headlight color for the specified vehicle
 function getVehicleHeadLightColor () end
 
----@type fun(name: string): integer
+---@see vehicleId
+---@type fun(name: vehicleName): vehicleId Returns an integer if the name exists, false otherwise. If you use this function on vehicles with shared names, such as "police", it will return the earliest occurrence of that vehicle's ID. 
 function getVehicleModelFromName () end
 
----@type fun(model: integer): string
+---@see vehicleId
+---@type fun(model: vehicleId): vehicleName Returns the name of the vehicle if the model ID was valid
 function getVehicleNameFromModel () end
 
----@type fun(theVehicle: vehicle): integer, integer
+--- See [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
+---@type (fun(theVehicle: vehicle): 0 | 1 | 2 | 3 | 4 | 5, 0 | 1 | 2 | 3 | 4 | 5)
 function getVehicleVariant () end
 
----@type fun(theVehicle: vehicle): table
+---@type fun(theVehicle: vehicle): {SirenCount: integer, SirenType: sirenTypeId, Flags: { ["360"] : boolean, DoLOSCheck: boolean, UseRandomiser: boolean, Silent: boolean}} | false Returns a table with the siren count, siren type and a sub table for the four flags. False otherwise. 
 function getVehicleSirenParams () end
 
----@type fun(theVehicle: vehicle): table
+---@type fun(theVehicle: vehicle): {x: number, y: number, z: number, Red: integer, Green: integer, Blue: integer, Alpha: integer, Min_Alpha: integer }[]
 function getVehicleSirens () end
 
----@type fun(derailableVehicle: vehicle, derailable: boolean): boolean
+---@type fun(derailableVehicle: vehicle, derailable: boolean): boolean Returns true if the state was successfully set
 function setTrainDerailable () end
 
----@type fun(vehicleToDerail: vehicle, derailed: boolean): boolean
+---@type fun(vehicleToDerail: vehicle, derailed: boolean): boolean Returns true if the state was successfully set 
 function setTrainDerailed () end
 
----@type fun(train: vehicle, clockwise: boolean): boolean
+---@type fun(train: vehicle, clockwise: boolean): boolean Returns true if successful
 function setTrainDirection () end
 
----@type fun(train: vehicle, speed: number): boolean
+--[[
+    `speed`: the new on-track speed of the train. A positive value will make it go clockwise, a negative value counter clockwise.
+]]
+---@type fun(train: vehicle, speed: number): boolean Returns true if successful
 function setTrainSpeed () end
 
----@type fun(train: vehicle, track: integer): boolean
+---@deprecated Function has been disabled according to wiki
+---@type fun(train: vehicle, track: 0 | 1 | 2 | 3): boolean Returns true if the track was set to the train
 function setTrainTrack () end
 
----@type fun(train: vehicle, position: number): boolean
+--[[
+    `position`: the position along the track (0 - 18107 a complete way round)
+]]
+---@type fun(train: vehicle, position: number): boolean Returns true if the train position was set
 function setTrainPosition () end
 
----@type fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2?: integer, g2?: integer, b2?: integer, r3?: integer, g3?: integer, b3?: integer, r4?: integer, g4?: integer, b4?: integer): boolean
+--- Using RGB 1
+---@alias setVehicleColor_rgb1 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer): boolean
+--- Using RGB 2
+---@alias setVehicleColor_rgb2 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer): boolean
+--- Using RGB 3
+---@alias setVehicleColor_rgb3 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer): boolean
+--- Using RGB 4
+---@alias setVehicleColor_rgb4 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer, r4: integer, g4: integer, b4: integer): boolean
+--- Using palette
+---@alias setVehicleColor_palette fun(theVehicle: vehicle, p1: vehiclePaletteColor, p2: vehiclePaletteColor, p3: vehiclePaletteColor, p4: vehiclePaletteColor): boolean
+---@see vehiclePaletteColor for palette definitions
+--[[
+    Returns true if vehicle's color was set
+]]
+---@type setVehicleColor_rgb1 | setVehicleColor_rgb2 | setVehicleColor_rgb3 | setVehicleColor_rgb4 | setVehicleColor_palette
 function setVehicleColor () end
 
----@type fun(theVehicle: vehicle, damageProof: boolean): boolean
+
+---@type fun(theVehicle: vehicle, damageProof: boolean): boolean Returns true if the door state was successfully set
 function setVehicleDamageProof () end
 
----@type fun(theVehicle: vehicle, door: integer, state: integer, spawnFlyingComponent?: boolean): boolean
+---@see vehicleDoorId
+---@see vehicleDoorStateId
+---@type fun(theVehicle: vehicle, door: vehicleDoorId, state: integer, spawnFlyingComponent?: boolean): boolean Returns true if the door state was successfully set
 function setVehicleDoorState () end
 
----@type fun(theVehicle: vehicle, state: boolean): boolean
+---@type fun(theVehicle: vehicle, state: boolean): boolean Returns true if the damageability state was successfully changed
 function setVehicleDoorsUndamageable () end
 
----@type fun(theVehicle: vehicle, engineState: boolean): boolean
+---@type fun(theVehicle: vehicle, engineState: boolean): boolean Returns true if the vehicle's engine state was successfully changed
 function setVehicleEngineState () end
 
----@type fun(theVehicle: vehicle, explodable: boolean): boolean
+---@type fun(theVehicle: vehicle, explodable: boolean): boolean Returns true if the vehicle's fuel tank explodable state was successfully changed
 function setVehicleFuelTankExplodable () end
 
----@type fun(theVehicle: vehicle, gearState: boolean): boolean
+---@type fun(theVehicle: vehicle, gearState: boolean): boolean Returns true if the landing gear was set successfully
 function setVehicleLandingGearDown () end
 
----@type fun(theVehicle: vehicle, light: integer, state: integer): boolean
+---@see vehicleLightId
+---@see vehicleOverrideLightStateId
+---@type fun(theVehicle: vehicle, light: vehicleLightId, state: vehicleLightStateId): boolean Returns true if the light state was set successfully
 function setVehicleLightState () end
 
----@type fun(theVehicle: vehicle, locked: boolean): boolean
+---@type fun(theVehicle: vehicle, locked: boolean): boolean Returns true if the operation was successful
 function setVehicleLocked () end
 
----@type fun(theVehicle: vehicle, value: integer): boolean
+---@see vehicleOverrideLightStateId
+---@type fun(theVehicle: vehicle, value: vehicleOverrideLightStateId): boolean Returns true if the vehicle's lights setting was changed.
 function setVehicleOverrideLights () end
 
----@type fun(theVehicle: vehicle, value: integer): boolean
+---@see vehiclePaintjobId
+---@type fun(theVehicle: vehicle, value: vehiclePaintjobId): boolean Returns true if the vehicle's paintjob was changed
 function setVehiclePaintjob () end
 
----@type fun(theVehicle: vehicle, panelID: integer, state: integer): boolean
+---@see vehiclePanelId
+---@see vehiclePanelStateId
+---@type fun(theVehicle: vehicle, panelId: vehiclePanelId, state: vehiclePanelStateId): boolean Returns true if the panel state has been updated
 function setVehiclePanelState () end
 
----@type fun(theVehicle: element, numberplate: string): boolean
+--[[
+`numberplate`: a string that will go on the number plate of the vehicle (max 8 characters).
+]]
+---@type fun(theVehicle: element, numberplate: string): boolean Returns true if the numberplate was changed successfully
 function setVehiclePlateText () end
 
----@type fun(theVehicle: vehicle, sirensOn: boolean): boolean
+---@type fun(theVehicle: vehicle, sirensOn: boolean): boolean Returns true if the sirens are set for the specified vehicle, false if the sirens can't be set for the specified vehicle, if the vehicle doesn't have sirens or if invalid arguments are specified. 
 function setVehicleSirensOn () end
 
----@type fun(turretVehicle: vehicle, positionX: number, positionY: number): boolean
+---@type fun(turretVehicle: vehicle, positionX: number, positionY: number): boolean Returns a true if a valid vehicle element and valid positions were passed
 function setVehicleTurretPosition () end
 
----@type fun(theVehicle: vehicle, door: integer, ratio: number, time?: integer): boolean
+--[[
+* `ratio`: The ratio value, ranging from 0 (fully closed) to 1 (fully open).
+* `time`: The number of milliseconds the door should take to reach the value you have specified. A value of 0 will change the door open ratio instantly.
+]]
+--[[
+    Returns true if the door open ratio was successfully set
+]]
+---@see vehicleDoorId
+---@type fun(theVehicle: vehicle, door: vehicleDoorId, ratio: number, time?: integer): boolean 
 function setVehicleDoorOpenRatio () end
 
----@type fun(theVehicle: vehicle, rx: number, ry: number, rz: number): boolean
+---@deprecated Use setElementAngularVelocity instead
+---@type fun(theVehicle: vehicle, rx: number, ry: number, rz: number): boolean Returns true if it was succesful
 function setVehicleTurnVelocity () end
 
----@type fun(theVehicle: vehicle, frontLeft: integer, rearLeft?: integer, frontRight?: integer, rearRight?: integer): boolean
+--[[
+    `frontLeft` or `frontLeft` or `rearLeft` or `rearRight` with **-1** means **No change** 
+]]
+---@see vehicleWheelStateId
+---@type fun(theVehicle: vehicle, frontLeft: vehicleWheelStateId | -1, rearLeft?: vehicleWheelStateId | -1, frontRight?: vehicleWheelStateId | -1, rearRight?: vehicleWheelStateId | -1): boolean
 function setVehicleWheelStates () end
 
----@type fun(theVehicle: vehicle, red: integer, green: integer, blue: integer): boolean
+--[[
+* `red`: The amount of red from 0 to 255
+* `green`: The amount of green from 0 to 255
+* `blue`: The amount of blue from 0 to 255
+]]
+---@type fun(theVehicle: vehicle, red: integer, green: integer, blue: integer): boolean Returns true if vehicle's headlight color was set
 function setVehicleHeadLightColor () end
 
----@type fun(taxi: vehicle, LightState: boolean): boolean
+--[[
+    Supported vehicle ID's: 420, 438
+]]
+---@type fun(taxi: vehicle, lightState: boolean): boolean Returns true if the state was successfully set,
 function setVehicleTaxiLightOn () end
 
----@type fun(theVehicle: vehicle, sirenPoint: integer, posX: number, posY: number, posZ: number, red: number, green: number, blue: number, alpha?: number, minAlpha?: number): boolean
+--[[
+* `red`: The amount of red from 0 to 255
+* `green`: The amount of green from 0 to 255
+* `blue`: The amount of blue from 0 to 255
+* `alpha`: The alpha of the siren from 0 to 255
+]]
+--[[ 
+    [Vehicles that are not supported](https://wiki.multitheftauto.com/wiki/Vehicle_IDs#Lua_table_of_vehicles_that_doesn't_support_siren_lights).
+]]
+---@type fun(theVehicle: vehicle, sirenPoint: integer, posX: number, posY: number, posZ: number, red: number, green: number, blue: number, alpha?: number, minAlpha?: number): boolean Returns true if the siren point was successfully changed on the vehicle
 function setVehicleSirens () end
 
----@type fun(): integer, integer, integer, integer
+---@type fun(): r:integer, g:integer, b:integer, a:integer Returns 4 ints, indicating the color of the water. (RGBA) 
 function getWaterColor () end
 
----@type fun(theWater: water, vertexIndex: integer): integer, integer, number
+-- vertexIndex when there are 4 points
+---@alias getWaterVertexPosition_quad fun(theWater: water, vertexIndex: 1 | 2 | 3 | 4): x: integer, y: integer, z: number
+-- vertexIndex when there are 3 points
+---@alias getWaterVertexPosition_triangle fun(theWater: water, vertexIndex: 1 | 2 | 3): x: integer, y: integer, z: number
+---@type getWaterVertexPosition_quad | getWaterVertexPosition_triangle Returns the x, y and z coordinates of the specified vertex if successful
 function getWaterVertexPosition () end
 
----@type fun(): number
+---@type fun(): number Returns the height as a float
 function getWaveHeight () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if water color was reset correctly
 function resetWaterColor () end
 
----@type fun(red: integer, green: integer, blue: integer, integeralpha): boolean
+--[[
+* `red`: The red value of the water, from 0 to 255.
+* `green`: The green value of the water, from 0 to 255.
+* `blue`: The blue value of the water, from 0 to 255.
+* `alpha`: The alpha (visibility) value of the water, from 0 to 255. Defaults to 200 if not declared.
+]]
+---@type fun(red: integer, green: integer, blue: integer, alpha?: integer): boolean Returns true if water color was set correctly
 function setWaterColor () end
 
----@type (fun(theWater: water, level: number)) | (fun(level: number, includeWaterFeatures?: boolean, includeWaterElements?: boolean, includeWorldSea?: boolean, includeOutsideWorld?: boolean): boolean)
+--- Default
+---@alias setWaterLevel_default (fun(level: number, includeWaterFeatures?: boolean, includeWaterElements?: boolean, includeWorldSea?: boolean, includeOutsideWorld?: boolean): boolean)
+--- Water element
+---@alias setWaterLevel_element (fun(theWater: water, level: number): boolean)
+--- Alternative clientside only syntax
+---@alias setWaterLevel_alternativeClientSide (fun(x: number, y: number, z: number, level: number): boolean)
+---@type setWaterLevel_default | setWaterLevel_element | setWaterLevel_alternativeClientSide Returns true if successful
 function setWaterLevel () end
 
----@type fun(theWater: water, vertexIndex: integer, x: integer, y: integer, z: number): boolean
+-- vertexIndex when there are 4 points
+---@alias setWaterVertexPosition_quad fun(theWater: water, vertexIndex: 1 | 2 | 3 | 4, x: integer, y: integer, z: number): boolean Returns true if successful
+-- vertexIndex when there are 3 points
+---@alias setWaterVertexPosition_triangle fun(theWater: water, vertexIndex: 1 | 2 | 3, x: integer, y: integer, z: number): boolean Returns true if successful
+--[[
+    Note: X and Y positions will be changed to an even integer
+]]
+---@type setWaterVertexPosition_quad | setWaterVertexPosition_triangle Returns true if successful
 function setWaterVertexPosition () end
 
----@type fun(height: number): boolean
+--[[
+`height`: A float between 0 and 100.
+]]
+---@type fun(height: number): boolean Returns a boolean value true or false that tells you if it was successful or not. 
 function setWaveHeight () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if water level was reset correctly
 function resetWaterLevel () end
 
----@type fun(parentNode: xmlnode, tagName: string): xmlnode
+---@type fun(parentNode: xmlnode, tagName: string): xmlnode Returns the created xmlnode if successful
 function xmlCreateChild () end
 
----@type fun(parent: xmlnode, tagName: string, index: integer): xmlnode
+--[[
+* `tagName`: This is the name of the child node you wish to find (case-sensitive).
+* `index`: This is the 0-based index of the node you wish to find. For example, to find the 5th subnode with a particular name, you would use 4 as the index value. To find the first occurence, use 0.
+]]
+---@type fun(parent: xmlnode, tagName: string, index: integer): xmlnode | false Returns an xmlnode if the node was found, false otherwise. 
 function xmlFindChild () end
 
----@type fun(node: xmlnode): table
+---@type fun(node: xmlnode): {[string]: string|number} If successful, returns a table with as keys the names of the attributes and as values the corresponding attribute values. If the node has no attributes, returns an empty table. In case of failure, returns false. 
 function xmlNodeGetAttributes () end
 
----@type fun(parent: xmlnode, integerindex): table|xmlnode
+--[[
+    If index isn't specified, returns a table containing all child nodes. If index is specified, returns the corresponding child node if it exists. If no nodes are found, it returns an empty table. Returns false in case of failure. 
+]]
+---@type (fun(parent: xmlnode, index: integer): xmlnode | false) | (fun(parent: xmlnode): xmlnode[])
 function xmlNodeGetChildren () end
 
----@type fun(node: xmlnode): string
+---@type fun(node: xmlnode): string Returns the tag name of the node if successful
 function xmlNodeGetName () end
 
----@type fun(node: xmlnode): xmlnode
+---@type fun(node: xmlnode): xmlnode | false Returns the parent node of the specified node if successful. Returns false if the specified node is the root node
 function xmlNodeGetParent () end
 
----@type fun(node: xmlnode, name: string): boolean
+---@type fun(node: xmlnode, name: string): boolean Returns true if successful
 function xmlNodeSetName () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the ped is carrying a jetpack
 function isPedWearingJetpack () end
 
----@type fun(theVehicle: element, property: string, value: any): boolean
+-- Default
+---@alias setVehicleHandling_default fun(theVehicle: element, property: vehicleHandlingProperty, value: any): boolean
+-- Reset one property to model handling value
+---@alias setVehicleHandling_resetOneModelHandling fun(theVehicle: element, property: vehicleHandlingProperty, value:nil, gta_default:false): boolean
+-- Reset one property to GTA default value
+---@alias setVehicleHandling_resetOneGtaHandling fun(theVehicle: element, property: vehicleHandlingProperty, value:nil, gta_default:true): boolean
+-- Reset all properties to model handling value
+---@alias setVehicleHandling_resetAllModelHandling fun(theVehicle: element, gta_default:false): boolean
+-- Reset all properties to GTA default value
+---@alias setVehicleHandling_resetAllGtaHandling fun(theVehicle: element, gta_default:true): boolean
+---@see vehicleHandlingProperty
+--[[ 
+    Returns true if the handling was set successfully 
+]]
+---@type setVehicleHandling_default | setVehicleHandling_resetOneModelHandling | setVehicleHandling_resetOneGtaHandling | setVehicleHandling_resetAllModelHandling | setVehicleHandling_resetAllGtaHandling 
 function setVehicleHandling () end
 
----@type fun(algorithm: string, input: string, options: table, callback?: function): string
+-- Without callback
+---@alias encodeString_default fun(algorithm:  "rsa" | "tea" | "aes128" | string, input: string, options: table): string
+-- With callback
+---@alias encodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result:string)): true
+---@type encodeString_default | encodeString_callback
 function encodeString () end
 
----@type fun(algorithm: string, input: string, options: table, callback?: function): string
+-- Without callback
+---@alias decodeString_default fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table): string
+-- With callback
+---@alias decodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result:string)): true
+---@type decodeString_default | decodeString_callback
 function decodeString () end
 
----@type fun(shape: colshape): integer
+---@see colShapeTypeId.
+---@type fun(shape: colshape): colShapeTypeId Returns an integer of the type of the colshape.
 function getColShapeType () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): rx:number, ry:number, rz:number Returns three floats describing the x, y and z rotation 
 function getElementAngularVelocity () end
 
----@type fun(theElement: element, rx: number, ry: number, rz: number): boolean
+---@type fun(theElement: element, rx: number, ry: number, rz: number): boolean Returns true if it was succesful
 function setElementAngularVelocity () end
 
----@type fun(x: number, y: number, z: number, range: number, elemType?: string, interior?: integer, dimension?: integer): table
+---@type fun(x: number, y: number, z: number, range: number, elemType?: string, interior?: integer, dimension?: integer): element[] Returns a table containing all the elements of the specified type within range. Returns an empty table if there are no elements within range.
 function getElementsWithinRange () end
 
----@type fun(theShape: colshape, posX: number, posY: number, posZ: number): boolean
+---@type fun(theShape: colshape, posX: number, posY: number, posZ: number): boolean Returns true if the position is inside the colshape
 function isInsideColShape () end
 
----@type fun(thePed: ped, anim?: string, speed?: number): boolean
+--[[
+    `speed`: a float containing the speed between 0.0–1.0 you want to apply to the animation. This limitation may be adjusted in the future, so do not provide speeds outside this boundary. The limit is now 0.0 to 10.0.
+]]
+---@type fun(thePed: ped, anim?: pedAnimName, speed?: number): boolean Returns true if successful
 function setPedAnimationSpeed () end
 
----@type fun(shape: colshape, fX: number, fY: number, index?: integer): boolean
+---@type fun(shape: colshape, fX: number, fY: number, index?: integer): boolean Returns true if the polygon was changed
 function addColPolygonPoint () end
 
----@type fun(shape: colshape): number
+---@type fun(shape: colshape): radius:number Returns a float containing the radius of the colshape
 function getColShapeRadius () end
 
----@type fun(shape: colshape): number, number, number
-function getColShapeSize () end
+-- Cuboid
+---@alias getColShapeSize_cuboid fun(shape: colshape): width:number, depth:number, height:number
+-- Rectangle
+---@alias getColShapeSize_rectangle fun(shape: colshape): width:number, height:number
+-- Tube
+---@alias getColShapeSize_tube fun(shape: colshape): height:number
+---@type getColShapeSize_cuboid | getColShapeSize_rectangle | getColShapeSize_tube
+function getColShapeSize() end
 
----@type fun(shape: colshape, radius: number): boolean
+---@type fun(shape: colshape, radius: number): boolean Returns true if the radius was changed
 function setColShapeRadius () end
 
----@type fun(shape: colshape, width: number, depth: number, height: number): boolean
+-- Cuboid
+---@alias setColShapeSize_cuboid fun(shape: colshape, width: number, depth: number, height: number): boolean
+-- Rectangle
+---@alias setColShapeSize_rectangle fun(shape: colshape, width: number, height: number): boolean
+-- Tube
+---@alias setColShapeSize_tube fun(shape: colshape, height: number): boolean
+---@type setColShapeSize_cuboid | setColShapeSize_rectangle | setColShapeSize_tube Returns true if the size was changed
 function setColShapeSize () end
 
----@type fun(theElement: element, key: string, inherit?: boolean): boolean
+---@type fun(theElement: element, key: string, inherit?: boolean): boolean This function returns true if the element contains element data for key, or false if the element doesn't exist or there is no data associated with the key. 
 function hasElementData () end
 
----@type fun(theResource?: resource): table
+---@type (fun(): {[1]: string, [2]: resource}[]) | (fun(theResource: resource): string ) Returns a table containing all the commands of the given resource or a table with subtables containing the command and theResource pointer.
 function getCommandHandlers () end
 
----@type fun(thePed: ped): integer
+---@type fun(thePed: ped): fightingStyleId Returns the ped's current fighting style as an integer ID, false if it fails to retrieve a value. 
 function getPedFightingStyle () end
 
----@type fun(thePed: ped, armor: number): boolean
+--[[
+    `armor`: the amount of armor you want to set on the ped. Valid values are from 0 to 100.
+]]
+---@type fun(thePed: ped, armor: number): boolean Returns true if the armor was changed succesfully. Returns false if an invalid ped was specified, or the armor value specified is out of acceptable range.
 function setPedArmor () end
 
----@type fun(thePed: ped, style: integer): boolean
+---@see fightingStyleId
+---@type fun(thePed: ped, style: fightingStyleId): boolean Returns true in case of success
 function setPedFightingStyle () end
 
 ---@type fun(thePickup: pickup, thePlayer: player): boolean
 function usePickup () end
 
----@type fun(thePlayer: player, component: string, show: boolean): boolean
+--[[ 
+    Player argument is required serverside
+]]
+---@alias setPlayerHudComponentVisible_server fun(thePlayer: player, component: hudComponent, show: boolean): boolean
+---@alias setPlayerHudComponentVisible_client fun(component: hudComponent, show: boolean): boolean
+---@type setPlayerHudComponentVisible_server | setPlayerHudComponentVisible_client Returns true if the component was shown or hidden succesfully
 function setPlayerHudComponentVisible () end
 
----@type fun(theResource?: resource): table
+---@type fun(theResource?: resource): request[] Returns a table with all requests
 function getRemoteRequests () end
 
----@type fun(theRequest: request, postDataLength?: integer, includeHeaders?: boolean): table
+---@type fun(theRequest: request, postDataLength?: integer, includeHeaders?: boolean): {bytesReceived: number, bytesTotal: number, currentAttempt: integer, type: "fetch" | "call", url: string, resource: resource, queue: string, method: "GET" | "POST", connectionAttempts: integer, connectionTimeout: integer, postData: string, headers: string} | false Returns a table when valid, false otherwise
 function getRemoteRequestInfo () end
 
----@type fun(theRequest: request): boolean
+---@type fun(theRequest: request): boolean Returns true on success, false when invalid request was provided 
 function abortRemoteRequest () end
 
----@type fun(reference: integer): any
+---@type fun(reference: integer): any Returns mixed if the reference were valid. Returns false if the reference were invalid. 
 function deref () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true or false if OOP is enabled or not.
 function isOOPEnabled () end
 
----@type fun(objectToReference: any): integer
+---@type fun(objectToReference: any): integer Returns an int if the reference were successfully created. 
 function ref () end
 
----@type fun(red: integer, green: integer, blue: integer, alpha?: integer): color
+---@type fun(red: integer, green: integer, blue: integer, alpha?: integer): color Returns a single value representing the color. 
 function tocolor () end
 
----@type fun(xmlString: string): xmlnode
+---@type fun(xmlString: string): xmlnode | false Returns the root xmlnode object of an xml string if successful, or false otherwise (invalid XML string). 
 function xmlLoadString () end
 
----@type fun(theElement: element, theMatrix: table): boolean
+---@type fun(theElement: element, theMatrix: table): boolean Returns true if the matrix was set succesfully
 function setElementMatrix () end
 
----@type fun(shape: colshape): table
+---@type fun(shape: colshape): table Returns a table of coordinates, each coordinate being a table containing the x and y position of a bound point
 function getColPolygonPoints () end
 
----@type fun(shape: colshape, index: integer): vector2
+---@type fun(shape: colshape, index: integer): x:number, y: number Returns two floats, x and y, indicating the position of the point.
 function getColPolygonPointPosition () end
 
----@type fun(shape: colshape, index: integer): boolean
+---@type fun(shape: colshape, index: integer): boolean Returns true if the polygon was changed
 function removeColPolygonPoint () end
 
----@type fun(shape: colshape, index: integer, fX: number, fY: number): boolean
+---@type fun(shape: colshape, index: integer, fX: number, fY: number): boolean Returns true if the polygon was changed
 function setColPolygonPointPosition () end
 
----@type fun(theVehicle: vehicle, variant1?: integer, variant2?: integer): boolean
+--- See [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants) for the correct variants. Not all variants are available depending on the vehicle.
+---@type fun(theVehicle: vehicle, variant1?: 0 | 1 | 2 | 3 | 4 | 5, variant2?: 0 | 1 | 2 | 3 | 4 | 5): boolean Returns true if the vehicle variants were successfully set, false otherwise (the specified vehicle doesn't exist or the specified variants are invalid). 
 function setVehicleVariant () end
 
+--[[
+Returns
+* On server this returns a boolean, whether the transfer box should be visible during downloads or not.
+* On client this returns a boolean, whether the transfer box should be visible or not at the time of invocation. 
+]]
 ---@type fun(): boolean
 function isTransferBoxVisible () end
 
----@type fun(visible: boolean): boolean
+---@type fun(visible: boolean): boolean Returns true if the visibility was set successfully
 function setTransferBoxVisible () end
 
----@type fun(shape: colshape, floor: number, ceil: number): boolean
+---@type fun(shape: colshape, floor: number, ceil: number): boolean Returns true if the polygon was changed
 function setColPolygonHeight () end
 
----@type fun(): number, number
+---@type fun(): floor:number, ceil:number Returns two floats, indicating the floor and ceiling of the colshape height
 function getColPolygonHeight () end
 
 --- Since 1.6.0 r21765 also available as a server-side function
----@type fun(theObject: object, breakable: boolean): boolean
+---@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
 function setObjectBreakable () end
 
 ---@param ... integer
