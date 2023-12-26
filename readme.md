@@ -15,6 +15,16 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 - [ ] Make sure to set the correct Lua runtime version in the extension config, for MTA it is: Lua 5.1
 ![Lua 5.1](images/mta-version.png)
 
+- [ ] Disable the following diagnostic for your work files (you can also do it globaly in the workspace)
+```Lua
+---@diagnostic disable: lowercase-global
+```
+
+- [ ] When creating definition files, disable the following diagnostic for those specific files
+```Lua
+---@diagnostic disable: missing-return
+```
+
 
 ## Repo for Lua-Language-Server extension can be found here:
 https://github.com/LuaLS/lua-language-server

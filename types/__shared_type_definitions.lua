@@ -1,4 +1,6 @@
 ---@meta sharedTypeConfigs
+---@diagnostic disable: missing-return
+---@diagnostic disable: lowercase-global
 
 --[[
     Credits to the community for all the available syntax and descriptions
@@ -35,27 +37,65 @@
 ---@class matrix 
 ---@class xmlnode
 
----@class vector2
----@operator add(vector2): vector2
----@operator sub(vector2): vector2
----@operator mul(vector2): vector2
----@operator div(vector2): vector2
----@operator mod(vector2): vector2
----@operator pow(vector2): vector2
----@class vector3
----@operator add(vector3): vector3
----@operator sub(vector3): vector3
----@operator mul(vector3): vector3
----@operator div(vector3): vector3
----@operator mod(vector3): vector3
----@operator pow(vector3): vector3
----@class vector4
----@operator add(vector4): vector4
----@operator sub(vector4): vector4
----@operator mul(vector4): vector4
----@operator div(vector4): vector4
----@operator mod(vector4): vector4
----@operator pow(vector4): vector4
+---@class Vector2
+---@field dot fun(vector: Vector2, vector: Vector2): Vector2
+---@field normalize fun(vector: Vector2): boolean
+---@field getX fun(vector: Vector2): number
+---@field getY fun(vector: Vector2): number
+---@field setX fun(vector: Vector2, value: number): boolean
+---@field setY fun(vector: Vector2, value: number): boolean
+---@field getNormalized fun(vector: Vector2): Vector2
+---@field getLength fun(vector: Vector2): number 
+---@field getSquaredLength fun(vector: Vector2): number 
+---@operator add(Vector2): Vector2
+---@operator sub(Vector2): Vector2
+---@operator mul(Vector2): Vector2
+---@operator div(Vector2): Vector2
+---@operator mod(Vector2): Vector2
+---@operator pow(Vector2): Vector2
+---@overload fun(x?: number, y?: number): Vector2
+---@overload fun(x?: Vector2): Vector2
+Vector2 = {}
+
+---@class Vector3
+---@field dot fun(vector: Vector3, vector: Vector3): Vector3
+---@field normalize fun(vector: Vector3): boolean
+---@field getX fun(vector: Vector3): number
+---@field getY fun(vector: Vector3): number
+---@field setX fun(vector: Vector3, value: number): boolean
+---@field setY fun(vector: Vector3, value: number): boolean
+---@field getNormalized fun(vector: Vector3): Vector3
+---@field getLength fun(vector: Vector3): number 
+---@field getSquaredLength fun(vector: Vector3): number 
+---@operator add(Vector3): Vector3
+---@operator sub(Vector3): Vector3
+---@operator mul(Vector3): Vector3
+---@operator div(Vector3): Vector3
+---@operator mod(Vector3): Vector3
+---@operator pow(Vector3): Vector3
+---@overload fun(x?: number, y?: number, z?: number): Vector3
+---@overload fun(x?: Vector3): Vector3
+Vector3 = {}
+
+---@class Vector4
+---@field dot fun(vector: Vector4, vector: Vector4): Vector4
+---@field normalize fun(vector: Vector4): boolean
+---@field getX fun(vector: Vector4): number
+---@field getY fun(vector: Vector4): number
+---@field setX fun(vector: Vector4, value: number): boolean
+---@field setY fun(vector: Vector4, value: number): boolean
+---@field getNormalized fun(vector: Vector4): Vector4
+---@field getLength fun(vector: Vector4): number 
+---@field getSquaredLength fun(vector: Vector4): number 
+---@operator add(Vector4): Vector4
+---@operator sub(Vector4): Vector4
+---@operator mul(Vector4): Vector4
+---@operator div(Vector4): Vector4
+---@operator mod(Vector4): Vector4
+---@operator pow(Vector4): Vector4
+---@overload fun(x?: number, y?: number, z?: number, w?: number): Vector4
+---@overload fun(vector?: Vector4): Vector4
+Vector4 = {}
 
 ---@class file
 ---@class timer
@@ -1127,3 +1167,125 @@ Use 3 to remove the paintjob.
 ---@alias pedStatId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|33|35|36|37|38|39|40|41|44|45|46|47|48|49|51|52|53|54|55|56|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|194|195|196|197|198|200|225|229|230
 
 ---@alias elementTypeAutoComplete string|"player"|"ped"|"water"|"sound"|"vehicle"|"object"|"pickup"|"marker"|"colshape"|"blip"|"radararea"|"team"|"spawnpoint"|"console"|"projectile"|"effect"|"light"|"searchlight"|"shader"|"texture"
+
+--[[
+* 1212: Money (wad of cash)
+* 1239: Info icon
+* 1240: Health (heart)
+* 1241: Adrenaline
+* 1242: Armour
+* 1247: Bribe
+* 1248: GTA III sign
+* 1252: Bomb from GTA III
+* 1253: Photo op
+* 1254: Skull
+* 1272: House (blue)
+* 1273: House (green)
+* 1274: Money icon
+* 1275: Blue t-shirt
+* 1276: Tiki statue
+* 1277: Save disk
+* 1279: Drug bundle
+* 1310: Parachute (with leg straps)
+* 1313: 2 Skulls
+* 1314: 2 Players icon
+* 1318: Down arrow
+]]
+---@alias pickupModelSuggestion 1212 | 1239 | 1240 | 1241 | 1242 | 1247 | 1248 | 1252 | 1253 | 1254 | 1272 | 1273 | 1274 | 1275 | 1276 | 1277 | 1279 | 1310 | 1313 | 1314 | 1318
+
+--[[
+| ID  |  Damage type  |                                           Additional info                                            |
+|:---:|:-------------:|:----------------------------------------------------------------------------------------------------:|
+| 19  | Rocket        | Actual damage type when damaged from a rocket launcher                                               |
+| 37  | Burnt         | This is used by a damage by fire, even when the fire is created by a rocket explosion or a molotov   |
+| 49  | Rammed        |                                                                                                      |
+| 50  | Ranover       | This is also called when damaged because of helicopter blades                                        |
+| 51  | Explosion     | This may sometimes also be used at an indirect damage through an exploding rocket                    |
+| 52  | Driveby       | This is NOT used for a driveby kill with e.g. the 'realdriveby' resource                             |
+| 53  | Drowned       |                                                                                                      |
+| 54  | Fall          |                                                                                                      |
+| 55  | Unknown       | No known information about this damage type                                                          |
+| 56  | Melee         | Seems to be never called (?); for an actual melee damage, the fist weapon ID (0) is used (see here)  |
+| 57  | Weapon        | Seems to be never called (?)                                                                         |
+| 59  | Tank Grenade  |                                                                                                      |
+| 63  | Blown         | Actual damage type when dying in a vehicle explosion                                                 |
+]]
+---@alias damageTypeId 19 | 37 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 59 | 63
+
+--[[
+* 3: Torso
+* 4: Ass
+* 5: Left Arm
+* 6: Right Arm
+* 7: Left Leg
+* 8: Right Leg
+* 9: Head
+]]
+---@alias bodyPartId 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+---@alias bodyPartName "Torso" | "Ass" | "Left Arm" | "Right Arm" | "Left Leg" | "Right Leg" | "Head"
+
+--[[
+* 0: Custom message
+* 1: Error message
+* 2: Warning message
+* 3: Information message (default)
+* 4: Custom message (omits file path and line number) 
+]]
+---@alias debugMessageLevel 0 | 1 | 2 | 3 | 4
+
+--[[
+* "checkpoint": A race checkpoint. These are very tall, but not infinite, light pillars. Checkpoints snap to ground and become invisible after going over a certain Z height.
+* "ring": Doughnut shaped ring, normally used for aircraft.
+* "cylinder": Small glowing ground ring. These are the glow markers you walk into to activate missions or events in single player.
+* "arrow": Arrow pointing down. These are the arrows on the doors you can enter in single player, except MTA's are not animated by default.
+* "corona": A glowing ball of light.
+]]
+---@alias markerType "checkpoint" | "ring" | "cylinder" | "arrow" | "corona"
+
+---@alias matrixAsTable {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]: {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}}
+
+
+--[[
+* 0: Grenade
+* 1: Molotov
+* 2: Rocket
+* 3: Rocket Weak
+* 4: Car
+* 5: Car Quick
+* 6: Boat
+* 7: Heli
+* 8: Mine
+* 9: Object
+* 10: Tank Grenade
+* 11: Small
+* 12: Tiny
+]]
+---@alias explosionType 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+---@alias clothesType 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9  | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17
+
+--[[
+* 0 - 20 Selection sounds
+* 27 - 30 Bullet sounds
+* 32 - 33 Selection sounds
+* 34 Radio static
+* 35 Stop Radio static
+* 37 - 38 Tick
+* 40 Selection sounds
+* 41 - 42 Tick (no ammo)
+* 43 - 45 Race countdown
+* 46 Repair
+* 47 White noise static
+* 48 Stop White noise static
+* 49 Static short
+* 101 Countdown/selection
+]]
+---@alias soundFrontEndId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|27|28|29|30|32|33|34|35|37|38|40|41|42|43|44|45|46|47|48|49|101
+
+---@alias playerWantedLevel 0 | 1 | 2 | 3 | 4 | 5 | 6
+
+--[[
+    [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
+]]
+---@alias vehicleVariantId 0 | 1 | 2 | 3 | 4 | 5

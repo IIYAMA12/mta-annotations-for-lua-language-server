@@ -15,16 +15,7 @@ function passwordHash () end
 ---@type fun(password: string, hash: string, callback?: function): boolean
 function passwordVerify () end
 
----@type fun(x?:number, y?: number): vector2
-function Vector2 () end
-
----@type fun(x?:number, y?: number, z?: number): vector3
-function Vector3 () end
-
--- ---@type fun(x?:number, y?: number, z?: number, w?: number): vector4
--- function Vector4 () end
-
----@type fun(position?: vector3, rotation: vector3): matrix Returns a Matrix object
+---@type fun(position?: Vector3, rotation: Vector3): matrix Returns a Matrix object
 function Matrix () end
 
 ---@type fun(miliseconds: integer): boolean Returns true if the development mode is enabled and arguments are correct
@@ -1434,7 +1425,7 @@ function getSkyGradient () end
 --- Serverside toggle flags
 ---@alias setWeaponProperty_server_syntax_2 fun(weaponNameOrWeaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponPropertyFlags, theValue: boolean): boolean
 --- Clientside
----@alias setWeaponProperty_client fun(weapon: weapon, property: weaponProperty_client_syntax_1, theValue: number) | fun(weapon: weapon, property: weaponProperty_client_syntax_2, theValue: vector3)
+---@alias setWeaponProperty_client fun(weapon: weapon, property: weaponProperty_client_syntax_1, theValue: number) | fun(weapon: weapon, property: weaponProperty_client_syntax_2, theValue: Vector3)
 --[[
     Returns true if the property was set. 
 ]]
