@@ -1,5 +1,6 @@
 ---@meta sharedConfigs
 ---@diagnostic disable: missing-return
+---@diagnostic disable: lowercase-global
 
 --[[
     Credits to the community for all the available syntax and descriptions
@@ -20,372 +21,490 @@ function Vector2 () end
 ---@type fun(x?:number, y?: number, z?: number): vector3
 function Vector3 () end
 
----@type fun(x?:number, y?: number, z?: number, w?: number): vector4
-function Vector4 () end
+-- ---@type fun(x?:number, y?: number, z?: number, w?: number): vector4
+-- function Vector4 () end
 
----@type fun(position?: vector3, rotation: vector3): matrix
+---@type fun(position?: vector3, rotation: vector3): matrix Returns a Matrix object
 function Matrix () end
 
----@type fun(miliseconds: integer): boolean
+---@type fun(miliseconds: integer): boolean Returns true if the development mode is enabled and arguments are correct
 function debugSleep () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the development mode is on
 function getDevelopmentMode () end
 
----@type fun(enable: boolean, enableWeb?: boolean): boolean
+---@type fun(enable: boolean, enableWeb?: boolean): boolean Returns true if the mode was set correctl
 function setDevelopmentMode () end
 
----@type fun(filePath: string, readOnly?: boolean): xmlnode
+---@type fun(filePath: string, readOnly?: boolean): xmlnode | false Returns the root xmlnode object of an xml file if successful
 function xmlLoadFile () end
 
----@type fun(node: xmlnode, name: string, value: string | number): boolean
+---@type fun(node: xmlnode, name: string, value: string | number): boolean Returns true if the attribute was set successfully
 function xmlNodeSetAttribute () end
 
----@type fun(): number
+---@type fun(): number Returns a float containing the max aircraft height. 
 function getAircraftMaxHeight () end
 
----@type fun(theXMLNode: xmlnode): string
+---@type fun(theXMLNode: xmlnode): string | false Returns the value of the node as a string if it was received successfully
 function xmlNodeGetValue () end
 
+--[[
+    Returns the vehicle element that was created. 
+]]
 ---@see vehicleId
----@type fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, bDirection?: boolean, variant1?: integer, variant2?: integer): vehicle
+---@type fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, variant1?: vehicleVariantId, variant2?: vehicleVariantId): vehicle
 function createVehicle () end
 
----@type fun(x: number, y: number, z: number, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
+--- Serverside
+---@alias createBlip_server fun(x: number, y: number, z: number, icon?: blipIconId, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo?: root): blipElement: blip
+--- Clientside
+---@alias createBlip_client fun(x: number, y: number, z: number, icon?: blipIconId, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number): blipElement: blip
+---@see blipIconId
+--[[
+    Returns an element of the blip if it was created successfully
+]]
+---@type createBlip_server | createBlip_client
 function createBlip () end
 
----@type fun(theElement: element): table
+---@type fun(theElement: element): element[] Returns a table of all the elements attached to the specified element. 
 function getAttachedElements () end
 
----@type fun(thePickup: pickup): integer
+---@type fun(thePickup: pickup): integer Returns an integer of the amount the pickup is set to, false if it's invalid, 0 if it's no health or amor pickup.
 function getPickupAmount () end
 
----@type fun(theBlip: blip): integer, integer, integer, integer
+---@type fun(theBlip: blip): r: integer, g: integer, b: integer, a: integer Returns four integers in RGBA format, with a maximum value of 255 for each. The values are, in order, red, green, blue, and alpha. Alpha decides the transparancy where 255 is opaque and 0 is fully transparent.
 function getBlipColor () end
 
----@type fun(theBlip: blip, iconSize: integer): boolean
+---@type fun(theBlip: blip, iconSize: integer): boolean Returns an true if the blip's size was set successfully.
 function setBlipSize () end
 
----@type fun(thePlayer: player, r: integer, g: integer, b: integer): boolean
+--- Default
+---@alias setPlayerNametagColor_default fun(thePlayer: player, r: integer, g: integer, b: integer): boolean
+--- Reset to team color
+---@alias setPlayerNametagColor_reset fun(thePlayer: player, color: false): boolean
+---@type setPlayerNametagColor_default | setPlayerNametagColor_reset Returns true if the function was successful
 function setPlayerNametagColor () end
 
----@type fun(theBlip: blip, red: integer, green: integer, blue: integer, alpha: integer): boolean
+---@type fun(theBlip: blip, red: integer, green: integer, blue: integer, alpha: integer): boolean Returns true if the blip's color was set successfully. 
 function setBlipColor () end
 
----@type fun(thePickup: pickup): integer
+---@see weaponId
+---@type fun(thePickup: pickup): weaponId Returns the Weapon ID of the pickup
 function getPickupWeapon () end
 
----@type fun(theBlip: blip): integer
+---@see blipIconId
+---@type fun(theBlip: blip): blipIconId Returns an integer indicating which icon the blip has.
 function getBlipIcon () end
 
----@type fun(thePed: ped, clothesTexture: string, clothesModel: string, clothesType: integer): boolean
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes) for CJ_Clothes
+]]
+---@type fun(thePed: ped, clothesTexture: string, clothesModel: string, clothesType: clothesType): boolean This function returns true if the clothes were successfully added to the ped
 function addPedClothes () end
 
----@type fun(theBlip: blip): integer
+---@type fun(theBlip: blip): zOrdering: integer Returns the Z ordering value of the blip if successful
 function getBlipOrdering () end
 
----@type fun(elementToAttachTo: element, icon?: integer, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo): blip
+--- Serverside
+---@alias createBlipAttachedTo_server fun(elementToAttachTo: element, icon?: blipIconId, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number, visibleTo?: root): blipElement: blip
+--- Clientside
+---@alias createBlipAttachedTo_client fun(elementToAttachTo: element, icon?: blipIconId, size?: integer, r?: integer, g?: integer, b?: integer, a?: integer, ordering?: integer, visibleDistance?: number): blipElement: blip
+--[[
+See [wiki](https://wiki.multitheftauto.com/wiki/Radar_Blips) for icon option
+]]
+--[[
+Returns a blip if the blip was created succesfully
+]]
+---@type createBlipAttachedTo_server | createBlipAttachedTo_client 
 function createBlipAttachedTo () end
 
----@type fun(theElement: element, theAttachToElement?: element): boolean
+---@type fun(theElement: element, theAttachToElement?: element): boolean Returns true if the detaching was successful
 function detachElements () end
 
----@type fun(theElement: element): integer
+---@type fun(theElement: element): integer Returns an integer (0-255; 0 = transparent) indicating the element's alpha
 function getElementAlpha () end
 
----@type fun(theElement: element): number, number, number, number, number, number
+---@type fun(theElement: element): x: number, y: number, z: number, xr: number, yr: number, zr: number Returns 6 floats, of which the first 3 indicate the position offset (x, y, z), and the last 3 indicate the rotation offset (x, y, z), if successful.
 function getElementAttachedOffsets () end
 
----@type (fun(fadeIn: boolean, numbertimeToFade, red?: integer, green?: integer, blue?: integer): boolean)|(fun(thePlayer: player, fadeIn: boolean, numbertimeToFade, red?: integer, green?: integer, blue?: integer): boolean)
+--- Serverside
+---@alias fadeCamera_server (fun(thePlayer: player, fadeIn: boolean, timeToFade?: number, red?: integer, green?: integer, blue?: integer): boolean)
+--- Clientside
+---@alias fadeCamera_client (fun(fadeIn: boolean, timeToFade?: number, red?: integer, green?: integer, blue?: integer): boolean)
+---@type fadeCamera_server | fadeCamera_client Returns true if the camera was faded successfully
 function fadeCamera () end
 
----@type fun(thePlayer: player): string
+---@type fun(thePlayer: player): string Returns a string containing the requested player's name
 function getPlayerName () end
 
----@type fun(clothesTexture: string, clothesModel: string): integer, integer
+--- Valid result
+---@alias getTypeIndexFromClothes_valid fun(clothesTexture: string, clothesModel: string): clothesType: clothesType, index: integer
+--- Invalid Result
+---@alias getTypeIndexFromClothes_invalid fun(clothesTexture: string, clothesModel: string): false
+---@type getTypeIndexFromClothes_valid | getTypeIndexFromClothes_invalid This function returns two integers, type and index respectively, false if invalid arguments were passed to the function. 
 function getTypeIndexFromClothes () end
 
----@type fun(clothesType: integer, clothesIndex: integer): string, string
+--- Valid result
+---@alias getClothesByTypeIndex_valid fun(clothesType: clothesType, clothesIndex: integer): string, string
+--- Invalid Result
+---@alias getClothesByTypeIndex_invalid fun(clothesType: clothesType, clothesIndex: integer): false
+---@type getClothesByTypeIndex_valid | getClothesByTypeIndex_invalid This function returns 2 strings, a texture and model respectively, false if invalid arguments were passed to the function. 
 function getClothesByTypeIndex () end
 
----@type fun(theBlip: blip): integer
+---@type fun(theBlip: blip): size: integer Returns an integer indicating the size of the blip. The default value is 2. The maximum value is 25. 
 function getBlipSize () end
 
----@type fun(bodyPartID: integer): string
+---@type fun(bodyPartId: bodyPartId): bodyPartName This function returns a string containing the body part name if the ID is valid
 function getBodyPartName () end
 
----@type fun(thePlayer: player, text: string): boolean
+---@type fun(thePlayer: player, text: string): boolean Returns true if successful
 function setPlayerNametagText () end
 
----@type fun(theElement: element, name: string): boolean
+---@type fun(theElement: element, name: string): boolean This returns true if successful
 function setElementID () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the voice is enabled on the server
 function isVoiceEnabled () end
 
----@type fun(theBlip: blip, ordering: integer): boolean
+---@type fun(theBlip: blip, ordering: integer): boolean Returns true if the blip ordering was changed successfully
 function setBlipOrdering () end
 
----@type fun(thePlayer: player): integer
+---@type fun(thePlayer: player): wantedLevel: playerWantedLevel Returns an int from 0 to 6 representing the player's wanted level
 function getPlayerWantedLevel () end
 
----@type fun(thePed: ped, clothesType: integer): string, string
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes) for CJ_Clothes
+]]
+---@type fun(thePed: ped, clothesType: clothesType): string, string Returns 2 strings, the clothes texture and model.
 function getPedClothes () end
 
----@type fun(thePlayer: player, sound: integer): boolean
+--- Serverside
+---@alias playSoundFrontEnd_server fun(thePlayer: player, sound: soundFrontEndId): boolean
+--- Clientside
+---@alias playSoundFrontEnd_client fun(sound: soundFrontEndId): boolean
+--[[
+    Returns true if the sound was successfully played
+]]
+---@see soundFrontEndId
+---@type playSoundFrontEnd_server | playSoundFrontEnd_client 
 function playSoundFrontEnd () end
 
----@type fun(clothesType: integer): string
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes) for CJ_Clothes
+]]
+---@type fun(clothesType: clothesType): string This function returns a string (the name of the clothes type) if foun
 function getClothesTypeName () end
 
----@type fun(fX: number, fY: number, fZ: number, fRadius: number): colshape
+---@type fun(fX: number, fY: number, fZ: number, fRadius: number): colshapeElement: colshape Returns a colshape element if successful
 function createColSphere () end
 
----@type fun(fX: number, fY: number, radius: number): colshape
+---@type fun(fX: number, fY: number, radius: number): colshapeElement: colshape Returns a colshape element if successful
 function createColCircle () end
 
----@type fun(fX: number, fY: number, fWidth: number, fHeight: number): colshape
+---@type fun(fX: number, fY: number, fWidth: number, fHeight: number): colshapeElement: colshape Returns a colshape element if successful
 function createColRectangle () end
 
----@type fun(thePlayer: player): boolean
+---@type fun(thePlayer: player): shown: boolean Returns true if the player's cursor is visible
 function isCursorShowing () end
 
----@type fun(thePlayer: player, show: boolean, toggleControls?: boolean): boolean
+--- Serverside
+---@alias showCursor_server fun(thePlayer: player, show: boolean, toggleControls?: boolean): boolean
+--- Clientside
+---@alias showCursor_client fun(show: boolean, toggleControls?: boolean): boolean
+---@type showCursor_server | showCursor_client Returns true if the player's cursor was shown or hidden successfully
 function showCursor () end
 
----@type fun(eventName: string, attachedTo: element, functionVar: function): boolean
+---@type fun(eventName: string, attachedTo: element, functionVar: function): boolean Returns true if the event handler was removed successfully. Returns false if the specified event handler could not be found.
 function removeEventHandler () end
 
----@type fun(node: xmlnode, name: string): string
+---@type fun(node: xmlnode, name: string): string | false Returns the attribute in string form or false, if the attribute is not defined. 
 function xmlNodeGetAttribute () end
 
----@type fun(theXMLNode: xmlnode): boolean
+---@type fun(theXMLNode: xmlnode): boolean Returns true if the xml node was successfully destroyed
 function xmlDestroyNode () end
 
+--[[
+* Returns true if the event was triggered successfully, and was not cancelled using cancelEvent.
+* Returns false if the event was triggered successfully, and was cancelled using cancelEvent.
+]]
 ---@type fun(eventName: string, baseElement: element, ...: any): boolean
 function triggerEvent () end
 
----@type fun(theElement: element): integer
+---@type fun(theElement: element): dimension: integer Returns an integer for the dimension
 function getElementDimension () end
 
----@type fun(theElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
+---@type fun(theElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
 function setElementAttachedOffsets () end
 
----@type fun(theElement: element, speedX: number, speedY: number, speedZ: number): boolean
+---@type fun(theElement: element, speedX: number, speedY: number, speedZ: number): boolean Returns true if the speed was set successfully
 function setElementVelocity () end
 
----@type fun(eventName: string, attachedTo: element): { [integer]: function }
+---@type fun(eventName: string, attachedTo: element): attachedFunctions: function[] Returns table with attached functions
 function getEventHandlers () end
 
----@type fun(filePath: string): boolean
+---@type fun(filePath: string): boolean Returns true if the file exists
 function fileExists () end
 
----@type fun(theMarker: marker): number, number, number
+--- If default 
+---@alias getMarkerTarget_default fun(theMarker: marker): false
+--- If set
+---@alias getMarkerTarget_isSet fun(theMarker: marker): x: number, y: number, z: number
+---@type getMarkerTarget_default | getMarkerTarget_isSet
 function getMarkerTarget () end
 
 --- Serverside
 ---@alias cancelLatentEvent_server (fun(thePlayer: player, handle: integer):boolean)
 --- Clientside
 ---@alias cancelLatentEvent_client (fun(handle: integer):boolean)
----@type cancelLatentEvent_server | cancelLatentEvent_client
+---@type cancelLatentEvent_server | cancelLatentEvent_client Returns a true if the latent event was successfully cancelled
 function cancelLatentEvent () end
 
----@type fun(theMarker: marker, markerType: string): boolean
+---@type fun(theMarker: marker, markerType: markerType): boolean Returns true if the marker type was changed
 function setMarkerType () end
 
----@type fun(fX: number, fY: number, fZ: number, fRadius: number, fHeight: number): colshape
+---@type fun(fX: number, fY: number, fZ: number, fRadius: number, fHeight: number): colshapeElement: colshape Returns a colshape element if successful
 function createColTube () end
 
----@type fun(theFile: file): boolean
+---@type fun(theFile: file): boolean Returns true if successful
 function fileClose () end
 
----@type fun(filePath: string): boolean
+---@type fun(filePath: string): boolean Returns true if successful, false otherwise (for example if there exists no file with the given name, or it does exist but is in use). 
 function fileDelete () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the specified element is attached to another element, false if it is not attached
 function isElementAttached () end
 
----@type fun(thePlayer: player, amount: integer): boolean
+--- Serverside
+---@alias takePlayerMoney_server fun(thePlayer: player, amount: integer): boolean
+--- Clientside
+---@alias takePlayerMoney_client fun(amount: integer): boolean
+---@type takePlayerMoney_server | takePlayerMoney_client Returns true if the money was taken
 function takePlayerMoney () end
 
----@type fun(modelid: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, isLowLOD?: boolean): object
+---@type fun(modelid: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, isLowLOD?: boolean): objectElement: object Returns the object element if the creation was successful
 function createObject () end
 
----@type fun(theMarker: marker, x: number, y: number, z: number): boolean
+---@type fun(theMarker: marker, x: number, y: number, z: number): boolean Returns true if target was set
 function setMarkerTarget () end
 
----@type fun(filePath: string, copyToFilePath: string, overwrite?: boolean): boolean
+---@type fun(filePath: string, copyToFilePath: string, overwrite?: boolean): boolean Return true if the file was copied
 function fileCopy () end
 
----@type fun(thePlayer: player): table
+--- Serverside
+---@alias getLatentEventHandles_server fun(thePlayer: player): integer[]
+--- Clientside
+---@alias getLatentEventHandles_client fun(): integer[]
+---@type getLatentEventHandles_server | getLatentEventHandles_client Returns a table of handles
 function getLatentEventHandles () end
 
----@type fun(cancel?: boolean, reason?: string): boolean
+--- Serverside
+---@alias cancelEvent_server fun(cancel?: boolean, reason?: string): true
+--- Clientside
+---@alias cancelEvent_client fun(): true
+---@type cancelEvent_server | cancelEvent_client Always returns true.
 function cancelEvent () end
 
----@type fun(fX: number, fY: number, fZ: number, fWidth: number, fDepth: number, fHeight: number): colshape
+---@type fun(fX: number, fY: number, fZ: number, fWidth: number, fDepth: number, fHeight: number): colshape: colshape Returns a colshape element if successful
 function createColCuboid () end
 
----@type fun(theElement: element): elementTypeAutoComplete
+---@type fun(theElement: element): type: elementTypeAutoComplete Returns a string containing the element type
 function getElementType () end
 
----@type fun(theElement: element, theAttachToElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
+---@type fun(theElement: element, theAttachToElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
 function attachElements () end
 
----@type fun(thePed: ped, clothesType: integer, clothesTexture?: string, clothesModel?: string): boolean
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes) for CJ_Clothes
+]]
+---@type fun(thePed: ped, clothesType: clothesType, clothesTexture?: string, clothesModel?: string): boolean This function returns true if the clothes were successfully removed from the ped
 function removePedClothes () end
 
----@type fun(theElement: element, interior: integer, x?: number, y?: number, z?: number): boolean
+---@type fun(theElement: element, interior: integer, x?: number, y?: number, z?: number): boolean Returns true if theElement and interior are valid arguments
 function setElementInterior () end
 
----@type fun(parent: element, theType?: elementTypeAutoComplete): table
+---@type fun(parent: element, theType?: elementTypeAutoComplete): element[] This function returns a table that contains a list of elements that the parent has. 
 function getElementChildren () end
 
----@type fun(elementType: string, elementID?: string): element
+---@type fun(elementType: string, elementID?: string): element Returns the element if it was successfully created.
 function createElement () end
 
----@type fun(train: vehicle): boolean
+---@type fun(train: vehicle): clockwise: boolean Returns true if the train is driving clockwise on the train track
 function getTrainDirection () end
 
----@type fun(filePath: string): file
+---@type fun(filePath: string): file | false If successful, returns a file handle
 function fileCreate () end
 
----@type fun(theElement: element, enabled: boolean): boolean
+---@type fun(theElement: element, enabled: boolean): boolean Returns true, if the propagation behaviour has been changed successfully
 function setElementCallPropagationEnabled () end
 
----@type fun(elementToDestroy: element): boolean
+---@type fun(elementToDestroy: element): isDestroyed: boolean Returns true if the element was destroyed successfully, false if either the element passed to it was invalid or it could not be destroyed for some other reason (for example, clientside destroyElement can't destroy serverside elements).
 function destroyElement () end
 
----@type fun(weaponid: weaponId): integer
+---@type fun(weaponid: weaponId): weaponSlotId Returns an integer representing the given weapon ID's associated weapon slot
 function getSlotFromWeapon () end
 
----@type fun(modelID: integer): table
+---@type fun(modelID: vehicleId): {[vehicleHandlingProperty]: unknown} Returns a table containing all the handling data
 function getOriginalHandling () end
 
----@type fun(x1: integer, y1: integer, z1: number, x2: integer, y2: integer, z2: number, x3: integer, y3: integer, z3: number, x4?: integer, y4?: integer, z4?: number, bShallow: boolean): water
+--- Water with 4 points
+---@alias createWater_quad fun(x1: integer, y1: integer, z1: number, x2: integer, y2: integer, z2: number, x3: integer, y3: integer, z3: number, x4: integer, y4: integer, z4: number, bShallow?: boolean): water
+--- Water with 3 points
+---@alias createWater_triangle fun(x1: integer, y1: integer, z1: number, x2: integer, y2: integer, z2: number, x3: integer, y3: integer, z3: number, bShallow?: boolean): water
+---@type createWater_quad | createWater_triangle Returns a water element if successful
 function createWater () end
 
----@type fun(x: number, y: number, z: number, theType: integer, creator?: player): boolean
+--- Serverside
+---@alias createExplosion_server fun(x: number, y: number, z: number, theType: explosionType, creator?: player): boolean
+--- Clientside
+---@alias createExplosion_client fun(x: number, y: number, z: number, theType: explosionType, makeSound?: boolean, camShake?: number, damaging?: boolean): boolean
+---@type createExplosion_server | createExplosion_client Returns true if the explosion was created.
 function createExplosion () end
 
----@type fun(id: string, index?: integer): element
+---@type fun(id: string, index?: integer): element | false Returns the element with the given ID, or false if no such element exists. 
 function getElementByID () end
 
----@type fun(theElement: element): integer
+---@see pedId
+---@see vehicleId
+---@type fun(theElement: element): integer Returns the model ID if successful
 function getElementModel () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the collisions are enabled
 function getElementCollisionsEnabled () end
 
----@type fun(theElement: element, key?: string, inherit): unknown
+---@type fun(theElement: element, key: string, inherit?: boolean): unknown This function returns a variable containing the requested element data, or false if the element or the element data does not exist.
 function getElementData () end
 
----@type fun(theElement: element, lowLODElement: element): boolean
+---@type fun(theElement: element, lowLODElement: element): boolean Returns true if the assignment was successful
 function setLowLODElement () end
 
----@type fun(eventName: string, allowRemoteTrigger?: boolean): boolean
+---@type fun(eventName: string, allowRemoteTrigger?: boolean): boolean Returns true if the event was added successfully
 function addEvent () end
 
----@type fun(theElement: element): element
+---@type fun(theElement: element): element | false Returns the element that the chosen element is attached to, or false if the element isn't attached to another element. 
 function getElementAttachedTo () end
 
----@type fun(): boolean
+---@type fun(): wasCancelled: boolean Returns true if the event was cancelled, false if it wasn't
 function wasEventCancelled () end
 
----@type fun(eventName: string, attachedTo: element, handlerFunction: function, getPropagated?: boolean, priority?: string): boolean
-function addEventHandler () end
-
----@type fun(theElement: element): number
+---@type fun(theElement: ped | player | vehicle | object): health: number Returns a float indicating the element's health
 function getElementHealth () end
 
----@type fun(theElement: element, key: string, value: any, synchronize?: boolean): boolean
+--- Serverside / clienside
+---@alias setElementData_shared fun(theElement: element, key: string, value: any, synchronize?: boolean): boolean
+--- Serverside
+---@alias setElementData_server_syntax_2 fun(theElement: element, key: string, value: any, syncMode?: "broadcast" | "local" | "subscribe"): boolean
+---@alias setElementData_server setElementData_server_syntax_2 | setElementData_shared
+---@alias setElementData_client setElementData_shared
+---@type setElementData_server | setElementData_shared Returns true if the data was set successfully
 function setElementData () end
 
----@type fun(parent: element, index: integer): element
+---@type fun(parent: element, index: integer): element | false Returns the requested element if it exists, or false if it doesn't. 
 function getElementChild () end
 
----@type fun(theFile: file): boolean
+---@type fun(theFile: file): boolean Returns true if succeeded
 function fileFlush () end
 
----@type fun(theFile: file, ...: string): integer
+---@type fun(theFile: file, ...: string): bytesWritten: integer Returns the number of bytes successfully written to the file
 function fileWrite () end
 
----@type fun(theFile: file, offset: integer): integer
+---@type fun(theFile: file, offset: integer): actualPos: integer Returns where the offset was actually set at. I.e. if offset was past the end of the file, it will be set at the end of the file, and this position will be returned.
 function fileSetPos () end
 
----@type fun(theFile: file): string
+---@type fun(theFile: file): path: string Returns a string representing the file path
 function fileGetPath () end
 
----@type fun(theFile: file): integer
+---@type fun(theFile: file): size: integer Returns the file size if successful
 function fileGetSize () end
 
----@type fun(theFile: file): boolean
+---@type fun(theFile: file): endOfFile: boolean Returns true if the file position of the specified file is at the end of the file
 function fileIsEOF () end
 
 ---@type fun(filePath: string, readOnly?: boolean): file | false If successful, returns a file handle for the file. Otherwise returns false (f.e. if the file doesn't exist). 
 function fileOpen () end
 
----@type fun(theFile: file, count: integer): string
+---@type fun(theFile: file, count: integer): string Returns the bytes that were read in a string.
 function fileRead () end
 
----@type fun(filePath: string, newFilePath: string): boolean
+---@type fun(filePath: string, newFilePath: string): boolean If successful, returns true
 function fileRename () end
 
----@type fun(): integer
+---@type fun(): count: integer Returns the number of markers that currently exist. 
 function getMarkerCount () end
 
----@type fun(myMarker: marker): number
+---@type fun(myMarker: marker): size: number Returns a float containing the size of the specified marker. 
 function getMarkerSize () end
 
----@type fun(theMarker: marker, icon: string): boolean
+---@type fun(theMarker: marker, icon: markerIcon): boolean Returns true if successful
 function setMarkerIcon () end
 
----@type fun(thePlayer: player, key: string, keyState: string, handlerFunction: function, ...:any): boolean
+--- Serverside
+---@alias bindKey_server fun(thePlayer: player, key: keyName, keyState: keyState, handlerFunction: fun(keyPresser: player, key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+---Clientside
+---@alias bindKey_client fun(key: keyName, keyState: keyState, handlerFunction: fun(key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+---@type bindKey_server | bindKey_client Returns true if the key was bound
 function bindKey () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the ped is choking
 function isPedChoking () end
 
----@type fun(theElement: element): element
+---@type fun(theElement: element): parent: element This returns the parent as an element.
 function getElementParent () end
 
----@type fun(theElement: element, legacy?: boolean): table
+---@type fun(theElement: element, legacy?: boolean): matrixAsTable Returns a multi-dimensional array
 function getElementMatrix () end
 
----@type fun(shape: colshape, elemType?: string): table
+---@type fun(shape: colshape, elemType?: elementTypeAutoComplete): element[] Returns a table containing all the elements inside the colshape, of the specified type.
 function getElementsWithinColShape () end
 
----@type fun(thePed: ped, style: integer): boolean
+---@type fun(thePed: ped, style: pedWalkStyleId): boolean Returns true if successful
 function setPedWalkingStyle () end
 
----@type fun(theElement: element): colshape
+---@type fun(theElement: element): colshape Returns colshape of the element
 function getElementColShape () end
 
----@type fun(theMarker: marker, size: number): boolean
+---@type fun(theMarker: marker, size: number): boolean Returns true if successful
 function setMarkerSize () end
 
----@type fun(theMarker: marker): integer, integer, integer, integer
+---@type fun(theMarker: marker): r: integer, g: integer, b: integer, a: integer Returns four ints corresponding to the amount of red, green, blue and alpha (respectively) of the marker
 function getMarkerColor () end
 
----@type fun(x: number, y: number, z: number, theType?: string, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo): marker
+--- Serverside
+---@alias createMarker_server fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo?: root): markerElement: marker
+--- Clientside
+---@alias createMarker_client fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer): markerElement: marker
+---@type createMarker_server | createMarker_client
 function createMarker () end
 
----@type fun(theobject: object): boolean
+---@type fun(theobject: object): boolean returns true if successful.
 function stopObject () end
 
----@type fun(thePlayer: player, key: string, keyState?: string, handler?: function): boolean
+--- Serverside syntax 1
+---@alias unbindKey_server_syntax_1 fun(thePlayer: player, key: keyName, command: string): boolean
+--- Serverside syntax 2
+---@alias unbindKey_server_syntax_2 fun(thePlayer: player, key: keyName, keyState?: keyState, handler?: function): boolean
+--- Clientside syntax 1
+---@alias unbindKey_client_syntax_1 fun(key: keyName, command: string): boolean
+--- Clientside syntax 2
+---@alias unbindKey_client_syntax_2 fun(key: keyName, keyState?: keyState, handler?: function): boolean
+---@alias unbindKey_server unbindKey_server_syntax_1 | unbindKey_server_syntax_2
+---@alias unbindKey_client unbindKey_client_syntax_1 | unbindKey_client_syntax_2
+---@type unbindKey_server | unbindKey_client Returns true if the key was unbound, false if it was not previously bound
 function unbindKey () end
 
----@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?:number, movery?: number, moverz?: number, strEasingType?: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean
+---@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?:number, movery?: number, moverz?: number, strEasingType?: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean Returns true if the function moved the object succesfully.
 function moveObject () end
 
----@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean
+---@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean Returns true if the scale was set properly.
 function setObjectScale () end
 
----@type fun(thePed: ped, weaponSlot?: integer): integer
+---@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the amount of ammo in the specified ped's currently selected or specified clip, or 0 if the ped specified is invalid. 
 function getPedAmmoInClip () end
 
----@type fun(theMarker: marker): string
+--[[
+    Returns the marker type.
+]]
+---@see markerType
+---@type fun(theMarker: marker): type: markerType 
 function getMarkerType () end
 
 --- Serverside
@@ -393,106 +512,152 @@ function getMarkerType () end
 --- Clientside
 ---@alias createPed_client (fun(modelid: pedId, x: number, y: number, z: number, rot?: number): ped)
 ---@see pedId
----@type createPed_server | createPed_client
+---@type createPed_server | createPed_client Returns a ped element if it was successfully created.
 function createPed () end
 
----@type fun(thePed: ped, block?: pedAnimBlockName, anim?: pedAnimName, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
+--- Default 
+---@alias setPedAnimation_default fun(thePed: ped, block?: pedAnimBlockName, anim?: pedAnimName, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
+--- Stop
+---@alias setPedAnimation_stop fun(thePed: ped):boolean
+---@type setPedAnimation_default | setPedAnimation_stop Returns true if succesful
 function setPedAnimation () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): ducked: boolean Returns true if the ped is ducked
 function isPedDucked () end
 
----@type fun(theTeam: team): string
+---@type fun(theTeam: team): name: string Returns a string representing the team's name
 function getTeamName () end
 
----@type fun(train: vehicle): number
+---@type fun(train: vehicle): speed: number Returns the train's speed if successful
 function getTrainSpeed () end
 
----@type fun(theTeam: team): boolean
+---@type fun(theTeam: team): friendlyFire: boolean Returns true if friendly fire is on for the specified team
 function getTeamFriendlyFire () end
 
----@type fun(teamName: string): team
+---@type fun(teamName: string): team: team | false Returns the team element if it was found
 function getTeamFromName () end
 
----@type fun(data: string): string
+---@type fun(data: string): string Returns the decrypted data from base64 representation of the encrypted block if the decryption process was successfully completed
 function base64Decode () end
 
----@type fun(text: string, level?:integer, red?: integer, green?: integer, blue?: integer): boolean
+---@type fun(text: string, level?: debugMessageLevel, red?: integer, green?: integer, blue?: integer): boolean Returns true if the debug message was successfully output
 function outputDebugString () end
 
----@type fun(text: string): boolean
+--- Serverside
+---@alias outputConsole_server fun(text: string, visibleTo?: root): boolean
+--- Clientside
+---@alias outputConsole_client fun(text: string): boolean
+
+---@type outputConsole_server | outputConsole_client Returns true if successful
 function outputConsole () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the clouds are enabled
 function getCloudsEnabled () end
 
----@type fun(id: integer): string
+--- Returns a string of the name of the weapon or some of the death type
+---@type fun(id: weaponId | 19 | 37 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 59 ): weaponName | "Rocket"|"Rammed"|"Ranover"|"Explosion"|"Driveby"|"Drowned"|"Fall"|"Unknown"|"Melee"|"Weapon"|"Tank Grenade"
 function getWeaponNameFromID () end
 
----@type fun(thePed: ped, theKiller?: ped, weapon?: integer, bodyPart?: integer, stealth?: boolean): boolean
+---@type fun(thePed: ped, theKiller?: ped, weapon?: weaponId | damageTypeId, bodyPart?: bodyPartId, stealth?: boolean): boolean Returns true if the ped was killed
 function killPed () end
 
----@type fun(theObject: object): number
+---@type fun(theObject: object): x: number, y: number, z: number Returns three float values indicating the scale of the object on the x, y, and z axis if successful
 function getObjectScale () end
 
----@type fun(thePickup: pickup, theType: integer, amountOrWeaponOrModel: integer, ammo?: integer): boolean
+--- Health
+---@alias setPickupType_health fun(thePickup: pickup, theType: 0, amount: integer): boolean
+--- Armor
+---@alias setPickupType_armor fun(thePickup: pickup, theType: 1, amount: integer): boolean
+--- Weapon
+---@alias setPickupType_weapon fun(thePickup: pickup, theType: 2, weapon: weaponId, ammo?: integer): boolean
+--- Model
+---@alias setPickupType_model fun(thePickup: pickup, theType: 3, model: pickupModelSuggestion | integer): boolean
+---@see pickupModelSuggestion
+--[[
+    Returns true if successful
+]]
+---@type setPickupType_health | setPickupType_armor | setPickupType_weapon | setPickupType_model
 function setPickupType () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the operation was successful, false if it isn't in a vehicle. 
 function removePedFromVehicle () end
 
----@type fun(thePlayer: player, showing: boolean): boolean
+---@type fun(thePlayer: player, showing: boolean): boolean Returns true if successful
 function setPlayerNametagShowing () end
 
----@type (fun(show: boolean, inputBlocked?: boolean): boolean) | (fun(thePlayer: player, show: boolean, inputBlocked?: boolean): boolean)
+--- Serverside
+---@alias showChat_server (fun(thePlayer: player, show: boolean, inputBlocked?: boolean): boolean)
+--- Clientside
+---@alias showChat_client (fun(show: boolean, inputBlocked?: boolean): boolean)
+---@type showChat_server | showChat_client Returns true if the player's chat was shown or hidden successfully
 function showChat () end
 
----@type fun(thePed: ped, anim?: string, progress?: number): boolean
+---@type fun(thePed: ped, anim?: pedAnimName, progress?: number): boolean Returns true if successful
 function setPedAnimationProgress () end
 
----@type fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radararea
+--- Serverside
+---@alias createRadarArea_server fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radarareaElement: radararea
+--- Clientside
+---@alias createRadarArea_client fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer): radarareaElement: radararea
+---@type createRadarArea_server | createRadarArea_client Returns a `radararea` element if successful
 function createRadarArea () end
 
----@type fun(thePed: ped, state: boolean): boolean
+---@type fun(thePed: ped, state: boolean): boolean Returns true if the driveby state could be changed
 function setPedDoingGangDriveby () end
 
----@type fun(thePed: ped): vehicle
+---@type fun(thePed: ped): vehicle | false Returns the vehicle that the specified ped is in, or false if the ped is not in a vehicle.
 function getPedOccupiedVehicle () end
 
----@type fun(thePed: ped, integerweaponSlot): integer
+---@type fun(thePed: ped, weaponSlot: weaponSlotId): integer Returns an int containing the total amount of ammo for the specified ped's weapon, or 0 if the ped specified is invalid. 
 function getPedTotalAmmo () end
 
----@type fun(thePed: ped, stat: integer, value: number): boolean
+--[[
+    `value`: the new value of the stat. It must be between 0 and 1000.
+]]
+---@type fun(thePed: ped, stat: pedStatId, value: number): boolean Returns true if the statistic was changed succesfully. Returns false if an invalid player is specified, if the stat ID/value is out of acceptable range or if the FAT or BODY_MUSCLE stats are used on non-CJ players. 
 function setPedStat () end
 
----@type fun(thePed: ped): element
+---@type fun(thePed: ped): contentElement: element Returns an object or a vehicle if the ped is standing on one, false if he is touching none
 function getPedContactElement () end
 
----@type fun(theElement: element, theMarker: marker): boolean
+---@type fun(theElement: element, theMarker: marker): boolean Returns true if the element is within the marker
 function isElementWithinMarker () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the ped is on fire
 function isPedOnFire () end
 
----@type fun(theVehicle: vehicle, upgrade: vehicleUpgradeId | "all"): boolean
+---@type fun(theVehicle: vehicle, upgrade: vehicleUpgradeId | "all"): boolean Returns true if the upgrade was successfully added to the vehicle
 function addVehicleUpgrade () end
 
----@type fun(thePed: ped, integerweaponSlot): integer
+--[[
+    It should be noted that if a ped runs out of ammo for a weapon, it will still return the ID of that weapon in the slot (even if it appears as if the ped does not have a weapon at all), though getPedTotalAmmo will return 0. Therefore, getPedTotalAmmo should be used in conjunction with getPedWeapon in order to check if a ped has a weapon. 
+]]
+---@see weaponSlotId
+--[[
+    Returns an integer indicating the type of the weapon the ped has in the specified slot. If the slot is empty, it returns 0.
+]]
+---@type fun(thePed: ped, weaponSlot?: weaponSlotId): weaponId
 function getPedWeapon () end
 
----@type fun(theMarker: marker, r: integer, g: integer, b: integer, a: integer): boolean
+---@type fun(theMarker: marker, r: integer, g: integer, b: integer, a: integer): boolean Returns true if successful
 function setMarkerColor () end
 
----@type fun(theVehicle: vehicle): boolean
+---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle was fixed
 function fixVehicle () end
 
----@type fun(thePed: ped): integer
+---@see weaponSlotId
+---@type fun(thePed: ped): weaponSlotId Returns the selected weapon slot ID on success
 function getPedWeaponSlot () end
 
+---@deprecated Use isPedWearingJetpack instead
 ---@type fun(thePed: ped): boolean
 function doesPedHaveJetPack () end
 
----@type fun(thePed: ped): boolean
+--[[
+* Note: `Clientside` IsPedInVehicle only returns true if the ped is physically inside a vehicle. To check if the ped is entering or exiting a vehicle, use: getPedOccupiedVehicle(ped) ~= false
+* Note: `Serverside` IsPedInVehicle returns whether the ped is entering, inside or exiting a vehicle. 
+]]
+---@type fun(thePed: ped): boolean Returns true if the ped is in a vehicle, false if he is on foot
 function isPedInVehicle () end
 
 --- Serverside
@@ -602,6 +767,8 @@ function setElementDoubleSided () end
 ---@type fun(theElement: element, freezeStatus: boolean): boolean Returns true if the element was frozen
 function setElementFrozen () end
 
+---@see pedId
+---@see vehicleId
 ---@type fun(theElement: element, model: integer): boolean Returns true if successful
 function setElementModel () end
 
@@ -807,36 +974,12 @@ function isPlayerNametagShowing () end
 ---@alias createPickup_armor fun(x: number, y: number, z: number, theType: 1, amount: integer, respawnTime?: integer): pickup: pickup
 --- Weapon
 ---@alias createPickup_weapon fun(x: number, y: number, z: number, theType: 2, weapon: weaponId, respawnTime?: integer, ammo?: integer): pickup: pickup
---[[
-Model
-* 1212: Money (wad of cash)
-* 1239: Info icon
-* 1240: Health (heart)
-* 1241: Adrenaline
-* 1242: Armour
-* 1247: Bribe
-* 1248: GTA III sign
-* 1252: Bomb from GTA III
-* 1253: Photo op
-* 1254: Skull
-* 1272: House (blue)
-* 1273: House (green)
-* 1274: Money icon
-* 1275: Blue t-shirt
-* 1276: Tiki statue
-* 1277: Save disk
-* 1279: Drug bundle
-* 1310: Parachute (with leg straps)
-* 1313: 2 Skulls
-* 1314: 2 Players icon
-* 1318: Down arrow
-
-or other object ID.
-]]
----@alias createPickup_model fun(x: number, y: number, z: number, theType: 3, model: integer, respawnTime?: integer): pickup: pickup
+--- Model
+---@alias createPickup_model fun(x: number, y: number, z: number, theType: 3, model: pickupModelSuggestion | integer, respawnTime?: integer): pickup: pickup
 --[[
     Returns pickup element if the pickup was created succesfully
 ]]
+---@see pickupModelSuggestion
 ---@type createPickup_health | createPickup_armor | createPickup_weapon | createPickup_model
 function createPickup () end
 
@@ -1639,7 +1782,7 @@ function getVehicleModelFromName () end
 function getVehicleNameFromModel () end
 
 --- See [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
----@type (fun(theVehicle: vehicle): 0 | 1 | 2 | 3 | 4 | 5, 0 | 1 | 2 | 3 | 4 | 5)
+---@type (fun(theVehicle: vehicle): variant1: vehicleVariantId, variant1: vehicleVariantId)
 function getVehicleVariant () end
 
 ---@type fun(theVehicle: vehicle): {SirenCount: integer, SirenType: sirenTypeId, Flags: { ["360"] : boolean, DoLOSCheck: boolean, UseRandomiser: boolean, Silent: boolean}} | false Returns a table with the siren count, siren type and a sub table for the four flags. False otherwise. 

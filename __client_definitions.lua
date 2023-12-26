@@ -1,5 +1,6 @@
 ---@meta clientConfigs
 ---@diagnostic disable: missing-return
+---@diagnostic disable: lowercase-global
 
 --[[
     Credits to the community for all the available syntax and descriptions
