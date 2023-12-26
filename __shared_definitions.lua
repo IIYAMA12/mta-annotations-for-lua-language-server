@@ -183,10 +183,10 @@ function fileExists () end
 ---@type fun(theMarker: marker): number, number, number
 function getMarkerTarget () end
 
+--- Serverside
 ---@alias cancelLatentEvent_server (fun(thePlayer: player, handle: integer):boolean)
+--- Clientside
 ---@alias cancelLatentEvent_client (fun(handle: integer):boolean)
-
---- Player argument is required serverside
 ---@type cancelLatentEvent_server | cancelLatentEvent_client
 function cancelLatentEvent () end
 
@@ -226,7 +226,7 @@ function cancelEvent () end
 ---@type fun(fX: number, fY: number, fZ: number, fWidth: number, fDepth: number, fHeight: number): colshape
 function createColCuboid () end
 
----@type fun(theElement: element): string
+---@type fun(theElement: element): elementTypeAutoComplete
 function getElementType () end
 
 ---@type fun(theElement: element, theAttachToElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean
@@ -238,7 +238,7 @@ function removePedClothes () end
 ---@type fun(theElement: element, interior: integer, x?: number, y?: number, z?: number): boolean
 function setElementInterior () end
 
----@type fun(parent: element, theType?: string): table
+---@type fun(parent: element, theType?: elementTypeAutoComplete): table
 function getElementChildren () end
 
 ---@type fun(elementType: string, elementID?: string): element
@@ -388,13 +388,10 @@ function getPedAmmoInClip () end
 ---@type fun(theMarker: marker): string
 function getMarkerType () end
 
+--- Serverside
 ---@alias createPed_server (fun(modelid: pedId, x: number, y: number, z?: number, rot?: number, synced?: boolean): ped)
+--- Clientside
 ---@alias createPed_client (fun(modelid: pedId, x: number, y: number, z: number, rot?: number): ped)
-
-
---[[
-    Serverside has optional argument `synced`
-]]
 ---@see pedId
 ---@type createPed_server | createPed_client
 function createPed () end
@@ -477,7 +474,7 @@ function isElementWithinMarker () end
 ---@type fun(thePed: ped): boolean
 function isPedOnFire () end
 
----@type fun(theVehicle: vehicle, upgrade: integer): boolean
+---@type fun(theVehicle: vehicle, upgrade: vehicleUpgradeId | "all"): boolean
 function addVehicleUpgrade () end
 
 ---@type fun(thePed: ped, integerweaponSlot): integer
@@ -498,682 +495,964 @@ function doesPedHaveJetPack () end
 ---@type fun(thePed: ped): boolean
 function isPedInVehicle () end
 
----@type fun(theType: string, startat?: element): table
+--- Serverside
+---@alias getElementsByType_server fun(theType: elementTypeAutoComplete, startAt?: element): element[]
+--- Clientside
+---@alias getElementsByType_client fun(theType: elementTypeAutoComplete, startAt?: element, streamedIn?: boolean): element[]
+---@type getElementsByType_server | getElementsByType_client Returns a table containing all the elements of the specified type. Returns an empty table if there are no elements of the specified type.
 function getElementsByType () end
 
----@type fun(parent: element): integer
+---@type fun(parent: element): integer Returns an integer with the number of child elements
 function getElementChildrenCount () end
 
----@type fun(theElement: element, rotOrder?: string): number, number, number
+---@type fun(theElement: element, rotOrder?: elementRotOrder): rx: number, ry: number, rz: number Returns rx, ry, rz: 3 floats representing the Euler rotation angles on the axis X, Y and Z (with the rotation order depending on the rotOrder argument)
 function getElementRotation () end
 
----@type fun(theElement: element): integer
+---@type fun(theElement: element): integer Returns an int for the interior if theElement is valid
 function getElementInterior () end
 
----@type fun(theElement: element): string
+---@type fun(theElement: element): string This returns a string containing the element ID. It will return an empty string if it has no ID.
 function getElementID () end
 
----@type fun(): element
+---@type fun(): element Returns the root element.
 function getRootElement () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the propagation is enabled
 function isElementCallPropagationEnabled () end
 
----@type fun(name: string): integer
+---@type fun(name: weaponName): weaponId Returns an int if the name matches that of a weapon
 function getWeaponIDFromName () end
 
----@type fun(theElement: element): number, number, number
+---@type fun(theElement: element): x: number, y: number, z: number Returns three floats indicating the position of the element, x, y and z respectively.
 function getElementPosition () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the driveby state is enabled
 function isPedDoingGangDriveby () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the element is frozen
 function isElementFrozen () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the passed element is in water
 function isElementInWater () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the ped is on foot and on the ground, false otherwise, even if he is in a car that stands still or on object outside world map. 
 function isPedOnGround () end
 
----@type fun(theValue: any): boolean
+---@type fun(theValue: any): boolean Returns true if the passed value is an element
 function isElement () end
 
----@type fun(): table
+---@type fun(): pedId[] Returns a table with all valid ped models. 
 function getValidPedModels () end
 
----@type fun(thePed: ped): integer
+---@type fun(thePed: ped): vehicleSeatId | false Returns an integer containing the number of the seat that the ped is currently in. false if the ped is on foot.
 function getPedOccupiedVehicleSeat () end
 
----@type fun(thePed: ped): element
+---@type fun(thePed: ped): element | false Returns the element that's being targeted, or false if there isn't one. 
 function getPedTarget () end
 
----@type fun(thePed: ped, stat: integer): number
+---@type fun(thePed: ped, stat: pedStatId): number Returns the value of the requested statistic. 
 function getPedStat () end
 
----@type fun(theElement: element): element
+---@type fun(theElement: element): element Returns a low LOD element if successful
 function getLowLODElement () end
 
----@type fun(theElement: element): number, number, number
+---@type fun(theElement: element): vx: number, vy: number, vz: number If succesful, returns three floats that represent the element's current velocity along the x, y, and z axis respectively.
 function getElementVelocity () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the `theElement` is double-sided
 function isElementDoubleSided () end
 
----@type fun(theElement: element, theShape: colshape): boolean
+---@type fun(theElement: element, theShape: colshape): boolean Returns true if the element is within the colshape
 function isElementWithinColShape () end
 
----@type fun(theElement: element, enabled: boolean): boolean
+---@type fun(theElement: element, enabled: boolean): boolean Returns true if the collisions were set succesfully
 function setElementCollisionsEnabled () end
 
----@type fun(theElement: element): boolean
+---@type fun(theElement: element): boolean Returns true if the element is low LOD
 function isElementLowLOD () end
 
----@type fun(theElement: element, alpha: integer): boolean
+--[[
+    `alpha`: The alpha value to set. Values are 0-255, where 255 is fully opaque and 0 is fully transparent.
+    Note: Objects are fully transparent at 140.
+]]
+---@type fun(theElement: element, alpha: integer): boolean Returns true or false if invalid arguments were passed.
 function setElementAlpha () end
 
----@type fun(theElement: element, x: number, y: number, z: number, warp?: boolean): boolean
+---@type fun(theElement: element, x: number, y: number, z: number, warp?: boolean): boolean Returns true if the function was successful
 function setElementPosition () end
 
----@type fun(theElement: element, parent: element): boolean
+---@type fun(theElement: element, parent: element): boolean Returns true if both elements are valid
 function setElementParent () end
 
----@type fun(theElement: element, newHealth: number): boolean
+--[[
+    `newHealth` Depending on the stat MAX_HEALTH, the max health can be 200.
+]]
+---@type fun(theElement: element, newHealth: number): boolean Returns true if the new health was set successfully
 function setElementHealth () end
 
----@type fun(theElement: element, rotX: number, rotY: number, rotZ: number, rotOrder?: string, conformPedRotation?: boolean): boolean
+---@type fun(theElement: element, rotX: number, rotY: number, rotZ: number, rotOrder?: elementRotOrder, conformPedRotation?: boolean): boolean Returns true if the element rotation was successfully set and false otherwise.
 function setElementRotation () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped | player): boolean Returns true if the ped is headless
 function isPedHeadless () end
 
----@type fun(theElement: element, enable: boolean): boolean
+---@type fun(theElement: element, enable: boolean): boolean Returns true if theElement is valid
 function setElementDoubleSided () end
 
----@type fun(theElement: element, freezeStatus: boolean): boolean
+---@type fun(theElement: element, freezeStatus: boolean): boolean Returns true if the element was frozen
 function setElementFrozen () end
 
----@type fun(theElement: element, model: integer): boolean
+---@type fun(theElement: element, model: integer): boolean Returns true if successful
 function setElementModel () end
 
----@type fun(): number
+---@type fun(): number Returns a float containing the max jetpack height. 
 function getJetpackMaxHeight () end
 
----@type fun(thePlayer: player): team
+---@type fun(thePlayer: player): team | false Returns a team element representing the team the player is on, false if the player is not part of a team. 
 function getPlayerTeam () end
 
----@type fun(theXMLNode: xmlnode, value: string, setCDATA?: boolean): boolean
+---@type fun(theXMLNode: xmlnode, value: string, setCDATA?: boolean): boolean Returns true if value was successfully set
 function xmlNodeSetValue () end
 
----@type fun(rootNode: xmlnode): boolean
+---@type fun(rootNode: xmlnode): boolean Returns true if save was successful
 function xmlSaveFile () end
 
----@type fun(thePlayer: player): boolean
+---Serverside
+---@alias isPlayerMapForced_server fun(thePlayer: player): boolean
+---Clientside
+---@alias isPlayerMapForced_client fun(): boolean
+---@type isPlayerMapForced_server | isPlayerMapForced_client Returns true if the local player's radar map is forced on
 function isPlayerMapForced () end
 
----@type fun(): number
+--- If default
+---@alias getFarClipDistance_default fun(): false
+--- If set
+---@alias getFarClipDistance_isSet fun(): number
+---@type getFarClipDistance_default | getFarClipDistance_isSet Returns a float with the current render distance if set.
 function getFarClipDistance () end
 
----@type fun(): boolean
+---Serverside
+---@alias detonateSatchels_server fun(thePlayer: player): boolean
+---Clientside
+---@alias detonateSatchels_client fun(): boolean
+---@type detonateSatchels_server | detonateSatchels_client Returns true if successful
 function detonateSatchels () end
 
----@type fun(thePed: ped, headState: boolean): boolean
+---@type fun(thePed: ped | player, headState: boolean): boolean Returns true if successful
 function setPedHeadless () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true the traffic lights are currently locked
 function areTrafficLightsLocked () end
 
----@type fun(theTeam: team): table
+---@type fun(theTeam: team): player[] Returns a table of all the players in the team
 function getPlayersInTeam () end
 
----@type fun(weaponNameOrweaponID: string | integer, weaponSkill: string, property: string): integer
+--- No flags
+---@alias getWeaponProperty_default fun(weaponNameOrweaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponProperty): integer
+--- Flags
+---@alias getWeaponProperty_flags fun(weaponNameOrweaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponPropertyFlags): boolean
+---@type getWeaponProperty_default | getWeaponProperty_flags Returns the weapon property
 function getWeaponProperty () end
 
----@type fun(weaponNameOrweaponID: string | integer, weaponSkill: string, property: string): integer
+--- No flags
+---@alias getOriginalWeaponProperty_default fun(weaponNameOrweaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponProperty): integer
+--- Flags
+---@alias getOriginalWeaponProperty_flags fun(weaponNameOrweaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponPropertyFlags): boolean
+---@type getOriginalWeaponProperty_default | getOriginalWeaponProperty_flags Returns the original weapon property
 function getOriginalWeaponProperty () end
 
----@type fun(thePlayer: player): integer, integer, integer
+---@type fun(thePlayer: player): r: integer, g: integer, b: integer Returns red, green and blue values if an existent player was specified
 function getPlayerNametagColor () end
 
----@type fun(thePlayer: player, forceOn: boolean): boolean
+---Serverside
+---@alias forcePlayerMap_server fun(thePlayer: player, forceOn: boolean): boolean
+---Clientside
+---@alias forcePlayerMap_client fun(forceOn: boolean): boolean
+---@type forcePlayerMap_server | forcePlayerMap_client Returns true if the player's radar map was forced on
 function forcePlayerMap () end
 
----@type fun(): integer
+---@type fun(): integer Returns the number of real-world milliseconds that go in an ingame minute.
 function getMinuteDuration () end
 
----@type fun(node: xmlnode): boolean
+---@type fun(node: xmlnode): boolean Returns true if the document was unloaded successfully
 function xmlUnloadFile () end
 
----@type fun(theVehicle: vehicle, theTrailer?: vehicle): boolean
+---@type fun(theVehicle: vehicle, theTrailer?: vehicle): boolean Returns true if the vehicle's were successfully detached
 function detachTrailerFromVehicle () end
 
----@type fun(filePath: string, rootNodeName: string): xmlnode
+---@type fun(filePath: string, rootNodeName: string): xmlnode | false Returns the root xmlnode object of the new XML file if successful, or false otherwise. 
 function xmlCreateFile () end
 
----@type fun(thePlayer: player): integer
+---@type fun(thePlayer: player): integer Returns the ping as an integer
 function getPlayerPing () end
 
----@type fun(thePed: ped, isOnFire: boolean): boolean
+---@type fun(thePed: ped, isOnFire: boolean): boolean Returns true if successful
 function setPedOnFire () end
 
----@type fun(thePlayer: player): integer | boolean
+--- Serverside
+---@alias getPlayerMoney_server fun(thePlayer: player): money: integer
+--- Clientside
+---@alias getPlayerMoney_client fun(): money: integer
+---@type getPlayerMoney_server | getPlayerMoney_client Returns an integer with the amount of money
 function getPlayerMoney () end
 
----@type fun(thePlayer: player, amount: integer, instant?: boolean): boolean
+--- Serverside
+---@alias setPlayerMoney_server fun(thePlayer: player, amount: integer, instant?: boolean): boolean
+--- Clientside
+---@alias setPlayerMoney_client fun(amount: integer, instant?: boolean): boolean
+---@type setPlayerMoney_server | setPlayerMoney_client Returns true if the money was added
 function setPlayerMoney () end
 
+--[[
+    Returns true if theElement and dimension are valid, false otherwise. Also returns false if theElement is a player and it's not alive. 
+]]
 ---@type fun(theElement: element, dimension: integer): boolean
 function setElementDimension () end
 
----@type fun(thePed: ped, theVehicle: vehicle, integerseat): boolean
+---@type fun(thePed: ped, theVehicle: vehicle, seat: vehicleSeatId): boolean Returns true if the operation is successful
 function warpPedIntoVehicle () end
 
----@type fun(vehicleToBlow: vehicle, explode?: boolean): boolean
+--- Serverside
+---@alias blowVehicle_server fun(vehicleToBlow: vehicle, explode?: boolean): boolean
+--- Clientside
+---@alias blowVehicle_client fun(vehicleToBlow: vehicle): boolean
+---@type blowVehicle_server | blowVehicle_client Returns true if the vehicle was blown up
 function blowVehicle () end
 
----@type fun(thePed: ped): number
+---@type fun(thePed: ped): number A float with the armor
 function getPedArmor () end
 
----@type fun(thePed: ped): boolean
+---@type fun(thePed: ped): boolean Returns true if the ped is dead
 function isPedDead () end
 
----@type fun(theVehicle: vehicle, theTrailer: vehicle): boolean
+---@type fun(theVehicle: vehicle, theTrailer: vehicle): boolean Returns true if the vehicle's were successfully attached
 function attachTrailerToVehicle () end
 
----@type fun(velocityX: number, velocityY: number, velocityZ: number): boolean
+---@type fun(velocityX: number, velocityY: number, velocityZ: number): boolean Returns true if successful
 function setWindVelocity () end
 
----@type fun(aRed: integer, aGreen: integer, aBlue: integer, bRed: integer, bGreen: integer, bBlue: integer): boolean
+---@type fun(r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer): boolean Returns true if the color of the sun was set
 function setSunColor () end
 
----@type fun(): integer, integer, integer, integer, integer, integer
+--- If default
+---@alias getSunColor_default fun(): false
+--- If set
+---@alias getSunColor_ifSet fun(): r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer
+---@type getSunColor_default | getSunColor_ifSet Returns the color of the sun as six numbers, false if its default.
 function getSunColor () end
 
----@type fun(): number
+---@type fun(): distance: number Returns a float with the current fog render distance
 function getFogDistance () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the color of the sun was reset
 function resetSunColor () end
 
----@type fun(level: number): boolean
+---@type fun(level: number): boolean Returns true if the rain level was set
 function setRainLevel () end
 
----@type fun(distance: number): boolean
+---@type fun(distance: number): boolean Returns true if the distance changed successfully
 function setFogDistance () end
 
----@type fun(): integer
+---@type fun(): size: integer Returns a integer being the moon size that is currently set, depending on which side it is used. 
 function getMoonSize () end
 
----@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode
+---@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode | false Returns the xmlnode of the copy if the node was successfully copied, false if invalid arguments were passed. 
 function xmlCopyFile () end
 
----@type fun(thePed: ped): integer
+--[[
+    Returns the walking style ID if successful.
+]]
+---@see pedWalkStyleId for definitions
+---@type fun(thePed: ped): pedWalkStyleId 
 function getPedWalkingStyle () end
 
----@type fun(resourceName: string): resource
+---@type fun(resourceName: string): resource | false Returns the resource with the specified name, or false if no resource of that name exists. Note that clientside this will also return false for resources that are in the loaded state, since the client is unaware of resources that have not been started. 
 function getResourceFromName () end
 
----@type fun(thePlayer: player, amount: integer): boolean
+--- Serverside
+---@alias givePlayerMoney_server fun(thePlayer: player, amount: integer): boolean
+--- Clientside
+---@alias givePlayerMoney_client fun(amount: integer): boolean
+--[[
+    Returns true if the money was added
+]]
+---@type givePlayerMoney_server | givePlayerMoney_client
 function givePlayerMoney () end
 
---- Player argument is required serverside
----@type (fun(): number, number, number, number, number, number, number, number) | (fun(thePlayer: player): number, number, number, number, number, number, number, number)
+--- Serverside
+---@alias getCameraMatrix_server (fun(thePlayer: player): x: number, y: number, z: number, lx: number, ly: number, lz: number, roll: number, fieldOfView: number)
+--- Clientside
+---@alias getCameraMatrix_client (fun(): x: number, y: number, z: number, lx: number, ly: number, lz: number, roll: number, fieldOfView: number)
+--[[
+    This function returns 8 floats if the argument is valid (when applicable); the first three indicate the position of the camera, the next three indicate the position of the point it's facing, and the last two are the roll and field of view.
+]]
+---@type getCameraMatrix_server | getCameraMatrix_client
 function getCameraMatrix () end
 
----@type fun(thePlayer: player): string
+---@type fun(thePlayer: player): string Returns a string with the nametag text
 function getPlayerNametagText () end
 
----@type fun(thePickup: pickup): integer
+---@type fun(thePickup: pickup): integer Returns an integer of the amount of ammo in the pickup, 0 if it's no weapon pickup. 
 function getPickupAmmo () end
 
----@type fun(theTeam: team): integer
+---@type fun(theTeam: team): integer Returns an integer containing the number of players in the team
 function countPlayersInTeam () end
 
----@type fun(thePlayer: player): boolean
+---@type fun(thePlayer: player): boolean Returns true if the player's name tag is being shown
 function isPlayerNametagShowing () end
 
----@type fun(x: number, y: number, z: number, theType: integer, amountOrWeaponOrModel: integer, integerrespawnTime, ammo?: integer): pickup
+--- Health
+---@alias createPickup_health fun(x: number, y: number, z: number, theType: 0, amount: integer, respawnTime?: integer): pickup: pickup
+--- Armor
+---@alias createPickup_armor fun(x: number, y: number, z: number, theType: 1, amount: integer, respawnTime?: integer): pickup: pickup
+--- Weapon
+---@alias createPickup_weapon fun(x: number, y: number, z: number, theType: 2, weapon: weaponId, respawnTime?: integer, ammo?: integer): pickup: pickup
+--[[
+Model
+* 1212: Money (wad of cash)
+* 1239: Info icon
+* 1240: Health (heart)
+* 1241: Adrenaline
+* 1242: Armour
+* 1247: Bribe
+* 1248: GTA III sign
+* 1252: Bomb from GTA III
+* 1253: Photo op
+* 1254: Skull
+* 1272: House (blue)
+* 1273: House (green)
+* 1274: Money icon
+* 1275: Blue t-shirt
+* 1276: Tiki statue
+* 1277: Save disk
+* 1279: Drug bundle
+* 1310: Parachute (with leg straps)
+* 1313: 2 Skulls
+* 1314: 2 Players icon
+* 1318: Down arrow
+
+or other object ID.
+]]
+---@alias createPickup_model fun(x: number, y: number, z: number, theType: 3, model: integer, respawnTime?: integer): pickup: pickup
+--[[
+    Returns pickup element if the pickup was created succesfully
+]]
+---@type createPickup_health | createPickup_armor | createPickup_weapon | createPickup_model
 function createPickup () end
 
----@type fun(): number
+---@type fun(): maxVelocity: number Returns a float being the max velocity that is currently set, depending on which side it is used.
 function getAircraftMaxVelocity () end
 
----@type fun(playerName: string): player
+---@type fun(playerName: string): player | false Returns a player element for the player with the nickname provided. If there is no player with that name, false is returned. 
 function getPlayerFromName () end
 
----@type fun(theTeam: team): integer, integer, integer
+---@type fun(theTeam: team): r: integer, g: integer, b: integer Returns 3 integers representing the red, green, and blue color components of the team if it's valid
 function getTeamColor () end
 
----@type fun(): integer, integer, integer, integer, integer, integer, integer, integer, boolean
+---@type fun(): intensity: integer, randomShift: integer, speedMin: integer, speedMax: integer, scanSizeX: integer, scanSizeY: integer, renderSizeX: integer, renderSizeY: integer, bShowInside: boolean Returns 9 values
 function getHeatHaze () end
 
----@type fun(weatherID: integer): boolean
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/Weather) for weather definitions
+]]
+---@type fun(weatherId: integer): boolean Returns true if successful
 function setWeatherBlended () end
 
----@type fun(garageID: integer, open: boolean): boolean
+---@see garageId
+---@type fun(garageId: garageId, open: boolean): boolean Returns true if successful
 function setGarageOpen () end
 
----@type fun(): number
+---@type fun(): number Returns a float representing the speed of the game. 
 function getGameSpeed () end
 
----@type fun(thePickup: pickup): integer
+---@see pickupType
+---@type fun(thePickup: pickup): pickupType Returns an integer of the type of the pickup
 function getPickupType () end
 
----@type fun(theBlip: blip, icon: integer): boolean
+--[[ 
+    See [wiki](https://wiki.multitheftauto.com/wiki/Radar_Blips) for definitions
+]]
+---@type fun(theBlip: blip, icon: blipIconId): boolean Returns true if the icon was successfully set
 function setBlipIcon () end
 
----@type fun(thePlayer: player): integer
+--- Serverside
+---@alias getCameraInterior_server fun(thePlayer: player): integer
+--- Clientside
+---@alias getCameraInterior_client fun(): integer
+---@type getCameraInterior_server | getCameraInterior_client Returns an integer indicating the camera's interior
 function getCameraInterior () end
 
----@type fun(): integer, integer
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/Weather) for weather definitions
+]]
+--[[
+    Returns two integers indicating the weather type that is currently active. The first integer says what weather is currently considered to be active. The second integer is the weather id that is being blended into if any, otherwise it is nil. 
+]]
+---@type fun(): weatherId: integer, weatherBlendId: integer | nil
 function getWeather () end
 
+--[[
+    Returns true if the heat haze effect was set correctly
+]]
 ---@type fun(intensity: integer, randomShift?: integer, speedMin?: integer, speedMax?: integer, scanSizeX?: integer, scanSizeY?: integer, renderSizeX?: integer, renderSizeY?: integer, bShowInside?: boolean): boolean
 function setHeatHaze () end
 
----@type fun(thePlayer: player, target?: player): boolean
+--- Serverside
+---@alias setCameraTarget_server fun(thePlayer: player, target?: player): boolean
+--- Clientside syntax 1
+---@alias setCameraTarget_client_syntax_1 fun( target: player): boolean
+--- Clientside syntax 2 (Has no effect when the camera doesn't have a target.)
+---@alias setCameraTarget_client_syntax_2 fun( targetX: number, targetY: number, targetZ: number): boolean
+---@type setCameraTarget_server | setCameraTarget_client_syntax_1 | setCameraTarget_client_syntax_2 Returns true if the function was successful
 function setCameraTarget () end
 
----@type fun(thePlayer: player, positionX: number, positionY: number, positionZ: number, lookAtX?: number, lookAtY?: number, lookAtZ?: number, roll?: number, fov?: number): boolean
+--- Serverside
+---@alias setCameraMatrix_server fun(thePlayer: player, positionX: number, positionY: number, positionZ: number, lookAtX?: number, lookAtY?: number, lookAtZ?: number, roll?: number, fov?: number): boolean
+--- Clientside
+---@alias setCameraMatrix_client fun(positionX: number, positionY: number, positionZ: number, lookAtX?: number, lookAtY?: number, lookAtZ?: number, roll?: number, fov?: number): boolean
+---@type setCameraMatrix_server | setCameraMatrix_client Returns true if the arguments are valid
 function setCameraMatrix () end
 
----@type fun(var: any, options?: table): string
+---@type fun(var: any, options?: table): string Always returns a string.
 function inspect () end
 
----@type fun(thePlayer: player): element
+--- Serverside
+---@alias getCameraTarget_server fun(thePlayer: player): element | false
+--- Clientside
+---@alias getCameraTarget_client fun(): element | false
+---@type getCameraTarget_server | getCameraTarget_client Returns an element of the target or false if there is no target
 function getCameraTarget () end
 
----@type fun(thePlayer: player, theKey: string): table
+--- Serverside
+---@alias getFunctionsBoundToKey_server fun(thePlayer: player, theKey: keyName, keyState: keyState): {[keyName]: function}
+--- Clientside
+---@alias getFunctionsBoundToKey_client fun(theKey: keyName, keyState: keyState):  {[keyName]: function}
+---@type getFunctionsBoundToKey_server |  getFunctionsBoundToKey_client Returns a table of the key function(s). 
 function getFunctionsBoundToKey () end
 
----@type fun(thePlayer: player, control: controlName): boolean
+--- Serverside
+---@alias isControlEnabled_server fun(thePlayer: player, control: controlName): boolean
+--- Clientside
+---@alias isControlEnabled_client fun(control: controlName): boolean
+---@type isControlEnabled_server | isControlEnabled_client Returns true if control is enabled
 function isControlEnabled () end
 
----@type fun(weatherID: integer): boolean
+--[[
+    See [wiki](https://wiki.multitheftauto.com/wiki/Weather) for weather definitions
+]]
+--[[
+    `weatherId`: The ID of new weather. Valid values are 0 to 255 inclusive.
+]]
+---@type fun(weatherId: integer): boolean Returns true if the weather was set succesfully
 function setWeather () end
 
----@type fun(value: number): boolean
+---@type fun(value: gameSpeed): boolean Returns true if the gamespeed was set successfully
 function setGameSpeed () end
 
----@type fun(res?: resource): table|false
+---@type fun(res?: resource): string[] Returns a table of function names if successful
 function getResourceExportedFunctions () end
 
----@type fun(toggle: boolean): boolean
+---@type fun(toggle: boolean): boolean Returns true if the successful
 function setTrafficLightsLocked () end
 
----@type fun(size: integer): boolean
+--[[
+    `size`: The size, can be 0 or any positive value. Default is 3.
+]]
+---@type fun(size: integer): boolean Returns true if the moon size was set correctly
 function setMoonSize () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if successful
 function resetWindVelocity () end
 
----@type fun(theVehicle: vehicle, upgrade: integer): boolean
+---@type fun(theVehicle: vehicle, upgrade: vehicleUpgradeId): boolean Returns true if the upgrade was successfully removed from the vehicle
 function removeVehicleUpgrade () end
 
----@type fun(): table
+--[[
+    eturns a table with two fields: "in" and "out". Each of these contain a table with two fields: "bits" and "count". Each of these contain a table with 256 numeric fields ranging from 0 to 255, containing the appropriate network usage data for such packet id. 
+]]
+---@type fun(): {["in"]: { count : { [integer] : integer }, bits : { [integer] : integer }}, out: { count : { [integer] : integer }, bits : { [integer] : integer }}}
 function getNetworkUsageData () end
 
----@type fun(thePlayer: player, enabled: boolean, gtaControls?: boolean, mtaControls?: boolean): boolean
+--- Serverside
+---@alias toggleAllControls_server fun(thePlayer: player, enabled: boolean, gtaControls?: boolean, mtaControls?: boolean): boolean
+--- Clientside
+---@alias toggleAllControls_client fun(enabled: boolean, gtaControls?: boolean, mtaControls?: boolean): boolean
+--[[
+    Returns true if controls were toggled successfully
+]]
+---@type toggleAllControls_server | toggleAllControls_client
 function toggleAllControls () end
 
----@type fun(...: any): boolean
+---@type fun(...: any): nil Always returns nil.
 function iprint () end
 
----@type fun(x1: number, y1: number, x2: number, y2: number): number
+---@type fun(x1: number, y1: number, x2: number, y2: number): number Returns a float containing the 2D distance between the two points.
 function getDistanceBetweenPoints2D () end
 
----@type fun(milliseconds: integer): boolean
+---@type fun(milliseconds: integer): boolean Returns true if successful
 function setMinuteDuration () end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z: number, iInterior?: integer): boolean
+---@type fun(modelID: integer, radius: number, x: number, y: number, z: number, iInterior?: integer): boolean Returns true if the world object was restored
 function restoreWorldModel () end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z: number, interior?: integer): boolean
+---@type fun(modelID: integer, radius: number, x: number, y: number, z: number, interior?: integer): boolean Returns true if the object was removed
 function removeWorldModel () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if operation was successful
 function resetFogDistance () end
 
----@type fun(thePlayer: player, control: controlName, enabled: boolean): boolean
+--- Clientside
+---@alias toggleControl_server fun(thePlayer: player, control: controlName, enabled: boolean): boolean
+--- Serverside
+---@alias toggleControl_client fun(control: controlName, enabled: boolean): boolean
+--[[
+   Returns true if the control was set successfully
+]]
+---@type toggleControl_server | toggleControl_client
 function toggleControl () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if operation was successful
 function resetFarClipDistance () end
 
----@type fun(distance: number): boolean
+---@type fun(distance: number): boolean Returns true if the distance was set correctly.
 function setFarClipDistance () end
 
----@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number): number
+---@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number): number Returns a float containing the distance between the two points as a float.
 function getDistanceBetweenPoints3D () end
 
----@type fun(theColor: string): integer, integer, integer, integer
+--- Valid string
+---@alias getColorFromString_validString fun(theColor: string): r:integer, g:integer, b:integer, a:integer 
+--- Invalid string
+---@alias getColorFromString_invalidString fun(theColor: string): invalid: false
+--[[
+    Returns four integers in RGBA format, with a maximum value of 255 for each. Each stands for red, green, blue, and alpha. Alpha decides transparancy where 255 is opaque and 0 is transparent. false is returned if the string passed is invalid. 
+]]
+---@type getColorFromString_validString | getColorFromString_invalidString
 function getColorFromString () end
 
----@type fun(garageID: integer): boolean
+---@type fun(garageId: garageId): boolean Returns true if the garage is open
 function isGarageOpen () end
 
----@type fun(): table
+
+---@alias networkStats { bytesReceived: integer, bytesSent: integer, packetsReceived: integer, packetsSent: integer, packetlossTotal: integer, packetlossLastSecond: integer, messagesInSendBuffer: integer, messagesInResendBuffer: integer, isLimitedByCongestionControl: integer, isLimitedByOutgoingBandwidthLimit: integer, encryptionStatus: integer }
+--[[
+* bytesReceived - Total number of bytes received since the connection was started
+* bytesSent - Total number of bytes sent since the connection was started
+* packetsReceived - Total number of packets received since the connection was started
+* packetsSent - Total number of packets sent since the connection was started
+* packetlossTotal - (0-100) Total packet loss percentage of sent data, since the connection was started
+* packetlossLastSecond - (0-100) Packet loss percentage of sent data, during the previous second
+* messagesInSendBuffer
+* messagesInResendBuffer - Number of packets queued to be resent (due to packet loss)
+* isLimitedByCongestionControl
+* isLimitedByOutgoingBandwidthLimit
+* encryptionStatus
+]]
+--- Serverside
+---@alias getNetworkStats_server fun(player?: player): networkStats
+--- Clientside
+---@alias getNetworkStats_client fun(): networkStats
+---@type getNetworkStats_server | getNetworkStats_client
 function getNetworkStats () end
 
----@type fun(hour: integer, minute: integer): boolean
+--[[
+* `hour`: The hour of the new time (range 0-23).
+* `minute`: The minute of the new time (range 0-59).
+]]
+---@type fun(hour: integer, minute: integer): boolean Returns true if the new time was successfully set
 function setTime () end
 
----@type fun(): number
+---@type fun(): number Returns the rain level as a number. 
 function getRainLevel () end
 
----@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, fProgress: number, strEasingType: string, numberfEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number, number, number
+---@type fun(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, fProgress: number, strEasingType: strEasingType, numberfEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): x: number, y: number, z: number Returns x, y, z
 function interpolateBetween () end
 
----@type fun(Size: integer): boolean
+---@type fun(size: integer): boolean Returns true if the size of the sun was set, false otherwise. 
 function setSunSize () end
 
----@type fun(category: string, options?: string, filter?: string): table, table
+---@type fun(category: performanceCategory, options?: string, filter?: string): string[], string[][] Returns two tables. First contains column names. The second contains result rows. Each row is table of cells. 
 function getPerformanceStats () end
 
----@type fun(thePlayer: player, interior: integer): boolean
+--- Serverside
+---@alias setCameraInterior_server fun(thePlayer: player, interior: integer): boolean
+--- Clientside
+---@alias setCameraInterior_client fun(interior: integer): boolean
+---@type setCameraInterior_server | setCameraInterior_client Returns true if the camera's interior was changed successfully, false otherwise. 
 function setCameraInterior () end
 
----@type fun(): integer, integer
+---@type fun(): hours: integer, minutes: integer Returns two integers that represent hours and minutes. 
 function getTime () end
 
----@type fun(topRed?: integer, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean
+---@type fun(topRed?: integer, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean Returns true if sky color was set correctly, false if invalid values were passed.
 function setSkyGradient () end
 
----@type fun(theTimer: timer): integer, integer, integer
+---@type fun(theTimer: timer): timeLeft: integer, leftToExecute: integer, timeInterval: integer
 function getTimerDetails () end
 
----@type fun(seconds?: integer, localTime?: boolean): table
+---@alias getRealTime_default fun(localTime?: boolean): {second: integer, minute: integer, hour: integer, monthday: integer, month: integer, year: integer, weekday: integer, yearday: integer, isdst: integer, timestamp: integer }
+---@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: integer, minute: integer, hour: integer, monthday: integer, month: integer, year: integer, weekday: integer, yearday: integer, isdst: integer, timestamp: integer } | false
+---@type getRealTime_default | getRealTime_seconds Returns a table of substrings with different time format or false if the seconds argument is out of range. 
 function getRealTime () end
 
----@type fun(): integer
+---@type fun(): integer Returns an integer containing the number of milliseconds since the system the server is running on started.
 function getTickCount () end
 
----@type fun(state: integer): boolean
+--[[
+* `auto`: Sets the traffic lights default behavior (switches the colors automatically).
+* `disabled`: Turns traffic lights off.
+]]
+---@alias setTrafficLightState_state fun(state: trafficLightStateId | "auto" | "disabled"): boolean
+---@alias setTrafficLightState_color fun(colorNS : "green" | "yellow" | "red", colorEW : "green" | "yellow" | "red"): boolean
+---@type setTrafficLightState_state | setTrafficLightState_color Returns true if the state was successfully set
 function setTrafficLightState () end
 
----@type fun(theMarker: marker): string
+---@type fun(theMarker: marker): markerIcon
 function getMarkerIcon () end
 
----@type fun(): number
+---@type fun(): gravityLevel:number Returns a float with the current server or client (depending on where you call the function) gravity level. 
 function getGravity () end
 
----@type fun(enabled: boolean): boolean
+---@type fun(enabled: boolean): boolean If a boolean was passed to the function
 function setInteriorSoundsEnabled () end
 
----@type fun(x: number, y: number, z: number, citiesonly?: boolean): string
+--- `citiesonly` = false 
+---@alias getZoneName_default fun(x: number, y: number, z: number, citiesonly: false): zoneAndSomeCityName
+--- `citiesonly` = true 
+---@alias getZoneName_cityOnly fun(x: number, y: number, z: number, citiesonly: true): cityName
+---@type getZoneName_default | getZoneName_cityOnly Returns the string of the zone/city name. 
 function getZoneName () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the rain level was reset. 
 function resetRainLevel () end
 
----@type fun(): number
+--- If default
+---@alias getSunSize_default fun(): false
+--- If set
+---@alias getSunSize_isSet fun(): number
+---@type getSunSize_default | getSunSize_isSet Returns the size of the sun as a number, false if the size of the sun is at its default. 
 function getSunSize () end
 
----@type fun(data: string): string
+---@type fun(data: string): string eturns the base64 representation of the encoded data if the encoding process was successfully completed
 function base64Encode () end
 
----@type fun(theResource?: resource): element
+--[[
+    `theResource`: the resource whose root element we are getting. If not specified, assumes the current resource. (the resource returned from getThisResource)
+]]
+---@type fun(theResource?: resource): element Returns an element representing the resource's root
 function getResourceRootElement () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the size of the sun was reset
 function resetSunSize () end
 
----@type fun(theRadarArea: radararea, r: integer, g: integer, b: integer, a: integer): boolean
+---@type fun(theRadarArea: radararea, r: integer, g: integer, b: integer, a: integer): boolean Returns true if the color was set successfully
 function setRadarAreaColor () end
 
----@type fun(theRadarArea: radararea, flash: boolean): boolean
+---@type fun(theRadarArea: radararea, flash: boolean): boolean Returns true if the new flash state was successfully set
 function setRadarAreaFlashing () end
 
----@type fun(theRadararea: radararea): number, number
+---@type fun(theRadararea: radararea): x:number, y:number Returns two floats indicating the X and Y length of the radar area respectively
 function getRadarAreaSize () end
 
----@type fun(): table
+---@type fun(): {number: integer, mta: string, name: "MTA:SA Server" | "MTA:SA Client", netcode: integer, os: "Windows"|string, type: "Custom" | "Release" | string, tag: string, sortable: string } Returns a table with version information.
 function getVersion () end
 
----@type fun(): integer
+---@type fun(): integer Returns an integer
 function getFPSLimit () end
 
----@type fun(json: string): unknown
+---@type fun(json: string): ...:unknown Returns variables read from the JSON string. 
 function fromJSON () end
 
----@type fun(theRadararea: radararea): boolean
+---@type fun(theRadararea: radararea): boolean Returns true if the radar area is flashing
 function isRadarAreaFlashing () end
 
----@type fun(theRadararea: radararea, x: number, y: number): boolean
+---@type fun(theRadararea: radararea, x: number, y: number): boolean Returns true if the size was set successfully
 function setRadarAreaSize () end
 
----@type fun(thePed: ped, weaponSlot: integer): boolean
+---@see weaponSlotId
+---@type fun(thePed: ped, weaponSlot: weaponSlotId): boolean Returns true if successful in setting the ped's equipped weapon slot
 function setPedWeaponSlot () end
 
----@type fun(theTime): table
+--[[
+    `theTime`: The maximum time left (in milliseconds) on the timers you wish to retrieve.
+]]
+---@type fun(theTime?: integer): timer[] Returns a table of all the active timers. 
 function getTimers () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if occlusions are enabled
 function getOcclusionsEnabled () end
 
----@type fun(res: resource): string
+---@type fun(res: resource): string Returns a string with the resource name in it
 function getResourceName () end
 
----@type fun(theRadararea: radararea): integer, integer, integer, integer
+---@type fun(theRadararea: radararea): red:integer, green:integer, blue:integer, alpha:integer Returns four integers in RGBA format (red, green, blue, alpha), with a maximum value of 255 for each. Alpha decides transparency where 255 is opaque and 0 is transparent. 
 function getRadarAreaColor () end
 
----@type fun(text: string, tokenNumber: integer, separatingCharacter: string | integer): string
+---@type fun(text: string, tokenNumber: integer, separatingCharacter: string | ASCII): string | false Returns a string containing the token if it exists, false otherwise. 
 function gettok () end
 
----@type fun(): integer, integer, integer
+--- If default
+---@alias getWindVelocity_default fun(): false
+--- If set
+---@alias getWindVelocity_isSet fun(): x:integer, y:integer, z:integer
+---@type getWindVelocity_default | getWindVelocity_isSet
 function getWindVelocity () end
 
----@type fun(theArea: radararea, posX: number, posY: number): boolean
+---@type fun(theArea: radararea, posX: number, posY: number): boolean Returns true if the position is inside the radar area
 function isInsideRadarArea () end
 
----@type fun(theResource: resource): string
+---@type fun(theResource: resource): resourceState If successful returns a string with the resource state in it
 function getResourceState () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the world objects were restored
 function restoreAllWorldModels () end
 
----@type fun(): resource
+---@type fun(): resource Returns the resource in which the current script is. 
 function getThisResource () end
 
+--- Serverside
 ---@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...:string ), restricted?: boolean, caseSensitive?: boolean): boolean)
+--- Clientside
 ---@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ...:string ), caseSensitive?: boolean): boolean)
-
----Serverside has a `restricted` argument and passes the `playerSource` to the `handlerFunction`.
 ---@type addCommandHandler_server | addCommandHandler_client Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler () end
 
----@type fun(filePath: string): xmlnode
+---@type fun(filePath: string): xmlnode | false Returns the root node of the specified configuration file. If the file is corrupted, not defined in the meta file or doesn't exist, returns false. 
 function getResourceConfig () end
 
----@type fun(enabled: boolean): boolean
+---@type fun(enabled: boolean): boolean Returns true if the setting was set correctly
 function setOcclusionsEnabled () end
 
----@type fun(velocity: number): boolean
+--[[
+    `velocity`: The max velocity, can be 0 or any positive value. Default is 1.5.
+]]
+---@type fun(velocity: number): boolean Returns true if the max velocity was set correctly
 function setAircraftMaxVelocity () end
 
----@type fun(level: number): boolean
+--[[
+    `level`: The level of gravity (default is 0.008).
+]]
+---@type fun(level: number): boolean Returns true if gravity was changed
 function setGravity () end
 
----@type fun(URL: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, callbackFunction: function, postData?: string, postIsBinary?: boolean, ...: any): boolean
+---@alias fetchRemoteOptions { queueName?: string, connectionAttempts?: integer, connectTimeout?: integer, postData?: string, postIsBinary?: boolean, method?: "GET" | "POST", headers?: {[string]: any}, maxRedirects?: integer, username?: string, password?: string, formFields?: {[string]: any}}
+--- Without options
+---@alias fetchRemote_syntaxWithoutOptions fun(URL: string, callbackFunction: function, callbackArguments?: table): request | false
+--- With options
+---@alias fetchRemote_syntaxWithOptions fun(URL: string, options: fetchRemoteOptions, callbackFunction: function, callbackArguments?: table): request | false
+--[[ 
+    Using version syntax from  1.5.4-9.11342 + 1.5.4-9.11413. Because the other variant has too many sub-variations
+]]
+--[[
+    Returns a request value
+]]
+---@type fetchRemote_syntaxWithoutOptions | fetchRemote_syntaxWithOptions 
 function fetchRemote () end
 
----@type fun(commandName: string, thePlayer: player, args?: string): boolean
+--- Serverside
+---@alias executeCommandHandler_server fun(commandName: string, thePlayer: player, ...: string): boolean
+--- Clientside
+---@alias executeCommandHandler_client fun(commandName: string, ...: string): boolean
+---@type executeCommandHandler_server | executeCommandHandler_client Returns true if the command handler was called successfully
 function executeCommandHandler () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the size of the moon was reset
 function resetMoonSize () end
 
----@type fun(thePlayer: player, weapon: integer, totalAmmo: integer, ammoInClip?: integer): boolean
+--- Serverside
+---@alias setWeaponAmmo_server fun(thePlayer: player, weapon: weaponId, totalAmmo: integer, ammoInClip?: integer): boolean
+--- Clientside
+---@alias setWeaponAmmo_client fun(weapon: weapon, ammo: integer): boolean
+---@see weaponId
+---@type setWeaponAmmo_server | setWeaponAmmo_client Returns true on success
 function setWeaponAmmo () end
 
----@type fun(theResource: resource): element
+---@type fun(theResource: resource): element | false Returns an element of the resource's dynamic element root if the resource specified was valid and active (currently running), false otherwise. 
 function getResourceDynamicElementRoot () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if the heat haze was reset correctly
 function resetHeatHaze () end
 
----@type fun(): integer
+---@see trafficLightStateId
+---@type fun(): trafficLightStateId Returns the current state of the traffic lights.
 function getTrafficLightState () end
 
----@type fun(): boolean
+---@type fun(): boolean Returns true if sky color was reset correctly
 function resetSkyGradient () end
 
----@type fun(enabled: boolean): boolean
+---@type fun(enabled: boolean): boolean Returns true if the cloud state was changed succesfully
 function setCloudsEnabled () end
 
----@type fun(): integer, integer, integer, integer, integer, integer
+---@type fun(): r1:integer, g1:integer, b1:integer, r2:integer, g2:integer, b2:integer Returns 6 ints, of which the first 3 represent the sky's "top" color, (in RGB) and the last 3 represent the bottom colors. 
 function getSkyGradient () end
 
----@type fun(weaponNameOrWeaponID: string | integer, weaponSkill: string, property: string, theValue: integer | number): boolean
+--- Serverside
+---@alias setWeaponProperty_server_syntax_1 fun(weaponNameOrWeaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponProperty, theValue: integer | number): boolean
+--- Serverside toggle flags
+---@alias setWeaponProperty_server_syntax_2 fun(weaponNameOrWeaponID: weaponPropertyWeaponName | weaponId, weaponSkill: weaponSkill, property: weaponPropertyFlags, theValue: boolean): boolean
+--- Clientside
+---@alias setWeaponProperty_client fun(weapon: weapon, property: weaponProperty_client_syntax_1, theValue: number) | fun(weapon: weapon, property: weaponProperty_client_syntax_2, theValue: vector3)
+--[[
+    Returns true if the property was set. 
+]]
+---@see weaponId
+---@type setWeaponProperty_server_syntax_1 | setWeaponProperty_server_syntax_2 | setWeaponProperty_client
 function setWeaponProperty () end
 
----@type fun(Height: number): boolean
+---@type fun(height: number): boolean Returns true if successful
 function setAircraftMaxHeight () end
 
----@type fun(Height: number): boolean
+---@type fun(height: number): boolean Returns true if successful
 function setJetpackMaxHeight () end
 
----@type fun(theBlip: blip): number
+---@type fun(theBlip: blip): number Returns one float with the blips visible distance
 function getBlipVisibleDistance () end
 
----@type fun(theBlip: blip, theDistance: number): boolean
+---@type fun(theBlip: blip, theDistance: number): boolean Returns true if successful
 function setBlipVisibleDistance () end
 
----@type fun(fX: number, fY: number, fX1: number, fY1: number, fX2: number, fY2: number, fX3: number, fY3: number, ...): colshape
+---@type fun(fX: number, fY: number, fX1: number, fY1: number, fX2: number, fY2: number, fX3: number, fY3: number, ...:number): colshape Returns a colshape element if successful
 function createColPolygon () end
 
---- Player argument is required serverside
----@type (fun(handle: integer): table) | (fun(thePlayer: player, handle: integer): table)
+---@alias latentEventStatus { tickStart: number, tickEnd: number, totalSize: number, percentComplete: number}
+--- Serverside
+---@alias getLatentEventStatus_server (fun(handle: integer): latentEventStatus)
+--- Clientside
+---@alias getLatentEventStatus_client (fun(thePlayer: player, handle: integer): latentEventStatus)
+---@type getLatentEventStatus_server | getLatentEventStatus_client Returns a table with the following info or false if invalid arguments were passed
 function getLatentEventStatus () end
 
----@type fun(theFile: file): integer
+---@type fun(theFile: file): integer Returns the file position if successful
 function fileGetPos () end
 
+--- Serverside
 ---@alias getKeyBoundToFunction_server (fun(thePlayer: player, theFunction: function): string | false)
+--- Clientside
 ---@alias getKeyBoundToFunction_client (fun(theFunction: function): string | false)
-
---- Player has to be defined on serverside.
----@type getKeyBoundToFunction_server | getKeyBoundToFunction_client
+---@type getKeyBoundToFunction_server | getKeyBoundToFunction_client Returns a string of the first key the function was bound to. 
 function getKeyBoundToFunction () end
 
+--- Serverside
 ---@alias clearChatBox_server (fun(clearFor?: player | root): boolean)
----@alias clearChatBox_client (fun(): boolean) 
-
---- Player/root argument has to be given on serverside or none at all.
+--- Clientside
+---@alias clearChatBox_client (fun(): boolean)
 ---@type clearChatBox_server | clearChatBox_client Returns true if the player's chat was cleared successfully, false otherwise. 
 function clearChatBox () end
 
----@alias outputChatBox_server (fun(text: string, visibleTo?: player | root, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
+--- Serverside
+---@alias outputChatBox_server (fun(text: string, visibleTo?: player | root | player[] | team, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
+--- Clientside
 ---@alias outputChatBox_client (fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
-
---- Player/root argument has to be given on serverside or none at all.
----@type outputChatBox_server | outputChatBox_client
+---@type outputChatBox_server | outputChatBox_client Returns true if the message was displayed successfully.
 function outputChatBox () end
 
----@type fun()
+---@type fun(theResource: resource, theFunction: string, ... ): ... Returns anything that the designated function has returned, if the function has no return, nil is returned. If the function does not exist, is not exported, or the call was not successful it will return false. 
 function call () end
 
----@type fun(commandName: string, handler?: function): boolean
+---@type fun(commandName: string, handler?: function): boolean Returns true if the command handler was removed successfully, false if the command doesn't exist. 
 function removeCommandHandler () end
 
----@type fun(fpsLimit: integer): boolean
+---@type fun(fpsLimit: integer): boolean Returns true if successful, or false if it was not possible to set the limit or an invalid value was passed. 
 function setFPSLimit () end
 
----@type fun(value: any, compact?: boolean, prettyType?: string): string
+---@type fun(value: any, compact?: boolean, prettyType?: jsonPrettyType): string Returns a JSON formatted string. 
 function toJSON () end
 
----@type fun(fProgress: number, strEasingType: string, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number
+---@type fun(fProgress: number, strEasingType: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): number
 function getEasingValue () end
 
----@type fun(algorithm: string, dataToHash: string): string
+---@type fun(algorithm: "md5" | "sha1" | "sha224" | "sha256" | "sha384" | "sha512" | "hmac" |, dataToHash: string, options?: table): string Returns the hash of the data, false if an invalid argument was used.
 function hash () end
 
----@type fun(theTimer: timer): boolean
+---@type fun(theTimer: timer): boolean Returns true if the timer was successfully killed, false if no such timer existed. 
 function killTimer () end
 
----@type fun(theTimer: timer): boolean
+---@type fun(theTimer: timer): boolean Returns true if the timer was successfully reset
 function resetTimer () end
 
----@type fun(theFunction: function, timeInterval: integer, timesToExecute: integer, ...: any ): timer
-function setTimer () end
+--[[
+* `timeInterval`: The number of milliseconds that should elapse before the function is called. The minimum is 0 ms; 1000 milliseconds = 1 second)
+* `timesToExecute`: The number of times you want the timer to execute, or 0 for infinite repetitions.
+]]
+---@type fun(theFunction: fun(...: any), timeInterval: integer, timesToExecute: integer, ...: any ): timer Returns a timer pointer if the timer was set successfully
+function setTimer (theFunction, timeInterval, timesToExecute, ...) end
 
----@type fun(stringToSplit: string, separatingChar: string | integer): table
+---@type fun(stringToSplit: string, separatingChar: string | integer): string[] Returns a table of substrings split from the original string if successful
 function split () end
 
----@type fun(theTimer: timer): boolean
+---@type fun(theTimer: timer): boolean Returns true if the passed value is a timer
 function isTimer () end
 
----@type fun(str: string): string
+---@type fun(str: string): string Returns the MD5 hash of the input string if successful
 function md5 () end
 
----@type fun(str: string): string
+---@type fun(str: string): string Returns the sha256 hash of the input string if successful
 function sha256 () end
 
----@type fun(text: string, key: string): string
+---@type fun(text: string, key: string): string Returns the base64 representation of the encrypted string if the encryption process was successfully completed
 function teaEncode () end
 
----@type fun(data: string, key: string): string
+---@type fun(data: string, key: string): string Returns string containing the decrypted data if the decryption process was successfully completed
 function teaDecode () end
 
----@type fun(characterCode: integer): string
+---@type fun(characterCode: integer): string Returns a string if the function was successful
 function utfChar () end
 
----@type fun(theString: string): integer
+---@type fun(theString: string): integer Returns an integer if the function was successful
 function utfCode () end
 
----@type fun(theString: string): integer
+---@type fun(theString: string): integer Returns an integer if the function was successful
 function utfLen () end
 
----@type fun(theString: string, position: integer): integer
+---@type fun(theString: string, position: integer): integer | false Returns an integer if the function was successful, false otherwise. 
 function utfSeek () end
 
----@type fun(theString: string, Start: integer, End: integer): string
+---@type fun(theString: string, start: integer, end: integer): string Returns a string if the function was successful. Returns an empty string if out of bounds.
 function utfSub () end
 
----@type fun(subject: string, pattern: string, flags?: integer | string): boolean
+---@type fun(subject: string, pattern: string, flags?: integer | string): boolean Returns true if the pattern was found in the input string, false otherwise. 
 function pregFind () end
 
----@type fun(subject: string, pattern: string, replacement: string, flags?: integer | string): string
+---@type fun(subject: string, pattern: string, replacement: string, flags?: integer | string): string Returns the replaced string
 function pregReplace () end
 
----@type fun(base: string, pattern: string, flags?: integer | string, maxResults?: integer): table
+---@type fun(base: string, pattern: string, flags?: integer | string, maxResults?: integer): string[] Returns a table if one or more match is found
 function pregMatch () end
 
----@type fun(var1: uint, var2: uint, ...): uint
+---@type fun(var1: uint, var2: uint, ...: uint): uint Returns the conjuncted value. 
 function bitAnd () end
 
----@type fun(var: uint): uint
+---@type fun(var: uint): uint Returns the value on which the operation has been performed. 
 function bitNot () end
 
----@type fun(var1: uint, var2: uint, ...): uint
+---@type fun(var1: uint, var2: uint, ...: uint): uint Returns the conjuncted value. 
 function bitOr () end
 
----@type fun(var1: uint, var2: uint, ...): uint
+---@type fun(var1: uint, var2: uint, ...: uint): uint Returns the conjuncted value. 
 function bitXor () end
 
----@type fun(var1: uint, var2: uint, ...): boolean
+---@type fun(var1: uint, var2: uint, ...: uint): boolean Returns true if the conjuncted value is not zero, false otherwise.
 function bitTest () end
 
----@type fun(value: integer, n: integer): integer
+---@type fun(value: integer, n: integer): integer Returns the circular left-rotated value as integer. 
 function bitLRotate () end
 
----@type fun(value: integer, n: integer): integer
+---@type fun(value: integer, n: integer): integer Returns the circular right-rotated value as integer. 
 function bitRRotate () end
 
----@type fun(value: integer, n: integer): integer
+---@type fun(value: integer, n: integer): integer Returns the logical left shifted value as integer. 
 function bitLShift () end
 
----@type fun(value: integer, n: integer): integer
+---@type fun(value: integer, n: integer): integer Returns the logical right shifted value as integer. 
 function bitRShift () end
 
----@type fun(value: integer, n: integer): integer
+---@type fun(value: integer, n: integer): integer Returns the arithmetic shifted value as integer. 
 function bitArShift () end
 
----@type fun(var: uint, field: integer, width?: integer): uint
+---@type fun(var: uint, field: integer, width?: integer): uint Returns the extracted value/bit sequence. 
 function bitExtract () end
 
----@type fun(var: uint, replaceValue: uint, field: integer, width: integer): uint
+---@type fun(var: uint, replaceValue: uint, field: integer, width?: integer): uint Returns the replaced value/bit sequence. 
 function bitReplace () end
 
 --- hookType: "preFunction" or "postFunction"
@@ -1241,7 +1520,7 @@ function getTrainPosition () end
 ---@type getVehicleColor_rgb | getVehicleColor_palette
 function getVehicleColor () end
 
----@type fun(theVehicle: vehicle, slot: vehicleSlotId): table Returns a table with all the compatible upgrades
+---@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId[] Returns a table with all the compatible upgrades
 function getVehicleCompatibleUpgrades () end
 
 ---@type fun(theVehicle: vehicle): player | ped | false Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise. 
@@ -1326,14 +1605,14 @@ function getVehicleTurretPosition () end
 function getVehicleType () end
 
 ---@see vehicleSlotId
----@type fun(theVehicle: vehicle, slot: vehicleSlotId): integer | false Returns an integer with the upgrade on the slot if correct arguments were passed
+---@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId | false Returns an integer with the upgrade on the slot if correct arguments were passed
 function getVehicleUpgradeOnSlot () end
 
----@type fun(theVehicle: vehicle): integer[] Returns a table of all the upgrades on each slot of a vehicle, which may be empty
+---@type fun(theVehicle: vehicle): vehicleUpgradeId[] Returns a table of all the upgrades on each slot of a vehicle, which may be empty
 function getVehicleUpgrades () end
 
 ---@see vehicleSlotId
----@type fun(slotOrUpgrade: vehicleSlotId | integer): vehicleSlotName Returns a string with the slot name if a valid slot or upgrade ID was given
+---@type fun(slotOrUpgrade: vehicleSlotId | vehicleUpgradeId): vehicleSlotName Returns a string with the slot name if a valid slot or upgrade ID was given
 function getVehicleUpgradeSlotName () end
 
 ---@see vehicleWheelStateId
@@ -1699,10 +1978,9 @@ function setPedFightingStyle () end
 ---@type fun(thePickup: pickup, thePlayer: player): boolean
 function usePickup () end
 
---[[ 
-    Player argument is required serverside
-]]
+--- Serverside
 ---@alias setPlayerHudComponentVisible_server fun(thePlayer: player, component: hudComponent, show: boolean): boolean
+--- Clientside
 ---@alias setPlayerHudComponentVisible_client fun(component: hudComponent, show: boolean): boolean
 ---@type setPlayerHudComponentVisible_server | setPlayerHudComponentVisible_client Returns true if the component was shown or hidden succesfully
 function setPlayerHudComponentVisible () end

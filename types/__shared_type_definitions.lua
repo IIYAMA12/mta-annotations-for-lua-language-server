@@ -81,6 +81,7 @@ exports = table_ -- returns a table of resource names containing all export func
 resource = userData_ -- returns a resource element of the resource the snippet was executed in
 resourceRoot = userData_ -- returns a resource root element of the resource the snippet was executed in
 root = userData_ -- returns the root element of the server
+sourceTimer = userData_ -- The hidden global variable sourceTimer contains the currently executing timer userdata 
 
 -- Event Handlers
 source = userData_ -- The player or element the event was attached to
@@ -669,6 +670,8 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 ]]
 ---@alias weaponId 0|1|2|3|4|5|6|7|8|9|22|23|24|25|26|27|28|29|32|30|31|33|34|35|36|37|38|16|17|18|39|41|42|43|10|11|12|14|15|44|45|46|40
 
+---@alias weaponName "brassknuckle"|"golfclub"|"nightstick"|"knife"|"bat"|"shovel"|"poolstick"|"katana"|"chainsaw"|"dildo"|"vibrator"|"flower"|"cane"|"grenade"|"teargas"|"molotov"|"colt 45"|"silenced"|"deagle"|"shotgun"|"sawed-off"|"combat shotgun"|"uzi"|"mp5"|"ak-47"|"m4"|"tec-9"|"rifle"|"sniper"|"rocket launcher"|"rocket launcher hs"|"flamethrower"|"minigun"|"satchel"|"bomb"|"spraycan"|"fire extinguisher"|"camera"|"nightvision"|"infrared"|"parachute"
+
 ---@alias controlName "fire"|"aim_weapon"|"next_weapon"|"previous_weapon"|"forwards"|"backwards"|"left"|"right"|"zoom_in"|"zoom_out"|"change_camera"|"jump"|"sprint"|"look_behind"|"crouch"|"action"|"walk"|"conversation_yes"|"conversation_no"|"group_control_forwards"|"group_control_back"|"enter_exit"|"vehicle_fire"|"vehicle_secondary_fire"|"vehicle_left"|"vehicle_right"|"steer_forward"|"steer_back"|"accelerate"|"brake_reverse"|"radio_next"|"radio_previous"|"radio_user_track_skip"|"horn"|"sub_mission"|"handbrake"|"vehicle_look_left"|"vehicle_look_right"|"vehicle_look_behind"|"vehicle_mouse_look"|"special_control_left"|"special_control_right"|"special_control_down"|"special_control_up"
 ---@alias keyState "up" | "down" | "both"
 ---@alias keyName "mouse1"|"mouse2"|"mouse3"|"mouse4"|"mouse5"|"mouse_wheel_up"|"mouse_wheel_down"|"arrow_l"|"arrow_u"|"arrow_r"|"arrow_d"|"0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"|"n"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z"|"num_0"|"num_1"|"num_2"|"num_3"|"num_4"|"num_5"|"num_6"|"num_7"|"num_8"|"num_9"|"num_mul"|"num_add"|"num_sep"|"num_sub"|"num_div"|"num_dec"|"num_enter"|"F1"|"F2"|"F3"|"F4"|"F5"|"F6"|"F7"|"F8"|"F9"|"F10"|"F11"|"F12"|"escape"|"backspace"|"tab"|"lalt"|"ralt"|"enter"|"space"|"pgup"|"pgdn"|"end"|"home"|"insert"|"delete"|"lshift"|"rshift"|"lctrl"|"rctrl"|"["|"]"|"pause"|"capslock"|"scroll"|";"|","|"-"|"."|"/"|"#"|"\\"|"="
@@ -1009,3 +1012,118 @@ Use 3 to remove the paintjob.
 * 3: Rear-right
 ]]
 ---@alias vehicleSeatId 0 | 1 | 2 | 3
+
+---@alias strEasingType "Linear" | "InQuad" | "OutQuad" | "InOutQuad" | "OutInQuad" | "InElastic" | "OutElastic" | "InOutElastic" | "OutInElastic" | "InBack" | "OutBack" | "InOutBack" | "OutInBack" | "InBounce" | "OutBounce" | "InOutBounce" | "OutInBounce" | "SineCurve" | "CosineCurve"
+
+---@alias jsonPrettyType "none" | "spaces" | "tabs"
+
+---@alias weaponPropertyWeaponName  "grenade"|"teargas"|"molotov"|"colt 45"|"silenced"|"deagle"|"shotgun"|"sawed-off"|"combat shotgun"|"uzi"|"mp5"|"ak-47"|"m4"|"tec-9"|"rifle"|"sniper"|"rocket launcher"|"rocket launcher hs"|"flamethrower"|"minigun"|"satchel"|"bomb"|"spraycan"|"fire extinguisher"|"camera"
+
+---@alias weaponSkill "pro" | "std" | "poor"
+
+---@alias weaponProperty "weapon_range" | "target_range" | "accuracy" | "damage" | "maximum_clip_ammo" | "move_speed" | "flags" | "anim_loop_start" | "anim_loop_stop" | "anim_loop_bullet_fire" | "anim2_loop_start" | "anim2_loop_stop" | "anim2_loop_bullet_fire" | "anim_breakout_time"
+---@alias weaponProperty_client_syntax_1 "weapon_range" | "target_range" | "accuracy" | "damage"
+---@alias weaponProperty_client_syntax_2 "fire_rotation"
+
+---@alias weaponPropertyFlags "flag_aim_no_auto" | "flag_aim_arm" | "flag_aim_1st_person" | "flag_aim_free" | "flag_move_and_aim" | "flag_move_and_shoot" | "flag_type_throw" | "flag_type_heavy" | "flag_type_constant" | "flag_type_dual" | "flag_anim_reload" | "flag_anim_crouch" | "flag_anim_reload_loop" | "flag_anim_reload_long" | "flag_shot_slows" | "flag_shot_rand_speed" | "flag_shot_anim_abrupt" | "flag_shot_expands"           
+
+--[[
+    [Wiki traffic light states](https://wiki.multitheftauto.com/wiki/Traffic_light_states)
+]]
+---@alias trafficLightStateId 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+--[[
+    `failed to load` - Use getResourceLoadFailureReason to find out why it failed.
+]]
+---@alias resourceState "loaded"|"running"|"starting"|"stopping"|"failed to load"
+
+---@alias ASCII 10|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|101|102|103|104|105|106|107|108|109|110|111|112|113|114|115|116|117|118|119|120|121|122|123|124|125|126
+
+--[[
+* 0: WEAPONSLOT_TYPE_UNARMED
+* 1: WEAPONSLOT_TYPE_MELEE
+* 2: WEAPONSLOT_TYPE_HANDGUN
+* 3: WEAPONSLOT_TYPE_SHOTGUN
+* 4: WEAPONSLOT_TYPE_SMG (used for driveby's)
+* 5: WEAPONSLOT_TYPE_RIFLE
+* 6: WEAPONSLOT_TYPE_SNIPER
+* 7: WEAPONSLOT_TYPE_HEAVY
+* 8: WEAPONSLOT_TYPE_THROWN
+* 9: WEAPONSLOT_TYPE_SPECIAL
+* 10: WEAPONSLOT_TYPE_GIFT
+* 11: WEAPONSLOT_TYPE_PARACHUTE
+* 12: WEAPONSLOT_TYPE_DETONATOR
+]]
+---@alias weaponSlotId 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+---@alias cityName "Tierra Robada"|"Bone County"|"Las Venturas"|"San Fierro"|"Red County"|"Whetstone"|"Flint County"|"Los Santos"
+---@alias zoneAndSomeCityName "Angel Pine"|"Flint County"|"Foster Valley"|"Mount Chiliad"|"Shady Cabin"|"Shady Creeks"|"Back o Beyond"|"Beacon Hill"|"Easter Bay Chemicals"|"The Farm"|"Flint Intersection"|"Flint Range"|"Leafy Hollow"|"Los Santos Inlet"|"Commerce"|"Conference Center"|"Downtown Los Santos"|"East Beach"|"East Los Santos"|"El Corona"|"Ganton"|"Glen Park"|"Idlewood"|"Jefferson"|"Las Colinas"|"Little Mexico"|"Los Flores"|"Los Santos International"|"Marina"|"Market"|"Market Station"|"Mulholland"|"Mulholland Intersection"|"Ocean Docks"|"Pershing Square"|"Playa del Seville"|"Richman"|"Rodeo"|"Santa Maria Beach"|"Temple"|"Unity Station"|"Verdant Bluffs"|"Verona Beach"|"Vinewood"|"Willowfield"|"Avispa Country Club"|"Battery Point"|"Calton Heights"|"Chinatown"|"City Hall"|"Cranberry Station"|"Doherty"|"Downtown"|"Easter Basin"|"Easter Bay Airport"|"Easter Tunnel"|"Esplanade East"|"Esplanade North"|"Financial"|"Foster Valley"|"Gant Bridge"|"Garcia"|"Garver Bridge"|"Hashbury"|"Juniper Hill"|"Juniper Hollow"|"Kincaid Bridge"|"King's"|"Missionary Hill"|"Mount Chiliad"|"Ocean Flats"|"Palisades"|"Paradiso"|"Queens"|"San Fierro Bay"|"Santa Flora"|"Blueberry"|"Blueberry Acres"|"Dillimore"|"Easter Bay Airport"|"Easter Bay Chemicals"|"Fallen Tree"|"Fallow Bridge"|"Fern Ridge"|"Fisher's Lagoon"|"Flint County"|"Flint Water"|"Frederick Bridge"|"Hampton Barns"|"Hankypanky Point"|"Hilltop Farm"|"Las Venturas"|"Martin Bridge"|"Montgomery"|"Montgomery Intersection"|"Mulholland"|"North Rock"|"Palomino Creek"|"Richman"|"San Andreas Sound"|"San Fierro"|"The Mako Span"|"The Panopticon"|"Aldea Malvada"|"Arco del Oeste"|"Bayside"|"Bayside Marina"|"Bayside Tunnel"|"Bone County"|"El Quebrados"|"Gant Bridge"|"Garver Bridge"|"Kincaid Bridge"|"Las Barrancas"|"Robada Intersection"|"San Fierro Bay"|"Sherman Reservoir"|"The Sherman Dam"|"Valle Ocultado"|"'The Big Ear'"|"El Castillo del Diablo"|"Fort Carson"|"Green Palms"|"Hunter Quarry"|"Las Brujas"|"Las Payasadas"|"Lil' Probe Inn"|"Octane Springs"|"Regular Tom"|"Restricted Area"|"Verdant Meadows"|"Blackfield"|"Blackfield Chapel"|"Blackfield Intersection"|"Caligula's Palace"|"Come-A-Lot"|"Creek"|"Greenglass College"|"Harry Gold Parkway"|"Julius Thruway East"|"Julius Thruway North"|"Julius Thruway South"|"Julius Thruway West"|"K.A.C.C. Military Fuels"|"Las Venturas Airport"|"Last Dime Motel"|"Linden Side"|"Linden Station"|"LVA Freight Depot"|"Old Venturas Strip"|"Pilgrim"|"Pilson Intersection"|"Pirates in Men's Pants"|"Prickle Pine"|"Randolph Industrial Estate"|"Redsands East"|"Redsands West"|"Roca Escalante"|"Rockshore East"|"Rockshore West"|"Royal Casino"|"Sobell Rail Yards"|"Spinybed"|"Starfish Casino"|"The Camel's Toe"|"The Clown's Pocket"|"The Emerald Isle"|"The Four Dragons Casino"|"The High Roller"|"The Pink Swan"|"The Strip"|"The Visage"|"Whitewood Estates"|"Yellow Bell Golf Course"|"Yellow Bell Station"
+
+---@alias markerIcon "none" | "arrow" | "finish"
+
+---@alias performanceCategory "Lua memory" | "Lib memory" | "Lua timing" | "Packet usage"
+
+---@alias vehicleUpgradeId 1000|1001|1002|1003|1004|1005|1006|1007|1008|1009|1010|1011|1012|1013|1014|1015|1016|1017|1018|1019|1020|1021|1022|1023|1024|1025|1026|1027|1028|1029|1030|1031|1032|1033|1034|1035|1036|1037|1038|1039|1040|1041|1042|1043|1044|1045|1046|1047|1048|1049|1050|1051|1052|1053|1054|1055|1056|1057|1058|1059|1060|1061|1062|1063|1064|1065|1066|1067|1068|1069|1070|1071|1072|1073|1074|1075|1076|1077|1078|1079|1080|1081|1082|1083|1084|1085|1086|1087|1088|1089|1090|1091|1092|1093|1094|1095|1096|1097|1098|1099|1100|1101|1102|1103|1104|1105|1106|1107|1108|1109|1110|1111|1112|1113|1114|1115|1116|1117|1118|1119|1120|1121|1122|1123|1124|1125|1126|1127|1128|1129|1130|1131|1132|1133|1134|1135|1136|1137|1138|1139|1140|1141|1142|1143|1144|1145|1146|1147|1148|1149|1150|1151|1152|1153|1154|1155|1156|1157|1158|1159|1160|1161|1162|1163|1164|1165|1166|1167|1168|1169|1170|1171|1172|1173|1174|1175|1176|1177|1178|1179|1180|1181|1182|1183|1184|1185|1186|1187|1188|1189|1190|1191|1192|1193
+
+---@alias gameSpeed 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+
+---[wiki](https://wiki.multitheftauto.com/wiki/Radar_Blips)
+---@alias blipIconId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63
+
+--[[
+* 0: Health pickup
+* 1: Armour pickup
+* 2: Weapon pickup
+* 3: Custom Pickup
+]]
+---@alias pickupType 0 | 1 | 2 | 3
+
+--[[
+* MOVE_DEFAULT 	0
+* MOVE_PLAYER 	54
+* MOVE_PLAYER_FAT 	55
+* MOVE_PLAYER_MUSCULAR 	56
+* MOVE_ROCKET 	57
+* MOVE_ROCKET_FAT 	58
+* MOVE_ROCKET_MUSCULAR 	59
+* MOVE_ARMED 	60
+* MOVE_ARMED_FAT 	61
+* MOVE_ARMED_MUSCULAR 	62
+* MOVE_BASEBALLBAT 	63
+* MOVE_BASEBALLBAT_FAT 	64
+* MOVE_BASEBALLBAT_MUSCULAR 	65
+* MOVE_CHAINSAW 	66
+* MOVE_CHAINSAW_FAT 	67
+* MOVE_CHAINSAW_MUSCULAR 	68
+* MOVE_SNEAK 	69
+* MOVE_JETPACK 	70
+* MOVE_MAN 	118
+* MOVE_SHUFFLE 	119
+* MOVE_OLDMAN 	120
+* MOVE_GANG1 	121
+* MOVE_GANG2 	122
+* MOVE_OLDFATMAN 	123
+* MOVE_FATMAN 	124
+* MOVE_JOGGER 	125
+* MOVE_DRUNKMAN 	126
+* MOVE_BLINDMAN 	127
+* MOVE_SWAT 	128
+* MOVE_WOMAN 	129
+* MOVE_SHOPPING 	130
+* MOVE_BUSYWOMAN 	131
+* MOVE_SEXYWOMAN 	132
+* MOVE_PRO 	133
+* MOVE_OLDWOMAN 	134
+* MOVE_FATWOMAN 	135
+* MOVE_JOGWOMAN 	136
+* MOVE_OLDFATWOMAN 	137
+* MOVE_SKATE 	138
+]]
+---@alias pedWalkStyleId 0|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|118|119|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138
+
+---@alias elementRotOrder "default" | "ZXY" | "ZYX"
+
+-- See [wiki](https://wiki.multitheftauto.com/wiki/GetPedStat) for ped stat definitions
+---@alias pedStatId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|33|35|36|37|38|39|40|41|44|45|46|47|48|49|51|52|53|54|55|56|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|194|195|196|197|198|200|225|229|230
+
+---@alias elementTypeAutoComplete string|"player"|"ped"|"water"|"sound"|"vehicle"|"object"|"pickup"|"marker"|"colshape"|"blip"|"radararea"|"team"|"spawnpoint"|"console"|"projectile"|"effect"|"light"|"searchlight"|"shader"|"texture"
