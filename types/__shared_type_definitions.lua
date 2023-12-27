@@ -802,6 +802,24 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 ---@alias vehicleDoorId 0 | 1 | 2 | 3 | 4 | 5
 
 --[[
+* 0: Frame
+* 2: Trunk
+* 3: Hood
+* 4: Rear
+* 5: Front left door
+* 6: Front right door
+* 7: Rear left door
+* 8: Rear right door
+* 13: Front Left tyre
+* 14: Front Right tyre
+* 15: Back Left tyre
+* 16: Back Right tyre
+    
+There are others!
+]]
+---@alias vehicleBodyPartId 0 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 13 | 14 | 15 | 16
+
+--[[
 * Cars:
     * 0: Front-left panel
     * 1: Front-right panel
@@ -1289,3 +1307,7 @@ Use 3 to remove the paintjob.
     [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
 ]]
 ---@alias vehicleVariantId 0 | 1 | 2 | 3 | 4 | 5
+
+---@alias quitReason "Unknown" | "Quit" | "Kicked" | "Banned" | "Bad Connection" | "Timed out"
+
+---@alias stuntType "2wheeler" | "wheelie" | "stoppie"
