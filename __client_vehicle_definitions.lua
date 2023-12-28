@@ -6,7 +6,7 @@
     Credits to the community for all the available syntax and descriptions
 ]]
 
-
+---@see vehicleWindow
 ---@type fun(theVehicle: vehicle, window: vehicleWindow, open: boolean): boolean
 function setVehicleWindowOpen () end
 
@@ -16,7 +16,7 @@ function getVehicleModelExhaustFumesPosition () end
 ---@type fun(vehiclesDistance: number, trainsAndPlanesDistance?: number): boolean
 function setVehiclesLODDistance () end
 
----@type fun(): general_distance_used_for_most_vehicles: number, distance_used_for_trains_and_planes: number
+---@type fun(): distanceMostVehicles: number, distanceTrainsAndPlanes: number
 function getVehiclesLODDistance () end
 
 ---@type fun(modelID: integer, posX: number, posY: number, posZ: number): boolean Returns true if everything went fine
@@ -65,6 +65,7 @@ function isVehicleNitroRecharging () end
 ---@type fun(theVehicle: vehicle): boolean Returns true if the nitro is currently activated on the vehicle
 function isVehicleNitroActivated () end
 
+---@see vehicleWindow
 ---@type fun(theVehicle: vehicle, window: vehicleWindow): boolean This function returns a boolean which represents window open state. 
 function isVehicleWindowOpen () end
 
@@ -119,6 +120,7 @@ function areVehicleLightsOn () end
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent, base?: scaleBase): number, number, number Returns three floats indicating the scale of the component, x, y and z respectively.
 function getVehicleComponentScale () end
 
+---@see vehicleId
 ---@type fun(modelID: vehicleId, dummy: vehicleDummy): number, number, number Returns three floats indicating the position x, y and z of given dummy.
 function getVehicleModelDummyPosition () end
 
@@ -128,9 +130,11 @@ function resetVehicleComponentScale () end
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent, scaleX: number, scaleY: number, scaleZ: number, base?: scaleBase): boolean Returns true if component scale was set successfully
 function setVehicleComponentScale () end
 
+---@see vehicleId
 ---@type fun(modelID: vehicleId, dummy: vehicleDummy, x: number, y: number, z: number): boolean Returns true if everything went fine
 function setVehicleModelDummyPosition () end
 
+---@see vehicleId
 ---@type (fun(vehicleModel: vehicleId, wheelGroup: "front_axle" | "rear_axle"): number) | (fun(vehicleModel: vehicleId, wheelGroup?: "all_wheels"): { front_axle: number, rear_axle: number } ) Returns a decimal number or a table, depending on the specified wheel group.
 function getVehicleModelWheelSize () end
 
@@ -150,6 +154,7 @@ function getVehicleWheelFrictionState () end
 ---@type fun(theVehicle: vehicle, dummy: vehicleDummy): number, number, number Returns 3 floats indicating the position X, Y and Z of the vehicle's dummy
 function getVehicleDummyPosition () end
 
+---@see vehicleId
 ---@type fun(modelID: vehicleId, dummy: vehicleDummy): number, number, number Returns 3 floats indicating the default position X, Y and Z of the given dummy.
 function getVehicleModelDummyDefaultPosition () end
 

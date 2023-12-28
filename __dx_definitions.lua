@@ -18,7 +18,7 @@ function dxDrawText () end
 ---@type fun(posX: number, posY: number, width: number, height: number, u: number, v: number, usize: number, vsize: number, image: image, rotation?:number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number, color?: integer, postGUI?: boolean): boolean Returns true if successful, false otherwise. 
 function dxDrawImageSection () end
 
----@type fun(pixels: string): width:integer, height:integer Returns width and height of the pixels if successful
+---@type fun(pixels: string): width:integer, height: integer Returns width and height of the pixels if successful
 function dxGetPixelsSize () end
 
 ---@type fun(theShader: element, tessellationX: integer, tessellationY: integer): boolean Returns true if the shader element's tessellation was successfully changed, false otherwise. 
@@ -35,8 +35,6 @@ function dxDrawLine3D () end
 
 ---@type fun(startX: integer, startY: integer, endX: integer, endY: integer, color: integer, width?: number, postGUI?: boolean): boolean Returns a true if the operation was successful, false otherwise. 
 function dxDrawLine () end
-
----@alias exampleShaderElementTypes "world" | "ped" | "vehicle" | "object" | "other" | "all" | "world,ped,vehicle" | string 
 
 ---@type (fun(filepathOrRaw_data: string): shader:element | false, name:string) | (fun(filepathOrRaw_data: string, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes): shader:element | false, name:string) | (fun(filepathOrRaw_data: string, macros?: table, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes): shader:element | false, name:string) A shader element if successful, false if invalid arguments were passed to the function. The name of the technique that will be used. Element types: A comma seperated list of element types to restrict this shader to.
 function dxCreateShader () end
@@ -77,7 +75,7 @@ function dxGetPixelsFormat () end
 ---@type fun(blendMode: blendMode): boolean Returns true if successful, or false if invalid arguments were passed to the function.
 function dxSetBlendMode () end
 
----@type (fun(texture: element): pixels:string) | (fun(surfaceIndex: integer, texture: element): pixels:string) | (fun(texture: element, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(surfaceIndex: integer, texture: element, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean ): pixels:string) | (fun(surfaceIndex: integer, texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean): pixels:string) | (fun(texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(surfaceIndex: integer, texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean, x: integer, y: integer, width: integer, height: integer): pixels:string) Returns pixels string if successful, false if invalid arguments were passed to the function. 
+---@type (fun(texture: element): pixels:string) | (fun(surfaceIndex: integer, texture: element): pixels: string) | (fun(texture: element, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(surfaceIndex: integer, texture: element, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean ): pixels:string) | (fun(surfaceIndex: integer, texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean): pixels:string) | (fun(texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean, x: integer, y: integer, width: integer, height: integer): pixels:string) | (fun(surfaceIndex: integer, texture: element, pixelsFormat: pixelsFormat, textureFormat?: textureFormat, mipmaps?: boolean, x: integer, y: integer, width: integer, height: integer): pixels:string) Returns pixels string if successful, false if invalid arguments were passed to the function. 
 function dxGetTexturePixels () end
 
 ---@type fun(pixels: string, newFormat: "plain" | "png" | "jpeg", quality?: integer): string Returns a copy of the pixels in the new format, or false if invalid arguments were passed to the function. 
@@ -101,7 +99,7 @@ function dxGetFontHeight () end
 ---@type fun(posX: number, posY: number, width: number, height: number, image: element, rotation?: number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number): boolean Returns true if successful, false otherwise. 
 function dxDrawImage () end
 
----@type fun(theTexture: texture, textureEdge: textureEdgeMode, border-color?: integer): boolean
+---@type fun(theTexture: texture, textureEdge: textureEdgeMode, borderColor?: integer): boolean
 function dxSetTextureEdge () end
 
 ---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, flipUV?: boolean, material?: element, width: number, integercolor, postGUI?: boolean, numberfaceTowardX, faceTowardY: number, faceTowardZ: number): boolean

@@ -15,9 +15,6 @@ function passwordHash () end
 ---@type fun(password: string, hash: string, callback?: function): boolean
 function passwordVerify () end
 
----@type fun(position?: Vector3, rotation: Vector3): matrix Returns a Matrix object
-function Matrix () end
-
 ---@type fun(miliseconds: integer): boolean Returns true if the development mode is enabled and arguments are correct
 function debugSleep () end
 
@@ -334,7 +331,8 @@ function destroyElement () end
 ---@type fun(weaponid: weaponId): weaponSlotId Returns an integer representing the given weapon ID's associated weapon slot
 function getSlotFromWeapon () end
 
----@type fun(modelID: vehicleId): {[vehicleHandlingProperty]: unknown} Returns a table containing all the handling data
+---@see vehicleId
+---@type fun(modelId: vehicleId): {[vehicleHandlingProperty]: unknown} Returns a table containing all the handling data
 function getOriginalHandling () end
 
 --- Water with 4 points
@@ -2182,6 +2180,9 @@ function getColPolygonHeight () end
 --- Since 1.6.0 r21765 also available as a server-side function
 ---@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
 function setObjectBreakable () end
+
+---@type fun(theElement: element): table If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
+function getAllElementData () end
 
 ---@param ... integer
 local char = function ( ... ) end

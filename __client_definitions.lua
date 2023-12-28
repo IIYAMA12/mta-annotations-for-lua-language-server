@@ -860,6 +860,9 @@ function setBlurLevel () end
 ---@type fun(aRed: integer, aGreen: integer, aBlue: integer, aAlpha: integer, bRed: integer, bGreen: integer, bBlue: integer, bAlpha: integer): boolean Values between 0-255. Returns true if the color filter was set
 function setColorFilter () end
 
+---@type fun(original: boolean): aRed: integer, aGreen: integer, aBlue: integer, aAlpha: integer, bRed: integer, bGreen: integer, bBlue: integer, bAlpha: integer Returns 8 integers, of which the first 4 indicate the color (R,G,B,A) of color filter A, and the last 4 indicate the color (R,G,B,A) of color filter B. 
+function getColorFilter () end
+
 ---@type fun(): boolean Returns true if the color filtering was reset
 function resetColorFilter () end
 
@@ -872,7 +875,7 @@ function getElementBonePosition () end
 ---@type fun(theElement: element, bone: boneId): yaw:number, pitch:number, roll:number Returns 3 floats, representing the yaw, pitch, roll rotation values. 
 function getElementBoneRotation () end
 
----@type fun(theElement: element, bone: boneId, matrix: matrix): boolean Returns true if the function was successful
+---@type fun(theElement: element, bone: boneId, matrix: Matrix): boolean Returns true if the function was successful
 function setElementBoneMatrix () end
 
 ---@type fun(theElement: element, bone: boneId, x: number, y: number, z: number): boolean Returns true if the function was successful
@@ -951,3 +954,93 @@ function svgGetUpdateCallback () end
 ---@type fun(svgElement: svg, callback: function | boolean): boolean Returns true if successful
 function svgSetUpdateCallback () end
 
+---@deprecated Function has been disabled. Reason/Note: Feature temporarily removed in 22272 due to feedback - Bugtracker Issue: [#3212](https://github.com/multitheftauto/mtasa-blue/issues/3212)
+---@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ: number) Returns true if the operation was successful
+function dxDrawModel3D () end
+
+---@type fun(): boolean Returns true if Discord Rich Presence is enabled on the client
+function isDiscordRichPresenceConnected () end
+
+---@type fun(): boolean Returns true if function succeeds
+function resetDiscordRichPresenceData () end
+
+---@type fun(applicationId: string): boolean Returns true if function succeeds
+function setDiscordApplicationID () end
+
+---@type fun(assetImage: string, text: string): boolean Returns true if function succeeds
+function setDiscordRichPresenceAsset () end
+
+---@type fun(index: 1 | 2, text: string, url: string): boolean Returns true if function succeeds
+function setDiscordRichPresenceButton () end
+
+---@type fun(details: string): boolean Returns true if function succeeds
+function setDiscordRichPresenceDetails () end
+
+---@type fun(assetImage: string, text: string): boolean Returns true if function succeeds
+function setDiscordRichPresenceSmallAsset () end
+
+---@type fun(state: string): boolean Returns true if function succeeds
+function setDiscordRichPresenceState () end
+
+--[[
+    If both values are 0, the party size will not be displayed
+]]
+---@type fun(size: integer, max: integer): boolean Returns true if function succeeds
+function setDiscordRichPresencePartySize () end
+
+---@type fun(seconds: integer): boolean Returns true if function succeeds
+function setDiscordRichPresenceStartTime () end
+
+---@type fun(seconds: integer): boolean Returns true if function succeeds
+function setDiscordRichPresenceEndTime () end
+
+---@type fun(): presenceUserId: string It will return an empty string ("") if the user has not given consent or has disabled the Rich Presence synchronization option. Otherwise, it will return the userid as a string. 
+function getDiscordRichPresenceUserID () end
+
+---@type fun(txdId: integer): boolean Returns true if the TXD was successfully freed
+function engineFreeTXD () end
+
+---@type fun(name: string): id: integer | false Returns an integer of the TXD ID that was available to be assigned to game models, false if no free TXD ID available. Do not rely on the id numbers returned being consistent across multiple clients or multiple runs of resources.
+function engineRequestTXD () end
+
+---@type fun(modelId: integer): boolean Returns true if this function succeeds
+function engineResetModelTXDID () end
+
+---@type fun(modelId: integer, txdId: integer): boolean Returns true if this function succeeds
+function engineSetModelTXDID () end
+
+---@type fun(theFile: file, verifyContents?: boolean): string | nil Returns the bytes that were read from the file, but only if verification was disabled or if the checksum comparison succeeded. 
+function fileGetContents () end
+
+---@type fun(ped: ped | player): boolean Returns true when the voice was successfully reset
+function resetPedVoice () end
+
+---@type fun(theVehicle: vehicle): boolean Returns the rotor speed if successful. This is 0 when the helicopter or plane is stationary, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise. Returns false in case of failure (an invalid element or a vehicle element that is not a helicopter or plane was passed). 
+function getVehicleRotorSpeed() end
+
+---@type  fun(theVehicle: vehicle, speed: number) Returns true if successful
+function setVehicleRotorSpeed() end
+
+--[[
+Returns
+* hit: true if there is a collision with the given element's mesh, false otherwise [in which case all other values are nil]
+* texU, texV: the U, V coordinates on the hit geometry's texture
+* textureName: name of the hit geometry's texture
+* frameName: hit frame's name
+* worldX, worldY, worldZ: collision position in world space
+]]
+--- Hit
+---@alias processLineAgainstMesh_hit  fun(toTest: element, startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): hit: true, texU: number, texV: number, textureName: string, frameName: string, worldX: number, worldY: number, worldZ: number
+--- No hit
+---@alias processLineAgainstMesh_noHit  fun(toTest: element, startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): hit: false
+---@type processLineAgainstMesh_hit | processLineAgainstMesh_noHit
+function processLineAgainstMesh () end
+
+--[[
+`level`: The amount of grain (0-255).
+]]
+---@type fun(level: integer) Returns true if the grain level was set
+function setGrainLevel () end
+
+---@type fun(modifierName: grainModifierName | "all", multiplier: number) Returns true if the grain multiplier was set
+function setGrainMultiplier () end

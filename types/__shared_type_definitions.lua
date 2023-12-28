@@ -34,8 +34,29 @@
 ---@alias resource userdata
 ---@alias root userdata
 
----@class matrix 
 ---@class xmlnode
+
+---@class Matrix 
+---@field transformDirection fun(matrix: Matrix, vector: Vector3): Vector3
+---@field transformPosition fun(matrix: Matrix, vector: Vector3): Vector3
+---@field getPosition fun(matrix: Matrix): Vector3
+---@field getRotation fun(matrix: Matrix): Vector3
+---@field getForward fun(matrix: Matrix): Vector3
+---@field getRight fun(matrix: Matrix): Vector3
+---@field getUp fun(matrix: Matrix): Vector3
+---@field inverse fun(matrix: Matrix): Matrix
+---@field setForward fun(matrix: Matrix): boolean
+---@field setPosition fun(matrix: Matrix): boolean
+---@field setRotation fun(matrix: Matrix): boolean
+---@field setRight fun(matrix: Matrix): boolean
+---@field setUp fun(matrix: Matrix): boolean
+---@operator add(Matrix): Matrix
+---@operator sub(Matrix): Matrix
+---@operator mul(Matrix): Matrix
+---@operator div(Matrix): Matrix
+---@overload fun(matrixOrPosition?: Vector3, rotation: Vector3): Matrix 
+---@overload fun(matrixOrPosition?: Matrix): Matrix
+Matrix = {}
 
 ---@class Vector2
 ---@field dot fun(vector: Vector2, vector: Vector2): Vector2
@@ -46,15 +67,16 @@
 ---@field setY fun(vector: Vector2, value: number): boolean
 ---@field getNormalized fun(vector: Vector2): Vector2
 ---@field getLength fun(vector: Vector2): number 
----@field getSquaredLength fun(vector: Vector2): number 
+---@field getSquaredLength fun(vector: Vector2): number
+---@field x number
+---@field y number 
 ---@operator add(Vector2): Vector2
 ---@operator sub(Vector2): Vector2
----@operator mul(Vector2): Vector2
----@operator div(Vector2): Vector2
----@operator mod(Vector2): Vector2
----@operator pow(Vector2): Vector2
----@overload fun(x?: number, y?: number): Vector2
----@overload fun(x?: Vector2): Vector2
+---@operator mul(Vector2 | number): Vector2
+---@operator div(Vector2 | number): Vector2
+---@operator pow(Vector2 | number): Vector2
+---@overload fun(xOrVector?: number, y?: number): Vector2
+---@overload fun(xOrVector?: Vector2): Vector2
 Vector2 = {}
 
 ---@class Vector3
@@ -62,39 +84,51 @@ Vector2 = {}
 ---@field normalize fun(vector: Vector3): boolean
 ---@field getX fun(vector: Vector3): number
 ---@field getY fun(vector: Vector3): number
+---@field getZ fun(vector: Vector3): number
 ---@field setX fun(vector: Vector3, value: number): boolean
 ---@field setY fun(vector: Vector3, value: number): boolean
+---@field setZ fun(vector: Vector3, value: number): boolean
 ---@field getNormalized fun(vector: Vector3): Vector3
 ---@field getLength fun(vector: Vector3): number 
 ---@field getSquaredLength fun(vector: Vector3): number 
+---@field cross fun(vector: Vector3, vector: Vector3): Vector3
+---@field x number
+---@field y number
+---@field z number
 ---@operator add(Vector3): Vector3
 ---@operator sub(Vector3): Vector3
----@operator mul(Vector3): Vector3
----@operator div(Vector3): Vector3
----@operator mod(Vector3): Vector3
----@operator pow(Vector3): Vector3
----@overload fun(x?: number, y?: number, z?: number): Vector3
----@overload fun(x?: Vector3): Vector3
+---@operator mul(Vector3 | number): Vector3
+---@operator div(Vector3 | number): Vector3
+---@operator pow(Vector3 | number): Vector3
+---@overload fun(xOrVector?: number, y?: number, z?: number): Vector3
+---@overload fun(xOrVector?: Vector3): Vector3
 Vector3 = {}
 
 ---@class Vector4
 ---@field dot fun(vector: Vector4, vector: Vector4): Vector4
 ---@field normalize fun(vector: Vector4): boolean
+---@field getW fun(vector: Vector4): number
 ---@field getX fun(vector: Vector4): number
 ---@field getY fun(vector: Vector4): number
+---@field getZ fun(vector: Vector3): number
+---@field setW fun(vector: Vector4, value: number): boolean
 ---@field setX fun(vector: Vector4, value: number): boolean
 ---@field setY fun(vector: Vector4, value: number): boolean
+---@field setZ fun(vector: Vector3, value: number): boolean
 ---@field getNormalized fun(vector: Vector4): Vector4
 ---@field getLength fun(vector: Vector4): number 
 ---@field getSquaredLength fun(vector: Vector4): number 
+---@field w number
+---@field x number
+---@field y number
+---@field z number
 ---@operator add(Vector4): Vector4
 ---@operator sub(Vector4): Vector4
----@operator mul(Vector4): Vector4
----@operator div(Vector4): Vector4
----@operator mod(Vector4): Vector4
----@operator pow(Vector4): Vector4
----@overload fun(x?: number, y?: number, z?: number, w?: number): Vector4
----@overload fun(vector?: Vector4): Vector4
+---@operator mul(Vector4 | number): Vector4
+---@operator div(Vector4 | number): Vector4
+---@operator pow(Vector4 | number): Vector4
+---@overload fun(xOrVector?: number, y?: number, z?: number, w?: number): Vector4
+---@overload fun(xOrVector?: Vector4): Vector4
 Vector4 = {}
 
 ---@class file
@@ -1308,6 +1342,15 @@ Use 3 to remove the paintjob.
 ]]
 ---@alias vehicleVariantId 0 | 1 | 2 | 3 | 4 | 5
 
----@alias quitReason "Unknown" | "Quit" | "Kicked" | "Banned" | "Bad Connection" | "Timed out"
+---@alias quitType "Unknown" | "Quit" | "Kicked" | "Banned" | "Bad Connection" | "Timed out"
 
 ---@alias stuntType "2wheeler" | "wheelie" | "stoppie"
+
+--[[
+* 0: normal message
+* 1: action message (/me)
+* 2: team message
+* 3: private message
+* 4: internal message
+]]
+---@alias messageType 0 | 1 | 2 | 3 | 4

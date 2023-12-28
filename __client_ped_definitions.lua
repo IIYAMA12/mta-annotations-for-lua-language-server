@@ -12,7 +12,7 @@ function setPedAimTarget () end
 ---@type fun(thePed: ped, cameraRotation: number): boolean Returns true if the camera rotation was changed, false otherwise. 
 function setPedCameraRotation () end
 
----@type fun(thePed: ped, taskName: string): boolean Returns true if the player is currently doing the task, false otherwise. 
+---@type fun(thePed: ped, taskName: pedComplexTask | pedSimpleTask): boolean Returns true if the player is currently doing the task, false otherwise. 
 function isPedDoingTask () end
 
 ---@type fun(thePed: ped): string, string If successul, returns the current voice type name and the voice name of the ped (see ped voices for possible names). 
@@ -30,13 +30,19 @@ function givePedWeapon () end
 ---@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target collides, or false if it was unsuccessful. 
 function getPedTargetCollision () end
 
----@type fun(thePed: ped, priority: string, taskType: integer): string | false, string | false, string | false, string | false
+--- Primary
+---@alias getPedTask_primary fun(thePed: ped, priority: "primary", taskType: primaryTaskType): pedComplexTask | false, pedComplexTask | false, pedComplexTask | false, pedComplexTask | false
+--- Secondary
+---@alias getPedTask_secondary fun(thePed: ped, priority: "secondary", taskType: secondaryTaskType): pedComplexTask | false, pedComplexTask | false, pedComplexTask | false, pedComplexTask | false
+---@see primaryTaskType
+---@see secondaryTaskType
+---@type getPedTask_primary | getPedTask_secondary
 function getPedTask () end
 
 ---@type fun(thePed: ped, oxygen: number): boolean Returns true if the oxygen level was changed succesfully. Returns false if an invalid ped and/or oxygen level was specified. 
 function setPedOxygenLevel () end
 
----@type fun(thePed: ped): block:pedAnimBlockName, anim:pedAnimName, time:integer, loop:boolean, updatePosition:boolean, interruptable:boolean, freezeLastFrame:boolean, blendTime:integer, restoreTaskOnAnimEnd:boolean
+---@type fun(thePed: ped): block: pedAnimBlockName, anim: pedAnimName, time: integer, loop: boolean, updatePosition:boolean, interruptable:boolean, freezeLastFrame:boolean, blendTime:integer, restoreTaskOnAnimEnd:boolean
 function getPedAnimation () end
 
 ---@type fun(enabled: boolean): boolean Returns true if the markers were enabled, false if weren't or if invalid arguments are passed. 
@@ -78,7 +84,7 @@ function setPedLookAt () end
 ---@type fun(thePed: ped): number Returns the camera rotation of the ped in degrees if successful.
 function getPedCameraRotation () end
 
----@type fun(thePed: ped): string Returns a string representing the name of the ped's simplest, active task. 
+---@type fun(thePed: ped): pedSimpleTask Returns a string representing the name of the ped's simplest, active task. 
 function getPedSimplestTask () end
 
 ---@type fun(thePed: ped, bone: integer): number, number, number Returns the x, y, z world position of the bone. 
@@ -99,7 +105,7 @@ function resetPedsLODDistance () end
 ---@type fun(thePlayer: element): boolean Returns true if feets are bleeding, false otherwise 
 function isPedFootBloodEnabled () end
 
----@type fun(thePed?: ped, vehicle, passenger): boolean Returns true if the function was successful, false otherwise. 
+---@type fun(thePed?: ped, theVehicle?: vehicle, passenger?: boolean): boolean Returns true if the function was successful, false otherwise. 
 function setPedEnterVehicle () end
 
 ---@type fun(thePed: ped): boolean

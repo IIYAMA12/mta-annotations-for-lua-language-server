@@ -24,7 +24,7 @@ function guiGetInputEnabled () end
 ---@type fun(guiElement: element): string, element | nil A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
 function guiGetFont () end
 
----@type fun(): "allow_binds" | "no_binds" | "no_binds_when_editing"
+---@type fun(): inputMode
 function guiGetInputMode () end
 
 ---@type fun(guiElement: element): visibility:boolean Returns true if the element is visible, false otherwise. 
@@ -33,18 +33,7 @@ function guiGetVisible () end
 ---@type fun(): width:number, height:number This returns two floats representing the player's screen resolution, width and height. 
 function guiGetScreenSize () end
 
---- // "none" = cursor has no image
---- // "arrow" = default cursor
---- // "sizing_ns" = N-S (up-down) sizing cursor
---- // "sizing_ew" = E-W (left-right) sizing cursor
---- // "sizing_nwse" = NW-SE diagonal sizing cursor
---- // "sizing_nesw" = NE-SW diagonal sizing cursor
---- // "sizing_eswe" = ES-WE horizontal sizing cursor
---- // "move" = move cursor
---- // "container_drag" = drag container cursor (note: not in use)
---- // "segment_moving" = segment moving cursor (note: not in use)
---- // "segment_sizing" = segment sizing cursor (note: not in use)
----@type fun(): "none" | "arrow" | "sizing_ns" |  "sizing_ew" | "sizing_nwse" | "sizing_nesw" | "sizing_eswe" | "move" | "container_drag" | "segment_moving" | "segment_sizing" 
+---@type fun(): cursorType
 function guiGetCursorType () end
 
 ---@type fun(guiElement: element, relative: boolean): x:number, y:number Returns floats representing the x and y position of the element.
@@ -62,7 +51,7 @@ function guiGetText () end
 ---@type fun(guiElement: element): boolean Returns true if the function was successful, false otherwise. 
 function guiBringToFront () end
 
----@type fun(mode: "allow_binds" | "no_binds" | "no_binds_when_editing"): boolean Returns true if input mode could be changed, false if invalid parameters are passed. 
+---@type fun(mode: inputMode): boolean Returns true if input mode could be changed, false if invalid parameters are passed. 
 function guiSetInputMode () end
 
 ---@type fun(guiElement: element): number This function returns a positive float in between 0 and 1 of the gui element's current alpha.
@@ -203,7 +192,8 @@ function guiGridListSetScrollBars () end
 ---@type fun(gridList: element, rowIndex: integer, columnIndex: integer, bReset?: boolean): boolean Returns true if the passed arguments are correct and the item has been selected, false otherwise. 
 function guiGridListSetSelectedItem () end
 
----@type fun(gridlist: element, mode: integer): boolean Returns true if the selection mode was successfully set, false otherwise. 
+---@see gridSelectionMode
+---@type fun(gridlist: element, mode: gridSelectionMode): boolean Returns true if the selection mode was successfully set, false otherwise. 
 function guiGridListSetSelectionMode () end
 
 ---@type fun(guiGridlist: element, enabled: boolean): boolean Returns true if sorting was successfully toggled, false otherwise.
@@ -398,7 +388,8 @@ function guiComboBoxIsOpen () end
 ---@type fun(comboBox: element, state: boolean): boolean Returns true if is successful, false otherwise. 
 function guiComboBoxSetOpen () end
 
----@type fun(gridlist: element): 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |9 Returns the ID of the current gridlist's selection mode. 
+---@see gridSelectionMode
+---@type fun(gridlist: element): gridSelectionMode Returns the ID of the current gridlist's selection mode. 
 function guiGridListGetSelectionMode () end
 
 ---@type fun(guiGridlist: element): boolean Returns true if sorting is enabled, false otherwise. 

@@ -243,9 +243,6 @@ function setTeamName () end
 ---@type fun(theTextItem: textitem): integer, integer, integer, integer Returns four integers in RGBA format, with a maximum value of 255 for each. The values are, in order, red, green, blue, and alpha. Alpha decides transparency where 255 is opaque and 0 is transparent. 
 function textItemGetColor () end
 
----@type fun(theElement: element): table If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
-function getAllElementData () end
-
 ---@type fun(theType: string, index: integer): element | false Returns the requested element, or false if it doesn't exist. 
 function getElementByIndex () end
 
