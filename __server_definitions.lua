@@ -666,20 +666,8 @@ function setControlState () end
 ---@type fun(thePlayer: player, controlName: controlName): boolean Returns the state of the control, false if the control doesn't exist or if the player is dead. 
 function getControlState () end
 
----@alias getPlayerBlurLevel_server (fun(): integer)
----@alias getPlayerBlurLevel_client (fun(thePlayer: player): integer)
---- Player argument has to be given on serverside
----@type getPlayerBlurLevel_server | getPlayerBlurLevel_client
-function getPlayerBlurLevel () end
-
 ---@type fun(thePlayer: player): integer Returns an int with the player debug script level.
 function getPlayerScriptDebugLevel () end
-
----@alias setPlayerBlurLevel_server (fun(thePlayer: player, level: integer): boolean)
----@alias setPlayerBlurLevel_client (fun(level: integer): boolean)
---- Player argument has to be given on serverside
----@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
-function setPlayerBlurLevel () end
 
 ---@type fun(thePlayer: player, level: integer): boolean Returns true if successful, false otherwise. 
 function setPlayerScriptDebugLevel () end

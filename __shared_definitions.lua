@@ -2184,6 +2184,20 @@ function setObjectBreakable () end
 ---@type fun(theElement: element): table If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
 function getAllElementData () end
 
+--- Serverside
+---@alias getPlayerBlurLevel_server (fun(): integer)
+--- Clientside
+---@alias getPlayerBlurLevel_client (fun(thePlayer: player): integer)
+---@type getPlayerBlurLevel_server | getPlayerBlurLevel_client
+function getPlayerBlurLevel () end
+
+--- Serverside
+---@alias setPlayerBlurLevel_server (fun(thePlayer: player, level: integer): boolean)
+--- Clientside
+---@alias setPlayerBlurLevel_client (fun(level: integer): boolean)
+---@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
+function setPlayerBlurLevel () end
+
 ---@param ... integer
 local char = function ( ... ) end
 utf8 = {
