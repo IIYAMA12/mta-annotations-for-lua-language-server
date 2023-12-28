@@ -6,7 +6,7 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
 
 * You do not have to restart your resource so often to validate if everything is working.
 * You have access to a lot of MTA syntax/autocompletion out of the box. The syntax info will remain while writing.
-* You know faster if something has been broken.
+* The language server will inform you about all sort of problems: Type mismatches, missing function arguments, missing variables etc.
 
 * [Feature list of Lua-Language-Server](https://luals.github.io/)
 * [More info about annotations](https://luals.github.io/wiki/annotations/)
@@ -91,7 +91,7 @@ outputChatBox--[[@as outputChatBox_server]]("Serverside", player)
 
 ## Forcing types
 
-### @cast
+### `cast` keyword
 
 Change the type of a variable to (a) different one(s). [Wiki @cast](https://luals.github.io/wiki/annotations/#cast)
 
@@ -105,7 +105,7 @@ local varName = exampleFunc()
 ---@cast varName string | number
 ```
 
-### @as
+### `as` keyword
 
 Change the type of an expression to (a) different one(s). [Wiki @as](https://luals.github.io/wiki/annotations/#as)
 
