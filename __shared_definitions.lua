@@ -2198,8 +2198,5 @@ function getPlayerBlurLevel () end
 ---@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
 function setPlayerBlurLevel () end
 
----@param ... integer
-local char = function ( ... ) end
-utf8 = {
-    char = char
-}
+---@type { char: fun(...: integer): string, byte: fun(input: string, startPos?: integer, endPos?: integer ) }
+utf8 = {}

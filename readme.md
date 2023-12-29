@@ -76,14 +76,14 @@ Find [here](https://luals.github.io/wiki/settings/#workspacelibrary) info about 
 
 ## Known issues
 
-- Make sure to always have an empty new line at the end of your files. See [issue](https://github.com/LuaLS/lua-language-server/issues/2326).
+- Make sure to always have an empty new line at the end of your files, as recommended in this [issue](https://github.com/LuaLS/lua-language-server/issues/2326).
 
-- Serverside syntax is not separated from clientside syntax. But you can force it for specific functions.
+- Currently, the Lua server language definition files do not have a clear separation between serverside functions/events and clientside functions/events. However, it is possible to enforce this separation for specific functions if needed.
 ```Lua
 outputChatBox--[[@as outputChatBox_server]]("Serverside", player)
 ```
 
-- Some functions return multiple types even though you selected a different syntax. Use the @cast/@as notation to adjust that, see `Forcing types` below.
+- In some cases, certain functions in the Lua server language definition files may return multiple types, even if you have selected a different syntax. To address this situation, you can use the `cast` or `as` notation to explicitly specify the desired type or adjust the returned type.
 
 ## Sidenote
 
