@@ -865,7 +865,7 @@ function setPlayerMoney () end
 ---@type fun(theElement: element, dimension: integer): boolean
 function setElementDimension () end
 
----@type fun(thePed: ped, theVehicle: vehicle, seat: vehicleSeatId): boolean Returns true if the operation is successful
+---@type fun(thePed: ped, theVehicle: vehicle, seat?: vehicleSeatId): boolean Returns true if the operation is successful
 function warpPedIntoVehicle () end
 
 --- Serverside
