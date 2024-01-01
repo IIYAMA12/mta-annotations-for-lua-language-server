@@ -19,11 +19,11 @@ function setVehiclesLODDistance () end
 ---@type fun(): distanceMostVehicles: number, distanceTrainsAndPlanes: number
 function getVehiclesLODDistance () end
 
----@type fun(modelID: integer, posX: number, posY: number, posZ: number): boolean Returns true if everything went fine
+---@type fun(modelId: integer, posX: number, posY: number, posZ: number): boolean Returns true if everything went fine
 function setVehicleModelExhaustFumesPosition () end
 
 ---@see radioChannel for definitions
----@type fun(ID: radioChannel): boolean  Returns true if channel was set successfully.
+---@type fun(Id: radioChannel): boolean  Returns true if channel was set successfully.
 function setRadioChannel () end
 
 ---@type fun(heli: vehicle): number Returns the rotor speed if successful. This is 0 when the helicopter is parked, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise
@@ -117,11 +117,11 @@ function isVehicleWheelOnGround () end
 ---@type fun(theVehicle: vehicle): boolean Returns true if the lights are on
 function areVehicleLightsOn () end
 
----@type fun(theVehicle: vehicle, theComponent: vehicleComponent, base?: scaleBase): number, number, number Returns three floats indicating the scale of the component, x, y and z respectively.
+---@type fun(theVehicle: vehicle, theComponent: vehicleComponent, base?: scaleBase): x: number, y: number, z: number Returns three floats indicating the scale of the component, x, y and z respectively.
 function getVehicleComponentScale () end
 
 ---@see vehicleId
----@type fun(modelID: vehicleId, dummy: vehicleDummy): number, number, number Returns three floats indicating the position x, y and z of given dummy.
+---@type fun(modelID: vehicleId, dummy: vehicleDummy): x: number, y: number, z: number Returns three floats indicating the position x, y and z of given dummy.
 function getVehicleModelDummyPosition () end
 
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent): boolean Returns true if the scale of the component was reset
@@ -131,7 +131,7 @@ function resetVehicleComponentScale () end
 function setVehicleComponentScale () end
 
 ---@see vehicleId
----@type fun(modelID: vehicleId, dummy: vehicleDummy, x: number, y: number, z: number): boolean Returns true if everything went fine
+---@type fun(modelId: vehicleId, dummy: vehicleDummy, x: number, y: number, z: number): boolean Returns true if everything went fine
 function setVehicleModelDummyPosition () end
 
 ---@see vehicleId
@@ -155,7 +155,7 @@ function getVehicleWheelFrictionState () end
 function getVehicleDummyPosition () end
 
 ---@see vehicleId
----@type fun(modelID: vehicleId, dummy: vehicleDummy): number, number, number Returns 3 floats indicating the default position X, Y and Z of the given dummy.
+---@type fun(modelId: vehicleId, dummy: vehicleDummy): number, number, number Returns 3 floats indicating the default position X, Y and Z of the given dummy.
 function getVehicleModelDummyDefaultPosition () end
 
 ---@type fun(theVehicle: vehicle): boolean Returns true if the dummy positions have been reset

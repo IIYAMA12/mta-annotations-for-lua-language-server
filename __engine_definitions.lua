@@ -36,7 +36,7 @@ function engineRestoreCOL () end
 ---@type fun(rawDataOrTxdFile : string, filteringEnabled?: boolean): txd | false Returns a TXD if the file was loaded, false otherwise. 
 function engineLoadTXD () end
 
----@type fun(theCol: col, modelID: integer): boolean | nil Returns true if the collision was successfully replaced, false or nil if the collision could not be replaced for a reason. 
+---@type fun(theCol: col, modelId: integer): boolean | nil Returns true if the collision was successfully replaced, false or nil if the collision could not be replaced for a reason. 
 function engineReplaceCOL () end
 
 ---@type fun(rawDataOrDffFile: string): dff | false Returns a DFF element if the dff file loaded, false otherwise. 

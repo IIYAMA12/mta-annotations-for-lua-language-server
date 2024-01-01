@@ -105,7 +105,7 @@ function dxSetTextureEdge () end
 ---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, flipUV?: boolean, material?: element, width: number, integercolor, postGUI?: boolean, numberfaceTowardX, faceTowardY: number, faceTowardZ: number): boolean
 function dxDrawMaterialLine3D () end
 
----@type fun(): {[string] : number | string}
+---@type fun(): {[possibleDxStatusKey] : any, [string]: unknown}
 function dxGetStatus () end
 
 ---@type fun(posX: number, posY: number, radius: number, startAngle?: number, stopAngle?: number, theColor?: color, theCenterColor?: color, segments?: integer, ratio?: integer, postGUI?: boolean): boolean Returns true if the creation of the 2D circle was successful, false otherwise. 

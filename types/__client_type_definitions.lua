@@ -510,3 +510,4 @@ radioChannel:
 ]]
 ---@alias gridSelectionMode 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
+---@alias possibleDxStatusKey "TestMode"|"VideoCardName"|"VideoCardRAM"|"VideoCardPSVersion"|"VideoCardMaxAnisotropy"|"VideoCardNumRenderTargets"|"VideoMemoryFreeForMTA"|"VideoMemoryUsedByFonts"|"VideoMemoryUsedByTextures"|"VideoMemoryUsedByRenderTargets"|"SettingWindowed"|"SettingFullScreenStyle"|"SettingFXQuality"|"SettingDrawDistance"|"SettingVolumetricShadows"|"SettingStreamingVideoMemoryForGTA"|"SettingAnisotropicFiltering"|"SettingAntiAliasing"|"SettingHeatHaze"|"SettingGrassEffect"|"Setting32BitColor"|"SettingHUDMatchAspectRatio"|"SettingAspectRatio"|"SettingFOV"|"SettingHighDetailVehicles"|"SettingHighDetailPeds"|"SettingCoronaReflections"|"SettingDynamicPedShadows"|"AllowScreenUpload"|"DepthBufferFormat"|"TotalPhysicalMemory"|"UsingDepthBuffer"|"SettingDebugMode"

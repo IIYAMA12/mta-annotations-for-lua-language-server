@@ -148,3 +148,5 @@ Many thanks to the community for all the syntax and descriptions.
 
 ## For the newest version?
 [MTA annotations for Lua-Language-Server](https://gitlab.com/IIYAMA12/mta-annotations-for-lua-language-server)
+
+Current version 1.0.0
