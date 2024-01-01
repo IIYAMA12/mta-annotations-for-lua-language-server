@@ -4,13 +4,13 @@
 -- Base types --
 ----------------
 
----@class account
----@class textitem
----@class ban
----@class acl
----@class aclgroup
----@class handle
----@class textdisplay
+---@alias account userdata
+---@alias textitem userdata
+---@alias ban userdata
+---@alias acl userdata
+---@alias aclgroup userdata
+---@alias handle userdata
+---@alias textdisplay userdata
 
 ---@alias databaseConnection userdata
 

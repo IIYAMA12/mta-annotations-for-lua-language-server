@@ -34,7 +34,7 @@
 ---@alias resource userdata
 ---@alias root userdata
 
----@class xmlnode
+---@alias xmlnode userdata
 
 ---@class Matrix 
 ---@field transformDirection fun(matrix: Matrix, vector: Vector3): Vector3
@@ -131,10 +131,10 @@ Vector3 = {}
 ---@overload fun(xOrVector?: Vector4): Vector4
 Vector4 = {}
 
----@class file
----@class timer
----@class uint
----@class request
+---@alias file userdata
+---@alias timer userdata
+---@alias uint integer
+---@alias request userdata
 ---@alias color integer
 
 --------------------------

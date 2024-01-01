@@ -17,10 +17,10 @@
 ---@alias texture userdata
 
 --- Engine
----@class dff
----@class col
----@class txd
----@class ifp
+---@alias dff userdata
+---@alias col userdata
+---@alias txd userdata
+---@alias ifp userdata
 
 --------------------------
 -- Predefined variables --

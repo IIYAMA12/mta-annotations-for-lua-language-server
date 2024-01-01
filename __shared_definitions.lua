@@ -6,13 +6,18 @@
     Credits to the community for all the available syntax and descriptions
 ]]
 
----@type fun(value: userdata): string
+---@alias sharedUserDataType "element"|"resource-data"|"xml-node"|"lua-timer"|"vector2"|"vector3"|"vector4"|"matrix"|"request"|"userdata"
+--- Serverside
+---@alias getUserdataType_server string|sharedUserDataType|"account"|"acl"|"acl-group"|"ban"|"text-item"|"text-display"
+--- Clientside
+---@alias getUserdataType_client string|sharedUserDataType
+---@type fun(value: userdata | Matrix | Vector4 | Vector3 | Vector2): getUserdataType_server|getUserdataType_client
 function getUserdataType () end
 
----@type fun(password: string, algorithm: string, options: table, callback?: function): string
+---@type (fun(password: string, algorithm: string|"bcrypt", options: table): string) | (fun(password: string, algorithm: string|"bcrypt", options: table, callback: fun(result: string)): true)
 function passwordHash () end
 
----@type fun(password: string, hash: string, callback?: function): boolean
+---@type (fun(password: string, hash: string): boolean) | (fun(password: string, hash: string, callback: fun(result: boolean)): true) | (fun(password: string, hash: string, options: table): boolean) | (fun(password: string, hash: string, options: table, callback: fun(result: boolean)): true)
 function passwordVerify () end
 
 ---@type fun(miliseconds: integer): boolean Returns true if the development mode is enabled and arguments are correct
@@ -24,10 +29,13 @@ function getDevelopmentMode () end
 ---@type fun(enable: boolean, enableWeb?: boolean): boolean Returns true if the mode was set correctl
 function setDevelopmentMode () end
 
----@type fun(filePath: string, readOnly?: boolean): xmlnode | false Returns the root xmlnode object of an xml file if successful
+---@type fun(filePath: string, readOnly?: boolean): xmlnode: xmlnode | false Returns the root xmlnode object of an xml file if successful
 function xmlLoadFile () end
 
----@type fun(node: xmlnode, name: string, value: string | number): boolean Returns true if the attribute was set successfully
+--[[
+    (Note: nil value will delete the attribute)
+]]
+---@type fun(node: xmlnode, name: string, value: string | number | nil): boolean Returns true if the attribute was set successfully
 function xmlNodeSetAttribute () end
 
 ---@type fun(): number Returns a float containing the max aircraft height. 
@@ -109,7 +117,7 @@ function createBlipAttachedTo () end
 ---@type fun(theElement: element, theAttachToElement?: element): boolean Returns true if the detaching was successful
 function detachElements () end
 
----@type fun(theElement: element): integer Returns an integer (0-255; 0 = transparent) indicating the element's alpha
+---@type fun(theElement: element): alpha: integer Returns an integer (0-255; 0 = transparent) indicating the element's alpha
 function getElementAlpha () end
 
 ---@type fun(theElement: element): x: number, y: number, z: number, xr: number, yr: number, zr: number Returns 6 floats, of which the first 3 indicate the position offset (x, y, z), and the last 3 indicate the rotation offset (x, y, z), if successful.
@@ -202,7 +210,11 @@ function isCursorShowing () end
 ---@type showCursor_server | showCursor_client Returns true if the player's cursor was shown or hidden successfully
 function showCursor () end
 
----@type fun(eventName: string, attachedTo: element, functionVar: function): boolean Returns true if the event handler was removed successfully. Returns false if the specified event handler could not be found.
+--- Serverside
+---@alias removeEventHandler_server fun(eventName: eventName_server, attachedTo: element, functionVar: function): boolean
+--- Clientside
+---@alias removeEventHandler_client fun(eventName: eventName_client, attachedTo: element, functionVar: function): boolean
+---@type removeEventHandler_server | removeEventHandler_client Returns true if the event handler was removed successfully. Returns false if the specified event handler could not be found.
 function removeEventHandler () end
 
 ---@type fun(node: xmlnode, name: string): string | false Returns the attribute in string form or false, if the attribute is not defined. 
@@ -897,7 +909,11 @@ function setSunColor () end
 ---@type getSunColor_default | getSunColor_ifSet Returns the color of the sun as six numbers, false if its default.
 function getSunColor () end
 
----@type fun(): distance: number Returns a float with the current fog render distance
+--- If default
+---@alias getFogDistance_default fun(): false
+--- If set
+---@alias getFogDistance_ifSet fun(): distance: number
+---@type getFogDistance_default | getFogDistance_ifSet  Returns a float with the current fog render distance
 function getFogDistance () end
 
 ---@type fun(): boolean Returns true if the color of the sun was reset
@@ -909,7 +925,11 @@ function setRainLevel () end
 ---@type fun(distance: number): boolean Returns true if the distance changed successfully
 function setFogDistance () end
 
----@type fun(): size: integer Returns a integer being the moon size that is currently set, depending on which side it is used. 
+--- If default
+---@alias getMoonSize_default fun(): false
+--- If set
+---@alias getMoonSize_ifSet fun(): size: integer
+---@type getMoonSize_default | getMoonSize_ifSet Returns a integer being the moon size that is currently set, depending on which side it is used. 
 function getMoonSize () end
 
 ---@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode | false Returns the xmlnode of the copy if the node was successfully copied, false if invalid arguments were passed. 
@@ -968,7 +988,7 @@ function isPlayerNametagShowing () end
 --[[
     Returns pickup element if the pickup was created succesfully
 ]]
----@see pickupModelSuggestion
+---@see pickupModelSuggestion for custom models
 ---@type createPickup_health | createPickup_armor | createPickup_weapon | createPickup_model
 function createPickup () end
 
@@ -1100,7 +1120,7 @@ function resetWindVelocity () end
 function removeVehicleUpgrade () end
 
 --[[
-    eturns a table with two fields: "in" and "out". Each of these contain a table with two fields: "bits" and "count". Each of these contain a table with 256 numeric fields ranging from 0 to 255, containing the appropriate network usage data for such packet id. 
+    Returns a table with two fields: "in" and "out". Each of these contain a table with two fields: "bits" and "count". Each of these contain a table with 256 numeric fields ranging from 0 to 255, containing the appropriate network usage data for such packet id. 
 ]]
 ---@type fun(): {["in"]: { count : { [integer] : integer }, bits : { [integer] : integer }}, out: { count : { [integer] : integer }, bits : { [integer] : integer }}}
 function getNetworkUsageData () end
