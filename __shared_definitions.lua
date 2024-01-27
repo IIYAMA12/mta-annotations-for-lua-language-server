@@ -438,10 +438,16 @@ function getMarkerSize () end
 ---@type fun(theMarker: marker, icon: markerIcon): boolean Returns true if successful
 function setMarkerIcon () end
 
---- Serverside
----@alias bindKey_server fun(thePlayer: player, key: keyName, keyState: keyState, handlerFunction: fun(keyPresser: player, key: keyName,  keyState: keyState, ...:any), ...:any): boolean
----Clientside
----@alias bindKey_client fun(key: keyName, keyState: keyState, handlerFunction: fun(key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+--- Serverside syntax 1
+---@alias bindKey_server_syntax_1 fun(thePlayer: player, key: keyName | controlName, keyState: keyState, handlerFunction: fun(keyPresser: player, key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+--- Serverside syntax 2
+---@alias bindKey_server_syntax_2 fun(thePlayer: player, key: keyName, keyState: keyState, commandName: string, ...:any): boolean
+---Clientside syntax 1
+---@alias bindKey_client_syntax_1 fun(key: keyName | controlName, keyState: keyState, handlerFunction: fun(key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+---Clientside syntax 2
+---@alias bindKey_client_syntax_2  fun(key: keyName, keyState: keyState, commandName: string, ...:any): boolean
+---@alias bindKey_server bindKey_server_syntax_1 | bindKey_server_syntax_2
+---@alias bindKey_client bindKey_client_syntax_1 | bindKey_client_syntax_2
 ---@type bindKey_server | bindKey_client Returns true if the key was bound
 function bindKey () end
 
@@ -482,11 +488,11 @@ function stopObject () end
 --- Serverside syntax 1
 ---@alias unbindKey_server_syntax_1 fun(thePlayer: player, key: keyName, command: string): boolean
 --- Serverside syntax 2
----@alias unbindKey_server_syntax_2 fun(thePlayer: player, key: keyName, keyState?: keyState, handler?: function): boolean
+---@alias unbindKey_server_syntax_2 fun(thePlayer: player, key: keyName | controlName, keyState?: keyState, handler?: function): boolean
 --- Clientside syntax 1
----@alias unbindKey_client_syntax_1 fun(key: keyName, command: string): boolean
+---@alias unbindKey_client_syntax_1 fun(key: keyName, keyState: keyState, command: string): boolean
 --- Clientside syntax 2
----@alias unbindKey_client_syntax_2 fun(key: keyName, keyState?: keyState, handler?: function): boolean
+---@alias unbindKey_client_syntax_2 fun(key: keyName | controlName, keyState?: keyState, handler?: function): boolean
 ---@alias unbindKey_server unbindKey_server_syntax_1 | unbindKey_server_syntax_2
 ---@alias unbindKey_client unbindKey_client_syntax_1 | unbindKey_client_syntax_2
 ---@type unbindKey_server | unbindKey_client Returns true if the key was unbound, false if it was not previously bound
