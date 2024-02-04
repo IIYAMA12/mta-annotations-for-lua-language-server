@@ -90,7 +90,7 @@ function logIn () end
 ---@type fun(theBan: ban): string | false Returns a string of the reason if everything was successful, false if invalid arguments are specified if there was no reason specified for the ban. 
 function getBanReason () end
 
----@type fun(): table Returns a table containing all the bans. 
+---@type fun(): ban[] Returns a table containing all the bans. 
 function getBans () end
 
 ---@type fun(IP?: string, Username?: string, Serial?: string, responsibleElement?: player, reason?: string, seconds?: integer): ban | false Returns the new ban if the IP/username/serial was banned successfully, false if invalid arguments are specified.
@@ -231,7 +231,7 @@ function textItemGetPosition () end
 ---@type fun(theTeam: team, friendlyFire: boolean): boolean Returns true if the friendly fire value is set for the specified team, false if the friendly fire value can't be set for the specified team or if invalid arguments are specified. 
 function setTeamFriendlyFire () end
 
----@type fun(thePlayer: player, theTeam: team): boolean Returns true if the player was successfully added to the specified team or removed from his previous one, false otherwise. 
+---@type fun(thePlayer: player, theTeam?: team): boolean Returns true if the player was successfully added to the specified team or removed from his previous one, false otherwise. 
 function setPlayerTeam () end
 
 ---@type fun(theTextitem: textitem): string Returns a string containing the text if the function was successful.
@@ -369,7 +369,11 @@ function getDeadPlayers () end
 ---@type fun(): table Returns a table of resources. 
 function getResources () end
 
----@type fun(thePlayer: player): string Returns the serial as a string if it was found.
+--- Serverside
+---@alias getPlayerSerial_server fun(thePlayer: player): string
+--- Clientside 
+---@alias getPlayerSerial_client fun(): string
+---@type getPlayerSerial_server | getPlayerSerial_client Returns the serial as a string if it was found.
 function getPlayerSerial () end
 
 ---@type fun(thePlayer: player): string Returns a string containing the client version.
