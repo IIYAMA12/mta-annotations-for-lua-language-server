@@ -25,9 +25,15 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
     * And click on the install button
 
 * [Sublime](https://github.com/sublimelsp/LSP-lua)
+
+    * Open the command panel
+        ```
+        ctrl + shift + p
+        ```
+
     * Run the following command
         ```
-            Package Control: Install Package
+        Package Control: Install Package
         ```
     * Search for `LSP` (Language Server Protocol) and click on it.
     * Repeat the same command, search for `LSP-lua` and click on it. This is for Lua language support.
@@ -159,7 +165,7 @@ You might need to restart the editor!
 
 
 
-## Known issues
+## Known issues ⚠️
 
 - Make sure to always have an empty new line at the end of your files, as recommended in this [issue](https://github.com/LuaLS/lua-language-server/issues/2326).
 
@@ -172,7 +178,7 @@ outputChatBox--[[@as outputChatBox_server]]("Serverside", player)
 
 ## Sidenote
 
-- There are probably some mistakes in it. If you come across those, just go to the type definition files and fix it. Self service for now!
+- There are probably some mistakes in it. If you come across those, just go to the type definition files and fix it. You can also make a pull request!
 
 ## Forcing types
 
@@ -227,7 +233,6 @@ example(123, 123, 555) -- OK
 
 ## Credits
 Many thanks to Subtixx's [dataset](https://github.com/Subtixx/vscode-mtalua/tree/master). These saved me a lot of time creating all those definitions. 
-
 
 Many thanks to the community for all the syntax and descriptions.
 
