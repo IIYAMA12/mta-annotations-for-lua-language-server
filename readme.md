@@ -97,7 +97,7 @@ For example:
 }
 ```
 
-Also the runtime version (Lua 5.1) is set correctly for MTA.
+Also the runtime version (Lua 5.1) is set correctly (for MTA) in this example.
 
 
 
@@ -107,7 +107,43 @@ Find [here](https://luals.github.io/wiki/settings/#workspacelibrary) info about 
 
 - [ ] Make sure to set the correct Lua runtime version in the extension config, for MTA it is: Lua 5.1
 
+### Visual Studio Code
+
+* See previous step for showing up the settings menu.
+
+* Search with the text `version`.
+
+![VS code Lua version](images/vs-code-version-search-result.png)
+
+* Change the version to 5.1
+
 ![Lua 5.1](images/mta-version.png)
+
+You might need to restart the editor!
+
+### Sublime
+
+* See previous step for showing up the settings menu. 
+
+Add the following line to the JSON file:
+
+```
+"Lua.runtime.version": "Lua 5.1"
+```
+
+like this:
+
+```JSON
+{
+	"settings": {
+		"Lua.workspace.library": ["C:\\Program Files (x86)\\MTA San Andreas 1.6\\repos\\mta-annotations-for-lua-language-server"],
+		"Lua.runtime.version": "Lua 5.1"
+	}
+}
+```
+
+You might need to restart the editor!
+
 
 - [ ] Disable the following diagnostic for your work files (you can also do it globaly in the workspace)
 ```Lua
