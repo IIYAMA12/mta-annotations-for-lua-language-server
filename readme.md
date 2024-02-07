@@ -18,7 +18,6 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
     ![Extentions](images/extensions.png)
 
     * and search for `Lua Language Server Coded by Lua` by `sumneko`
-
     ![Lua Language Server Coded by Lua by sumneko](images/extension-search-result.png)
 
     * And click on the install button
@@ -43,7 +42,6 @@ In the extension settings you can set a destination folder for the definition fi
 ![Extension settings locations](images/extension-settings-location.png)
 
 2. Search for `workspace.library`
-
 ![Workspace library](images/workspace-library.png)
 
 3. Click on `add item`
