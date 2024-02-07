@@ -3,23 +3,34 @@
 The files in this repo allows you to use Lua-Language-Server extension for MTA san resources.
 
 ## Why should you care?
-
-* You do not have to restart your resource so often to validate if everything is working.
-* You have access to a lot of MTA syntax/autocompletion out of the box. The syntax info will remain while writing.
 * The language server will inform you about all sort of problems: Type mismatches, missing function arguments, missing variables etc.
+* You have access to a lot of MTA syntax/autocompletion out of the box. The syntax info will remain while writing.
+* You do not have to restart your resource so often to validate if everything is working.
 
 * [Feature list of Lua-Language-Server](https://luals.github.io/)
 * [More info about annotations](https://luals.github.io/wiki/annotations/)
 * [Possible text editors support](https://microsoft.github.io/language-server-protocol/implementors/tools/)
-    * [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
-        * Go to extensions and search for `Lua Language Server Coded by Lua` by `sumneko``
-    * [Sublime](https://github.com/sublimelsp/LSP-lua)
-        * Run the following command
-            ```
-                Package Control: Install Package
-            ```
-        * Search for `LSP` (Language Server Protocol) and click on it.
-        * Repeat the same command, search for `LSP-lua` and click on it. This is for Lua language support.
+
+## Installation
+
+* [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
+    * Go to extensions:
+    
+    ![Extentions](images/extensions.png)
+
+    * and search for `Lua Language Server Coded by Lua` by `sumneko`
+
+    ![Lua Language Server Coded by Lua by sumneko](images/extension-search-result.png)
+    
+    * And click on the install button
+
+* [Sublime](https://github.com/sublimelsp/LSP-lua)
+    * Run the following command
+        ```
+            Package Control: Install Package
+        ```
+    * Search for `LSP` (Language Server Protocol) and click on it.
+    * Repeat the same command, search for `LSP-lua` and click on it. This is for Lua language support.
 
 ## How to use the definition files?
 
