@@ -246,7 +246,7 @@ function textItemGetColor () end
 ---@type fun(theType: string, index: integer): element | false Returns the requested element, or false if it doesn't exist. 
 function getElementByIndex () end
 
----@type fun(text: string, x: number, y: number, priority?: string, red?: integer, green?: integer, blue?: integer, alpha?: integer, scale?: number, alignX?: string, alignY?: string, shadowAlpha?: integer): textitem Returns a textitem object. 
+---@type fun(text: string, x: number, y: number, priority?: "low" | "medium" | "high", red?: integer, green?: integer, blue?: integer, alpha?: integer, scale?: number, alignX?: alignX, alignY?: alignY, shadowAlpha?: integer): textitem Returns a textitem object. 
 function textCreateTextItem () end
 
 ---@type fun(textitemToCheck: textitem): 0 | 1 | 2 Returns a integer of the priority of a text item, 0 = low, 1 = medium, 2 = high. 

@@ -1217,7 +1217,7 @@ function getNetworkStats () end
 * `hour`: The hour of the new time (range 0-23).
 * `minute`: The minute of the new time (range 0-59).
 ]]
----@type fun(hour: integer, minute: integer): boolean Returns true if the new time was successfully set
+---@type fun(hour: hours, minute: minutes): boolean Returns true if the new time was successfully set
 function setTime () end
 
 ---@type fun(): number Returns the rain level as a number. 
@@ -1239,7 +1239,7 @@ function getPerformanceStats () end
 ---@type setCameraInterior_server | setCameraInterior_client Returns true if the camera's interior was changed successfully, false otherwise. 
 function setCameraInterior () end
 
----@type fun(): hours: integer, minutes: integer Returns two integers that represent hours and minutes. 
+---@type fun(): hours: hours, minutes: minutes Returns two integers that represent hours and minutes. 
 function getTime () end
 
 ---@type fun(topRed?: integer, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean Returns true if sky color was set correctly, false if invalid values were passed.
@@ -1248,8 +1248,8 @@ function setSkyGradient () end
 ---@type fun(theTimer: timer): timeLeft: integer, leftToExecute: integer, timeInterval: integer
 function getTimerDetails () end
 
----@alias getRealTime_default fun(localTime?: boolean): {second: integer, minute: integer, hour: integer, monthday: integer, month: integer, year: integer, weekday: integer, yearday: integer, isdst: integer, timestamp: integer }
----@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: integer, minute: integer, hour: integer, monthday: integer, month: integer, year: integer, weekday: integer, yearday: integer, isdst: integer, timestamp: integer } | false
+---@alias getRealTime_default fun(localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer }
+---@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer } | false
 ---@type getRealTime_default | getRealTime_seconds Returns a table of substrings with different time format or false if the seconds argument is out of range. 
 function getRealTime () end
 
@@ -2207,7 +2207,7 @@ function getColPolygonHeight () end
 ---@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
 function setObjectBreakable () end
 
----@type fun(theElement: element): table If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
+---@type fun(theElement: element): { [string]: unknown } If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
 function getAllElementData () end
 
 --- Serverside

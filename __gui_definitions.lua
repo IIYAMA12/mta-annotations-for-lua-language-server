@@ -331,10 +331,10 @@ function guiLabelGetTextExtent () end
 ---@type fun(theElement: element, red: integer, green: integer, blue: integer): boolean Returns true if the the color of the gui label was successfully changed, false otherwise. 
 function guiLabelSetColor () end
 
----@type fun(theLabel: element, align: string, wordwrap?: boolean): boolean Returns true on success, false otherwise. 
+---@type fun(theLabel: element, align: alignX, wordwrap?: boolean): boolean Returns true on success, false otherwise. 
 function guiLabelSetHorizontalAlign () end
 
----@type fun(theLabel: element, align: string): boolean Returns true on success, false otherwise.
+---@type fun(theLabel: element, align: alignY): boolean Returns true on success, false otherwise.
 function guiLabelSetVerticalAlign () end
 
 ---@type fun(theLabel: element): integer, integer, integer Returns a gui window element if it was created successfully.

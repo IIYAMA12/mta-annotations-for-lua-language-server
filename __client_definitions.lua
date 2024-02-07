@@ -1044,3 +1044,6 @@ function setGrainLevel () end
 
 ---@type fun(modifierName: grainModifierName | "all", multiplier: number) Returns true if the grain multiplier was set
 function setGrainMultiplier () end
+
+---@type fun(charLimit: integer): boolean
+function setChatboxCharacterLimit() end
