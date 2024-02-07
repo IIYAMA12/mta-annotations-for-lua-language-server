@@ -63,7 +63,7 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 
 You have to open the Lua settings file for defining the definition directory.
 
-Command pannel:
+Command panel:
 ```
 ctrl + shift + p
 ```
