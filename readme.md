@@ -15,9 +15,11 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
 
 * [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
     * Go to extensions:
+
     ![Extentions](images/extensions.png)
 
     * and search for `Lua Language Server Coded by Lua` by `sumneko`
+    
     ![Lua Language Server Coded by Lua by sumneko](images/extension-search-result.png)
 
     * And click on the install button
@@ -39,9 +41,11 @@ The first step is to place the definition files at a location which you can find
 In the extension settings you can set a destination folder for the definition files.
 
 1. Right click on extension > extension settings.
+
 ![Extension settings locations](images/extension-settings-location.png)
 
 2. Search for `workspace.library`
+
 ![Workspace library](images/workspace-library.png)
 
 3. Click on `add item`
@@ -77,6 +81,7 @@ Find [here](https://luals.github.io/wiki/settings/#workspacelibrary) info about 
 ## Other things to do
 
 - [ ] Make sure to set the correct Lua runtime version in the extension config, for MTA it is: Lua 5.1
+
 ![Lua 5.1](images/mta-version.png)
 
 - [ ] Disable the following diagnostic for your work files (you can also do it globaly in the workspace)
