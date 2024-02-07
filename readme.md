@@ -88,7 +88,7 @@ Add overwrite the settings with the library path. You probably need to escape th
 // Settings in here override those in "LSP-lua/LSP-lua.sublime-settings"
 {
 	"settings": {
-		"Lua.workspace.library": ["FOLDER PATH"]
+		"Lua.workspace.library": ["DIRECTORY"]
 	}
 }
 ```
