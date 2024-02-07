@@ -9,19 +9,18 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
 
 * [Feature list of Lua-Language-Server](https://luals.github.io/)
 * [More info about annotations](https://luals.github.io/wiki/annotations/)
-* [Possible text editors support](https://microsoft.github.io/language-server-protocol/implementors/tools/)
+* [Text editors support](https://microsoft.github.io/language-server-protocol/implementors/tools/)
 
-## Installation
+## Installation Lua-Language-Server extension
 
 * [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)
     * Go to extensions:
-    
     ![Extentions](images/extensions.png)
 
     * and search for `Lua Language Server Coded by Lua` by `sumneko`
 
     ![Lua Language Server Coded by Lua by sumneko](images/extension-search-result.png)
-    
+
     * And click on the install button
 
 * [Sublime](https://github.com/sublimelsp/LSP-lua)
@@ -41,9 +40,20 @@ The first step is to place the definition files at a location which you can find
 In the extension settings you can set a destination folder for the definition files.
 
 1. Right click on extension > extension settings.
+![Extension settings locations](images/extension-settings-location.png)
+
 2. Search for `workspace.library`
+
+![Workspace library](images/workspace-library.png)
+
 3. Click on `add item`
-4. Fill in the file path.
+
+4. Fill in the file path of the definition files.
+
+For example:
+```
+C:\Program Files (x86)\MTA San Andreas 1.6\repos\mta-annotations-for-lua-language-server
+```
 
 If that doesn't work / can't find it. Just drop the definition folder right in your project.
 
