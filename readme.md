@@ -19,7 +19,7 @@ The files in this repo allows you to use Lua-Language-Server extension for MTA s
     ![Extentions](images/extensions.png)
 
     * and search for `Lua Language Server Coded by Lua` by `sumneko`
-    
+
     ![Lua Language Server Coded by Lua by sumneko](images/extension-search-result.png)
 
     * And click on the install button
@@ -61,10 +61,21 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 
 ### Sublime
 
-Open the settings file
+You have to open the Lua settings file for defining the definition directory.
+
+Command pannel:
+```
+ctrl + shift + p
+```
+
+Search for:
 ```
 Preferences: LSP-lua Settings
 ```
+
+Or alternative:
+
+![Sublime lua settings](images/sublime-lua-settings.png)
 
 Add overwrite the settings with the library path. You probably need to escape the following characters `\` like this `\\`.
 ```JSON
@@ -75,6 +86,20 @@ Add overwrite the settings with the library path. You probably need to escape th
 	}
 }
 ```
+
+For example:
+```JSON
+{
+	"settings": {
+		"Lua.workspace.library": ["C:\\Program Files (x86)\\MTA San Andreas 1.6\\repos\\mta-annotations-for-lua-language-server"],
+		"Lua.runtime.version": "Lua 5.1"
+	}
+}
+```
+
+Also the runtime version (Lua 5.1) is set correctly for MTA.
+
+
 
 Find [here](https://luals.github.io/wiki/settings/#workspacelibrary) info about definition files in general.
 
