@@ -1,6 +1,6 @@
 
 # Definition files for the Lua-Language-Server extension
-The files in this repo allows you to use Lua-Language-Server extension for MTA san resources.
+The files in this repository allows you to use Lua-Language-Server extension for MTA san resources.
 
 ## Why should you care?
 * The language server will inform you about all sort of problems: Type mismatches, missing function arguments, missing variables etc.
