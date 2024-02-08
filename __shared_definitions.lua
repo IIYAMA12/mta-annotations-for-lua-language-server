@@ -1498,9 +1498,9 @@ function getKeyBoundToFunction () end
 function clearChatBox () end
 
 --- Serverside
----@alias outputChatBox_server (fun(text: string, visibleTo?: player | root | player[] | team, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
+---@alias outputChatBox_server (fun(text: string | number, visibleTo?: player | root | player[] | team, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
 --- Clientside
----@alias outputChatBox_client (fun(text: string, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
+---@alias outputChatBox_client (fun(text: string | number, r?: integer, g?: integer, b?: integer, colorCoded?: boolean) : boolean)
 ---@type outputChatBox_server | outputChatBox_client Returns true if the message was displayed successfully.
 function outputChatBox () end
 

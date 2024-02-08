@@ -705,7 +705,7 @@ function getResourceGUIElement () end
 ---@type fun(): { code: string, name: string} Returns a table
 function getLocalization () end
 
----@type fun(theText: string): boolean Returns true if the text in the clip board was set correctly. 
+---@type fun(theText: string | number): boolean Returns true if the text in the clip board was set correctly. 
 function setClipboard () end
 
 ---@type (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: false): waterLevel: number | false) | (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: true): waterLevel: number) | (fun(waterElement: water): waterLevel: number) Returns an integer of the water level if the localPlayer/position is near the water (-3 to 20 on the Z coordinate) else false if there's no water near the localPlayer/position. 
