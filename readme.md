@@ -3,9 +3,13 @@
 The files in this repository allows you to use Lua-Language-Server extension for MTA san resources.
 
 ## Why should you care?
-* The language server will inform you about all sort of problems: Type mismatches, missing function arguments, missing variables etc.
-* You have access to a lot of MTA syntax/autocompletion out of the box. The syntax info will remain while writing.
-* You do not have to restart your resource so often to validate if everything is working.
+
+* The language server will inform you about all sorts of problems: type mismatches, missing function arguments, missing variables, etc.
+* You have access to a lot of MTA syntax/autocomplete out of the box. The syntax information will remain while writing.
+* You do not have to restart your resource so often in order to validate if everything is working.
+
+
+## Links and info
 
 * [Feature list of Lua-Language-Server](https://luals.github.io/)
 * [More info about annotations](https://luals.github.io/wiki/annotations/)
@@ -67,7 +71,7 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 
 ### Sublime
 
-You have to open the Lua settings file for defining the definition directory.
+Make this work, you have to open the Lua settings file for defining the definition directory.
 
 Command panel:
 ```
