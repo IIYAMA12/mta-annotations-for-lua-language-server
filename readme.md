@@ -1,6 +1,6 @@
 
 # Definition files for the Lua-Language-Server extension
-The Lua language server is a powerful tool that enhances the development experience for Lua programming. It provides a comprehensive set of code editing features, including suggestions, auto-completion, and error checking. With the Lua language server, developers can effortlessly navigate their codebase, access documentation easily, and ensure code correctness through automated formatting. This tool seamlessly integrates with popular code editors. The files in this repository are used to set the syntax and types for Multi Theft Auto related Lua components.
+The Lua language server is a powerful tool that enhances the development experience for Lua programming. It provides a comprehensive set of code editing features, including suggestions, auto-completion, and error checking. With the Lua language server, developers can effortlessly navigate through their resource files, access documentation easily, and ensure code correctness through automated formatting. This tool seamlessly integrates with popular code editors. The files in this repository are used to set the syntax and types for Multi Theft Auto related Lua components.
 
 ## Why should you care?
 
