@@ -233,6 +233,7 @@ end
 example(123, "", "verySpecific") -- OK
 example(123) -- Warning: This function requires 3 argument(s) but instead it is receiving 1.Lua Diagnostics.(missing-parameter)
 example(123, 123, 555) -- OK
+example(123, 123, 444) -- Warning: Cannot assign `integer` to parameter `"verySpecific"|555`.
 ```
 
 ## Credits
