@@ -180,7 +180,7 @@ outputChatBox--[[@as outputChatBox_server]]("Serverside", player)
 
 - In some cases, certain functions in the Lua server language definition files may return multiple types, even if you have selected a different syntax. To address this situation, you can use the `cast` or `as` notation to explicitly specify the desired type or adjust the return type.
 
-## Sidenote
+## Side note
 
 - There are probably some mistakes in it. If you come across those, just go to the type definition files and fix it. You can also make a pull request!
 
