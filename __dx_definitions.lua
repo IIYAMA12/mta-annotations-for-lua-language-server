@@ -15,7 +15,7 @@ function dxGetPixelColor () end
 ---@type (fun(text: string | number, left: number, top: number, right?: number, bottom?: number, color?: integer, scale?: number, font?: mixFont, alignX?: alignX, alignY?: alignY, clip?: boolean, wordBreak?: boolean, postGUI?: boolean, colorCoded?: boolean, subPixelPositioning?: boolean, fRotation?: number, fRotationCenterX?: number, fRotationCenterY?: number, fLineSpacing?: number): boolean) | (fun(text: string | number, left: number, top: number, right?: number, bottom?: number, color?: integer, scaleXY?: number, scaleY?: number, font?: mixFont, alignX?: alignX, alignY?: alignY, clip?: boolean, wordBreak?: boolean, postGUI?: boolean, colorCoded?: boolean, subPixelPositioning?: boolean, fRotation?: number, fRotationCenterX?: number, fRotationCenterY?: number, fLineSpacing?: number): boolean) ScaleY is optional. Returns true if successful, false otherwise. 
 function dxDrawText () end
 
----@type fun(posX: number, posY: number, width: number, height: number, u: number, v: number, usize: number, vsize: number, image: image, rotation?:number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number, color?: integer, postGUI?: boolean): boolean Returns true if successful, false otherwise. 
+---@type fun(posX: number, posY: number, width: number, height: number, u: number, v: number, usize: number, vsize: number, image: image | string, rotation?:number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number, color?: color, postGUI?: boolean): boolean Returns true if successful, false otherwise. 
 function dxDrawImageSection () end
 
 ---@type fun(pixels: string): width:integer, height: integer Returns width and height of the pixels if successful
@@ -96,7 +96,7 @@ function dxSetRenderTarget () end
 ---@type fun(scale?: number, font?: mixFont): integer Returns an integer of the height of the text. 
 function dxGetFontHeight () end
 
----@type fun(posX: number, posY: number, width: number, height: number, image: element, rotation?: number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number): boolean Returns true if successful, false otherwise. 
+---@type fun(posX: number, posY: number, width: number, height: number, image: image | string, rotation?: number, rotationCenterOffsetX?: number, rotationCenterOffsetY?: number, color?: color, postGUI?: boolean): boolean Returns true if successful, false otherwise. 
 function dxDrawImage () end
 
 ---@type fun(theTexture: texture, textureEdge: textureEdgeMode, borderColor?: integer): boolean
