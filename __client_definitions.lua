@@ -333,7 +333,7 @@ function getEffectSpeed () end
 ---@type fun(theElement: element): boolean Returns true if the specified element is frozen waiting for collisions of custom map objects to load. Returns false if it's not or if the specified element is invalid. 
 function isElementWaitingForGroundToLoad () end
 
----@type fun(event: string, theElement: element, arguments...): boolean Returns true if the event trigger has been sent, false if invalid arguments were specified or a client side element was a parameter. 
+---@type fun(event: string, theElement: element, ...:any): boolean Returns true if the event trigger has been sent, false if invalid arguments were specified or a client side element was a parameter. 
 function triggerServerEvent () end
 
 ---@type fun(theLight: light, radius: number): boolean Returns true if the function was successful
