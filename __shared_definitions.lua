@@ -2137,9 +2137,9 @@ function setPedFightingStyle () end
 function usePickup () end
 
 --- Serverside
----@alias setPlayerHudComponentVisible_server fun(thePlayer: player, component: hudComponent, show: boolean): boolean
+---@alias setPlayerHudComponentVisible_server fun(thePlayer: player, component: hudComponent | "all", show: boolean): boolean
 --- Clientside
----@alias setPlayerHudComponentVisible_client fun(component: hudComponent, show: boolean): boolean
+---@alias setPlayerHudComponentVisible_client fun(component: hudComponent | "all", show: boolean): boolean
 ---@type setPlayerHudComponentVisible_server | setPlayerHudComponentVisible_client Returns true if the component was shown or hidden succesfully
 function setPlayerHudComponentVisible () end
 
