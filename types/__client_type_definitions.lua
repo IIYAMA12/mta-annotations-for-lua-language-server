@@ -35,7 +35,6 @@ Diploma regular, 26px auto-scaled
 
 ![sa-header](..\images\type\3vyxyoiu.bmp)
 
-
 ### sa-gothic
 Beckett regular, 47px auto-scaled 
 
