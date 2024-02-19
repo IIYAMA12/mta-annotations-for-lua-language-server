@@ -21,7 +21,7 @@ function guiGetEnabled () end
 ---@type fun(): boolean Returns true if input is focused on GUI, false if it's focused on the game. 
 function guiGetInputEnabled () end
 
----@type fun(guiElement: element): string, element | nil A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
+---@type fun(guiElement: element): string | guiFont, element | nil A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
 function guiGetFont () end
 
 ---@type fun(): inputMode
@@ -63,7 +63,7 @@ function guiSetVisible () end
 ---@type fun(guiElement: element, width: number, height: number, relative: boolean): boolean Returns true if the gui element's size was set successfully.
 function guiSetSize () end
 
----@type fun(guiElement: element, font: mixFont): boolean Returns true if the font has been successfully set on the gui element, false otherwise.
+---@type fun(guiElement: element, font: guiFont | userdata): boolean Returns true if the font has been successfully set on the gui element, false otherwise.
 function guiSetFont () end
 
 ---@type fun(theElement: element, relative: boolean): number, number Returns the GUI element size x and y if the function has been successful.

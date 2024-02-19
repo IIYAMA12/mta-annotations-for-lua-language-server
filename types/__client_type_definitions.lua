@@ -9,6 +9,41 @@
 -- GUI
 ---@alias guiBrowser userdata
 
+--[[
+### default-normal
+Tahoma regular, 9px
+
+![default-normal](..\images\type\kcg80qtn.bmp)
+
+### default-small
+Tahoma regular, 7px 
+
+![default-small](..\images\type\5009la0f.bmp)
+
+### default-bold-small
+Tahoma bold, 8px 
+
+![default-bold-small](..\images\type\02bzw9wl.bmp)
+
+### clear-normal
+Verdana regular, 9px 
+
+![default-bold-small](..\images\type\31axpzs0.bmp)
+
+### sa-header
+Diploma regular, 26px auto-scaled
+
+![sa-header](..\images\type\3vyxyoiu.bmp)
+
+
+### sa-gothic
+Beckett regular, 47px auto-scaled 
+
+![sa-gothic](..\images\type\ncrd0b5y.bmp)
+
+]]
+---@alias guiFont "default-normal" | "default-small" | "default-bold-small" | "clear-normal" | "sa-header" | "sa-gothic"
+
 -- DX
 ---@alias image userdata
 ---@alias font userdata
