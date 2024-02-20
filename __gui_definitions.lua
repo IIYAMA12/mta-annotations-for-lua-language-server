@@ -78,7 +78,7 @@ function guiSetProperty () end
 ---@type fun(enabled: boolean): boolean Returns true if input mode could be changed, false if invalid parameters are passed. 
 function guiSetInputEnabled () end
 
----@type fun(guiElement: element, text: string): boolean Returns true if text has been successfully set on the gui element, false otherwise. 
+---@type fun(guiElement: element, text: string | number): boolean Returns true if text has been successfully set on the gui element, false otherwise. 
 function guiSetText () end
 
 ---@type fun(theElement: element, x: number, y: number, relative: boolean): boolean Returns true if the position has been successfully set, false otherwise. 

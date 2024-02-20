@@ -132,7 +132,7 @@ function getBanIP () end
 ---@type fun(): string | nil Returns the gametype as a string. If no gametype is set it returns nil. 
 function getGameType () end
 
----@type fun(gameType: string): boolean Returns true if the game type was set, false if an invalid argument was passed to the function. 
+---@type fun(gameType: string | false): boolean Returns true if the game type was set, false if an invalid argument was passed to the function. 
 function setGameType () end
 
 ---@type fun(theBan: ban, theTime: integer): boolean Returns true if changed successfully, false otherwise. 
@@ -141,7 +141,7 @@ function setUnbanTime () end
 ---@type fun(theBan: ban, theAdmin: string): boolean Returns true if changed, false otherwise. 
 function setBanAdmin () end
 
----@type (fun(kickedPlayer: player): boolean) | (fun(kickedPlayer: player, reason: string): boolean) | (fun(kickedPlayer: player, responsiblePlayer: player | string, reason: string): boolean) Returns true if the player was kicked succesfully, false if invalid arguments are specified. 
+---@type (fun(kickedPlayer: player): boolean) | (fun(kickedPlayer: player, reason: string): boolean) | (fun(kickedPlayer: player, responsiblePlayer?: player | string, reason: string): boolean) Returns true if the player was kicked succesfully, false if invalid arguments are specified. 
 function kickPlayer () end
 
 ---@type fun(theBan: ban, responsibleElement?: player): boolean Returns true if the ban was removed succesfully, false if invalid arguments are specified. 
@@ -246,7 +246,7 @@ function textItemGetColor () end
 ---@type fun(theType: string, index: integer): element | false Returns the requested element, or false if it doesn't exist. 
 function getElementByIndex () end
 
----@type fun(text: string, x: number, y: number, priority?: "low" | "medium" | "high", red?: integer, green?: integer, blue?: integer, alpha?: integer, scale?: number, alignX?: alignX, alignY?: alignY, shadowAlpha?: integer): textitem Returns a textitem object. 
+---@type fun(text: string, x: number, y: number, priority?: "low" | "medium" | "high" | 0 | 1 | 2, red?: integer, green?: integer, blue?: integer, alpha?: integer, scale?: number, alignX?: alignX, alignY?: alignY, shadowAlpha?: integer): textitem Returns a textitem object. 
 function textCreateTextItem () end
 
 ---@type fun(textitemToCheck: textitem): 0 | 1 | 2 Returns a integer of the priority of a text item, 0 = low, 1 = medium, 2 = high. 

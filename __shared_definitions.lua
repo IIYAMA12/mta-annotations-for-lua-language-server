@@ -1160,9 +1160,9 @@ function removeWorldModel () end
 function resetFogDistance () end
 
 --- Clientside
----@alias toggleControl_server fun(thePlayer: player, control: controlName, enabled: boolean): boolean
+---@alias toggleControl_server fun(thePlayer: player, control: controlName | controlNameHardCoded, enabled: boolean): boolean
 --- Serverside
----@alias toggleControl_client fun(control: controlName, enabled: boolean): boolean
+---@alias toggleControl_client fun(control: controlName | controlNameHardCoded, enabled: boolean): boolean
 --[[
    Returns true if the control was set successfully
 ]]
@@ -1275,7 +1275,7 @@ function getGravity () end
 function setInteriorSoundsEnabled () end
 
 --- `citiesonly` = false 
----@alias getZoneName_default fun(x: number, y: number, z: number, citiesonly: false): zoneAndSomeCityName
+---@alias getZoneName_default fun(x: number, y: number, z: number, citiesonly?: false): zoneAndSomeCityName
 --- `citiesonly` = true 
 ---@alias getZoneName_cityOnly fun(x: number, y: number, z: number, citiesonly: true): cityName
 ---@type getZoneName_default | getZoneName_cityOnly Returns the string of the zone/city name. 
@@ -1532,7 +1532,7 @@ function resetTimer () end
 * `timeInterval`: The number of milliseconds that should elapse before the function is called. The minimum is 0 ms; 1000 milliseconds = 1 second)
 * `timesToExecute`: The number of times you want the timer to execute, or 0 for infinite repetitions.
 ]]
----@type fun(theFunction: fun(...: any), timeInterval: integer, timesToExecute: integer, ...: any ): timer Returns a timer pointer if the timer was set successfully
+---@type fun(theFunction: function, timeInterval: integer, timesToExecute: integer, ...: any ): timer Returns a timer pointer if the timer was set successfully
 function setTimer (theFunction, timeInterval, timesToExecute, ...) end
 
 ---@type fun(stringToSplit: string, separatingChar: string | integer): string[] Returns a table of substrings split from the original string if successful
@@ -1678,7 +1678,7 @@ function getTrainPosition () end
 ---@type getVehicleColor_rgb | getVehicleColor_palette
 function getVehicleColor () end
 
----@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId[] Returns a table with all the compatible upgrades
+---@type fun(theVehicle: vehicle, slot?: vehicleSlotId): vehicleUpgradeId[] Returns a table with all the compatible upgrades
 function getVehicleCompatibleUpgrades () end
 
 ---@type fun(theVehicle: vehicle): player | ped | false Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise. 
@@ -2226,3 +2226,18 @@ function setPlayerBlurLevel () end
 
 ---@type { char: fun(...: integer): string, byte: fun(input: string, startPos?: integer, endPos?: integer ) }
 utf8 = {}
+
+---@deprecated
+function getPlayerUserName () end
+
+---@deprecated
+function setPedSkin () end
+
+---@deprecated
+function getVehicleRotation () end
+
+---@deprecated
+function getPedRotation () end
+
+---@deprecated
+function setPedRotation() end
