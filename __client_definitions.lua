@@ -914,6 +914,12 @@ function clearDebugBox () end
 ---@type fun(): boolean Returns true if the chat input is blocked, false otherwise. 
 function isChatInputBlocked () end
 
+---@type fun(): boolean Returns true if the focus is on the MTA window, false if not.
+function isMTAWindowFocused () end
+
+---@type fun(): boolean Returns true if caps lock is toggled (on), false otherwise.
+function isCapsLockEnabled () end
+
 ---@type fun(): integer Returns an integer with a value from 0 to 255, where 0 is fully transparent and 255 is fully opaque. 
 function getPlayerMapOpacity () end
 
