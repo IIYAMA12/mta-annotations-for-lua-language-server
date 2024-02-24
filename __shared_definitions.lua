@@ -200,7 +200,13 @@ function createColCircle () end
 ---@type fun(fX: number, fY: number, fWidth: number, fHeight: number): colshapeElement: colshape Returns a colshape element if successful
 function createColRectangle () end
 
----@type fun(thePlayer: player): shown: boolean Returns true if the player's cursor is visible
+--- Serverside
+---@alias isCursorShowing_server  fun(thePlayer: player): shown: boolean 
+
+--- Clientside
+---@alias isCursorShowing_client fun(): shown: boolean
+
+---@type isCursorShowing_server | isCursorShowing_client Returns true if the player's cursor is visible
 function isCursorShowing () end
 
 --- Serverside
