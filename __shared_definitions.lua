@@ -621,7 +621,7 @@ function setPedDoingGangDriveby () end
 ---@type fun(thePed: ped): vehicle | false Returns the vehicle that the specified ped is in, or false if the ped is not in a vehicle.
 function getPedOccupiedVehicle () end
 
----@type fun(thePed: ped, weaponSlot: weaponSlotId): integer Returns an int containing the total amount of ammo for the specified ped's weapon, or 0 if the ped specified is invalid. 
+---@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the total amount of ammo for the specified ped's weapon, or 0 if the ped specified is invalid. 
 function getPedTotalAmmo () end
 
 --[[
@@ -2230,7 +2230,36 @@ function getPlayerBlurLevel () end
 ---@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
 function setPlayerBlurLevel () end
 
----@type { char: fun(...: integer): string, byte: fun(input: string, startPos?: integer, endPos?: integer ) }
+---@alias utf8_byte (fun(input: string, startPos?: integer, endPos?: integer ): ...:integer|nil)
+---@alias utf8_char fun(arg1?: integer, arg2?: integer, arg3?: integer, arg4?: integer, arg5?: integer, arg6?: integer, ...: integer): string
+---@alias utf8_charpos (fun(input : string, charpos: integer, offset: integer ): integer | nil, integer | nil) | (fun(input : string, offset?: integer ): integer | nil, integer | nil)
+---@alias utf8_escape fun(input: string): string
+---@alias utf8_find fun(input: string, pattern: string, startPos?: integer, plain?: boolean): integer | nil, integer | nil
+---@alias utf8_fold (fun(input: string): string) | (fun(input: integer): integer)
+---@alias utf8_gmatch fun(input: string, pattern: string): function
+---@alias utf8_gsub fun(input: string, pattern: string, replace: string | integer | table | function, matchLimit?: integer): string, integer
+---@alias utf8_insert (fun(input: string, insertPos: integer, substring: string): string) | (fun(input: string, substring: string): string)
+---@alias utf8_len (fun(input: string, i?: integer, j?: integer): integer)
+---@alias utf8_lower (fun(input: string): string) | (fun(input: integer): integer)
+---@alias utf8_match (fun(input: string, pattern: string, index?: integer): ...:string | nil) 
+--[[
+| Value | Meaning |
+|-------|---------|
+| -1    | a < b   |
+| 0     | a == b  |
+| 1     | a > b   |
+]]
+---@alias utf8_ncasecmp (fun(a: string, b: string): -1 | 0 | 1) 
+---@alias utf8_next (fun(input : string, charpos: integer, offset: integer ): integer, integer) | (fun(input : string, offset?: integer ): integer, integer)
+---@alias utf8_remove fun(input : string, start: integer, stop?: integer): string
+---@alias utf8_reverse fun(input : string): string
+---@alias utf8_sub fun(input: string, i?: integer, j?: integer): string
+---@alias utf8_title (fun(input: string): string) | (fun(input: integer): integer)
+---@alias utf8_upper (fun(input: string): string) | (fun(input: integer): integer)
+---@alias utf8_width fun(input: string, ambiIsDouble?: boolean, defaultWidth?: integer): integer
+---@alias utf8_widthindex fun(input: string, location: integer, ambiIsDouble?: boolean, defaultWidth?: integer): integer, integer, integer
+
+---@type { charpos: utf8_charpos, char: utf8_char, byte: utf8_byte, escape: utf8_escape, find: utf8_find, fold: utf8_fold, gmatch: utf8_gmatch, gsub: utf8_gsub, insert: utf8_insert, len: utf8_len, lower: utf8_lower, match: utf8_match, ncasecmp: utf8_ncasecmp, next: utf8_next, remove: utf8_remove, reverse: utf8_reverse, sub: utf8_sub, title: utf8_title, upper: utf8_upper, width: utf8_width, widthindex: utf8_widthindex }
 utf8 = {}
 
 ---@deprecated
