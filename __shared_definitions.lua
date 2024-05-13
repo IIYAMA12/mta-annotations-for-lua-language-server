@@ -2123,7 +2123,7 @@ function setColShapeSize () end
 ---@type fun(theElement: element, key: string, inherit?: boolean): boolean This function returns true if the element contains element data for key, or false if the element doesn't exist or there is no data associated with the key. 
 function hasElementData () end
 
----@type (fun(): {[1]: string, [2]: resource}[]) | (fun(theResource: resource): string ) Returns a table containing all the commands of the given resource or a table with subtables containing the command and theResource pointer.
+---@type (fun(): {[1]: string, [2]: resource}[]) | (fun(theResource: resource): string[] ) Returns a table containing all the commands of the given resource or a table with subtables containing the command and theResource pointer.
 function getCommandHandlers () end
 
 ---@type fun(thePed: ped): fightingStyleId Returns the ped's current fighting style as an integer ID, false if it fails to retrieve a value. 
