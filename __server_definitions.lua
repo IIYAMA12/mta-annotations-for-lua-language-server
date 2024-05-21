@@ -201,7 +201,7 @@ function clearElementVisibleTo () end
 ---@type fun(theElement: element, numberxPos, yPos?: number, zPos?: number, cloneChildren?: boolean): element Returns the handle of the new cloned element of the parent.
 function cloneElement () end
 
----@type fun(theElement: ped | vehicle, thePlayer: player): boolean Returns true if the syncer was changed successfully, false if the element passed was not a ped or vehicle. 
+---@type fun(theElement: ped | vehicle, thePlayer: player, persist?: boolean): boolean Returns true if the syncer was changed successfully, false if the element passed was not a ped or vehicle. 
 function setElementSyncer () end
 
 ---@type fun(theTextitem: textitem): number Returns a floating point of the scale of the text. 1.0 is around 12pt. 
