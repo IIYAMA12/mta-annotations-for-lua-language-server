@@ -2276,3 +2276,9 @@ function getPedRotation () end
 
 ---@deprecated
 function setPedRotation() end
+
+---@type fun(propertyName: worldSpecialProperty, enabled: boolean): boolean Returns true if successful
+function setWorldSpecialPropertyEnabled () end
+
+---@type fun(propname: worldSpecialProperty): boolean Returns true if the property is enabled
+function isWorldSpecialPropertyEnabled () end

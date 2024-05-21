@@ -30,9 +30,6 @@ function createTrayNotification () end
 ---@type fun(): boolean Returns true if the tray notifications are enabled in the settings
 function isTrayNotificationEnabled () end
 
----@type fun(propertyName: worldSpecialProperty, enabled: boolean): boolean Returns true if successful
-function setWorldSpecialPropertyEnabled () end
-
 ---@type fun(sound: sound): table
 function getSoundEffects () end
 
@@ -780,9 +777,6 @@ function isLineOfSightClear () end
 ---@type fun(group: worldSoundGroup, index: integer): boolean Returns true if the world sounds are enabled
 function isWorldSoundEnabled () end
 
----@type fun(propname: worldSpecialProperty): boolean Returns true if the property is enabled
-function isWorldSpecialPropertyEnabled () end
-
 ---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean): hit:boolean, x:number, y:number, z:number, element, nx:number, ny:number, nz:number, mat:integer, lighting:number, piece:integer, worldModel:integer, x:number, y:number, z:number, rx:number, ry:number, rz:number, worldLOD:integer
 function processLineOfSight () end
 
@@ -1053,3 +1047,13 @@ function setGrainMultiplier () end
 
 ---@type fun(charLimit: integer): boolean
 function setChatboxCharacterLimit() end
+
+---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ACreateBuilding&type=code
+---@type fun(modelId: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, interior?: integer): building
+function createBuilding () end
+
+---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARemoveAllGameBuildings&type=code
+function removeAllGameBuildings() end
+
+---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARestoreGameBuildings&type=code
+function restoreAllGameBuildings() end
