@@ -26,3 +26,5 @@ client = userData_ -- the client that called the event
 -----------
 -- Other --
 -----------
+
+---@alias resourceStateChange "loaded" | "running" | "starting" | "stopping" | "unloaded"

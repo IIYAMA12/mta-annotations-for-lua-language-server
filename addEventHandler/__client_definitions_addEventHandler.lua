@@ -8,6 +8,10 @@
     onClientGUIDoubleClick
 ]]
 
+--[[
+    Browser events
+]]
+
 ---@alias addEventHandler_onClientBrowserCreated fun(eventName: "onClientBrowserCreated", attachedTo: element, handlerFunction: function, getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientBrowserCursorChange fun(eventName: "onClientBrowserCursorChange", attachedTo: element, handlerFunction: fun(cursorId: integer), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientBrowserDocumentReady fun(eventName: "onClientBrowserDocumentReady", attachedTo: element, handlerFunction: fun(url: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -20,8 +24,16 @@
 ---@alias addEventHandler_onClientBrowserTooltip fun(eventName: "onClientBrowserTooltip", attachedTo: element, handlerFunction: fun(text: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientBrowserWhitelistChange fun(eventName: "onClientBrowserWhitelistChange", attachedTo: element, handlerFunction: fun(changedDomains: string[]), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Colshape events
+]]
+
 ---@alias addEventHandler_onClientColShapeHit fun(eventName: "onClientColShapeHit", attachedTo: element, handlerFunction: fun(theElement: element, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientColShapeLeave fun(eventName: "onClientColShapeLeave", attachedTo: element, handlerFunction: fun(theElement: element, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Element events
+]]
 
 ---@alias addEventHandler_onClientElementColShapeHit fun(eventName: "onClientElementColShapeHit", attachedTo: element, handlerFunction: fun(theShape: colshape, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientElementColShapeLeave fun(eventName: "onClientElementColShapeLeave", attachedTo: element, handlerFunction: fun(theShape: colshape, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -33,12 +45,20 @@
 ---@alias addEventHandler_onClientElementStreamIn fun(eventName: "onClientElementStreamIn", attachedTo: element, handlerFunction: fun(), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientElementStreamOut fun(eventName: "onClientElementStreamOut", attachedTo: element, handlerFunction: fun(), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Input events
+]]
+
+-- Input
+
 ---@alias addEventHandler_onClientCharacter fun(eventName: "onClientCharacter", attachedTo: element, handlerFunction: fun(character: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientClick fun(eventName: "onClientClick", attachedTo: element, handlerFunction: fun(button: mouseButton, state: "up" | "down", absoluteX: integer, absoluteY: integer, worldX: number, worldY: number, worldZ: number, clickedWorld: element | false), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientCursorMove fun(eventName: "onClientCursorMove", attachedTo: element, handlerFunction: fun(cursorX: number, cursorY: number, absoluteX: integer, absoluteY: integer, worldX: number, worldY: number, worldZ: number), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientDoubleClick fun(eventName: "onClientDoubleClick", attachedTo: element, handlerFunction: fun(button: mouseButton, absoluteX: integer, absoluteY: integer, worldX: number, worldY: number, worldZ: number, clickedWorld: element | false), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientKey fun(eventName: "onClientKey", attachedTo: element, handlerFunction: fun(button : keyName, pressOrRelease : boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPaste fun(eventName: "onClientPaste", attachedTo: element, handlerFunction: fun(clipboardText: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+-- GUI
 
 ---@alias addEventHandler_onClientGUIAccepted fun(eventName: "onClientGUIAccepted", attachedTo: element, handlerFunction: fun(editBox: element), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientGUIBlur fun(eventName: "onClientGUIBlur", attachedTo: element, handlerFunction: fun(), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -58,8 +78,16 @@
 ---@alias addEventHandler_onClientMouseMove fun(eventName: "onClientMouseMove", attachedTo: element, handlerFunction: fun(absoluteX: integer, absoluteY: integer), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientMouseWheel fun(eventName: "onClientMouseWheel", attachedTo: element, handlerFunction: fun(downOrUp: -1 | 1), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Marker events
+]]
+
 ---@alias addEventHandler_onClientMarkerHit fun(eventName: "onClientMarkerHit", attachedTo: element, handlerFunction: fun(hitPlayer: player, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientMarkerLeave fun(eventName: "onClientMarkerLeave", attachedTo: element, handlerFunction: fun(leftPlayer: player, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Ped events
+]]
 
 ---@alias addEventHandler_onClientPedDamage fun(eventName: "onClientPedDamage", attachedTo: element, handlerFunction: fun(attacker: element | nil, weapon: integer | weaponId, bodypart: bodyPartId, loss: number | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPedHeliKilled fun(eventName: "onClientPedHeliKilled", attachedTo: element, handlerFunction: fun(killer: vehicle), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -70,8 +98,16 @@
 ---@alias addEventHandler_onClientPedWeaponFire fun(eventName: "onClientPedWeaponFire", attachedTo: element, handlerFunction: fun( weapon: weaponId, ammo: integer, ammoInClip: integer, hitX: number, hitY: number, hitZ: number, hitElement: element | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPedStep fun(eventName: "onClientPedStep", attachedTo: element, handlerFunction: fun(leftFoot: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Pickup events
+]]
+
 ---@alias addEventHandler_onClientPickupHit fun(eventName: "onClientPickupHit", attachedTo: element, handlerFunction: fun(thePlayer: player, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPickupLeave fun(eventName: "onClientPickupLeave", attachedTo: element, handlerFunction: fun(thePlayer: player, matchingDimension: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Player events
+]]
 
 ---@alias addEventHandler_onClientPlayerChangeNick fun(eventName: "onClientPlayerChangeNick", attachedTo: element, handlerFunction: fun(oldNick: string, newNick: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPlayerChoke fun(eventName: "onClientPlayerChoke", attachedTo: element, handlerFunction: fun(weaponId: weaponId), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -98,16 +134,32 @@
 ---@alias addEventHandler_onClientPlayerWeaponFire fun(eventName: "onClientPlayerWeaponFire", attachedTo: element, handlerFunction: fun(weapon: weaponId, ammo: integer, ammoInClip: integer, hitX: number, hitY: number, hitZ: number, hitElement: element | nil, startX: number, startY: number, startZ: number), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientPlayerWeaponSwitch fun(eventName: "onClientPlayerWeaponSwitch", attachedTo: element, handlerFunction: fun(previousWeaponSlot: integer, currentWeaponSlot: integer), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Object events
+]]
+
 ---@alias addEventHandler_onClientObjectBreak fun(eventName: "onClientObjectBreak", attachedTo: element, handlerFunction: fun(attacker: element | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientObjectDamage fun(eventName: "onClientObjectDamage", attachedTo: element, handlerFunction: fun(loss: number, attacker: element | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientObjectMoveStart fun(eventName: "onClientObjectMoveStart", attachedTo: element, handlerFunction: fun(), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientObjectMoveStop fun(eventName: "onClientObjectMoveStop", attachedTo: element, handlerFunction: fun(), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 
+--[[
+    Projectile events
+]]
+
 ---@alias addEventHandler_onClientProjectileCreation fun(eventName: "onClientProjectileCreation", attachedTo: element, handlerFunction: fun(creator: element), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Resource events
+]]
 
 ---@alias addEventHandler_onClientResourceFileDownload fun(eventName: "onClientResourceFileDownload", attachedTo: element, handlerFunction: fun(fileResource: resource, fileName: string, fileSize: integer, state: "queued" | "finished" | "failed"), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientResourceStart fun(eventName: "onClientResourceStart", attachedTo: element, handlerFunction: fun(startedResource: resource), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientResourceStop fun(eventName: "onClientResourceStop", attachedTo: element, handlerFunction: fun(startedResource: resource), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Sound events
+]]
 
 ---@alias addEventHandler_onClientSoundBeat fun(eventName: "onClientSoundBeat", attachedTo: element, handlerFunction: fun(theTime: number), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientSoundChangedMeta fun(eventName: "onClientSoundChangedMeta", attachedTo: element, handlerFunction: fun(streamTitle: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -115,6 +167,10 @@
 ---@alias addEventHandler_onClientSoundStarted fun(eventName: "onClientSoundStarted", attachedTo: element, handlerFunction: fun(reason: "play" | "resumed" | "enabled"), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientSoundStopped fun(eventName: "onClientSoundStopped", attachedTo: element, handlerFunction: fun(reason: "finished" | "paused" | "destroyed" | "disabled"), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientSoundStream fun(eventName: "onClientSoundStream", attachedTo: element, handlerFunction: fun(success: boolean, length: integer, streamName: string | nil, errorMessage: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Vehicle events
+]]
 
 ---@alias addEventHandler_onClientTrailerAttach fun(eventName: "onClientTrailerAttach", attachedTo: element, handlerFunction: fun(towedBy: vehicle), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientTrailerDetach fun(eventName: "onClientTrailerDetach", attachedTo: element, handlerFunction: fun(towedBy: vehicle), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
@@ -128,7 +184,16 @@
 ---@alias addEventHandler_onClientVehicleStartEnter fun(eventName: "onClientVehicleStartEnter", attachedTo: element, handlerFunction: fun(thePed: ped, seat: vehicleSeatId, door: 0 | 1 | 2 | 3 ), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientVehicleStartExit fun(eventName: "onClientVehicleStartExit", attachedTo: element, handlerFunction: fun(thePed: ped, seat: vehicleSeatId, door: 0 | 1 | 2 | 3 ), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientVehicleWeaponHit fun(eventName: "onClientVehicleWeaponHit", attachedTo: element, handlerFunction: fun(weaponType: 0 | 1 | 2 | 3 | 4, hitElement: element | nil, hitX: number, hitY: number, hitZ: number, model: integer | nil, materialId: integer | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Weapon creation events
+]]
+
 ---@alias addEventHandler_onClientWeaponFire fun(eventName: "onClientWeaponFire", attachedTo: element, handlerFunction: fun(hitElement: element | nil, posX: number,  posY: number, posZ: number, normalX: number, normalY: number, normalZ: number, materialType: integer | nil, lighting: number | nil, pieceHit: integer | nil), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+
+--[[
+    Other events
+]]
 
 ---@alias addEventHandler_onClientChatMessage fun(eventName: "onClientChatMessage", attachedTo: element, handlerFunction: fun(text: string, r: integer, g: integer, b: integer, messageType: messageType), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onClientConsole fun(eventName: "onClientConsole", attachedTo: element, handlerFunction: fun(text: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
