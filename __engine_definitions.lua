@@ -126,3 +126,7 @@ function engineStreamingGetUsedMemory () end
 ]]
 ---@type fun(): boolean
 function engineStreamingRestoreBufferSize () end
+
+--- Wiki specifies this function returns a boolean, but the current version returns void/nil. [Perma link to repo of the moment writing this comment](https://github.com/multitheftauto/mtasa-blue/blob/b20f86f8a070a7ae49a7da0ffa638dea3aa649b2/Client/mods/deathmatch/logic/luadefs/CLuaEngineDefs.cpp#L63)
+---@type fun(numVehicles?: integer, numPeds?: integer)
+function engineStreamingSetModelCacheLimits () end
