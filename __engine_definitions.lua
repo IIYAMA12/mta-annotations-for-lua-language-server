@@ -119,3 +119,10 @@ function engineStreamingFreeUpMemory () end
 
 ---@type fun(): integer Returns a int containing the amount of memory in bytes.
 function engineStreamingGetUsedMemory () end
+
+--[[ 
+    This function resets the streaming buffer.
+    Returns true if successfully, else returns an error.
+]]
+---@type fun(): boolean
+function engineStreamingRestoreBufferSize () end

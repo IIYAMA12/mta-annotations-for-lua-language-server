@@ -692,3 +692,6 @@ function getVehicleRespawnDelay () end
 
 ---@type fun(theVehicle: vehicle): boolean
 function isVehicleRespawnable () end
+
+---@type fun(theAccount: account): "player" | "guest" | string
+function getAccountType () end
