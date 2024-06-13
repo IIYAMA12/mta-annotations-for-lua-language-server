@@ -681,3 +681,14 @@ function isResourceProtected () end
 
 ---@type fun(theVehicle: vehicle, rx: number, ry: number, rz: number): boolean Returns true if the vehicle respawn rotation was set successfully, false otherwise. 
 function setVehicleRespawnRotation () end
+
+--- (in milliseconds)
+---@type fun(theVehicle: vehicle): integer
+function getVehicleIdleRespawnDelay () end
+
+--- (in milliseconds)
+---@type fun(theVehicle: vehicle): integer
+function getVehicleRespawnDelay () end
+
+---@type fun(theVehicle: vehicle): boolean
+function isVehicleRespawnable () end
