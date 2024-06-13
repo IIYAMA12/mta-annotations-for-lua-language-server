@@ -30,7 +30,7 @@ function dxCreateScreenSource () end
 ---@type (fun(filepathOrPixels: string, textureFormat?: textureFormat, mipmaps?: boolean, textureEdge?: textureEdge): element) |  (fun(width: integer, height: integer, textureFormat?: textureFormat, textureEdge?: textureEdge, textureType?: textureType, depth?: integer): element) Returns a texture if successful
 function dxCreateTexture () end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, color?: color, width?: integer, postGUI?: boolean): boolean Returns a true if the operation was successful, false otherwise. 
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, color?: color, width?: integer, postGUI?: dxStageOrPostGUI): boolean Returns a true if the operation was successful, false otherwise. 
 function dxDrawLine3D () end
 
 ---@type fun(startX: integer, startY: integer, endX: integer, endY: integer, color: integer, width?: number, postGUI?: boolean): boolean Returns a true if the operation was successful, false otherwise. 
@@ -102,7 +102,7 @@ function dxDrawImage () end
 ---@type fun(theTexture: texture, textureEdge: textureEdgeMode, borderColor?: integer): boolean
 function dxSetTextureEdge () end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, flipUV?: boolean, material?: element, width: number, integercolor, postGUI?: boolean, numberfaceTowardX, faceTowardY: number, faceTowardZ: number): boolean
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, flipUV?: boolean, material?: element, width: number, color: integer, postGUI?: dxStageOrPostGUI, faceTowardX: number, faceTowardY: number, faceTowardZ: number): boolean
 function dxDrawMaterialLine3D () end
 
 ---@type fun(): {[possibleDxStatusKey] : any, [string]: unknown}
@@ -117,7 +117,7 @@ function dxDrawMaterialPrimitive () end
 ---@type fun(pType: string, postGUI: boolean, vertice1: vertex, ...: vertex): boolean Returns a true if the operation was successful, false otherwise. 
 function dxDrawPrimitive () end
 
----@type fun(primitiveType: string, material: mixMaterial, postGUI: boolean, vertex1: vertex, ...: vertex): boolean Returns a true if the operation was successful, false otherwise. 
+---@type fun(primitiveType: string, material: mixMaterial, postGUI: dxStageOrPostGUI, vertex1: vertex, ...: vertex): boolean Returns a true if the operation was successful, false otherwise. 
 function dxDrawMaterialPrimitive3D () end
 
 ---@type fun(primitiveType: "pointlist" | "linelist" | "linestrip" | "trianglefan" | "trianglelist" | "trianglestrip", postGUI: boolean, vertex1: vertex, vertex2: vertex, vertex3?: vertex, vertex4?: vertex, ...: vertex): boolean Returns a true if the operation was successful, false otherwise.

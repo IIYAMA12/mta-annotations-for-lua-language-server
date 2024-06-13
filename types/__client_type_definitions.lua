@@ -547,3 +547,6 @@ radioChannel:
 ---@alias possibleDxStatusKey "TestMode"|"VideoCardName"|"VideoCardRAM"|"VideoCardPSVersion"|"VideoCardMaxAnisotropy"|"VideoCardNumRenderTargets"|"VideoMemoryFreeForMTA"|"VideoMemoryUsedByFonts"|"VideoMemoryUsedByTextures"|"VideoMemoryUsedByRenderTargets"|"SettingWindowed"|"SettingFullScreenStyle"|"SettingFXQuality"|"SettingDrawDistance"|"SettingVolumetricShadows"|"SettingStreamingVideoMemoryForGTA"|"SettingAnisotropicFiltering"|"SettingAntiAliasing"|"SettingHeatHaze"|"SettingGrassEffect"|"Setting32BitColor"|"SettingHUDMatchAspectRatio"|"SettingAspectRatio"|"SettingFOV"|"SettingHighDetailVehicles"|"SettingHighDetailPeds"|"SettingCoronaReflections"|"SettingDynamicPedShadows"|"AllowScreenUpload"|"DepthBufferFormat"|"TotalPhysicalMemory"|"UsingDepthBuffer"|"SettingDebugMode"
 
 ---@alias building userdata
+
+--- The boolean value is legacy
+---@alias dxStageOrPostGUI boolean | "prefx" | "postfx" | "postgui"
