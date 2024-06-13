@@ -44,11 +44,16 @@ function getAircraftMaxHeight () end
 ---@type fun(theXMLNode: xmlnode): string | false Returns the value of the node as a string if it was received successfully
 function xmlNodeGetValue () end
 
+--- Serverside
+---@alias createVehicle_server fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, variant1?: vehicleVariantId, variant2?: vehicleVariantId, synced?: true): vehicle
+
+--- Clientside
+---@alias createVehicle_client fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, variant1?: vehicleVariantId, variant2?: vehicleVariantId): vehicle
 --[[
     Returns the vehicle element that was created. 
 ]]
 ---@see vehicleId
----@type fun(model: vehicleId, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, numberplate?: string, variant1?: vehicleVariantId, variant2?: vehicleVariantId): vehicle
+---@type createVehicle_server | createVehicle_client 
 function createVehicle () end
 
 --- Serverside
