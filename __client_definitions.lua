@@ -273,6 +273,9 @@ function createFire () end
 ---@type fun(posX: number, posY: number, posZ: number, dirX: number, dirY: number, dirZ: number): boolean Returns a true if the operation was successful
 function fxAddPunchImpact () end
 
+---@type fun(particle: fxParticles, posX: number, posY: number, posZ: number,  dirX: number, dirY: number, dirZ: number, r: number, g: number, b: number, a: number, randomizeColors?: boolean, count?: integer, brightness?: number, size?: number, randomSizes?: boolean, life?: number): boolean
+function fxCreateParticle () end
+
 ---@type fun(theEffect: effect, speed: number): boolean Returns true if the effect speed was succesfuly changed
 function setEffectSpeed () end
 

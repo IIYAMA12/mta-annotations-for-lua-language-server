@@ -550,3 +550,5 @@ radioChannel:
 
 --- The boolean value is legacy
 ---@alias dxStageOrPostGUI boolean | "prefx" | "postfx" | "postgui"
+
+---@alias fxParticles "blood" | "boat_splash" | "bubble" | "car_debris" | "collision_smoke" | "gunshell" | "sand" | "sand2" | "huge_smoke" | "smoke" | "spark" | "spark2" | "splash" | "wake" | "water_splash" | "wheel_dirt" | "glass"
