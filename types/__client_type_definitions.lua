@@ -552,3 +552,29 @@ radioChannel:
 ---@alias dxStageOrPostGUI boolean | "prefx" | "postfx" | "postgui"
 
 ---@alias fxParticles "blood" | "boat_splash" | "bubble" | "car_debris" | "collision_smoke" | "gunshell" | "sand" | "sand2" | "huge_smoke" | "smoke" | "spark" | "spark2" | "splash" | "wake" | "water_splash" | "wheel_dirt" | "glass"
+
+--[[
+|           Name           | Default size | Resizable |                     Description                     |
+|:------------------------:|:------------:|:---------:|:---------------------------------------------------:|
+| building                 | 13000        | yes       | Static world objects. Terrain, roads, buildings...  |
+| dummy                    | 2500         | no        | Dynamic world objects. Doors, fences, boxes         |
+| ped                      | 140          | no        | Peds                                                |
+| object                   | 1200         | no        | Scriptable objects                                  |
+| vehicle                  | 110          | no        | Vehicles                                            |
+| col-model                | 12000        | no        |                                                     |
+| task                     | 5000         | no        |                                                     |
+| event                    | 5000         | no        |                                                     |
+| task-allocator           | 16           | no        |                                                     |
+| ped-intelligence         | 64           | no        |                                                     |
+| ped-attractor            | 64           | no        |                                                     |
+| entry-info-node          | 72600        | no        |                                                     |
+| node-route               | 64           | no        |                                                     |
+| patrol-route             | 32           | no        |                                                     |
+| point-route              | 64           | no        |                                                     |
+| pointer-double-link-pool | 74800        | no        |                                                     |
+| pointer-single-link-pool | 90000        | no        |                                                     |
+| env-map-material         | 16000        | no        |                                                     |
+| env-map-atomic           | 4000         | no        |                                                     |
+| spec-map-material        | 16000        | no        |                                                     |
+]]
+---@alias enginePools "building" | "dummy" | "ped" | "object" | "vehicle" | "col-model" | "task" | "event" | "task-allocator" | "ped-intelligence" | "ped-attractor" | "entry-info-node" | "node-route" | "patrol-route" | "point-route" | "pointer-double-link-pool" | "pointer-single-link-pool" | "env-map-material" | "env-map-atomic" | "spec-map-material"

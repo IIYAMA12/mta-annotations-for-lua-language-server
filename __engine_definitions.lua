@@ -130,3 +130,15 @@ function engineStreamingRestoreBufferSize () end
 --- Wiki specifies this function returns a boolean, but the current version returns void/nil. [Perma link to repo of the moment writing this comment](https://github.com/multitheftauto/mtasa-blue/blob/b20f86f8a070a7ae49a7da0ffa638dea3aa649b2/Client/mods/deathmatch/logic/luadefs/CLuaEngineDefs.cpp#L63)
 ---@type fun(numVehicles?: integer, numPeds?: integer)
 function engineStreamingSetModelCacheLimits () end
+
+---@type fun(pool: enginePools, capacity: number): boolean Returns true if the capacity was changed
+function engineSetPoolCapacity() end
+
+---@type fun(pool: enginePools): capacity:number Returns the capacity of the provided pool
+function engineGetPoolCapacity() end
+
+---@type fun(pool: enginePools): usedCapacity:number Returns the used capacity of the provided pool
+function engineGetPoolUsedCapacity() end
+
+---@type fun(pool: enginePools): defaultCapacity:number Returns the default capacity of the provided pool
+function engineGetPoolDefaultCapacity() end
