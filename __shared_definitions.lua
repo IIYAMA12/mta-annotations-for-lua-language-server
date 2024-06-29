@@ -2287,3 +2287,12 @@ function setWorldSpecialPropertyEnabled () end
 
 ---@type fun(propname: worldSpecialProperty): boolean Returns true if the property is enabled
 function isWorldSpecialPropertyEnabled () end
+
+---@type fun(path: string): entries:string[]|nil Returns entries in a specified directory. (Files and directories) If path is not found, it returns nil.
+function pathListDir () end
+
+---@type fun(path: string): boolean Returns true if a specified path points to a file.
+function pathIsFile() end
+
+---@type fun(path: string): boolean Returns true if a specified path points to a directory.
+function pathIsDirectory() end
