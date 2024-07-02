@@ -578,3 +578,33 @@ radioChannel:
 | spec-map-material        | 16000        | no        |                                                     |
 ]]
 ---@alias enginePools "building" | "dummy" | "ped" | "object" | "vehicle" | "col-model" | "task" | "event" | "task-allocator" | "ped-intelligence" | "ped-attractor" | "entry-info-node" | "node-route" | "patrol-route" | "point-route" | "pointer-double-link-pool" | "pointer-single-link-pool" | "env-map-material" | "env-map-atomic" | "spec-map-material"
+
+---@alias worldPropertyTypeRGB "AmbientColor" | "AmbientObjColor" | "DirectionalColor" | "BottomCloudsColor" | "LowCloudsColor"
+---@alias worldPropertyTypeFloat "Illumination" | "SpriteSize" | "SpriteBrightness" | "LightsOnGround" | "ShadowsOffset" | "WetRoads" | "Foggyness" | "Fog" | "RainFog" | "WaterFog" | "Rainbow" | "Sandstorm"
+---@alias worldPropertyTypeInteger "PoleShadowStrength" | "ShadowStrength" | "CloudsAlpha"
+
+--[[
+|      Property       |  Type  |                                                              Description                                                              |
+|:-------------------:|:------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
+| AmbientColor        | RGB    | The color of ambient light on map objects (including custom objects)                                                                  |
+| AmbientObjColor     | RGB    | The color of ambient light on dynamically created elements (peds, vehicles)                                                           |
+| DirectionalColor    | RGB    | The color of direct light on dynamically created elements (peds, vehicles)                                                            |
+| Illumination        | FLOAT  | Multiplier for the directional light (DirectionalColor)                                                                               |
+| SpriteSize          | FLOAT  | Point lights corona size (traffic lights)                                                                                             |
+| SpriteBrightness    | FLOAT  | Point lights corona brightness (also affects light on ground for light poles)                                                         |
+| LightsOnGround      | FLOAT  | Point lights ground reflection brightness (traffic lights)                                                                            |
+| PoleShadowStrength  | INT    | Pole shadows alpha (used if volumetric shadows are disabled)                                                                          |
+| ShadowStrength      | INT    | Shadows alpha (all shadows)                                                                                                           |
+| ShadowsOffset       | FLOAT  | Shadows height                                                                                                                        |
+| BottomCloudsColor   | RGB    | Bottom (normal) clouds color                                                                                                          |
+| CloudsAlpha         | INT    | Bottom (normal) clouds alpha                                                                                                          |
+| LowCloudsColor      | RGB    | Low (skyline) clouds color (dependent on game hours)                                                                                  |
+| WetRoads            | FLOAT  | Wet roads weather effect (noticeable during driving) Turns on lights on ground during daytime                                         |
+| Foggyness           | FLOAT  | Adds light fog effect for headlights and turns on lights on ground during daytime Also affects skyline clouds and shadows visibility  |
+| Fog                 | FLOAT  | Fog weather effect alpha                                                                                                              |
+| RainFog             | FLOAT  | Rain fog weather effect alpha (different fog; used in rain weathers) (reset is smooth)                                                |
+| WaterFog            | FLOAT  | Water fog alpha                                                                                                                       |
+| Rainbow             | FLOAT  | Rainbow alpha                                                                                                                         |
+| Sandstorm           | FLOAT  | Sandstorm sound volume (reset is smooth)                                                                                              |
+]]
+---@alias worldPropertyType worldPropertyTypeRGB | worldPropertyTypeFloat | worldPropertyTypeInteger

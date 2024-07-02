@@ -1060,3 +1060,18 @@ function removeAllGameBuildings() end
 
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARestoreGameBuildings&type=code
 function restoreAllGameBuildings() end
+
+---@type fun(theVehicle: vehicle, rotation: number ): boolean Returns true if successful
+function setVehicleWheelsRotation() end
+
+---@see worldPropertyType
+---@type ((fun(worldProperty: worldPropertyTypeRGB, r: integer, g: integer, b: integer):  boolean) | (fun(worldProperty: worldPropertyTypeFloat, value: number):  boolean) | (fun(worldProperty: worldPropertyTypeInteger, value: integer):  boolean) )
+function setWorldProperty () end
+
+---@see worldPropertyType
+---@type ((fun(worldProperty: worldPropertyTypeRGB): r: integer, g: integer, b: integer) | (fun(worldProperty: worldPropertyTypeFloat):  number) | (fun(worldProperty: worldPropertyTypeInteger):  integer) )
+function getWorldProperty () end
+
+---@see worldPropertyType
+---@type fun(worldProperty: worldPropertyType): boolean
+function resetWorldProperty () end
