@@ -300,7 +300,7 @@ function giveWeapon () end
 ---@type fun(thePed: ped, choking: boolean): boolean Returns true if successful, false otherwise (e.g. player handle is invalid) 
 function setPedChoking () end
 
----@type fun(filePath: string, integerdimension): xmlnode | false Returns the new map's root xmlnode if the map was added successfully, false otherwise. 
+---@type fun(filePath: string, dimension?: integer): xmlnode | false Returns the new map's root xmlnode if the map was added successfully, false otherwise. 
 function addResourceMap () end
 
 ---@type fun(thePed: ped): boolean Returns true if the pedestrian was made to reload, or false if invalid arguments were passed or that pedestrian has a weapon which cannot be reloaded. See wiki for other fail reasons: https://wiki.multitheftauto.com/wiki/ReloadPedWeapon
