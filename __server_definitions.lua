@@ -324,10 +324,14 @@ function removeVehicleSirens () end
 ---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle explosion time has been reset, false if it failed to reset the explosion time. 
 function resetVehicleExplosionTime () end
 
----@type fun(name: string, value: string, bSave?: boolean): boolean Returns true if the setting was successfully set, or false otherwise. 
+--[[ [Wiki server config](https://wiki.multitheftauto.com/wiki/Server_mtaserver.conf) 
+]]
+---@type fun(name: changeAbleServerConfigSetting, value: string, bSave?: boolean): boolean Returns true if the setting was successfully set, or false otherwise. 
 function setServerConfigSetting () end
 
----@type fun(name: string):  table | false Returns a string containing the current value for the named setting, table if name is module or false if the setting does not exist. If the setting name is serverip, may return the string "auto" on local servers. 
+--[[ [Wiki server config](https://wiki.multitheftauto.com/wiki/Server_mtaserver.conf) 
+]]
+---@type fun(name: serverConfigSetting): string | table | false Returns a string containing the current value for the named setting, table if name is module or false if the setting does not exist. If the setting name is serverip, may return the string "auto" on local servers. 
 function getServerConfigSetting () end
 
 ---@type fun(node: xmlnode, parent: element): element | false Returns an element object that corresponds to the root of the new data added, i.e. an element that represents the node xmlnode passed to the function. Returns false if the arguments are invalid. 
