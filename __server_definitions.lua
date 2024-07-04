@@ -367,10 +367,10 @@ function getPlayerIP () end
 ---@type fun(thePlayer: player): integer Returns the amount of time in milliseconds that a player has been idle.
 function getPlayerIdleTime () end
 
----@type fun(): table Returns a table of all the dead players. 
+---@type fun(): player[] Returns a table of all the dead players. 
 function getDeadPlayers () end
 
----@type fun(): table Returns a table of resources. 
+---@type fun(): resource[] Returns a table of resources. 
 function getResources () end
 
 --- Serverside
@@ -383,7 +383,7 @@ function getPlayerSerial () end
 ---@type fun(thePlayer: player): string Returns a string containing the client version.
 function getPlayerVersion () end
 
----@type fun(): table Returns a table of all the alive players. 
+---@type fun(): player[] Returns a table of all the alive players. 
 function getAlivePlayers () end
 
 ---@type fun(resourceName: string): boolean Returns true if the resource has been deleted successfully, false otherwise. 
@@ -395,7 +395,7 @@ function isPlayerMuted () end
 ---@type fun(): player | false Returns `false` if there are no players in the server
 function getRandomPlayer () end
 
----@type fun(theResource: resource): table Returns a table with the ACL requests for the given resource.
+---@type fun(theResource: resource): { access: boolean, date: string, name: string, pending: boolean, who: string}[] Returns a table with the ACL requests for the given resource.
 function getResourceACLRequests () end
 
 ---@type fun(host: string, queueName?: string, connectionAttempts: integer, connectTimeout: integer, resourceName: string, functionName: string, callbackFunction: function, ...: any): boolean Returns true if the function has been called, false otherwise. 
