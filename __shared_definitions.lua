@@ -401,7 +401,7 @@ function wasEventCancelled() end
 ---@type fun(theElement: ped | player | vehicle | object): health: number Returns a float indicating the element's health
 function getElementHealth() end
 
---- Serverside / clienside
+--- Serverside / clientside
 ---@alias setElementData_shared fun(theElement: element, key: string, value: any, synchronize?: boolean): boolean
 --- Serverside
 ---@alias setElementData_server_syntax_2 fun(theElement: element, key: string, value: any, syncMode?: "broadcast" | "local" | "subscribe"): boolean
