@@ -16,17 +16,17 @@ Tahoma regular, 9px
 ![default-normal](..\images\type\kcg80qtn.bmp)
 
 ### default-small
-Tahoma regular, 7px 
+Tahoma regular, 7px
 
 ![default-small](..\images\type\5009la0f.bmp)
 
 ### default-bold-small
-Tahoma bold, 8px 
+Tahoma bold, 8px
 
 ![default-bold-small](..\images\type\02bzw9wl.bmp)
 
 ### clear-normal
-Verdana regular, 9px 
+Verdana regular, 9px
 
 ![default-bold-small](..\images\type\31axpzs0.bmp)
 
@@ -36,7 +36,7 @@ Diploma regular, 26px auto-scaled
 ![sa-header](..\images\type\3vyxyoiu.bmp)
 
 ### sa-gothic
-Beckett regular, 47px auto-scaled 
+Beckett regular, 47px auto-scaled
 
 ![sa-gothic](..\images\type\ncrd0b5y.bmp)
 
@@ -62,7 +62,7 @@ Beckett regular, 47px auto-scaled
 
 ---@type userdata
 local userData_
-guiRoot = userData_ -- returns the root element of all GUI elements.
+guiRoot = userData_     -- returns the root element of all GUI elements.
 localPlayer = userData_ -- returns the player element of the local player.
 
 -----------
@@ -169,7 +169,7 @@ localPlayer = userData_ -- returns the player element of the local player.
 * 3: bedroom
 * 4: kitchen
 ]]
----@alias roomTypeId 0|1|2|3|4 
+---@alias roomTypeId 0|1|2|3|4
 
 ---@alias ambientSoundType "gunfire" | "general"
 ---@alias weaponFlag "disable_model" | "flags" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked"
@@ -430,7 +430,7 @@ localPlayer = userData_ -- returns the player element of the local player.
 radioChannel:
 * 0: Radio Off
 * 1: Playback FM
-* 2: K-Rose 
+* 2: K-Rose
 * 3: K-DST
 * 4: Bounce FM
 * 5: SF-UR
@@ -506,7 +506,7 @@ radioChannel:
 
 ---@alias inputMode "allow_binds" | "no_binds" | "no_binds_when_editing"
 
----@alias exampleShaderElementTypes "world" | "ped" | "vehicle" | "object" | "other" | "all" | "world,ped,vehicle" | string 
+---@alias exampleShaderElementTypes "world" | "ped" | "vehicle" | "object" | "other" | "all" | "world,ped,vehicle" | string
 
 --[[
 * 0: TASK_PHYSICAL_RESPONSE

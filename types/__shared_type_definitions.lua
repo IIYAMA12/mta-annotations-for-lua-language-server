@@ -16,7 +16,7 @@
 ---@alias vehicle userdata
 ---@alias object userdata
 ---@alias pickup userdata
----@alias marker userdata 
+---@alias marker userdata
 ---@alias colshape userdata
 ---@alias blip userdata
 ---@alias projectile userdata
@@ -36,7 +36,7 @@
 
 ---@alias xmlnode userdata
 
----@class Matrix 
+---@class Matrix
 ---@field transformDirection fun(matrix: Matrix, vector: Vector3): Vector3
 ---@field transformPosition fun(matrix: Matrix, vector: Vector3): Vector3
 ---@field getPosition fun(matrix: Matrix): Vector3
@@ -54,7 +54,7 @@
 ---@operator sub(Matrix): Matrix
 ---@operator mul(Matrix): Matrix
 ---@operator div(Matrix): Matrix
----@overload fun(matrixOrPosition?: Vector3, rotation: Vector3): Matrix 
+---@overload fun(matrixOrPosition?: Vector3, rotation: Vector3): Matrix
 ---@overload fun(matrixOrPosition?: Matrix): Matrix
 Matrix = {}
 
@@ -66,10 +66,10 @@ Matrix = {}
 ---@field setX fun(vector: Vector2, value: number): boolean
 ---@field setY fun(vector: Vector2, value: number): boolean
 ---@field getNormalized fun(vector: Vector2): Vector2
----@field getLength fun(vector: Vector2): number 
+---@field getLength fun(vector: Vector2): number
 ---@field getSquaredLength fun(vector: Vector2): number
 ---@field x number
----@field y number 
+---@field y number
 ---@operator add(Vector2): Vector2
 ---@operator sub(Vector2): Vector2
 ---@operator mul(Vector2 | number): Vector2
@@ -89,8 +89,8 @@ Vector2 = {}
 ---@field setY fun(vector: Vector3, value: number): boolean
 ---@field setZ fun(vector: Vector3, value: number): boolean
 ---@field getNormalized fun(vector: Vector3): Vector3
----@field getLength fun(vector: Vector3): number 
----@field getSquaredLength fun(vector: Vector3): number 
+---@field getLength fun(vector: Vector3): number
+---@field getSquaredLength fun(vector: Vector3): number
 ---@field cross fun(vector: Vector3, vector: Vector3): Vector3
 ---@field x number
 ---@field y number
@@ -116,8 +116,8 @@ Vector3 = {}
 ---@field setY fun(vector: Vector4, value: number): boolean
 ---@field setZ fun(vector: Vector3, value: number): boolean
 ---@field getNormalized fun(vector: Vector4): Vector4
----@field getLength fun(vector: Vector4): number 
----@field getSquaredLength fun(vector: Vector4): number 
+---@field getLength fun(vector: Vector4): number
+---@field getSquaredLength fun(vector: Vector4): number
 ---@field w number
 ---@field x number
 ---@field y number
@@ -151,17 +151,17 @@ local userData_
 local string_
 
 -- Global
-exports = table_ -- returns a table of resource names containing all export functions
-resource = userData_ -- returns a resource element of the resource the snippet was executed in
+exports = table_         -- returns a table of resource names containing all export functions
+resource = userData_     -- returns a resource element of the resource the snippet was executed in
 resourceRoot = userData_ -- returns a resource root element of the resource the snippet was executed in
-root = userData_ -- returns the root element of the server
-sourceTimer = userData_ -- The hidden global variable sourceTimer contains the currently executing timer userdata 
+root = userData_         -- returns the root element of the server
+sourceTimer = userData_  -- The hidden global variable sourceTimer contains the currently executing timer userdata
 
 -- Event Handlers
-source = userData_ -- The player or element the event was attached to
-this = userData_ -- Element, which was attached function-handler.
-eventName = string_ -- the name of the event ("onResourceStart", "onPlayerWasted" etc.)
-sourceResource = userData_ -- the resource that called the event
+source = userData_             -- The player or element the event was attached to
+this = userData_               -- Element, which was attached function-handler.
+eventName = string_            -- the name of the event ("onResourceStart", "onPlayerWasted" etc.)
+sourceResource = userData_     -- the resource that called the event
 sourceResourceRoot = userData_ -- the root of the resource that called the event
 
 -----------
@@ -850,7 +850,7 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 * 14: Front Right tyre
 * 15: Back Left tyre
 * 16: Back Right tyre
-    
+
 There are others!
 ]]
 ---@alias vehicleBodyPartId 0 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 13 | 14 | 15 | 16
@@ -878,7 +878,7 @@ There are others!
 --[[
     How damaged the part is on the scale of 0 to 3, with 0 being undamaged and 3 being very damaged. How this is manifested depends on the panel and the vehicle.
 ]]
----@alias vehiclePanelStateId 0 | 1 | 2 | 3 
+---@alias vehiclePanelStateId 0 | 1 | 2 | 3
 
 --[[
 * Blade: 0,1,2
@@ -1060,7 +1060,7 @@ Use 3 to remove the paintjob.
 ]]
 ---@alias vehiclePaletteColor 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|101|102|103|104|105|106|107|108|109|110|111|112|113|114|115|116|117|118|119|120|121|122|123|124|125|126
 
----@alias sirenTypeId 1 | 2 | 3 | 4 | 5 | 6 
+---@alias sirenTypeId 1 | 2 | 3 | 4 | 5 | 6
 
 --[[
 * 0: Hood
@@ -1119,7 +1119,7 @@ Use 3 to remove the paintjob.
 ---@alias weaponProperty_client_syntax_1 "weapon_range" | "target_range" | "accuracy" | "damage"
 ---@alias weaponProperty_client_syntax_2 "fire_rotation"
 
----@alias weaponPropertyFlags "flag_aim_no_auto" | "flag_aim_arm" | "flag_aim_1st_person" | "flag_aim_free" | "flag_move_and_aim" | "flag_move_and_shoot" | "flag_type_throw" | "flag_type_heavy" | "flag_type_constant" | "flag_type_dual" | "flag_anim_reload" | "flag_anim_crouch" | "flag_anim_reload_loop" | "flag_anim_reload_long" | "flag_shot_slows" | "flag_shot_rand_speed" | "flag_shot_anim_abrupt" | "flag_shot_expands"           
+---@alias weaponPropertyFlags "flag_aim_no_auto" | "flag_aim_arm" | "flag_aim_1st_person" | "flag_aim_free" | "flag_move_and_aim" | "flag_move_and_shoot" | "flag_type_throw" | "flag_type_heavy" | "flag_type_constant" | "flag_type_dual" | "flag_anim_reload" | "flag_anim_crouch" | "flag_anim_reload_loop" | "flag_anim_reload_long" | "flag_shot_slows" | "flag_shot_rand_speed" | "flag_shot_anim_abrupt" | "flag_shot_expands"
 
 --[[
     [Wiki traffic light states](https://wiki.multitheftauto.com/wiki/Traffic_light_states)
@@ -1284,9 +1284,17 @@ Use 3 to remove the paintjob.
 * 1: Error message
 * 2: Warning message
 * 3: Information message (default)
-* 4: Custom message (omits file path and line number) 
+* 4: Custom message (omits file path and line number)
 ]]
 ---@alias debugMessageLevel 0 | 1 | 2 | 3 | 4
+
+--[[
+* 0: close debug console
+* 1: only errors
+* 2: errors and warnings
+* 3: errors, warnings and info messages
+]]
+---@alias debugScriptLevel 0 | 1 | 2 | 3
 
 --[[
 * "checkpoint": A race checkpoint. These are very tall, but not infinite, light pillars. Checkpoints snap to ground and become invisible after going over a certain Z height.
