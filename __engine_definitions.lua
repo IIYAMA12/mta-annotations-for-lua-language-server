@@ -9,7 +9,7 @@
 ---@type fun(theModel: dff, modelID: integer, alphaTransparency?: boolean): boolean
 function engineReplaceModel() end
 
----@type fun(nameFilter?: string, modelId?: string): table Returns a table of texture names.
+---@type fun(nameFilter?: string, modelId?: string): string[] Returns a table of texture names.
 function engineGetVisibleTextureNames() end
 
 ---@type fun(rawDataOrColFile: string): col | false Returns a COL if the file was loaded, false otherwise.
@@ -18,10 +18,10 @@ function engineLoadCOL() end
 ---@type fun(shader: element, textureName: string, targetElement?: element): boolean Returns true if the shader was successfully removed, false otherwise.
 function engineRemoveShaderFromWorldTexture() end
 
----@type fun(texture: txd, model_id: integer): boolean Returns true if the function executed succesfully, false otherwise.
+---@type fun(texture: txd, modelId: integer): boolean Returns true if the function executed succesfully, false otherwise.
 function engineImportTXD() end
 
----@type fun(modelId: string): table Returns a table if this function succeeds.
+---@type fun(modelId?: string): string[] Returns a table if this function succeeds.
 function engineGetModelTextureNames() end
 
 ---@type fun(model: integer): number | false Returns a float representing the LOD distance of the model, or false if the model argument is incorrect.
@@ -54,10 +54,10 @@ function engineApplyShaderToWorldTexture() end
 ---@type fun(modelName: string): integer | false Returns an int with the ID of the object model, false otherwise.
 function engineGetModelIDFromName() end
 
----@type fun(model: integer, distance: number): boolean Returns true if the function executed succesfully, false otherwise.
+---@type fun(modelId: integer, distance: number): boolean Returns true if the function executed succesfully, false otherwise.
 function engineSetModelLODDistance() end
 
----@type fun(IfpFilePath: string, CustomBlockName: string): ifp | false Returns an IFP element if the IFP file loaded, false otherwise.
+---@type fun(ifpFilePath: string, CustomBlockName: string): ifp | false Returns an IFP element if the IFP file loaded, false otherwise.
 function engineLoadIFP() end
 
 ---@type fun(thePed: ped, internalBlockName: string, internalAnimName: string, customBlockName: string, customAnimName: string): boolean Returns true on success, false in case of failure.
@@ -90,10 +90,10 @@ function engineRequestModel() end
 ---@type fun(modelId: integer): boolean Returns true if the model was successfully freed, false otherwise.
 function engineFreeModel() end
 
----@type fun(modelNameOrModelId: string | integer, textureNames?: string | table): table | false Returns a table of texture elements [textureName, texture], false otherwise.
+---@type fun(modelNameOrModelId: string | integer, textureNames?: string | string[]): {[string]: texture} | false Returns a table of texture elements [textureName, texture], false otherwise.
 function engineGetModelTextures() end
 
----@type fun(surfaceId: integer, property: string, value: any, ...: any): boolean Returns true if the function executed succesfully, false otherwise.
+---@type fun(surfaceId: integer, property: string, value: any): boolean Returns true if the function executed succesfully, false otherwise.
 function engineSetSurfaceProperties() end
 
 ---@type fun(surfaceId: integer, property: string): unknown:... Returns the current property value. See the table below for possible values.
@@ -134,11 +134,68 @@ function engineStreamingSetModelCacheLimits() end
 ---@type fun(pool: enginePools, capacity: number): boolean Returns true if the capacity was changed
 function engineSetPoolCapacity() end
 
----@type fun(pool: enginePools): capacity:number Returns the capacity of the provided pool
+---@type fun(pool: enginePools): capacity: number Returns the capacity of the provided pool
 function engineGetPoolCapacity() end
 
----@type fun(pool: enginePools): usedCapacity:number Returns the used capacity of the provided pool
+---@type fun(pool: enginePools): usedCapacity: number Returns the used capacity of the provided pool
 function engineGetPoolUsedCapacity() end
 
----@type fun(pool: enginePools): defaultCapacity:number Returns the default capacity of the provided pool
+---@type fun(pool: enginePools): defaultCapacity: number Returns the default capacity of the provided pool
 function engineGetPoolDefaultCapacity() end
+
+---@type fun(img: userdata): boolean
+function engineAddImage() end
+
+---@type fun(imgFile: string): img: userdata
+function engineLoadIMG() end
+
+---@type fun(modelId: integer): integer
+function engineGetModelFlags() end
+
+---@type fun(modelId: integer): integer
+function engineGetModelTXDID() end
+
+---@type fun(img: userdata): integer
+function engineImageGetFilesCount() end
+
+---@type fun(img: userdata): string[]
+function engineImageGetFiles() end
+
+---@type fun(img: userdata, fileIdOrName: integer | string): string | false
+function engineImageGetFile() end
+
+---@type fun(img: userdata, filePath: string, modelId: integer): boolean
+function engineImageLinkDFF() end
+
+---@type fun(img: userdata, filePath: string, txdId: integer): boolean
+function engineImageLinkTXD() end
+
+---@type fun(modelId: integer): boolean
+function engineResetModelFlags() end
+
+---@type fun(modelId: integer): boolean
+function engineRestoreDFFImage() end
+
+---@type fun(modelId: integer): boolean
+function engineRestoreTXDImage() end
+
+---@type fun(modelId: integer, flagName: string, state: boolean): boolean
+function engineSetModelFlag() end
+
+---@type fun(modelId: integer, flags: integer, ideFlags?: boolean): boolean
+function engineSetModelFlags() end
+
+---@type fun(sizeBytes: integer): nil
+function engineStreamingSetMemorySize() end
+
+---@type fun(): integer
+function engineStreamingGetMemorySize() end
+
+---@type fun(): nil
+function engineStreamingRestoreMemorySize() end
+
+---@type fun(sizeBytes: integer): boolean
+function engineStreamingSetBufferSize() end
+
+---@type fun(): integer
+function engineStreamingGetBufferSize() end
