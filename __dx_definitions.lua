@@ -60,7 +60,7 @@ function dxGetBlendMode() end
 ---@type fun(screenSource: element, resampleNow?: boolean): boolean Returns true if the screen was successfully captured, false otherwise.
 function dxUpdateScreenSource() end
 
----@type fun(theShader: element, parameterName: string, value : element|boolean|number, ...: element|boolean|number ): boolean Returns true if the shader element's parameter was successfully changed, false otherwise.
+---@type fun(theShader: element, parameterName: string, value : element|boolean|number|table, ...: element|boolean|number|table ): boolean Returns true if the shader element's parameter was successfully changed, false otherwise.
 function dxSetShaderValue() end
 
 ---@type (fun(width: integer, height: integer, withAlpha?: boolean): element | false) | (fun(width: integer, height: integer, surfaceFormat?: unknown): element | false)
