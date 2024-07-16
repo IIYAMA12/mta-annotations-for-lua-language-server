@@ -36,7 +36,7 @@ function dxDrawLine3D() end
 ---@type fun(startX: integer, startY: integer, endX: integer, endY: integer, color: integer, width?: number, postGUI?: boolean): boolean Returns a true if the operation was successful, false otherwise.
 function dxDrawLine() end
 
----@type (fun(filepathOrRaw_data: string): shader:element | false, name:string) | (fun(filepathOrRaw_data: string, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes): shader:element | false, name:string) | (fun(filepathOrRaw_data: string, macros?: table, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes): shader:element | false, name:string) A shader element if successful, false if invalid arguments were passed to the function. The name of the technique that will be used. Element types: A comma seperated list of element types to restrict this shader to.
+---@type (fun(filepathOrRaw_data: string): shader: element | false, name:string) | (fun(filepathOrRaw_data: string, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element | false, name:string) | (fun(filepathOrRaw_data: string, macros?: table, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element | false, name:string) A shader element if successful, false if invalid arguments were passed to the function. The name of the technique that will be used. Element types: A comma seperated list of element types to restrict this shader to.
 function dxCreateShader() end
 
 ---@type fun(material: element): width:integer, height:integer, depth:integer? Returns two ints representing the width and height in pixels of the material.  If the material is a volume texture, this function will return three ints representing the width, height and depth.
@@ -61,7 +61,7 @@ function dxGetBlendMode() end
 function dxUpdateScreenSource() end
 
 ---@alias dxSetShaderValue_syntax_number fun(theShader: element, parameterName: string, value1: number, value2?: number, value3?: number, value4?: number, value5?: number, value6?: number, value7?: number, value8?: number, value9?: number, value10?: number, value11?: number, value12?: number, value13?: number, value14?: number, value15?: number, value16?: number ): boolean
----@alias dxSetShaderValue_syntax_other fun(theShader: element, parameterName: string, value1: texture|boolean ): boolean
+---@alias dxSetShaderValue_syntax_other fun(theShader: element, parameterName: string, value1: texture|boolean|number[] ): boolean
 ---@type dxSetShaderValue_syntax_number | dxSetShaderValue_syntax_other Returns true if the shader element's parameter was successfully changed, false otherwise.
 function dxSetShaderValue() end
 
