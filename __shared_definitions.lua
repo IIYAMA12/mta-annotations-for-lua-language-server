@@ -2293,3 +2293,7 @@ function pathIsFile() end
 
 ---@type fun(path: string): boolean Returns true if a specified path points to a directory.
 function pathIsDirectory() end
+
+---@deprecated
+---@type fun(ped: player|ped): integer
+function getPedSkin() end
