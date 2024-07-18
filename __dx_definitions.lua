@@ -61,7 +61,7 @@ function dxGetBlendMode() end
 function dxUpdateScreenSource() end
 
 ---@alias dxSetShaderValue_syntax_number fun(theShader: element, parameterName: string, value1: number, value2?: number, value3?: number, value4?: number, value5?: number, value6?: number, value7?: number, value8?: number, value9?: number, value10?: number, value11?: number, value12?: number, value13?: number, value14?: number, value15?: number, value16?: number ): boolean
----@alias dxSetShaderValue_syntax_other fun(theShader: element, parameterName: string, value1: texture|boolean|number[] ): boolean
+---@alias dxSetShaderValue_syntax_other fun(theShader: element, parameterName: string, value1: texture|boolean|table ): boolean
 ---@type dxSetShaderValue_syntax_number | dxSetShaderValue_syntax_other Returns true if the shader element's parameter was successfully changed, false otherwise.
 function dxSetShaderValue() end
 
