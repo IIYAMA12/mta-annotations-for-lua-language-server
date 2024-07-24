@@ -1081,3 +1081,18 @@ function setCoronaReflectionEnabled() end
 
 ---@type fun(theMarker: marker): boolean
 function isCoronaReflectionEnabled() end
+
+--[[
+
+- 0: disabled
+- 1: enabled (will be visible during rain)
+- 2: force enabled (will be visible even if there is no rain)
+]]
+---@type fun(enabled: 1|2|3): boolean
+function setCoronaReflectionsEnabled() end
+
+---@type fun(): enabled: 1|2|3
+function getCoronaReflectionsEnabled() end
+
+---@type fun(): boolean
+function resetCoronaReflectionsEnabled() end
