@@ -2297,3 +2297,9 @@ function pathIsDirectory() end
 ---@deprecated
 ---@type fun(ped: player|ped): integer
 function getPedSkin() end
+
+---@type fun(theMarker: marker, r?: integer, g?: integer, b?: integer, a?: integer, size?: number )
+function setMarkerTargetArrowProperties() end
+
+---@type fun(theMarker: marker): r: integer, g: integer, b: integer, a: integer, size: number
+function getMarkerTargetArrowProperties() end
