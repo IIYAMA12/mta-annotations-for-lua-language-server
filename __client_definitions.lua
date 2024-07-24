@@ -1075,3 +1075,9 @@ function getWorldProperty() end
 ---@see worldPropertyType
 ---@type fun(worldProperty: worldPropertyType): boolean
 function resetWorldProperty() end
+
+---@type fun(theMarker: marker, enabled: boolean): boolean
+function setCoronaReflectionEnabled() end
+
+---@type fun(theMarker: marker): boolean
+function isCoronaReflectionEnabled() end
