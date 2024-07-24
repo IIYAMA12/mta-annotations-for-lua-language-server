@@ -1094,5 +1094,8 @@ function setCoronaReflectionsEnabled() end
 ---@type fun(): enabled: 1|2|3
 function getCoronaReflectionsEnabled() end
 
----@type fun(): boolean
+---@type fun(): true
 function resetCoronaReflectionsEnabled() end
+
+---@type fun(power: number, x?: number, y?: number, z?: number): true
+function shakeCamera() end
