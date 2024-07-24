@@ -75,7 +75,7 @@ function engineRestoreModelPhysicalPropertiesGroup() end
 ---@type fun(modelId: integer, groupId: integer): boolean Returns true if there were no issues with group change, otherwise an error is raised
 function engineSetModelPhysicalPropertiesGroup() end
 
----@type fun(groupId: integer, property: string): unknown Returns the value contained in given property if everything went well, error is raised otherwise.
+---@type fun(groupId: integer, property: string): ...:unknown Returns the value contained in given property if everything went well, error is raised otherwise.
 function engineGetObjectGroupPhysicalProperty() end
 
 ---@type fun(groupId: integer, property: string): boolean Returns true if everything went well, error is raised otherwise.

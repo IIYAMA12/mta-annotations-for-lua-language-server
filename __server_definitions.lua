@@ -171,13 +171,13 @@ function setMapName() end
 ---@type fun(query: string, ...: string | number): table Returns a table with the result of the query if it was a SELECT query, or false if otherwise. In case of a SELECT query the result table may be empty (if there are no result rows).
 function executeSQLQuery() end
 
----@type fun(settingName: string): unknown Returns the value of the setting if a single setting was specified and found, or a table (in associative-array form). It returns false if the specified setting or settings group doesn't exist, or if the settings group you are trying to retrieve doesn't have any public or protected settings.
+---@type fun(settingName: string): unknownResourceSettings Returns the value of the setting if a single setting was specified and found, or a table (in associative-array form). It returns false if the specified setting or settings group doesn't exist, or if the settings group you are trying to retrieve doesn't have any public or protected settings.
 function get() end
 
 ---@type fun(): integer An integer corresponding to the server's port.
 function getServerPort() end
 
----@type fun(settingName: string, value: any): boolean Returns true if the setting has been set, false if you do not have access to the setting or invalid arguments were passed.
+---@type fun(settingName: string, value: unknownResourceSettings): boolean Returns true if the setting has been set, false if you do not have access to the setting or invalid arguments were passed.
 function set() end
 
 ---@type fun(): integer An integer corresponding to the server's HTTP port.
@@ -306,7 +306,7 @@ function addResourceMap() end
 ---@type fun(thePed: ped): boolean Returns true if the pedestrian was made to reload, or false if invalid arguments were passed or that pedestrian has a weapon which cannot be reloaded. See wiki for other fail reasons: https://wiki.multitheftauto.com/wiki/ReloadPedWeapon
 function reloadPedWeapon() end
 
----@type fun(theResource: resource, newResourceName: string, organizationalDir?: string): resource Returns the resource element of the copy.
+---@type fun(theResource: resource, newResourceName: string, organizationalDir?: string): resource | false Returns the resource element of the copy.
 function copyResource() end
 
 ---@type fun(theTeam: team, colorR: integer, colorG: integer, colorB: integer): boolean Returns true if the team is valid and the color is different, otherwise false.
@@ -326,12 +326,12 @@ function resetVehicleExplosionTime() end
 
 --[[ [Wiki server config](https://wiki.multitheftauto.com/wiki/Server_mtaserver.conf)
 ]]
----@type fun(name: changeAbleServerConfigSetting, value: string, bSave?: boolean): boolean Returns true if the setting was successfully set, or false otherwise.
+---@type fun(name: changeAbleServerConfigSetting | string, value: string, bSave?: boolean): boolean Returns true if the setting was successfully set, or false otherwise.
 function setServerConfigSetting() end
 
 --[[ [Wiki server config](https://wiki.multitheftauto.com/wiki/Server_mtaserver.conf)
 ]]
----@type fun(name: serverConfigSetting): string | table | false Returns a string containing the current value for the named setting, table if name is module or false if the setting does not exist. If the setting name is serverip, may return the string "auto" on local servers.
+---@type fun(name: serverConfigSetting | string): string | table | false Returns a string containing the current value for the named setting, table if name is module or false if the setting does not exist. If the setting name is serverip, may return the string "auto" on local servers.
 function getServerConfigSetting() end
 
 ---@type fun(node: xmlnode, parent: element): element | false Returns an element object that corresponds to the root of the new data added, i.e. an element that represents the node xmlnode passed to the function. Returns false if the arguments are invalid.
@@ -470,10 +470,10 @@ function isObjectInACLGroup() end
 ---@type fun(): string Returns the reason that was given with cancelEvent
 function getCancelReason() end
 
----@type (fun( name: string, sourceElement: element, ...: any): boolean) | (fun(sendTo: table | element, name: string, sourceElement: element, ...: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified.
+---@type (fun( name: string, sourceElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) | (fun(sendTo: player[] | element, name: string, sourceElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified.
 function triggerClientEvent() end
 
----@type (fun(name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...: any): boolean) | (fun(sendTo: table | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, ...: any): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified.
+---@type (fun(name: string, bandwidth?: integer, persist?: boolean, theElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) | (fun(sendTo: player[] | element, name: string, bandwidth?: integer, persist?: boolean, theElement: element, arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) Returns true if the event trigger has been sent, false if invalid arguments were specified.
 function triggerLatentClientEvent() end
 
 ---@type fun(thePlayer?: player): boolean Returns true if the map info was reset successfully, otherwise false.

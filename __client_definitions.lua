@@ -333,7 +333,7 @@ function getEffectSpeed() end
 ---@type fun(theElement: element): boolean Returns true if the specified element is frozen waiting for collisions of custom map objects to load. Returns false if it's not or if the specified element is invalid.
 function isElementWaitingForGroundToLoad() end
 
----@type fun(event: string, theElement: element, ...:any): boolean Returns true if the event trigger has been sent, false if invalid arguments were specified or a client side element was a parameter.
+---@type fun(event: string, theElement: element, arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean Returns true if the event trigger has been sent, false if invalid arguments were specified or a client side element was a parameter.
 function triggerServerEvent() end
 
 ---@type fun(theLight: light, radius: number): boolean Returns true if the function was successful
@@ -376,7 +376,7 @@ function getProjectileTarget() end
 ---@type fun(theObject: object, respawn: boolean): boolean Returns true when the it was changed successfully.
 function toggleObjectRespawn() end
 
----@type (fun(event: string, arguments...): boolean) | (fun(event: string, bandwidth: integer, persist: boolean, arguments...): boolean) Returns true if the event trigger has been sent
+---@type (fun(event: string, theElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) | (fun(event: string, bandwidth: integer, persist: boolean, theElement: element, arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) Returns true if the event trigger has been sent
 function triggerLatentServerEvent() end
 
 ---@type fun(theElement: element, streamable: boolean): boolean Returns whether the element could be set to be streamable.

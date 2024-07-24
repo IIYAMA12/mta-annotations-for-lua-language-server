@@ -238,7 +238,7 @@ function xmlDestroyNode() end
 * Returns true if the event was triggered successfully, and was not cancelled using cancelEvent.
 * Returns false if the event was triggered successfully, and was cancelled using cancelEvent.
 ]]
----@type fun(eventName: string, baseElement: element, ...: any): boolean
+---@type fun(eventName: string, baseElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean
 function triggerEvent() end
 
 ---@type fun(theElement: element): dimension: integer Returns an integer for the dimension
@@ -383,7 +383,7 @@ function getElementModel() end
 ---@type fun(theElement: element): boolean Returns true if the collisions are enabled
 function getElementCollisionsEnabled() end
 
----@type fun(theElement: element, key: string, inherit?: boolean): unknown This function returns a variable containing the requested element data, or false if the element or the element data does not exist.
+---@type fun(theElement: element, key: string, inherit?: boolean): unknownSyncAble This function returns a variable containing the requested element data, or false if the element or the element data does not exist.
 function getElementData() end
 
 ---@type fun(theElement: element, lowLODElement: element): boolean Returns true if the assignment was successful
@@ -402,9 +402,9 @@ function wasEventCancelled() end
 function getElementHealth() end
 
 --- Serverside / clientside
----@alias setElementData_shared fun(theElement: element, key: string, value: any, synchronize?: boolean): boolean
+---@alias setElementData_shared fun(theElement: element, key: string, value: unknownSyncAble, synchronize?: boolean): boolean
 --- Serverside
----@alias setElementData_server_syntax_2 fun(theElement: element, key: string, value: any, syncMode?: "broadcast" | "local" | "subscribe"): boolean
+---@alias setElementData_server_syntax_2 fun(theElement: element, key: string, value: unknownSyncAble, syncMode?: "broadcast" | "local" | "subscribe"): boolean
 ---@alias setElementData_server setElementData_server_syntax_2 | setElementData_shared
 ---@alias setElementData_client setElementData_shared
 ---@type setElementData_server | setElementData_shared Returns true if the data was set successfully
@@ -1328,7 +1328,7 @@ function getVersion() end
 ---@type fun(): integer Returns an integer
 function getFPSLimit() end
 
----@type fun(json: string): ...:unknown Returns variables read from the JSON string.
+---@type fun(json: string): ...:unknownFromJSON Returns variables read from the JSON string.
 function fromJSON() end
 
 ---@type fun(theRadararea: radararea): boolean Returns true if the radar area is flashing
@@ -2215,7 +2215,7 @@ function getColPolygonHeight() end
 ---@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
 function setObjectBreakable() end
 
----@type fun(theElement: element): { [string]: unknown } If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
+---@type fun(theElement: element): { [string]: unknownSyncAble } If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
 function getAllElementData() end
 
 --- Serverside

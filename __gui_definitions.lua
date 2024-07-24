@@ -159,7 +159,7 @@ function guiGridListAutoSizeColumn() end
 ---@type fun(gridList: element): boolean Returns true if the grid list element is valid and has been cleared successfully, false otherwise.
 function guiGridListClear() end
 
----@type fun(gridList: element, rowIndex: integer, columnIndex: integer): unknown Returns the item data of the specified item if succesful.
+---@type fun(gridList: element, rowIndex: integer, columnIndex: integer): unknownSyncAble Returns the item data of the specified item if succesful.
 function guiGridListGetItemData() end
 
 ---@type fun(gridList: element, rowIndex: integer, columnIndex: integer): string | false Returns the text of the item if the arguments are right, false otherwise.
@@ -180,7 +180,7 @@ function guiGridListRemoveColumn() end
 ---@type fun(gridList: element, rowIndex: integer): boolean Returns true if the grid list row was successfully removed, false otherwise.
 function guiGridListRemoveRow() end
 
----@type fun(gridList: element, rowIndex: integer, columnIndex: integer, data: any): boolean Returns true if the data was set successfully, false otherwise
+---@type fun(gridList: element, rowIndex: integer, columnIndex: integer, data: unknownSyncAble): boolean Returns true if the data was set successfully, false otherwise
 function guiGridListSetItemData() end
 
 ---@type fun(gridList: element, rowIndex: integer, columnIndex: integer, text: string, section: boolean, number: boolean): boolean Returns true if the item text was set successfully, false otherwise.
