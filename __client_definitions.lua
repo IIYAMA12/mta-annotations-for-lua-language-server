@@ -1099,3 +1099,13 @@ function resetCoronaReflectionsEnabled() end
 
 ---@type fun(power: number, x?: number, y?: number, z?: number): true
 function shakeCamera() end
+
+---@type fun(): boolean
+function resetShakeCamera() end
+
+--[[
+* Returns false if the vehicle has no entry points.
+* Returns the following data when the vehicle is streamed out:  { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
+]]
+---@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]:  {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}} | false
+function getVehicleEntryPoints() end
