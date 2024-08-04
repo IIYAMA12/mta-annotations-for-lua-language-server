@@ -1768,7 +1768,7 @@ function getVehicleTurnVelocity() end
 ---@type fun(turretVehicle: vehicle): rx:number, ry:number Returns two floats for the X (horizontal) and Y (vertical) axis rotation respectively. These values are in radians. The function will return 0, 0 if the vehicle is not a vehicle with a turret.
 function getVehicleTurretPosition() end
 
----@type fun(theVehicle: vehicle): vehicleType Returns a string with vehicle type
+---@type fun(theVehicleOrModel: vehicle|vehicleId): vehicleType Returns a string with vehicle type
 function getVehicleType() end
 
 ---@see vehicleSlotId
