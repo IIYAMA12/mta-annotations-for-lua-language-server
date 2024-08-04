@@ -57,7 +57,7 @@ function getAccountsBySerial() end
 ---@type fun(username: string, password?: string, caseSensitive?: boolean): account | false Returns an account or false if an account matching the username specified (and password, if specified) could not be found.
 function getAccount() end
 
----@type fun(theAccount: account): table A table containing all the user data.
+---@type fun(theAccount: account): {[string]: unknownSyncAble} A table containing all the user data.
 function getAllAccountData() end
 
 ---@type fun(theAccount: account): boolean Returns true if account was successfully removed, false if the account does not exist.
@@ -500,19 +500,19 @@ function setPlayerMuted() end
 ---@type fun(thePlayer: player, newName: string): boolean Returns true if the player was successfully muted or unmuted, false otherwise.
 function setPlayerName() end
 
----@type fun(thePlayer: player, broadcastTo: any): boolean Returns true if the value was set successfully, false otherwise.
+---@type fun(thePlayer: player, broadcastTo: player|player[]): boolean Returns true if the value was set successfully, false otherwise.
 function setPlayerVoiceBroadcastTo() end
 
----@type fun(thePlayer: player, ignoreFrom: any): boolean Returns true if the value was set successfully, false otherwise.
+---@type fun(thePlayer: player, ignoreFrom?: nil|player|player[]): boolean Returns true if the value was set successfully, false otherwise.
 function setPlayerVoiceIgnoreFrom() end
 
----@type fun(thePlayer: player, stars: integer): boolean Returns true if the wanted level was set successfully, false if any of the arguments were invalid.
+---@type fun(thePlayer: player, stars: playerWantedLevel): boolean Returns true if the wanted level was set successfully, false if any of the arguments were invalid.
 function setPlayerWantedLevel() end
 
----@type fun(thePlayer: player, x: number, y: number, z: number, rotation?:integer, skinID?: integer, interior?: integer, dimension?: integer, theTeam?: team): boolean Returns true if the player was spawned successfully, false otherwise.
+---@type fun(thePlayer: player, x: number, y: number, z: number, rotation?: integer, skinId?: pedId, interior?: integer, dimension?: integer, theTeam?: team): boolean Returns true if the player was spawned successfully, false otherwise.
 function spawnPlayer() end
 
----@type fun(thePlayer: player, width: integer, height: integer, tag?: string, quality?: integer, maxBandwith?: integer): boolean Returns true if the function was successfully, false if invalid arguments are specified.
+---@type fun(thePlayer: player, width: integer, height: integer, tag?: string, quality?: integer, maxBandwith?: integer, maxPacketSize?: integer): boolean Returns true if the function was successfully, false if invalid arguments are specified.
 function takePlayerScreenShot() end
 
 ---@type fun(refreshAll?: boolean, targetResource?: resource): boolean Returns true if refresh was successful, false otherwise.
@@ -539,10 +539,10 @@ function stopResource() end
 ---@type fun(theResource: resource, rightName: string, access: boolean, byWho?: string): boolean Returns true if the setting was changed, or false if no change was required or there was a problem with the arguments.
 function updateResourceACLRequest() end
 
----@type fun(glitchName: string): boolean Returns true if if the glitch was enabled, or false if it is disabled.
+---@type fun(glitchName: glitchNames): boolean Returns true if if the glitch was enabled, or false if it is disabled.
 function isGlitchEnabled() end
 
----@type fun(glitchName: string, enable: boolean): boolean Returns true if successful, false otherwise.
+---@type fun(glitchName: glitchNames, enable: boolean): boolean Returns true if successful, false otherwise.
 function setGlitchEnabled() end
 
 ---@type fun(text: string): boolean Returns true if successful, false otherwise.
@@ -596,13 +596,13 @@ function textDisplayGetObservers() end
 ---@type fun(display: textdisplay, thePlayer: player): boolean
 function textDisplayIsObserver() end
 
----@type fun(model: integer): table Returns a table of existing vehicles matching the specified model.
+---@type fun(modelId: vehicleId): vehicle[] Returns a table of existing vehicles matching the specified model.
 function getVehiclesOfType() end
 
----@type fun(model: integer): table | false Returns a table containing all the handling data, false if an invalid vehicle model is specified.
+---@type fun(modelId: vehicleId): table | false Returns a table containing all the handling data, false if an invalid vehicle model is specified.
 function getModelHandling() end
 
----@type fun(modelId: integer, property: string, value: any): boolean Returns true if the handling was set successfully, false otherwise.
+---@type fun(modelId: vehicleId, property: vehicleHandlingProperty, value: any): boolean Returns true if the handling was set successfully, false otherwise.
 function setModelHandling() end
 
 ---@type fun(theVehicle: vehicle, timeDelay: integer): boolean Returns true if the vehicle was found and edited.
@@ -647,16 +647,16 @@ function getAccountID() end
 ---@type fun(theAccount: account, name: string, allowCaseVariations?: boolean): boolean Returns a true if the account name was set, false if an invalid argument was specified.
 function setAccountName() end
 
----@type fun(dataName: string, value: string): table Returns table containing the accounts associated with specified value at dataName.
+---@type fun(dataName: string, value: string): account[] Returns table containing the accounts associated with specified value at dataName.
 function getAccountsByData() end
 
----@type fun(ip: string): table Returns table containing the accounts associated with specified IP-address.
+---@type fun(ip: string): account[] Returns table containing the accounts associated with specified IP-address.
 function getAccountsByIP() end
 
----@type fun(theVehicle: element): number, number, number Returns three floats indicating the respawn coordinates of the vehicle, x, y and z respectively.
+---@type fun(theVehicle: element): x: number, y: number, z: number Returns three floats indicating the respawn coordinates of the vehicle, x, y and z respectively.
 function getVehicleRespawnPosition() end
 
----@type fun(theVehicle: element): number, number, number Returns three floats indicating the respawn rotation of the vehicle, x, y and z respectively.
+---@type fun(theVehicle: element): rx: number, ry: number, rz: number Returns three floats indicating the respawn rotation of the vehicle, x, y and z respectively.
 function getVehicleRespawnRotation() end
 
 ---@type fun(theElement: element, key: string, thePlayer: player): boolean Returns true if the player was subscribed, false otherwise.
