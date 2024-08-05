@@ -202,7 +202,7 @@ function guiGridListSetSortingEnabled() end
 ---@type fun(gridList: element): integer Returns an integer representing the amount of selected options if everything was successful.
 function guiGridListGetSelectedCount() end
 
----@type fun(gridList: element): {['column']: integer, ['row']: integer}[] Returns a table over the selected items in the grid list.
+---@type fun(gridList: element): {column: integer, row: integer}[] Returns a table over the selected items in the grid list.
 function guiGridListGetSelectedItems() end
 
 ---@type fun(gridList: element, columnIndex: integer, width: number, relative: boolean): boolean Returns true if the gridlist column width was successfully set, false if bad arguments were given.

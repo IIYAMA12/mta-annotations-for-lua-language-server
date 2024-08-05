@@ -1161,10 +1161,10 @@ function getDistanceBetweenPoints2D() end
 ---@type fun(milliseconds: integer): boolean Returns true if successful
 function setMinuteDuration() end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z: number, iInterior?: integer): boolean Returns true if the world object was restored
+---@type fun(modelId: integer, radius: number, x: number, y: number, z: number, iInterior?: integer): boolean Returns true if the world object was restored
 function restoreWorldModel() end
 
----@type fun(modelID: integer, radius: number, x: number, y: number, z: number, interior?: integer): boolean Returns true if the object was removed
+---@type fun(modelId: integer, radius: number, x: number, y: number, z: number, interior?: integer): boolean Returns true if the object was removed
 function removeWorldModel() end
 
 ---@type fun(): boolean Returns true if operation was successful
@@ -1379,9 +1379,9 @@ function restoreAllWorldModels() end
 function getThisResource() end
 
 --- Serverside
----@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...: string ), restricted?: boolean, caseSensitive?: boolean): boolean)
+---@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ... ), restricted?: boolean, caseSensitive?: boolean): boolean)
 --- Clientside
----@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ...: string ), caseSensitive?: boolean): boolean)
+---@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ... ), caseSensitive?: boolean): boolean)
 ---@type addCommandHandler_server | addCommandHandler_client Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler() end
 
