@@ -29,6 +29,7 @@ function getDevelopmentMode() end
 ---@type fun(enable: boolean, enableWeb?: boolean): boolean Returns true if the mode was set correctl
 function setDevelopmentMode() end
 
+---@nodiscard
 ---@type fun(filePath: string, readOnly?: boolean): xmlnode: xmlnode | false Returns the root xmlnode object of an xml file if successful
 function xmlLoadFile() end
 
@@ -342,6 +343,7 @@ function createElement() end
 ---@type fun(train: vehicle): clockwise: boolean Returns true if the train is driving clockwise on the train track
 function getTrainDirection() end
 
+---@nodiscard
 ---@type fun(filePath: string): file | false If successful, returns a file handle
 function fileCreate() end
 
@@ -431,6 +433,7 @@ function fileGetSize() end
 ---@type fun(theFile: file): endOfFile: boolean Returns true if the file position of the specified file is at the end of the file
 function fileIsEOF() end
 
+---@nodiscard
 ---@type fun(filePath: string, readOnly?: boolean): file | false If successful, returns a file handle for the file. Otherwise returns false (f.e. if the file doesn't exist).
 function fileOpen() end
 
@@ -865,6 +868,7 @@ function xmlUnloadFile() end
 ---@type fun(theVehicle: vehicle, theTrailer?: vehicle): boolean Returns true if the vehicle's were successfully detached
 function detachTrailerFromVehicle() end
 
+---@nodiscard
 ---@type fun(filePath: string, rootNodeName: string): xmlnode | false Returns the root xmlnode object of the new XML file if successful, or false otherwise.
 function xmlCreateFile() end
 
