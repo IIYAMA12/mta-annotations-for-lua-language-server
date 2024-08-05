@@ -24,10 +24,10 @@ function getAccountPlayer() end
 ---@type fun(theAccount: account, key: string): string | false Returns a string containing the stored data or false if no data was stored under that key.
 function getAccountData() end
 
----@type fun(): table
+---@type fun(): string[]
 function getLoadedModules() end
 
----@type fun(moduleName: string): table | false if invalid name for module is passed, it will return false.
+---@type fun(moduleName: string): {version: string, name: string, author: string} | false if invalid name for module is passed, it will return false.
 function getModuleInfo() end
 
 ---@type fun(theTextitem: textitem)
@@ -45,13 +45,13 @@ function addAccount() end
 ---@type fun(theAccount: account): string Returns string containing the serial, the string is empty if the account was never used.
 function getAccountSerial() end
 
----@type fun(): table A table over the accounts that exist in the server internal.db file. This table might be empty.
+---@type fun(): account[] A table over the accounts that exist in the server internal.db file. This table might be empty.
 function getAccounts() end
 
 ---@type fun(theAccount: account): string Returns a string containing the account's name
 function getAccountName() end
 
----@type fun(serial: string): table Returns table containing the accounts associated with specified serial.
+---@type fun(serial: string): account[] Returns table containing the accounts associated with specified serial.
 function getAccountsBySerial() end
 
 ---@type fun(username: string, password?: string, caseSensitive?: boolean): account | false Returns an account or false if an account matching the username specified (and password, if specified) could not be found.
@@ -78,7 +78,7 @@ function aclReload() end
 ---@type fun(theAccount: account, key: string, value: string | number | boolean | integer): boolean Returns a true if the account data was set, false if an invalid argument was specified.
 function setAccountData() end
 
----@type fun(): table Returns a table of all the ACLs. This table can be empty if no ACLs exist.
+---@type fun(): acl[] Returns a table of all the ACLs. This table can be empty if no ACLs exist.
 function aclList() end
 
 ---@type fun(theAccount: account): boolean Returns true if the account is a guest account, false otherwise.
@@ -422,7 +422,7 @@ function aclGetRight() end
 ---@type fun(theAcl: acl, rightName: string, hasAccess: boolean): boolean | nil Returns true if the access was successfully changed, false or nil if it failed for some reason, ie. invalid ACL or the rightname is invalid.
 function aclSetRight() end
 
----@type fun(theACL: acl, allowedType: string): table Returns a table over the rights as strings in the given ACL.
+---@type fun(theACL: acl, allowedType: string): string[] Returns a table over the rights as strings in the given ACL.
 function aclListRights() end
 
 ---@type fun(theAcl: acl, rightName: string): boolean | nil Returns true if the given right was successfully removed from the given ACL, false or nil if it could not be removed for some reason, ie. it didn't exist in the ACL.
@@ -437,7 +437,7 @@ function aclCreateGroup() end
 ---@type fun(aclGroup: aclgroup): boolean Returns true if the ACL group was successfully deleted, false if it could not be deleted for some reason (ie. invalid argument).
 function aclDestroyGroup() end
 
----@type fun(): table Returns a table of all the ACL groups if successful.
+---@type fun(): aclgroup[] Returns a table of all the ACL groups if successful.
 function aclGroupList() end
 
 ---@type fun(theGroup: aclgroup, theACL: acl): boolean Returns true if the ACL could be successfully added to the ACL group
@@ -449,10 +449,10 @@ function aclGroupAddObject() end
 ---@type fun(aclGroup: aclgroup): string Returns the name of the given ACL group as a string.
 function aclGroupGetName() end
 
----@type fun(theGroup: aclgroup): table Returns a table of the ACL elements in the given ACL group.
+---@type fun(theGroup: aclgroup): acl[] Returns a table of the ACL elements in the given ACL group.
 function aclGroupListACL() end
 
----@type fun(theGroup: aclgroup): table Returns a table of strings in the given ACL group.
+---@type fun(theGroup: aclgroup): string[] Returns a table of strings in the given ACL group.
 function aclGroupListObjects() end
 
 ---@type fun(theGroup: aclgroup, theACL: acl): boolean | nil Returns true if the ACL was successfully removed from the ACL group, false/nil if it could not be removed for some reason, ie. either of the elements were invalid.
@@ -590,7 +590,7 @@ function textDisplayRemoveObserver() end
 ---@type fun(displayToRemoveFrom: textdisplay, itemToRemove: textitem)
 function textDisplayRemoveText() end
 
----@type fun(theDisplay: textdisplay): table
+---@type fun(theDisplay: textdisplay): player[]
 function textDisplayGetObservers() end
 
 ---@type fun(display: textdisplay, thePlayer: player): boolean

@@ -30,7 +30,7 @@ function createTrayNotification() end
 ---@type fun(): boolean Returns true if the tray notifications are enabled in the settings
 function isTrayNotificationEnabled() end
 
----@type fun(sound: sound): table
+---@type fun(sound: sound): {['gargle']: boolean, ['compressor']: boolean, ['echo']: boolean, ['i3dl2reverb']: boolean, ['distortion']: boolean, ['chorus']: boolean, ['parameq']: boolean, ['reverb']: boolean, ['flanger']: boolean }
 function getSoundEffects() end
 
 ---@see radioChannelId for definitions
@@ -89,7 +89,7 @@ function getSoundVolume() end
 ---@type playSound_syntax_1 | playSound_syntax_2 Returns a sound element if the sound was successfully created
 function playSound() end
 
----@type fun(theSound: element): panLevel:number Returns float value with range from -1.0 (left) to 1.0 (right)
+---@type fun(theSound: element): panLevel: number Returns float value with range from -1.0 (left) to 1.0 (right)
 function getSoundPan() end
 
 ---@type fun(webBrowser: browser, jsCode: string): boolean Returns true if executing Javascript is allowed in the current context
@@ -107,7 +107,7 @@ function focusBrowser() end
 ---@type fun(): camera Returns an element that corresponds to the game camera
 function getCamera() end
 
----@type fun(theElement: element): distance:number Returns a float with the distance
+---@type fun(theElement: element): distance: number Returns a float with the distance
 function getElementDistanceFromCentreOfMassToBaseOfModel() end
 
 ---@type fun(): boolean Returns true if the health target markers are enabled
@@ -235,7 +235,7 @@ function setCursorPosition() end
 ---@type fun(posX: number, posY: number, posZ: number): boolean Returns a true if the operation was successful
 function fxAddWaterHydrant() end
 
----@type fun(theEffect: effect): density:number Return the density of an effect
+---@type fun(theEffect: effect): density: number Return the density of an effect
 function getEffectDensity() end
 
 ---@type fun(posX: number, posY: number, posZ: number, colorR?: integer, colorG?: integer, colorB?: integer, colorA?: integer, scale?: number, count?: integer): boolean Returns a true if the operation was successful
@@ -289,7 +289,7 @@ function createEffect() end
 ---@type fun(theObject: object): number Returns A float representing the mass of the object. -1 if object was never streamed in.
 function getObjectMass() end
 
----@type fun(x: number, y: number, z: number): z:number Returns a float with the highest ground-level Z coord if parameters are valid, 0 if the point you tried to test is outside the loaded world map
+---@type fun(x: number, y: number, z: number): z: number Returns a float with the highest ground-level Z coord if parameters are valid, 0 if the point you tried to test is outside the loaded world map
 function getGroundPosition() end
 
 --[[
@@ -301,7 +301,7 @@ function getGroundPosition() end
 ---@type fun(projectile: projectile, timeToDetonate: integer): boolean Returns true on success
 function setProjectileCounter() end
 
----@type fun(garageId: garageId): western_x_position:number, eastern_x_position:number, southern_y_position:number, northern_y_position: number
+---@type fun(garageId: garageId): western_x_position: number, eastern_x_position: number, southern_y_position: number, northern_y_position: number
 function getGarageBoundingBox() end
 
 --[[
@@ -315,7 +315,7 @@ Note <time datetime="2023-12-23">2023-12-23</time>: You can only use this functi
 ---@type fun(theElement: element, withElement: element, enabled: boolean): boolean Returns true if the collisions were set succesfully
 function setElementCollidableWith() end
 
----@type fun(theElement: element): radius:number Returns a float containing the radius if the element is valid
+---@type fun(theElement: element): radius: number Returns a float containing the radius if the element is valid
 function getElementRadius() end
 
 ---@type fun(thePlayer: element, enabled: boolean): boolean Returns true if changing the ped's bloody feet status worked.
@@ -327,7 +327,7 @@ function isElementStreamedIn() end
 ---@type fun(theEffect: effect, density: number): boolean Returns true if the density was succesfully changed
 function setEffectDensity() end
 
----@type fun(theEffect: effect): speed:number Returns float containing the effect's speed
+---@type fun(theEffect: effect): speed: number Returns float containing the effect's speed
 function getEffectSpeed() end
 
 ---@type fun(theElement: element): boolean Returns true if the specified element is frozen waiting for collisions of custom map objects to load. Returns false if it's not or if the specified element is invalid.
@@ -357,13 +357,13 @@ Note <time datetime="2023-12-23">2023-12-23</time>: You can only use this functi
 ---@type fun(theElement: element, withElement: element): boolean Returns true if the elements collide with each other
 function isElementCollidableWith() end
 
----@type fun(theSearchLight: searchlight): x:number, y:number, z:number This function will return three float values, which are the three coordinates of searchlight's end position
+---@type fun(theSearchLight: searchlight): x: number, y: number, z: number This function will return three float values, which are the three coordinates of searchlight's end position
 function getSearchLightEndPosition() end
 
 ---@type fun(control: controlName, state?: number, forceOverrideNextFrame?: boolean): boolean Returns true if the control state was successfully set
 function setAnalogControlState() end
 
----@type fun(theSearchLight: searchlight): radius:number
+---@type fun(theSearchLight: searchlight): radius: number
 function getSearchLightEndRadius() end
 
 --[[
@@ -411,7 +411,7 @@ function getBirdsEnabled() end
 function getInteriorSoundsEnabled() end
 
 ---@see garageId for definitions
----@type fun(garageId: garageId): x:number, y:number, z:number Returns three floats indicating the position of the garage, x, y and z respectively
+---@type fun(garageId: garageId): x: number, y: number, z: number Returns three floats indicating the position of the garage, x, y and z respectively
 function getGaragePosition() end
 
 ---@see chatBoxLayout for definitions
@@ -424,13 +424,13 @@ Returns
 * a table of all CVar values, if CVar was not specified
 * false if an invalid CVar was specified
 ]]
----@type (fun(): chatBoxLayoutAsTable) | (fun(CVar: chatBoxLayoutScale): x:integer, y:integer) | (fun(CVar: chatBoxLayoutColor): r:integer, g:integer, b:integer, a:integer) | (fun(CVar: chatBoxLayoutOther): number)  | (fun(CVar: chatBoxLayoutCEGUI): boolean)
+---@type (fun(): chatBoxLayoutAsTable) | (fun(CVar: chatBoxLayoutScale): x: integer, y: integer) | (fun(CVar: chatBoxLayoutColor): r: integer, g: integer, b: integer, a: integer) | (fun(CVar: chatBoxLayoutOther): number)  | (fun(CVar: chatBoxLayoutCEGUI): boolean)
 function getChatboxLayout() end
 
 ---@type fun(x: number, y: number, z: number, duration: integer): boolean Returns true if the function was successful.
 function createSWATRope() end
 
----@type fun(garageId: garageId): x:number, y:number, z:number Returns three floats indicating the size of the garage
+---@type fun(garageId: garageId): x: number, y: number, z: number Returns three floats indicating the size of the garage
 function getGarageSize() end
 
 ---@type fun(commandControl: string | controlName): {[keyName]: "down" | "up"} | false If one or more keys are bound to the specified control or console command, a table is returned indexed by the names of the keys and containing key states as values. If no keys are bound or an invalid name was passed, returns false.
@@ -457,13 +457,13 @@ function setDebugViewActive() end
 ---@type fun(theLight: light): lightType Returns an integer containing the type of the specified light.
 function getLightType() end
 
----@type fun(theLight: light): x:number, y:number, z:number Returns three ints corresponding to the x, y and z coordinates (respectively) of the light direction
+---@type fun(theLight: light): x: number, y: number, z: number Returns three ints corresponding to the x, y and z coordinates (respectively) of the light direction
 function getLightDirection() end
 
----@type fun(theLight: light): radius:number Returns a float containing the radius of the specified light.
+---@type fun(theLight: light): radius: number Returns a float containing the radius of the specified light.
 function getLightRadius() end
 
----@type fun(theLight: light): r:integer, g:integer, b:integer Returns three ints corresponding to the amount of red, green and blue (respectively) of the light
+---@type fun(theLight: light): r: integer, g: integer, b: integer Returns three ints corresponding to the amount of red, green and blue (respectively) of the light
 function getLightColor() end
 
 --[[
@@ -481,7 +481,7 @@ function isMTAWindowActive() end
 ---@type fun(theSearchLight: searchlight, endX: number, endY: number, endZ: number): boolean If every argument is correct, this function returns true.
 function setSearchLightEndPosition() end
 
----@type fun(theSearchLight: searchlight): radius:number This function will return one float, which is the searchlight's start radius.
+---@type fun(theSearchLight: searchlight): radius: number This function will return one float, which is the searchlight's start radius.
 function getSearchLightStartRadius() end
 
 ---@type fun(theSearchlight: searchlight, startRadius: number): boolean If every argument is correct, this function returns true.
@@ -516,7 +516,7 @@ function getProjectileCounter() end
 ---@type fun(theProjectile: projectile): number This function returns the force of the specified projectile.
 function getProjectileForce() end
 
----@type fun(theSearchLight: searchlight): x:number, y: number, z:number Return three float values, which are the three coordinates of searchlight's start position.
+---@type fun(theSearchLight: searchlight): x: number, y: number, z: number Return three float values, which are the three coordinates of searchlight's start position.
 function getSearchLightStartPosition() end
 
 ---@type fun(): boolean Returns true if the file transfer box is visible
@@ -608,7 +608,7 @@ Returns
 * `objects`: if you want the camera to clip on objects.
 * `vehicles`: if you want the camera to clip on vehicles.
 ]]
----@type fun(): objects:boolean, vehicles:boolean
+---@type fun(): objects: boolean, vehicles: boolean
 function getCameraClip() end
 
 ---@type fun(): goggleEffect Returns a string indicating the current camera goggle effect.
@@ -726,7 +726,7 @@ function fireWeapon() end
 ---@type fun(theWeapon: weapon): weaponState A string if the weapon is valid, indicating the weapon state
 function getWeaponState() end
 
----@type (fun(theWeapon: weapon): target: nil | element) | (fun(theWeapon: weapon): x:number, y:number, z:number) Returns the target of the custom weapon, which can be: `nil` if the weapon is in rotation based targeting. `3 floats` if the weapon is firing at a fixed point. An `element` if the weapon is firing an entity.
+---@type (fun(theWeapon: weapon): target: nil | element) | (fun(theWeapon: weapon): x: number, y: number, z: number) Returns the target of the custom weapon, which can be: `nil` if the weapon is in rotation based targeting. `3 floats` if the weapon is firing at a fixed point. An `element` if the weapon is firing an entity.
 function getWeaponTarget() end
 
 ---@type fun(theWeapon: weapon): boolean This function was intended to return the player which owns the custom weapon
@@ -780,7 +780,7 @@ function isLineOfSightClear() end
 ---@type fun(group: worldSoundGroup, index: integer): boolean Returns true if the world sounds are enabled
 function isWorldSoundEnabled() end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean): hit:boolean, x:number, y:number, z:number, element, nx:number, ny:number, nz:number, mat:integer, lighting:number, piece:integer, worldModel:integer, x:number, y:number, z:number, rx:number, ry:number, rz:number, worldLOD:integer
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean): hit: boolean, x: number, y: number, z: number, element, nx: number, ny: number, nz: number, mat: integer, lighting: number, piece: integer, worldModel: integer, x: number, y: number, z: number, rx: number, ry: number, rz: number, worldLOD: integer
 function processLineOfSight() end
 
 ---@type fun(): boolean Returns true if the ambient sounds were reset
@@ -812,7 +812,7 @@ function setInteriorFurnitureEnabled() end
 ---@type fun(distance: number): boolean This function returns true if the argument is valid.
 function setNearClipDistance() end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): boolean, x:number, y:number, z:number Returns true and the position of the intersection point of the line and the water surface if there is a collision
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number): boolean, x: number, y: number, z: number Returns true and the position of the intersection point of the line and the water surface if there is a collision
 function testLineAgainstWater() end
 
 ---@type (fun(): boolean) |  (fun(x: number, y: number, z: number, radius?: number): boolean) Returns true if successful
@@ -827,8 +827,11 @@ function setCameraGoggleEffect() end
 ---@type fun(theSound: sound): number | false Returns a float value indicating the buffer playback length of the sound in seconds or false if the sound is not a stream.
 function getSoundBufferLength() end
 
+---@alias getObjectProperty_all (fun(theObject: object, property: 'all' ): {mass: number, turn_mass: number, air_resistance: number, elasticity: number, center_of_mass: Vector3, buoyancy: number})
+---@alias getObjectProperty_centerOfMass (fun(theObject: object, property: 'center_of_mass' ): x: number, y: number, z: number)
+---@alias getObjectProperty_floats (fun(theObject: object, property: "mass" | "turn_mass" | "air_resistance" | "elasticity" | "buoyancy" ): number)
 --- Returns on success: table for all, 3 floats for center_of_mass or float for other properties
----@type (fun(theObject: object, property: 'all' ): table) | (fun(theObject: object, property: 'center_of_mass' ): number, number, number) | (fun(theObject: object, property: "mass" | "turn_mass" | "air_resistance" | "elasticity" | "buoyancy" ): number)
+---@type getObjectProperty_all | getObjectProperty_centerOfMass | getObjectProperty_floats
 function getObjectProperty() end
 
 ---@type (fun(theObject: object, property: "mass" | "turn_mass" | "air_resistance" | "elasticity" | "buoyancy", value: number): boolean) | (fun(theObject: object, property: "center_of_mass", x: number, y: number, z: number): boolean) Returns true if the property was set successfully
@@ -863,13 +866,13 @@ function getColorFilter() end
 ---@type fun(): boolean Returns true if the color filtering was reset
 function resetColorFilter() end
 
----@type fun(theElement: element, bone: boneId): table Returns a multi-dimensional array (which can be transformed into a proper matrix class using Matrix.create method) containing a 4x4 matrix.
+---@type fun(theElement: element, bone: boneId): matrixAsTable Returns a multi-dimensional array (which can be transformed into a proper matrix class using Matrix.create method) containing a 4x4 matrix.
 function getElementBoneMatrix() end
 
----@type fun(theElement: element, bone: boneId): x:number, y:number, z:number Returns 3 floats, representing the X, Y, Z world position of the bone.
+---@type fun(theElement: element, bone: boneId): x: number, y: number, z: number Returns 3 floats, representing the X, Y, Z world position of the bone.
 function getElementBonePosition() end
 
----@type fun(theElement: element, bone: boneId): yaw:number, pitch:number, roll:number Returns 3 floats, representing the yaw, pitch, roll rotation values.
+---@type fun(theElement: element, bone: boneId): yaw: number, pitch: number, roll: number Returns 3 floats, representing the yaw, pitch, roll rotation values.
 function getElementBoneRotation() end
 
 ---@type fun(theElement: element, bone: boneId, matrix: Matrix): boolean Returns true if the function was successful
@@ -938,7 +941,7 @@ function svgCreate() end
 ---@type fun(svgElement: svg): xmlnode Returns an xmlnode if successful
 function svgGetDocumentXML() end
 
----@type fun(svgElement: svg): width:integer, height:integer Returns two ints, representing width and height
+---@type fun(svgElement: svg): width: integer, height: integer Returns two ints, representing width and height
 function svgGetSize() end
 
 ---@type fun(svgElement: svg, xmlDocument: xmlnode, callBack?: fun(svg: svg) ): boolean Returns true if successful

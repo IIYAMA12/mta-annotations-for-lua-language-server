@@ -244,7 +244,7 @@ function triggerEvent() end
 ---@type fun(theElement: element): dimension: integer Returns an integer for the dimension
 function getElementDimension() end
 
----@type fun(theElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
+---@type fun(theElement: element, xPosOffset?: number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
 function setElementAttachedOffsets() end
 
 ---@type fun(theElement: element, speedX: number, speedY: number, speedZ: number): boolean Returns true if the speed was set successfully
@@ -264,9 +264,9 @@ function fileExists() end
 function getMarkerTarget() end
 
 --- Serverside
----@alias cancelLatentEvent_server (fun(thePlayer: player, handle: integer):boolean)
+---@alias cancelLatentEvent_server (fun(thePlayer: player, handle: integer): boolean)
 --- Clientside
----@alias cancelLatentEvent_client (fun(handle: integer):boolean)
+---@alias cancelLatentEvent_client (fun(handle: integer): boolean)
 ---@type cancelLatentEvent_server | cancelLatentEvent_client Returns a true if the latent event was successfully cancelled
 function cancelLatentEvent() end
 
@@ -321,7 +321,7 @@ function createColCuboid() end
 ---@type fun(theElement: element): type: elementTypeAutoComplete Returns a string containing the element type
 function getElementType() end
 
----@type fun(theElement: element, theAttachToElement: element, xPosOffset?:number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
+---@type fun(theElement: element, theAttachToElement: element, xPosOffset?: number, yPosOffset?: number, zPosOffset?: number, xRotOffset?: number, yRotOffset?: number, zRotOffset?: number): boolean Returns true if the attaching process was successful
 function attachElements() end
 
 --[[
@@ -509,7 +509,7 @@ function stopObject() end
 ---@type unbindKey_server | unbindKey_client Returns true if the key was unbound, false if it was not previously bound
 function unbindKey() end
 
----@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?:number, movery?: number, moverz?: number, strEasingType?: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean Returns true if the function moved the object succesfully.
+---@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?: number, movery?: number, moverz?: number, strEasingType?: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean Returns true if the function moved the object succesfully.
 function moveObject() end
 
 ---@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean Returns true if the scale was set properly.
@@ -536,7 +536,7 @@ function createPed() end
 --- Default
 ---@alias setPedAnimation_default fun(thePed: ped, block?: pedAnimBlockName, anim?: pedAnimName, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
 --- Stop
----@alias setPedAnimation_stop fun(thePed: ped):boolean
+---@alias setPedAnimation_stop fun(thePed: ped): boolean
 ---@type setPedAnimation_default | setPedAnimation_stop Returns true if succesful
 function setPedAnimation() end
 
@@ -614,9 +614,9 @@ function showChat() end
 function setPedAnimationProgress() end
 
 --- Serverside
----@alias createRadarArea_server fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radarareaElement: radararea
+---@alias createRadarArea_server fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radarareaElement: radararea
 --- Clientside
----@alias createRadarArea_client fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?:integer, g?: integer, b?: integer, a?: integer): radarareaElement: radararea
+---@alias createRadarArea_client fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?: integer, g?: integer, b?: integer, a?: integer): radarareaElement: radararea
 ---@type createRadarArea_server | createRadarArea_client Returns a `radararea` element if successful
 function createRadarArea() end
 
@@ -1082,7 +1082,7 @@ function setCameraTarget() end
 ---@type setCameraMatrix_server | setCameraMatrix_client Returns true if the arguments are valid
 function setCameraMatrix() end
 
----@type fun(var: any, options?: table): string Always returns a string.
+---@type fun(var: any, options?: {depth?: integer, newline?: string, indent?: string, process?: fun(item: unknown, path: (string|table)[]): item: unknown|nil }): string Always returns a string.
 function inspect() end
 
 --- Serverside
@@ -1190,7 +1190,7 @@ function setFarClipDistance() end
 function getDistanceBetweenPoints3D() end
 
 --- Valid string
----@alias getColorFromString_validString fun(theColor: string): r:integer, g:integer, b:integer, a:integer
+---@alias getColorFromString_validString fun(theColor: string): r: integer, g: integer, b: integer, a: integer
 --- Invalid string
 ---@alias getColorFromString_invalidString fun(theColor: string): invalid: false
 --[[
@@ -1278,7 +1278,7 @@ function setTrafficLightState() end
 ---@type fun(theMarker: marker): markerIcon
 function getMarkerIcon() end
 
----@type fun(): gravityLevel:number Returns a float with the current server or client (depending on where you call the function) gravity level.
+---@type fun(): gravityLevel: number Returns a float with the current server or client (depending on where you call the function) gravity level.
 function getGravity() end
 
 ---@type fun(enabled: boolean): boolean If a boolean was passed to the function
@@ -1319,7 +1319,7 @@ function setRadarAreaColor() end
 ---@type fun(theRadarArea: radararea, flash: boolean): boolean Returns true if the new flash state was successfully set
 function setRadarAreaFlashing() end
 
----@type fun(theRadararea: radararea): x:number, y:number Returns two floats indicating the X and Y length of the radar area respectively
+---@type fun(theRadararea: radararea): x: number, y: number Returns two floats indicating the X and Y length of the radar area respectively
 function getRadarAreaSize() end
 
 ---@type fun(): {number: integer, mta: string, name: "MTA:SA Server" | "MTA:SA Client", netcode: integer, os: "Windows"|string, type: "Custom" | "Release" | string, tag: string, sortable: string } Returns a table with version information.
@@ -1353,7 +1353,7 @@ function getOcclusionsEnabled() end
 ---@type fun(res: resource): string Returns a string with the resource name in it
 function getResourceName() end
 
----@type fun(theRadararea: radararea): red:integer, green:integer, blue:integer, alpha:integer Returns four integers in RGBA format (red, green, blue, alpha), with a maximum value of 255 for each. Alpha decides transparency where 255 is opaque and 0 is transparent.
+---@type fun(theRadararea: radararea): red: integer, green: integer, blue: integer, alpha: integer Returns four integers in RGBA format (red, green, blue, alpha), with a maximum value of 255 for each. Alpha decides transparency where 255 is opaque and 0 is transparent.
 function getRadarAreaColor() end
 
 ---@type fun(text: string, tokenNumber: integer, separatingCharacter: string | ASCII): string | false Returns a string containing the token if it exists, false otherwise.
@@ -1362,7 +1362,7 @@ function gettok() end
 --- If default
 ---@alias getWindVelocity_default fun(): false
 --- If set
----@alias getWindVelocity_isSet fun(): x:integer, y:integer, z:integer
+---@alias getWindVelocity_isSet fun(): x: integer, y: integer, z: integer
 ---@type getWindVelocity_default | getWindVelocity_isSet
 function getWindVelocity() end
 
@@ -1379,9 +1379,9 @@ function restoreAllWorldModels() end
 function getThisResource() end
 
 --- Serverside
----@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...:string ), restricted?: boolean, caseSensitive?: boolean): boolean)
+---@alias addCommandHandler_server (fun(commandName: string, handlerFunction: fun(playerSource: player, commandName: string, ...: string ), restricted?: boolean, caseSensitive?: boolean): boolean)
 --- Clientside
----@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ...:string ), caseSensitive?: boolean): boolean)
+---@alias addCommandHandler_client (fun(commandName: string, handlerFunction:  fun(commandName: string, ...: string ), caseSensitive?: boolean): boolean)
 ---@type addCommandHandler_server | addCommandHandler_client Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler() end
 
@@ -1451,7 +1451,7 @@ function resetSkyGradient() end
 ---@type fun(enabled: boolean): boolean Returns true if the cloud state was changed succesfully
 function setCloudsEnabled() end
 
----@type fun(): r1:integer, g1:integer, b1:integer, r2:integer, g2:integer, b2:integer Returns 6 ints, of which the first 3 represent the sky's "top" color, (in RGB) and the last 3 represent the bottom colors.
+---@type fun(): r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer Returns 6 ints, of which the first 3 represent the sky's "top" color, (in RGB) and the last 3 represent the bottom colors.
 function getSkyGradient() end
 
 --- Serverside
@@ -1479,7 +1479,7 @@ function getBlipVisibleDistance() end
 ---@type fun(theBlip: blip, theDistance: number): boolean Returns true if successful
 function setBlipVisibleDistance() end
 
----@type fun(fX: number, fY: number, fX1: number, fY1: number, fX2: number, fY2: number, fX3: number, fY3: number, ...:number): colshape Returns a colshape element if successful
+---@type fun(fX: number, fY: number, fX1: number, fY1: number, fX2: number, fY2: number, fX3: number, fY3: number, ...: number): colshape Returns a colshape element if successful
 function createColPolygon() end
 
 ---@alias latentEventStatus { tickStart: number, tickEnd: number, totalSize: number, percentComplete: number}
@@ -1681,7 +1681,7 @@ function getTrainPosition() end
 * Returns 4 ints (if `bRGB` is false) indicating the color ids of each of the 4 vehicle colors.
 ]]
 --- RGB
----@alias getVehicleColor_rgb fun(theVehicle: vehicle, bRGB: true): r1:integer, g1:integer, b1:integer, r2:integer, g2:integer, b2:integer, r3:integer, g3:integer, b3:integer, r4:integer, g4:integer, b4:integer
+---@alias getVehicleColor_rgb fun(theVehicle: vehicle, bRGB: true): r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer, r4: integer, g4: integer, b4: integer
 --- Palette
 ---@alias getVehicleColor_palette fun(theVehicle: vehicle, bRGB: false): vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor
 ---@type getVehicleColor_rgb | getVehicleColor_palette
@@ -1765,7 +1765,7 @@ function getVehicleTowingVehicle() end
 ---@type fun(theVehicle: vehicle): number, number, number
 function getVehicleTurnVelocity() end
 
----@type fun(turretVehicle: vehicle): rx:number, ry:number Returns two floats for the X (horizontal) and Y (vertical) axis rotation respectively. These values are in radians. The function will return 0, 0 if the vehicle is not a vehicle with a turret.
+---@type fun(turretVehicle: vehicle): rx: number, ry: number Returns two floats for the X (horizontal) and Y (vertical) axis rotation respectively. These values are in radians. The function will return 0, 0 if the vehicle is not a vehicle with a turret.
 function getVehicleTurretPosition() end
 
 ---@type fun(theVehicleOrModel: vehicle|vehicleId): vehicleType Returns a string with vehicle type
@@ -1794,7 +1794,7 @@ function getVehicleDoorOpenRatio() end
 ---@type fun(theVehicle: vehicle): {[vehicleHandlingProperty]: any} Returns a table containing all the handling data
 function getVehicleHandling() end
 
----@type fun(theVehicle: vehicle): red:integer, green:integer, blue:integer Returns three integers for the red, green and blue of the headlight color for the specified vehicle
+---@type fun(theVehicle: vehicle): red: integer, green: integer, blue: integer Returns three integers for the red, green and blue of the headlight color for the specified vehicle
 function getVehicleHeadLightColor() end
 
 ---@see vehicleId
@@ -1958,7 +1958,7 @@ function setVehicleTaxiLightOn() end
 ---@type fun(theVehicle: vehicle, sirenPoint: integer, posX: number, posY: number, posZ: number, red: number, green: number, blue: number, alpha?: number, minAlpha?: number): boolean Returns true if the siren point was successfully changed on the vehicle
 function setVehicleSirens() end
 
----@type fun(): r:integer, g:integer, b:integer, a:integer Returns 4 ints, indicating the color of the water. (RGBA)
+---@type fun(): r: integer, g: integer, b: integer, a: integer Returns 4 ints, indicating the color of the water. (RGBA)
 function getWaterColor() end
 
 -- vertexIndex when there are 4 points
@@ -2062,14 +2062,14 @@ function setVehicleHandling() end
 -- Without callback
 ---@alias encodeString_default fun(algorithm:  "rsa" | "tea" | "aes128" | string, input: string, options: table): string
 -- With callback
----@alias encodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result:string)): true
+---@alias encodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result: string)): true
 ---@type encodeString_default | encodeString_callback
 function encodeString() end
 
 -- Without callback
 ---@alias decodeString_default fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table): string
 -- With callback
----@alias decodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result:string)): true
+---@alias decodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result: string)): true
 ---@type decodeString_default | decodeString_callback
 function decodeString() end
 
@@ -2077,7 +2077,7 @@ function decodeString() end
 ---@type fun(shape: colshape): colShapeTypeId Returns an integer of the type of the colshape.
 function getColShapeType() end
 
----@type fun(theElement: element): rx:number, ry:number, rz:number Returns three floats describing the x, y and z rotation
+---@type fun(theElement: element): rx: number, ry: number, rz: number Returns three floats describing the x, y and z rotation
 function getElementAngularVelocity() end
 
 ---@type fun(theElement: element, rx: number, ry: number, rz: number): boolean Returns true if it was succesful
@@ -2098,15 +2098,15 @@ function setPedAnimationSpeed() end
 ---@type fun(shape: colshape, fX: number, fY: number, index?: integer): boolean Returns true if the polygon was changed
 function addColPolygonPoint() end
 
----@type fun(shape: colshape): radius:number Returns a float containing the radius of the colshape
+---@type fun(shape: colshape): radius: number Returns a float containing the radius of the colshape
 function getColShapeRadius() end
 
 -- Cuboid
----@alias getColShapeSize_cuboid fun(shape: colshape): width:number, depth:number, height:number
+---@alias getColShapeSize_cuboid fun(shape: colshape): width: number, depth: number, height: number
 -- Rectangle
----@alias getColShapeSize_rectangle fun(shape: colshape): width:number, height:number
+---@alias getColShapeSize_rectangle fun(shape: colshape): width: number, height: number
 -- Tube
----@alias getColShapeSize_tube fun(shape: colshape): height:number
+---@alias getColShapeSize_tube fun(shape: colshape): height: number
 ---@type getColShapeSize_cuboid | getColShapeSize_rectangle | getColShapeSize_tube
 function getColShapeSize() end
 
@@ -2175,13 +2175,13 @@ function tocolor() end
 ---@type fun(xmlString: string): xmlnode | false Returns the root xmlnode object of an xml string if successful, or false otherwise (invalid XML string).
 function xmlLoadString() end
 
----@type fun(theElement: element, theMatrix: table): boolean Returns true if the matrix was set succesfully
+---@type fun(theElement: element, theMatrix: matrixAsTable): boolean Returns true if the matrix was set succesfully
 function setElementMatrix() end
 
----@type fun(shape: colshape): table Returns a table of coordinates, each coordinate being a table containing the x and y position of a bound point
+---@type fun(shape: colshape): {[1]: number, [2]: number}[] Returns a table of coordinates, each coordinate being a table containing the x and y position of a bound point
 function getColPolygonPoints() end
 
----@type fun(shape: colshape, index: integer): x:number, y: number Returns two floats, x and y, indicating the position of the point.
+---@type fun(shape: colshape, index: integer): x: number, y: number Returns two floats, x and y, indicating the position of the point.
 function getColPolygonPointPosition() end
 
 ---@type fun(shape: colshape, index: integer): boolean Returns true if the polygon was changed
@@ -2208,7 +2208,7 @@ function setTransferBoxVisible() end
 ---@type fun(shape: colshape, floor: number, ceil: number): boolean Returns true if the polygon was changed
 function setColPolygonHeight() end
 
----@type fun(): floor:number, ceil:number Returns two floats, indicating the floor and ceiling of the colshape height
+---@type fun(): floor: number, ceil: number Returns two floats, indicating the floor and ceiling of the colshape height
 function getColPolygonHeight() end
 
 --- Since 1.6.0 r21765 also available as a server-side function
@@ -2232,7 +2232,7 @@ function getPlayerBlurLevel() end
 ---@type setPlayerBlurLevel_server | setPlayerBlurLevel_client
 function setPlayerBlurLevel() end
 
----@alias utf8_byte (fun(input: string, startPos?: integer, endPos?: integer ): ...:integer|nil)
+---@alias utf8_byte (fun(input: string, startPos?: integer, endPos?: integer ): ...: integer|nil)
 ---@alias utf8_char fun(arg1?: integer, arg2?: integer, arg3?: integer, arg4?: integer, arg5?: integer, arg6?: integer, ...: integer): string
 ---@alias utf8_charpos (fun(input : string, charpos: integer, offset: integer ): integer | nil, integer | nil) | (fun(input : string, offset?: integer ): integer | nil, integer | nil)
 ---@alias utf8_escape fun(input: string): string
@@ -2243,7 +2243,7 @@ function setPlayerBlurLevel() end
 ---@alias utf8_insert (fun(input: string, insertPos: integer, substring: string): string) | (fun(input: string, substring: string): string)
 ---@alias utf8_len (fun(input: string, i?: integer, j?: integer): integer)
 ---@alias utf8_lower (fun(input: string): string) | (fun(input: integer): integer)
----@alias utf8_match (fun(input: string, pattern: string, index?: integer): ...:string | nil)
+---@alias utf8_match (fun(input: string, pattern: string, index?: integer): ...: string | nil)
 --[[
 | Value | Meaning |
 |-------|---------|
@@ -2285,7 +2285,7 @@ function setWorldSpecialPropertyEnabled() end
 ---@type fun(propname: worldSpecialProperty): boolean Returns true if the property is enabled
 function isWorldSpecialPropertyEnabled() end
 
----@type fun(path: string): entries:string[]|nil Returns entries in a specified directory. (Files and directories) If path is not found, it returns nil.
+---@type fun(path: string): entries: string[]|nil Returns entries in a specified directory. (Files and directories) If path is not found, it returns nil.
 function pathListDir() end
 
 ---@type fun(path: string): boolean Returns true if a specified path points to a file.

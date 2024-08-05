@@ -38,10 +38,10 @@ function getVehicleAdjustableProperty() end
 ---@type fun(theVehicle: vehicle): {[vehicleComponent] : any} Returns a table containing the name of the component as the key and visibility flag of that component as the value
 function getVehicleComponents() end
 
----@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): x:number, y:number, z:number Returns three floats indicating the position of the component, x, y and z respectively.
+---@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): x: number, y: number, z: number Returns three floats indicating the position of the component, x, y and z respectively.
 function getVehicleComponentPosition() end
 
----@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): rx:number, ry:number, rz:number Returns three floats indicating the rotation of the component, x, y and z respectively.
+---@type fun(theVehicle: vehicle, theComponent: string, base?: scaleBase): rx: number, ry: number, rz: number Returns three floats indicating the rotation of the component, x, y and z respectively.
 function getVehicleComponentRotation() end
 
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent): boolean Returns a bool indicating the visible state of the component.

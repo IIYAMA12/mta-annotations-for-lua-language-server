@@ -27,16 +27,16 @@ function guiGetFont() end
 ---@type fun(): inputMode
 function guiGetInputMode() end
 
----@type fun(guiElement: element): visibility:boolean Returns true if the element is visible, false otherwise.
+---@type fun(guiElement: element): visibility: boolean Returns true if the element is visible, false otherwise.
 function guiGetVisible() end
 
----@type fun(): width:number, height:number This returns two floats representing the player's screen resolution, width and height.
+---@type fun(): width: number, height: number This returns two floats representing the player's screen resolution, width and height.
 function guiGetScreenSize() end
 
 ---@type fun(): cursorType
 function guiGetCursorType() end
 
----@type fun(guiElement: element, relative: boolean): x:number, y:number Returns floats representing the x and y position of the element.
+---@type fun(guiElement: element, relative: boolean): x: number, y: number Returns floats representing the x and y position of the element.
 function guiGetPosition() end
 
 ---@type fun(guiElement: element): {[string] : string} If the function succeeds, the return value is a table. Its keys are property names, the corresponding values are the values of the properties (both names and values are always strings).
@@ -202,7 +202,7 @@ function guiGridListSetSortingEnabled() end
 ---@type fun(gridList: element): integer Returns an integer representing the amount of selected options if everything was successful.
 function guiGridListGetSelectedCount() end
 
----@type fun(gridList: element): table Returns a table over the selected items in the grid list.
+---@type fun(gridList: element): {['column']: integer, ['row']: integer}[] Returns a table over the selected items in the grid list.
 function guiGridListGetSelectedItems() end
 
 ---@type fun(gridList: element, columnIndex: integer, width: number, relative: boolean): boolean Returns true if the gridlist column width was successfully set, false if bad arguments were given.

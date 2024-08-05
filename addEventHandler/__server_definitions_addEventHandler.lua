@@ -59,7 +59,7 @@
     Player events
 ]]
 
----@alias addEventHandler_onPlayerACInfo fun(eventName: "onPlayerACInfo", attachedTo: element, handlerFunction: fun(detectedACList: table, d3d9Size: integer, d3d9MD5: string, d3d9SHA256: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
+---@alias addEventHandler_onPlayerACInfo fun(eventName: "onPlayerACInfo", attachedTo: element, handlerFunction: fun(detectedACList: (integer|string)[], d3d9Size: integer, d3d9MD5: string, d3d9SHA256: string), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onPlayerBan fun(eventName: "onPlayerBan", attachedTo: element, handlerFunction: fun(banPointer: ban, responsibleElement: unknown), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onPlayerChangeNick fun(eventName: "onPlayerChangeNick", attachedTo: element, handlerFunction: fun(oldNick: string, newNick: string, changedByUser: boolean), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
 ---@alias addEventHandler_onPlayerChat fun(eventName: "onPlayerChat", attachedTo: element, handlerFunction: fun(message: string, messageType: messageType), getPropagated?: boolean, priority?: addEventHandlerPriority): boolean
