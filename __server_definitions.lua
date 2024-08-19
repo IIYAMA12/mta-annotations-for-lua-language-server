@@ -566,7 +566,11 @@ function dbExec() end
 ---@type (fun(databaseConnection: databaseConnection, query?: string, ...: string | number): handle) | (fun(callbackFunction: function, databaseConnection: databaseConnection, query?: string, ...: string | number): handle) | (fun(callbackFunction: function, callbackArguments: table, databaseConnection: databaseConnection, query?: string, ...: string | number): handle) Returns a query handle unless the connection is incorrect.
 function dbQuery() end
 
----@type fun(queryHandle: handle, timeout: integer, multipleResults?: boolean): table | nil | false More info: https://wiki.multitheftauto.com/wiki/DbPoll
+--- MultipleResults returns { [1]: result, [2]: numAffectedRows, [3]: lastInsertId }
+---@alias dbPoll_multipleResults fun(queryHandle: handle, timeout: integer, multipleResults: true): {[1]: table, [2]: integer, [3]: integer}[] | nil | false
+---@alias dbPoll_notMultipleResults fun(queryHandle: handle, timeout: integer, multipleResults?: false): table[] | nil | false
+--More info: https://wiki.multitheftauto.com/wiki/DbPoll
+---@type dbPoll_multipleResults|dbPoll_notMultipleResults
 function dbPoll() end
 
 ---@type fun(queryHandle: handle): boolean Returns true if the handle was successfully freed, false otherwise.

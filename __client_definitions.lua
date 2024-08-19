@@ -591,7 +591,7 @@ function setBrowserRenderingPaused() end
 ---@type (fun(webBrowser: browser, volume: number): boolean) | (fun( volume: number): boolean)
 function setBrowserVolume() end
 
----@type fun(pages: {[integer] : string}, parseAsURL?: boolean, callback?: fun (wasAccepted: boolean, newDomains: {[integer] : string}) ): boolean Returns true, if the string was successfully read
+---@type fun(pages: string[], parseAsURL?: boolean, callback?: fun (wasAccepted: boolean, newDomains: string[]) ): boolean Returns true, if the string was successfully read
 function requestBrowserDomains() end
 
 ---@type fun(webBrowser: browser, url: string, handler?: fun (get: {[string]: unknown}, post:  {[string]: unknown}): string? ): boolean Returns true if the ajax handler could be created/removed.
@@ -1112,3 +1112,12 @@ function resetShakeCamera() end
 ]]
 ---@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]:  {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}} | false
 function getVehicleEntryPoints() end
+
+---@type fun(state: boolean): true
+function setTimeFrozen() end
+
+---@type fun(): boolean
+function isTimeFrozen() end
+
+---@type fun(): true
+function resetTimeFrozen() end
