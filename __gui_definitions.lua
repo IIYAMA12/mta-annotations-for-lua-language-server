@@ -168,7 +168,7 @@ function guiGridListGetItemText() end
 ---@type fun(gridList: element): integer Returns the number of rows if the function is successful.
 function guiGridListGetRowCount() end
 
----@type fun(gridList: element): integer, integer Returns the row and column indexes of the selected item if the specified grid list is valid and has a selected item, (-1, -1) if no item is selected.
+---@type fun(gridList: element): rowIndex: integer, columnIndex: integer Returns the row and column indexes of the selected item if the specified grid list is valid and has a selected item, (-1, -1) if no item is selected.
 function guiGridListGetSelectedItem() end
 
 ---@type fun(gridList: element, rowIndex: integer): integer Returns row id if the row was successfully added.
@@ -340,7 +340,7 @@ function guiLabelSetVerticalAlign() end
 ---@type fun(theLabel: element): integer, integer, integer Returns a gui window element if it was created successfully.
 function guiLabelGetColor() end
 
----@type fun(x: number, y: number, width: number, height: number, titleBarText: string, relative: boolean): element
+---@type fun(x: number, y: number, width: number, height: number, titleBarText: string, relative?: boolean): element
 function guiCreateWindow() end
 
 ---@type fun(theElement: element, status: boolean): boolean Returns true if the function is successful, false otherwise.
