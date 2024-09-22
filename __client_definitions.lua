@@ -373,9 +373,6 @@ function getSearchLightEndRadius() end
 ---@type fun(theProjectile: projectile): target: element
 function getProjectileTarget() end
 
----@type fun(theObject: object, respawn: boolean): boolean Returns true when the it was changed successfully.
-function toggleObjectRespawn() end
-
 ---@type (fun(event: string, theElement: element,  arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) | (fun(event: string, bandwidth: integer, persist: boolean, theElement: element, arg1?: unknownSyncAble, arg2?: unknownSyncAble, arg3?: unknownSyncAble, arg4?: unknownSyncAble, arg5?: unknownSyncAble, arg6?: unknownSyncAble, arg7?: unknownSyncAble, arg8?: unknownSyncAble, arg9?: unknownSyncAble, arg10?: unknownSyncAble, ...): boolean) Returns true if the event trigger has been sent
 function triggerLatentServerEvent() end
 
@@ -563,7 +560,8 @@ function getBrowserTitle() end
 ---@type fun(webBrowser: browser): string Returns the web browser URL.
 function getBrowserURL() end
 
----@type fun(webBrowser: browser, mouseButton: mouseButton): boolean Returns true if the click was successfully injected
+--- See for doubleClick: https://github.com/multitheftauto/mtasa-blue/blob/81c939a4e047378d166da28dfce7dfa85bdc368d/Client/mods/deathmatch/logic/luadefs/CLuaBrowserDefs.cpp#L318C87-L318C98
+---@type fun(webBrowser: browser, mouseButton: mouseButton, doubleClick?: boolean): boolean Returns true if the click was successfully injected
 function injectBrowserMouseDown() end
 
 ---@type fun(webBrowser: browser, posX: integer, posY: integer): boolean Returns true if the movement was injected successfully
@@ -780,7 +778,8 @@ function isLineOfSightClear() end
 ---@type fun(group: worldSoundGroup, index: integer): boolean Returns true if the world sounds are enabled
 function isWorldSoundEnabled() end
 
----@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean): hit: boolean, x: number, y: number, z: number, element, nx: number, ny: number, nz: number, mat: integer, lighting: number, piece: integer, worldModel: integer, x: number, y: number, z: number, rx: number, ry: number, rz: number, worldLOD: integer
+--- Some values are only returned if the correct arguments are passed. See https://wiki.multitheftauto.com/wiki/ProcessLineOfSight for more information.
+---@type fun(startX: number, startY: number, startZ: number, endX: number, endY: number, endZ: number, checkBuildings?: boolean, checkVehicles?: boolean, checkPlayers?: boolean, checkObjects?: boolean, checkDummies?: boolean, seeThroughStuff?: boolean, ignoreSomeObjectsForCamera?: boolean, shootThroughStuff?: boolean, ignoredElement?: element, includeWorldModelInformation?: boolean, bIncludeCarTyres?: boolean, bIncludeExtraMateriaInfo?: boolean): hit: boolean, x: number, y: number, z: number, element, nx: number, ny: number, nz: number, mat: integer, lighting: number, piece: integer, worldModel: integer, x: number, y: number, z: number, rx: number, ry: number, rz: number, worldLOD: integer, uvX: number, uvY: number, textureName: string, frameName: string, modelHitX: number, modelHitY: number, modelHitZ: number
 function processLineOfSight() end
 
 ---@type fun(): boolean Returns true if the ambient sounds were reset
@@ -896,9 +895,6 @@ function setSoundLooped() end
 ---@type fun(theSound: sound): boolean Returns true if the sound element is looped
 function isSoundLooped() end
 
----@type fun(theObject: object): boolean Returns true if the object is moving
-function isObjectMoving() end
-
 ---@type fun(webBrowser: browser): boolean Returns true if the browser rendering is paused
 function isBrowserRenderingPaused() end
 
@@ -960,8 +956,7 @@ function svgGetUpdateCallback() end
 ---@type fun(svgElement: svg, callback: function | boolean): boolean Returns true if successful
 function svgSetUpdateCallback() end
 
----@deprecated Function has been disabled. Reason/Note: Feature temporarily removed in 22272 due to feedback - Bugtracker Issue: [#3212](https://github.com/multitheftauto/mtasa-blue/issues/3212)
----@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ: number) Returns true if the operation was successful
+---@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ?: number) Returns true if the operation was successful
 function dxDrawModel3D() end
 
 ---@type fun(): boolean Returns true if Discord Rich Presence is enabled on the client
@@ -1054,6 +1049,9 @@ function setGrainMultiplier() end
 ---@type fun(charLimit: integer): boolean
 function setChatboxCharacterLimit() end
 
+---@type fun(): charLimit: integer
+function getChatboxCharacterLimit() end
+
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ACreateBuilding&type=code
 ---@type fun(modelId: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, interior?: integer): building
 function createBuilding() end
@@ -1121,3 +1119,29 @@ function isTimeFrozen() end
 
 ---@type fun(): true
 function resetTimeFrozen() end
+
+---@type fun(state: boolean): true
+function setVolumetricShadowsEnabled() end
+
+---@type fun(): boolean Returns true if enabled
+function isVolumetricShadowsEnabled() end
+
+---@type fun(): true
+function resetVolumetricShadows() end
+
+---@type fun(thePed: ped | player, boneId: boneId, x: number, y: number, z: number, w: number)
+function setElementBoneQuaternion() end
+
+---@type fun(thePed: ped | player, boneId: boneId): x: number, y: number, z: number, w: number
+function getElementBoneQuaternion() end
+
+--- Clientside
+---@alias resetWorldProperties_client fun(resetSpecialProperties?: boolean, resetWorldProperties?: boolean, resetWeatherProperties?: boolean, resetLODs?: boolean, resetSounds?: boolean): nil
+--- Serverside
+---@alias resetWorldProperties_server fun(resetSpecialProperties?: boolean, resetWorldProperties?: boolean, resetWeatherProperties?: boolean, resetLODs?: boolean, resetSounds?: boolean, resetGlitches?: boolean, resetJetpackWeapons?: boolean): nil
+--- https://github.com/multitheftauto/mtasa-blue/pull/3692
+---@type resetWorldProperties_client | resetWorldProperties_server
+function resetWorldProperties() end
+
+---@type fun(theElement: ped | player | vehicle | object ): number | false
+function getElementLighting() end

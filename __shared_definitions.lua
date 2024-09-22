@@ -490,9 +490,9 @@ function setMarkerSize() end
 function getMarkerColor() end
 
 --- Serverside
----@alias createMarker_server fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo?: root): markerElement: marker
+---@alias createMarker_server fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo?: root, ignoreAlphaLimits?: boolean): markerElement: marker
 --- Clientside
----@alias createMarker_client fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer): markerElement: marker
+---@alias createMarker_client fun(x: number, y: number, z: number, theType?: markerType, size?: number, r?: integer, g?: integer, b?: integer, a?: integer, ignoreAlphaLimits?: boolean): markerElement: marker
 ---@type createMarker_server | createMarker_client
 function createMarker() end
 
@@ -1354,7 +1354,7 @@ function getTimers() end
 ---@type fun(): boolean Returns true if occlusions are enabled
 function getOcclusionsEnabled() end
 
----@type fun(res: resource): string Returns a string with the resource name in it
+---@type fun(res?: resource): string Returns a string with the resource name in it
 function getResourceName() end
 
 ---@type fun(theRadararea: radararea): red: integer, green: integer, blue: integer, alpha: integer Returns four integers in RGBA format (red, green, blue, alpha), with a maximum value of 255 for each. Alpha decides transparency where 255 is opaque and 0 is transparent.
@@ -1795,7 +1795,7 @@ function getVehicleWheelStates() end
 function getVehicleDoorOpenRatio() end
 
 ---@see vehicleHandlingProperty
----@type fun(theVehicle: vehicle): {[vehicleHandlingProperty]: any} Returns a table containing all the handling data
+---@type fun(theVehicle: vehicle, property?: vehicleHandlingProperty): {[vehicleHandlingProperty]: any} Returns a table containing all the handling data
 function getVehicleHandling() end
 
 ---@type fun(theVehicle: vehicle): red: integer, green: integer, blue: integer Returns three integers for the red, green and blue of the headlight color for the specified vehicle
@@ -2307,3 +2307,25 @@ function setMarkerTargetArrowProperties() end
 
 ---@type fun(theMarker: marker): r: integer, g: integer, b: integer, a: integer, size: number
 function getMarkerTargetArrowProperties() end
+
+---@type fun(theObject: object, respawn: boolean): boolean Returns true when the it was changed successfully.
+function toggleObjectRespawn() end
+
+---@type fun(theObject: object): boolean
+function isObjectRespawnable() end
+
+---@type fun(theTimer: timer): boolean Returns true if the timer is currently paused, false if not or if no such timer existed.
+function isTimerPaused() end
+
+---@type fun(theTimer: timer, paused: boolean): boolean Returns true if the timer was successfully paused or resumed, false if no such timer existed.
+function setTimerPaused() end
+
+--- Serverside
+---@alias getPlayerScriptDebugLevel_server fun(thePlayer: player): debugScriptLevel
+--- Clientside
+---@alias getPlayerScriptDebugLevel_client fun(): debugScriptLevel
+---@type getPlayerScriptDebugLevel_server | getPlayerScriptDebugLevel_client Returns an int with the player debug script level.
+function getPlayerScriptDebugLevel() end
+
+---@type fun(theObject: object): boolean Returns true if the object is moving
+function isObjectMoving() end

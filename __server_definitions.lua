@@ -678,9 +678,6 @@ function setControlState() end
 ---@type fun(thePlayer: player, controlName: controlName): boolean Returns the state of the control, false if the control doesn't exist or if the player is dead.
 function getControlState() end
 
----@type fun(thePlayer: player): debugScriptLevel Returns an int with the player debug script level.
-function getPlayerScriptDebugLevel() end
-
 ---@type fun(thePlayer: player, level: debugScriptLevel): boolean Returns true if successful, false otherwise.
 function setPlayerScriptDebugLevel() end
 
@@ -703,3 +700,6 @@ function isVehicleRespawnable() end
 
 ---@type fun(theAccount: account): "player" | "guest" | string
 function getAccountType() end
+
+---@type fun(objectName: string): aclgroup[]
+function aclObjectGetGroups() end

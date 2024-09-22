@@ -54,7 +54,7 @@ function engineApplyShaderToWorldTexture() end
 ---@type fun(modelName: string): integer | false Returns an int with the ID of the object model, false otherwise.
 function engineGetModelIDFromName() end
 
----@type fun(modelId: integer, distance: number): boolean Returns true if the function executed succesfully, false otherwise.
+---@type fun(modelId: integer, distance: number, extendedLod?: boolean): boolean Returns true if the function executed succesfully, false otherwise.
 function engineSetModelLODDistance() end
 
 ---@type fun(ifpFilePath: string, CustomBlockName: string): ifp | false Returns an IFP element if the IFP file loaded, false otherwise.
@@ -84,7 +84,7 @@ function engineRestoreObjectGroupPhysicalProperties() end
 ---@type fun(groupId: integer, property: string, newValue: any): boolean Returns true if everything went well, error is raised otherwise.
 function engineSetObjectGroupPhysicalProperty() end
 
----@type fun(elementType: string, parentID?: integer): integer | false Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
+---@type fun(elementType: "ped" | "vehicle" | "object" | "timed-object" | "clump", parentID?: integer): integer | false Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
 function engineRequestModel() end
 
 ---@type fun(modelId: integer): boolean Returns true if the model was successfully freed, false otherwise.
@@ -105,7 +105,7 @@ function engineResetSurfaceProperties() end
 ---@type fun(model: integer): boolean Returns true if the LOD distance was reset to default, or false if the model argument is incorrect, or the LOD distance hasn't been changed.
 function engineResetModelLODDistance() end
 
----@type fun(includeLODs?: boolean): boolean Returns true if the world was restreamed successfully, false otherwise.
+---@type fun(): boolean Returns true if the world was restreamed successfully, false otherwise.
 function engineRestreamWorld() end
 
 ---@type fun(modelId: integer, timeOn: integer, timeOff: integer): boolean Returns true if the change was successful, false otherwise.
@@ -202,3 +202,12 @@ function engineStreamingGetBufferSize() end
 
 ---@type fun(x: number, y: number, z: number, loadingOption?: "all" | "models" | "collisions")
 function enginePreloadWorldArea() end
+
+---@type fun(modelId: integer): "unloaded" | "loaded" | "requested" | "reading" | "finishing"
+function engineStreamingGetModelLoadState() end
+
+---@type fun(modelId: integer, addRef?: boolean, isBlocking?: boolean): boolean
+function engineStreamingRequestModel() end
+
+---@type fun(modelId: integer, removeRef?: boolean): boolean
+function engineStreamingReleaseModel() end

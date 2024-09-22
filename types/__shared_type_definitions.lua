@@ -154,6 +154,7 @@ local string_
 exports = table_         -- returns a table of resource names containing all export functions
 resource = userData_     -- returns a resource element of the resource the snippet was executed in
 resourceRoot = userData_ -- returns a resource root element of the resource the snippet was executed in
+resourceName = string_   -- returns the name of the resource the snippet was executed in
 root = userData_         -- returns the root element of the server
 sourceTimer = userData_  -- The hidden global variable sourceTimer contains the currently executing timer userdata
 
