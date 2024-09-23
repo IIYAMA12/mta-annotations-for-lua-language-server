@@ -71,7 +71,7 @@ If that doesn't work / can't find it. Just drop the definition folder right in y
 
 ### Sublime
 
-Make this work, you have to open the Lua settings file for defining the definition directory.
+To make this work, you have to open the Lua settings file for defining the definition directory.
 
 Command panel:
 ```
@@ -87,7 +87,7 @@ Or alternative:
 
 ![Sublime lua settings](images/sublime-lua-settings.png)
 
-Add overwrite the settings with the library path. You probably need to escape the following characters `\` like this `\\`.
+Add a library file path override. You probably need to escape the following characters `\` like this `\\`.
 ```JSON
 // Settings in here override those in "LSP-lua/LSP-lua.sublime-settings"
 {
