@@ -1145,3 +1145,7 @@ function resetWorldProperties() end
 
 ---@type fun(theElement: ped | player | vehicle | object ): number | false
 function getElementLighting() end
+
+--- Note: This function always returns true for spraycan and fire extinguisher.<br>
+---@type fun(): visible: boolean Returns true if the player has the crosshair visible
+function isPlayerCrosshairVisible() end
