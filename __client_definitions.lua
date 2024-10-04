@@ -519,20 +519,6 @@ function getSearchLightStartPosition() end
 ---@type fun(): boolean Returns true if the file transfer box is visible
 function isTransferBoxActive() end
 
---[[
-Returns
-* true if the object was successfully broken.
-* false if the object is not breakable, or a wrong object was given.
-]]
----@type fun(theObject: object): boolean
-function breakObject() end
-
----@type fun(theObject: object): boolean Returns true if the object is breakable.
-function isObjectBreakable() end
-
----@type fun(theObject: object): boolean Returns true if the object was sucessfully respawned.
-function respawnObject() end
-
 ---@type fun(address: string, isURL?: boolean): boolean Returns false if the URL is able to be loaded, true if it is blocked
 function isBrowserDomainBlocked() end
 

@@ -293,9 +293,6 @@ function isElementAttached() end
 ---@type takePlayerMoney_server | takePlayerMoney_client Returns true if the money was taken
 function takePlayerMoney() end
 
----@type fun(modelid: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, isLowLOD?: boolean): objectElement: object Returns the object element if the creation was successful
-function createObject() end
-
 ---@type fun(theMarker: marker, x: number, y: number, z: number): boolean Returns true if target was set
 function setMarkerTarget() end
 
@@ -512,12 +509,6 @@ function stopObject() end
 ---@type unbindKey_server | unbindKey_client Returns true if the key was unbound, false if it was not previously bound
 function unbindKey() end
 
----@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?: number, movery?: number, moverz?: number, strEasingType?: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean Returns true if the function moved the object succesfully.
-function moveObject() end
-
----@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean Returns true if the scale was set properly.
-function setObjectScale() end
-
 ---@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the amount of ammo in the specified ped's currently selected or specified clip, or 0 if the ped specified is invalid.
 function getPedAmmoInClip() end
 
@@ -581,9 +572,6 @@ function getWeaponNameFromID() end
 
 ---@type fun(thePed: ped, theKiller?: ped, weapon?: weaponId | damageTypeId, bodyPart?: bodyPartId, stealth?: boolean): boolean Returns true if the ped was killed
 function killPed() end
-
----@type fun(theObject: object): x: number, y: number, z: number Returns three float values indicating the scale of the object on the x, y, and z axis if successful
-function getObjectScale() end
 
 --- Health
 ---@alias setPickupType_health fun(thePickup: pickup, theType: 0, amount: integer): boolean
@@ -2215,10 +2203,6 @@ function setColPolygonHeight() end
 ---@type fun(): floor: number, ceil: number Returns two floats, indicating the floor and ceiling of the colshape height
 function getColPolygonHeight() end
 
---- Since 1.6.0 r21765 also available as a server-side function
----@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
-function setObjectBreakable() end
-
 ---@type fun(theElement: element): { [string]: unknownSyncAble } If successful, returns a table with as keys the names of the element data and as values the corresponding element data values.
 function getAllElementData() end
 
@@ -2308,12 +2292,6 @@ function setMarkerTargetArrowProperties() end
 ---@type fun(theMarker: marker): r: integer, g: integer, b: integer, a: integer, size: number
 function getMarkerTargetArrowProperties() end
 
----@type fun(theObject: object, respawn: boolean): boolean Returns true when the it was changed successfully.
-function toggleObjectRespawn() end
-
----@type fun(theObject: object): boolean
-function isObjectRespawnable() end
-
 ---@type fun(theTimer: timer): boolean Returns true if the timer is currently paused, false if not or if no such timer existed.
 function isTimerPaused() end
 
@@ -2327,5 +2305,40 @@ function setTimerPaused() end
 ---@type getPlayerScriptDebugLevel_server | getPlayerScriptDebugLevel_client Returns an int with the player debug script level.
 function getPlayerScriptDebugLevel() end
 
+---@type fun(modelid: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, isLowLOD?: boolean): objectElement: object Returns the object element if the creation was successful
+function createObject() end
+
+---@type fun(theObject: object): boolean Returns true if the object was sucessfully respawned.
+function respawnObject() end
+
+---@type fun(theObject: object, respawn: boolean): boolean Returns true when the it was changed successfully.
+function toggleObjectRespawn() end
+
+---@type fun(theObject: object): boolean
+function isObjectRespawnable() end
+
+---@type fun(theObject: object): boolean Returns true if the object is breakable.
+function isObjectBreakable() end
+
+--[[
+Returns
+* true if the object was successfully broken.
+* false if the object is not breakable, or a wrong object was given.
+]]
+---@type fun(theObject: object): boolean
+function breakObject() end
+
+---@type fun(theObject: object, breakable: boolean): boolean Returns true if the object is now breakable. false if it can't or if invalid arguments are passed.
+function setObjectBreakable() end
+
 ---@type fun(theObject: object): boolean Returns true if the object is moving
 function isObjectMoving() end
+
+---@type fun(theObject: object, time: integer, targetx: number, targety: number, targetz: number, moverx?: number, movery?: number, moverz?: number, strEasingType?: strEasingType, fEasingPeriod?: number, fEasingAmplitude?: number, fEasingOvershoot?: number): boolean Returns true if the function moved the object succesfully.
+function moveObject() end
+
+---@type fun(theObject: object, scale: number, scaleY?: number, scaleZ?: number): boolean Returns true if the scale was set properly.
+function setObjectScale() end
+
+---@type fun(theObject: object): x: number, y: number, z: number Returns three float values indicating the scale of the object on the x, y, and z axis if successful
+function getObjectScale() end
