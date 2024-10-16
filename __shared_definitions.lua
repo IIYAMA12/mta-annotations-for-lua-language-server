@@ -715,7 +715,11 @@ function isPedOnGround() end
 ---@type fun(theValue: any): boolean Returns true if the passed value is an element
 function isElement() end
 
----@type fun(): pedId[] Returns a table with all valid ped models.
+---Serverside
+---@alias getValidPedModels_server fun(): pedId[]
+---Clientside (argument includeCustom: specifies if the table returned should contain custom model IDs allocated with engineRequestModel.)
+---@alias getValidPedModels_client fun(includeCustom?: boolean): pedId[]
+---@type getValidPedModels_server | getValidPedModels_client Returns a table with all valid ped models.
 function getValidPedModels() end
 
 ---@type fun(thePed: ped): vehicleSeatId | false Returns an integer containing the number of the seat that the ped is currently in. false if the ped is on foot.
