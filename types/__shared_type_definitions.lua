@@ -1378,3 +1378,19 @@ Use 3 to remove the paintjob.
 ---@alias weekdays 0|1|2|3|4|5|6
 
 ---@alias coreCommands "help"|"exit"|"quit"|"ver"|"time"|"showhud"|"binds"|"serial"|"connect"|"reconnect"|"bind"|"unbind"|"copygtacontrols"|"screenshot"|"saveconfig"
+
+--[[
+* 0: COL_BUMPER
+* 1: COL_WHEEL
+* 2: COL_DOOR
+* 3: COL_BONNET
+* 4: COL_BOOT
+* 5: COL_PANEL
+]]
+---@alias vehicleFlyingComponentCollisionType 0|1|2|3|4|5
+
+--[[
+Info about the components
+https://wiki.multitheftauto.com/wiki/Vehicle_Components#Component_nodes
+]]
+---@alias vehicleFlyingComponentNodeIndex 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24

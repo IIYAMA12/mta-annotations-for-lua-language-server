@@ -1540,7 +1540,7 @@ function setTimer(theFunction, timeInterval, timesToExecute, ...) end
 ---@type fun(stringToSplit: string, separatingChar: string | integer): string[] Returns a table of substrings split from the original string if successful
 function split() end
 
----@type fun(theTimer: timer): boolean Returns true if the passed value is a timer
+---@type fun(theTimer: any): boolean Returns true if the passed value is a timer
 function isTimer() end
 
 ---@type fun(str: string): string Returns the MD5 hash of the input string if successful
@@ -2342,3 +2342,7 @@ function setObjectScale() end
 
 ---@type fun(theObject: object): x: number, y: number, z: number Returns three float values indicating the scale of the object on the x, y, and z axis if successful
 function getObjectScale() end
+
+--- More info about the arguments can be found here: https://wiki.multitheftauto.com/wiki/SpawnVehicleFlyingComponent
+---@type fun(theVehicle: vehicle, nodeIndex: vehicleFlyingComponentNodeIndex, collisionType?: vehicleFlyingComponentCollisionType, removalTime?: integer): boolean
+function spawnVehicleFlyingComponent() end
