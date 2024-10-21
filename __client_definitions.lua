@@ -999,9 +999,6 @@ function engineSetModelTXDID() end
 ---@type fun(theFile: file, verifyContents?: boolean): string | nil Returns the bytes that were read from the file, but only if verification was disabled or if the checksum comparison succeeded.
 function fileGetContents() end
 
----@type fun(ped: ped | player): boolean Returns true when the voice was successfully reset
-function resetPedVoice() end
-
 ---@type fun(theVehicle: vehicle): boolean Returns the rotor speed if successful. This is 0 when the helicopter or plane is stationary, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise. Returns false in case of failure (an invalid element or a vehicle element that is not a helicopter or plane was passed).
 function getVehicleRotorSpeed() end
 

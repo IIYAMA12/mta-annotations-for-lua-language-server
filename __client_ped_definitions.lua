@@ -116,3 +116,15 @@ function setPedBleeding() end
 
 ---@type fun(thePed: ped): boolean Returns true if the player or ped is bleeding, false otherwise.
 function isPedBleeding() end
+
+---@type fun(thePed: ped): number
+function getPedAnimationSpeed() end
+
+---@type fun(thePed: ped): number
+function getPedAnimationLength() end
+
+---@type fun(thePed: ped): number
+function getPedAnimationProgress() end
+
+---@type fun(ped: ped): boolean Returns true when the voice was successfully reset
+function resetPedVoice() end
