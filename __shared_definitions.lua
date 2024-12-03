@@ -1718,7 +1718,7 @@ function getVehicleMaxPassengers() end
 function getVehicleName() end
 
 ---@see vehicleSeatId
----@type fun(theVehicle: vehicle, seat: vehicleSeatId): player | ped Returns the player/ped sitting in the vehicle, or false if the seat is unoccupied or doesn't exist.
+---@type fun(theVehicle: vehicle, seat?: vehicleSeatId): player | ped Returns the player/ped sitting in the vehicle, or false if the seat is unoccupied or doesn't exist.
 function getVehicleOccupant() end
 
 ---@see vehicleSeatId
