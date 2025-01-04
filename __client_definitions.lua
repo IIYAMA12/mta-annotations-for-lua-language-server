@@ -942,7 +942,7 @@ function svgGetUpdateCallback() end
 ---@type fun(svgElement: svg, callback: function | boolean): boolean Returns true if successful
 function svgSetUpdateCallback() end
 
----@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ?: number) Returns true if the operation was successful
+---@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ?: number, lighting?: 0|1 ): boolean Returns true if the operation was successful
 function dxDrawModel3D() end
 
 ---@type fun(): boolean Returns true if Discord Rich Presence is enabled on the client
@@ -1020,6 +1020,16 @@ Returns
 ---@type processLineAgainstMesh_hit | processLineAgainstMesh_noHit
 function processLineAgainstMesh() end
 
+--[[BUILD: 1.6.0 r22837<br>]]
+-- Hit with element
+---@alias testSphereAgainstWorld_hitElement  fun(startX: number, startY: number, startZ: number, radius: number, ignoredElement?: element|nil, checkBuildings?: boolean, checkVehicles?: boolean, checkPeds?: boolean, checkObjects?: boolean, checkDummies?: boolean, ignoreSomeObjectsForCamera?: boolean): hit: true, hitElement: element|nil, worldX: number, worldY: number, worldZ: number, worldRotX: number, worldRotY: number, worldRotZ: number, modelId: integer, lodId: integer, entityType: "building"|"vehicle"|"ped"|"object"|"dummy"|string
+-- Hit without element
+---@alias testSphereAgainstWorld_hitWithoutElement  fun(startX: number, startY: number, startZ: number, radius: number, ignoredElement?: element|nil, checkBuildings?: boolean, checkVehicles?: boolean, checkPeds?: boolean, checkObjects?: boolean, checkDummies?: boolean, ignoreSomeObjectsForCamera?: boolean): hit: true, hitElement: nil, worldX: nil, worldY: nil, worldZ: nil, worldRotX: nil, worldRotY: nil, worldRotZ: nil, modelId: nil, lodId: 0, entityType: nil
+-- No hit
+---@alias testSphereAgainstWorld_noHit  fun(startX: number, startY: number, startZ: number, radius: number, ignoredElement?: element|nil, checkBuildings?: boolean, checkVehicles?: boolean, checkPeds?: boolean, checkObjects?: boolean, checkDummies?: boolean, ignoreSomeObjectsForCamera?: boolean): hit: false, hitElement: nil, worldX: nil, worldY: nil, worldZ: nil, worldRotX: nil, worldRotY: nil, worldRotZ: nil, modelId: nil, lodId: 0, entityType: nil
+---@type testSphereAgainstWorld_hitElement | testSphereAgainstWorld_hitWithoutElement | testSphereAgainstWorld_noHit
+function testSphereAgainstWorld() end
+
 --[[
 `level`: The amount of grain (0-255).
 ]]
@@ -1040,9 +1050,13 @@ function getChatboxCharacterLimit() end
 function createBuilding() end
 
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARemoveAllGameBuildings&type=code
+---@deprecated
+---@type fun(): nil
 function removeAllGameBuildings() end
 
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARestoreGameBuildings&type=code
+---@deprecated
+---@type fun(): nil
 function restoreAllGameBuildings() end
 
 ---@type fun(theVehicle: vehicle, rotation: number ): boolean Returns true if successful

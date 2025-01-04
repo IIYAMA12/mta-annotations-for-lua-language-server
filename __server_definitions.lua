@@ -312,14 +312,8 @@ function copyResource() end
 ---@type fun(theTeam: team, colorR: integer, colorG: integer, colorB: integer): boolean Returns true if the team is valid and the color is different, otherwise false.
 function setTeamColor() end
 
----@type fun(theVehicle: vehicle, sirenCount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8, sirenType: sirenTypeId, flag360?: boolean, checkLosFlag?: boolean, useRandomiser?: boolean, silentFlag?: boolean): boolean Returns true if sirens were successfully added to the vehicle, false otherwise.
-function addVehicleSirens() end
-
 ---@type fun(thePlayer: player, weaponId: weaponId, ammo?: integer): boolean Returns a true if the weapon/ammo was removed successfully, false otherwise.
 function takeWeapon() end
-
----@type fun(theVehicle: vehicle): boolean Returns true if sirens were successfully removed from the vehicle, false otherwise.
-function removeVehicleSirens() end
 
 ---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle explosion time has been reset, false if it failed to reset the explosion time.
 function resetVehicleExplosionTime() end

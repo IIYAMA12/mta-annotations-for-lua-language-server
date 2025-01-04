@@ -174,12 +174,6 @@ function setBlipOrdering() end
 ---@type fun(thePlayer: player): wantedLevel: playerWantedLevel Returns an int from 0 to 6 representing the player's wanted level
 function getPlayerWantedLevel() end
 
---[[
-	See [wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes) for CJ_Clothes
-]]
----@type fun(thePed: ped, clothesType: clothesType): string, string Returns 2 strings, the clothes texture and model.
-function getPedClothes() end
-
 --- Serverside
 ---@alias playSoundFrontEnd_server fun(thePlayer: player, sound: soundFrontEndId): boolean
 --- Clientside
@@ -474,9 +468,6 @@ function getElementMatrix() end
 ---@type fun(shape: colshape, elemType?: elementTypeAutoComplete): element[] Returns a table containing all the elements inside the colshape, of the specified type.
 function getElementsWithinColShape() end
 
----@type fun(thePed: ped, style: pedWalkStyleId): boolean Returns true if successful
-function setPedWalkingStyle() end
-
 ---@type fun(theElement: element): colshape Returns colshape of the element
 function getElementColShape() end
 
@@ -509,9 +500,6 @@ function stopObject() end
 ---@type unbindKey_server | unbindKey_client Returns true if the key was unbound, false if it was not previously bound
 function unbindKey() end
 
----@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the amount of ammo in the specified ped's currently selected or specified clip, or 0 if the ped specified is invalid.
-function getPedAmmoInClip() end
-
 --[[
 	Returns the marker type.
 ]]
@@ -526,13 +514,6 @@ function getMarkerType() end
 ---@see pedId
 ---@type createPed_server | createPed_client Returns a ped element if it was successfully created.
 function createPed() end
-
---- Default
----@alias setPedAnimation_default fun(thePed: ped, block?: pedAnimBlockName, anim?: pedAnimName, time?: integer, loop?: boolean, updatePosition?: boolean, interruptable?: boolean, freezeLastFrame?: boolean, blendTime?: integer, retainPedState?: boolean): boolean
---- Stop
----@alias setPedAnimation_stop fun(thePed: ped): boolean
----@type setPedAnimation_default | setPedAnimation_stop Returns true if succesful
-function setPedAnimation() end
 
 ---@type fun(thePed: ped): ducked: boolean Returns true if the ped is ducked
 function isPedDucked() end
@@ -601,33 +582,12 @@ function setPlayerNametagShowing() end
 ---@type showChat_server | showChat_client Returns true if the player's chat was shown or hidden successfully
 function showChat() end
 
----@type fun(thePed: ped, anim?: pedAnimName, progress?: number): boolean Returns true if successful
-function setPedAnimationProgress() end
-
 --- Serverside
 ---@alias createRadarArea_server fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?: integer, g?: integer, b?: integer, a?: integer, visibleTo?: element): radarareaElement: radararea
 --- Clientside
 ---@alias createRadarArea_client fun(startPosX: number, startPosY: number, sizeX: number, sizeY: number, r?: integer, g?: integer, b?: integer, a?: integer): radarareaElement: radararea
 ---@type createRadarArea_server | createRadarArea_client Returns a `radararea` element if successful
 function createRadarArea() end
-
----@type fun(thePed: ped, state: boolean): boolean Returns true if the driveby state could be changed
-function setPedDoingGangDriveby() end
-
----@type fun(thePed: ped): vehicle | false Returns the vehicle that the specified ped is in, or false if the ped is not in a vehicle.
-function getPedOccupiedVehicle() end
-
----@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the total amount of ammo for the specified ped's weapon, or 0 if the ped specified is invalid.
-function getPedTotalAmmo() end
-
---[[
-	`value`: the new value of the stat. It must be between 0 and 1000.
-]]
----@type fun(thePed: ped, stat: pedStatId, value: number): boolean Returns true if the statistic was changed succesfully. Returns false if an invalid player is specified, if the stat ID/value is out of acceptable range or if the FAT or BODY_MUSCLE stats are used on non-CJ players.
-function setPedStat() end
-
----@type fun(thePed: ped): contentElement: element Returns an object or a vehicle if the ped is standing on one, false if he is touching none
-function getPedContactElement() end
 
 ---@type fun(theElement: element, theMarker: marker): boolean Returns true if the element is within the marker
 function isElementWithinMarker() end
@@ -638,25 +598,11 @@ function isPedOnFire() end
 ---@type fun(theVehicle: vehicle, upgrade: vehicleUpgradeId | "all"): boolean Returns true if the upgrade was successfully added to the vehicle
 function addVehicleUpgrade() end
 
---[[
-	It should be noted that if a ped runs out of ammo for a weapon, it will still return the ID of that weapon in the slot (even if it appears as if the ped does not have a weapon at all), though getPedTotalAmmo will return 0. Therefore, getPedTotalAmmo should be used in conjunction with getPedWeapon in order to check if a ped has a weapon.
-]]
----@see weaponSlotId
---[[
-	Returns an integer indicating the type of the weapon the ped has in the specified slot. If the slot is empty, it returns 0.
-]]
----@type fun(thePed: ped, weaponSlot?: weaponSlotId): weaponId
-function getPedWeapon() end
-
 ---@type fun(theMarker: marker, r: integer, g: integer, b: integer, a: integer): boolean Returns true if successful
 function setMarkerColor() end
 
 ---@type fun(theVehicle: vehicle): boolean Returns true if the vehicle was fixed
 function fixVehicle() end
-
----@see weaponSlotId
----@type fun(thePed: ped): weaponSlotId Returns the selected weapon slot ID on success
-function getPedWeaponSlot() end
 
 ---@deprecated Use isPedWearingJetpack instead
 ---@type fun(thePed: ped): boolean
@@ -721,15 +667,6 @@ function isElement() end
 ---@alias getValidPedModels_client fun(includeCustom?: boolean): pedId[]
 ---@type getValidPedModels_server | getValidPedModels_client Returns a table with all valid ped models.
 function getValidPedModels() end
-
----@type fun(thePed: ped): vehicleSeatId | false Returns an integer containing the number of the seat that the ped is currently in. false if the ped is on foot.
-function getPedOccupiedVehicleSeat() end
-
----@type fun(thePed: ped): element | false Returns the element that's being targeted, or false if there isn't one.
-function getPedTarget() end
-
----@type fun(thePed: ped, stat: pedStatId): number Returns the value of the requested statistic.
-function getPedStat() end
 
 ---@type fun(theElement: element): element Returns a low LOD element if successful
 function getLowLODElement() end
@@ -818,9 +755,6 @@ function getFarClipDistance() end
 ---@type detonateSatchels_server | detonateSatchels_client Returns true if successful
 function detonateSatchels() end
 
----@type fun(thePed: ped | player, headState: boolean): boolean Returns true if successful
-function setPedHeadless() end
-
 ---@type fun(): boolean Returns true the traffic lights are currently locked
 function areTrafficLightsLocked() end
 
@@ -867,9 +801,6 @@ function xmlCreateFile() end
 ---@type fun(thePlayer: player): integer Returns the ping as an integer
 function getPlayerPing() end
 
----@type fun(thePed: ped, isOnFire: boolean): boolean Returns true if successful
-function setPedOnFire() end
-
 --- Serverside
 ---@alias getPlayerMoney_server fun(thePlayer: player): money: integer
 --- Clientside
@@ -899,9 +830,6 @@ function warpPedIntoVehicle() end
 ---@alias blowVehicle_client fun(vehicleToBlow: vehicle): boolean
 ---@type blowVehicle_server | blowVehicle_client Returns true if the vehicle was blown up
 function blowVehicle() end
-
----@type fun(thePed: ped): number A float with the armor
-function getPedArmor() end
 
 ---@type fun(thePed: ped): boolean Returns true if the ped is dead
 function isPedDead() end
@@ -947,13 +875,6 @@ function getMoonSize() end
 
 ---@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode | false Returns the xmlnode of the copy if the node was successfully copied, false if invalid arguments were passed.
 function xmlCopyFile() end
-
---[[
-	Returns the walking style ID if successful.
-]]
----@see pedWalkStyleId for definitions
----@type fun(thePed: ped): pedWalkStyleId
-function getPedWalkingStyle() end
 
 ---@type fun(resourceName: string): resource | false Returns the resource with the specified name, or false if no resource of that name exists. Note that clientside this will also return false for resources that are in the loaded state, since the client is unaware of resources that have not been started.
 function getResourceFromName() end
@@ -1333,10 +1254,6 @@ function isRadarAreaFlashing() end
 ---@type fun(theRadararea: radararea, x: number, y: number): boolean Returns true if the size was set successfully
 function setRadarAreaSize() end
 
----@see weaponSlotId
----@type fun(thePed: ped, weaponSlot: weaponSlotId): boolean Returns true if successful in setting the ped's equipped weapon slot
-function setPedWeaponSlot() end
-
 --[[
 	`theTime`: The maximum time left (in milliseconds) on the timers you wish to retrieve.
 ]]
@@ -1672,145 +1589,6 @@ function getTrainTrack() end
 ---@type fun(train: vehicle): number | false Returns a float that represents how along the track it is, false if there is problem with train element.
 function getTrainPosition() end
 
---[[
-* Returns 12 ints (if `bRGB` is true) indicating the red, green and blue components of each of the 4 vehicle colors.
-* Returns 4 ints (if `bRGB` is false) indicating the color ids of each of the 4 vehicle colors.
-]]
---- RGB
----@alias getVehicleColor_rgb fun(theVehicle: vehicle, bRGB: true): r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer, r4: integer, g4: integer, b4: integer
---- Palette
----@alias getVehicleColor_palette fun(theVehicle: vehicle, bRGB: false): vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor, vehiclePaletteColor
----@type getVehicleColor_rgb | getVehicleColor_palette
-function getVehicleColor() end
-
----@type fun(theVehicle: vehicle, slot?: vehicleSlotId): vehicleUpgradeId[] Returns a table with all the compatible upgrades
-function getVehicleCompatibleUpgrades() end
-
----@type fun(theVehicle: vehicle): player | ped | false Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise.
-function getVehicleController() end
-
----@see vehicleDoorId
----@see vehicleDoorStateId
----@type fun(theVehicle: vehicle, door: vehicleDoorId): vehicleDoorStateId
-function getVehicleDoorState() end
-
----@type fun(theVehicle: vehicle): boolean Returns true if the vehicle's engine is started
-function getVehicleEngineState() end
-
---[[
-Returns
-* Returns true if landing gear is down, false if the landing gear is up.
-* Returns nil if the vehicle has no landing gear, or is invalid.
-]]
----@type fun(theVehicle: vehicle): boolean | nil
-function getVehicleLandingGearDown() end
-
----@see vehicleLightId
----@see vehicleLightStateId
----@type fun(theVehicle: vehicle, light: vehicleLightId): vehicleLightStateId Returns 0 (working) or 1 (broken)
-function getVehicleLightState() end
-
----@see vehicleId
----@type fun(modelIDOrTheVehicle: vehicleId | vehicle): integer Returns an integer indicating the maximum number of passengers that can enter a vehicle.
-function getVehicleMaxPassengers() end
-
----@type fun(theVehicle: vehicle): vehicleName Returns a string containing the requested vehicle's name
-function getVehicleName() end
-
----@see vehicleSeatId
----@type fun(theVehicle: vehicle, seat?: vehicleSeatId): player | ped Returns the player/ped sitting in the vehicle, or false if the seat is unoccupied or doesn't exist.
-function getVehicleOccupant() end
-
----@see vehicleSeatId
----@type fun(theVehicle: vehicle): {[vehicleSeatId]: player | ped | nil } Returns a table with seat ID as an index and the occupant as an element
-function getVehicleOccupants() end
-
----@see vehicleOverrideLightStateId
----@type fun(theVehicle: vehicle): vehicleOverrideLightStateId Returns an integer value: 0 (No override), 1 (Force off) or 2 (Force on).
-function getVehicleOverrideLights() end
-
---[[
-Returns an integer representing the current paintjob on the vehicle.
-
-* 0: The first paintjob
-* 1: The second paintjob
-* 2: The third paintjob
-* 3: Default paintjob (no paintjob)
-]]
----@see vehiclePaintjobId
----@type fun(theVehicle: vehicle): vehiclePaintjobId
-function getVehiclePaintjob() end
-
----@see vehiclePanelId
----@type fun(theVehicle: vehicle, panel: vehiclePanelId): vehiclePanelStateId Returns an int indicating the state of the specified the panel. This is a value between 0 and 3, with 0 indicating the panel is undamaged and 3 indicating it is very damaged.
-function getVehiclePanelState() end
-
----@type fun(theVehicle: vehicle): string Returns a string that corresponds to the plate on the text
-function getVehiclePlateText() end
-
----@type fun(theVehicle: vehicle): boolean Returns true if the sirens are turned on for the specified vehicle, false if the sirens are turned off for the specified vehicle, if the vehicle doesn't have sirens or if invalid arguments are specified.
-function getVehicleSirensOn() end
-
----@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is towing, false if it isn't towing a vehicle.
-function getVehicleTowedByVehicle() end
-
----@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is being towed by. false if it isn't being towed.
-function getVehicleTowingVehicle() end
-
----@deprecated Use getElementAngularVelocity instead
----@type fun(theVehicle: vehicle): number, number, number
-function getVehicleTurnVelocity() end
-
----@type fun(turretVehicle: vehicle): rx: number, ry: number Returns two floats for the X (horizontal) and Y (vertical) axis rotation respectively. These values are in radians. The function will return 0, 0 if the vehicle is not a vehicle with a turret.
-function getVehicleTurretPosition() end
-
----@type fun(theVehicleOrModel: vehicle|vehicleId): vehicleType Returns a string with vehicle type
-function getVehicleType() end
-
----@see vehicleSlotId
----@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId | false Returns an integer with the upgrade on the slot if correct arguments were passed
-function getVehicleUpgradeOnSlot() end
-
----@type fun(theVehicle: vehicle): vehicleUpgradeId[] Returns a table of all the upgrades on each slot of a vehicle, which may be empty
-function getVehicleUpgrades() end
-
----@see vehicleSlotId
----@type fun(slotOrUpgrade: vehicleSlotId | vehicleUpgradeId): vehicleSlotName Returns a string with the slot name if a valid slot or upgrade ID was given
-function getVehicleUpgradeSlotName() end
-
----@see vehicleWheelStateId
----@type fun(theVehicle: vehicle): frontLeft: vehicleWheelStateId, rearLeft: vehicleWheelStateId, frontRight: vehicleWheelStateId, rearRight: vehicleWheelStateId Returns 4 ints indicating the states of the wheels
-function getVehicleWheelStates() end
-
----@see vehicleDoorId
----@type fun(theVehicle: vehicle, door: vehicleDoorId): number Returns a number between 0 and 1 that indicates how open the door is. 0 is closed, and 1 is fully open.
-function getVehicleDoorOpenRatio() end
-
----@see vehicleHandlingProperty
----@type fun(theVehicle: vehicle, property?: vehicleHandlingProperty): {[vehicleHandlingProperty]: any} Returns a table containing all the handling data
-function getVehicleHandling() end
-
----@type fun(theVehicle: vehicle): red: integer, green: integer, blue: integer Returns three integers for the red, green and blue of the headlight color for the specified vehicle
-function getVehicleHeadLightColor() end
-
----@see vehicleId
----@type fun(name: vehicleName): vehicleId Returns an integer if the name exists, false otherwise. If you use this function on vehicles with shared names, such as "police", it will return the earliest occurrence of that vehicle's ID.
-function getVehicleModelFromName() end
-
----@see vehicleId
----@type fun(model: vehicleId): vehicleName Returns the name of the vehicle if the model ID was valid
-function getVehicleNameFromModel() end
-
---- See [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
----@type (fun(theVehicle: vehicle): variant1: vehicleVariantId, variant1: vehicleVariantId)
-function getVehicleVariant() end
-
----@type fun(theVehicle: vehicle): {SirenCount: integer, SirenType: sirenTypeId, Flags: { ["360"] : boolean, DoLOSCheck: boolean, UseRandomiser: boolean, Silent: boolean}} | false Returns a table with the siren count, siren type and a sub table for the four flags. False otherwise.
-function getVehicleSirenParams() end
-
----@type fun(theVehicle: vehicle): {x: number, y: number, z: number, Red: integer, Green: integer, Blue: integer, Alpha: integer, Min_Alpha: integer }[]
-function getVehicleSirens() end
-
 ---@type fun(derailableVehicle: vehicle, derailable: boolean): boolean Returns true if the state was successfully set
 function setTrainDerailable() end
 
@@ -1835,124 +1613,6 @@ function setTrainTrack() end
 ]]
 ---@type fun(train: vehicle, position: number): boolean Returns true if the train position was set
 function setTrainPosition() end
-
---- Using RGB 1
----@alias setVehicleColor_rgb1 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer): boolean
---- Using RGB 2
----@alias setVehicleColor_rgb2 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer): boolean
---- Using RGB 3
----@alias setVehicleColor_rgb3 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer): boolean
---- Using RGB 4
----@alias setVehicleColor_rgb4 fun(theVehicle: vehicle, r1: integer, g1: integer, b1: integer, r2: integer, g2: integer, b2: integer, r3: integer, g3: integer, b3: integer, r4: integer, g4: integer, b4: integer): boolean
---- Using palette
----@alias setVehicleColor_palette fun(theVehicle: vehicle, p1: vehiclePaletteColor, p2: vehiclePaletteColor, p3: vehiclePaletteColor, p4: vehiclePaletteColor): boolean
----@see vehiclePaletteColor for palette definitions
---[[
-	Returns true if vehicle's color was set
-]]
----@type setVehicleColor_rgb1 | setVehicleColor_rgb2 | setVehicleColor_rgb3 | setVehicleColor_rgb4 | setVehicleColor_palette
-function setVehicleColor() end
-
----@type fun(theVehicle: vehicle, damageProof: boolean): boolean Returns true if the door state was successfully set
-function setVehicleDamageProof() end
-
----@see vehicleDoorId
----@see vehicleDoorStateId
----@type fun(theVehicle: vehicle, door: vehicleDoorId, state: integer, spawnFlyingComponent?: boolean): boolean Returns true if the door state was successfully set
-function setVehicleDoorState() end
-
----@type fun(theVehicle: vehicle, state: boolean): boolean Returns true if the damageability state was successfully changed
-function setVehicleDoorsUndamageable() end
-
----@type fun(theVehicle: vehicle, engineState: boolean): boolean Returns true if the vehicle's engine state was successfully changed
-function setVehicleEngineState() end
-
----@type fun(theVehicle: vehicle, explodable: boolean): boolean Returns true if the vehicle's fuel tank explodable state was successfully changed
-function setVehicleFuelTankExplodable() end
-
----@type fun(theVehicle: vehicle, gearState: boolean): boolean Returns true if the landing gear was set successfully
-function setVehicleLandingGearDown() end
-
----@see vehicleLightId
----@see vehicleOverrideLightStateId
----@type fun(theVehicle: vehicle, light: vehicleLightId, state: vehicleLightStateId): boolean Returns true if the light state was set successfully
-function setVehicleLightState() end
-
----@type fun(theVehicle: vehicle, locked: boolean): boolean Returns true if the operation was successful
-function setVehicleLocked() end
-
----@see vehicleOverrideLightStateId
----@type fun(theVehicle: vehicle, value: vehicleOverrideLightStateId): boolean Returns true if the vehicle's lights setting was changed.
-function setVehicleOverrideLights() end
-
----@see vehiclePaintjobId
----@type fun(theVehicle: vehicle, value: vehiclePaintjobId): boolean Returns true if the vehicle's paintjob was changed
-function setVehiclePaintjob() end
-
----@see vehiclePanelId
----@see vehiclePanelStateId
----@type fun(theVehicle: vehicle, panelId: vehiclePanelId, state: vehiclePanelStateId): boolean Returns true if the panel state has been updated
-function setVehiclePanelState() end
-
---[[
-`numberplate`: a string that will go on the number plate of the vehicle (max 8 characters).
-]]
----@type fun(theVehicle: element, numberplate: string): boolean Returns true if the numberplate was changed successfully
-function setVehiclePlateText() end
-
----@type fun(theVehicle: vehicle, sirensOn: boolean): boolean Returns true if the sirens are set for the specified vehicle, false if the sirens can't be set for the specified vehicle, if the vehicle doesn't have sirens or if invalid arguments are specified.
-function setVehicleSirensOn() end
-
----@type fun(turretVehicle: vehicle, positionX: number, positionY: number): boolean Returns a true if a valid vehicle element and valid positions were passed
-function setVehicleTurretPosition() end
-
---[[
-* `ratio`: The ratio value, ranging from 0 (fully closed) to 1 (fully open).
-* `time`: The number of milliseconds the door should take to reach the value you have specified. A value of 0 will change the door open ratio instantly.
-]]
---[[
-	Returns true if the door open ratio was successfully set
-]]
----@see vehicleDoorId
----@type fun(theVehicle: vehicle, door: vehicleDoorId, ratio: number, time?: integer): boolean
-function setVehicleDoorOpenRatio() end
-
----@deprecated Use setElementAngularVelocity instead
----@type fun(theVehicle: vehicle, rx: number, ry: number, rz: number): boolean Returns true if it was succesful
-function setVehicleTurnVelocity() end
-
---[[
-	`frontLeft` or `frontLeft` or `rearLeft` or `rearRight` with **-1** means **No change**
-]]
----@see vehicleWheelStateId
----@type fun(theVehicle: vehicle, frontLeft: vehicleWheelStateId | -1, rearLeft?: vehicleWheelStateId | -1, frontRight?: vehicleWheelStateId | -1, rearRight?: vehicleWheelStateId | -1): boolean
-function setVehicleWheelStates() end
-
---[[
-* `red`: The amount of red from 0 to 255
-* `green`: The amount of green from 0 to 255
-* `blue`: The amount of blue from 0 to 255
-]]
----@type fun(theVehicle: vehicle, red: integer, green: integer, blue: integer): boolean Returns true if vehicle's headlight color was set
-function setVehicleHeadLightColor() end
-
---[[
-	Supported vehicle ID's: 420, 438
-]]
----@type fun(taxi: vehicle, lightState: boolean): boolean Returns true if the state was successfully set,
-function setVehicleTaxiLightOn() end
-
---[[
-* `red`: The amount of red from 0 to 255
-* `green`: The amount of green from 0 to 255
-* `blue`: The amount of blue from 0 to 255
-* `alpha`: The alpha of the siren from 0 to 255
-]]
---[[
-	[Vehicles that are not supported](https://wiki.multitheftauto.com/wiki/Vehicle_IDs#Lua_table_of_vehicles_that_doesn't_support_siren_lights).
-]]
----@type fun(theVehicle: vehicle, sirenPoint: integer, posX: number, posY: number, posZ: number, red: number, green: number, blue: number, alpha?: number, minAlpha?: number): boolean Returns true if the siren point was successfully changed on the vehicle
-function setVehicleSirens() end
 
 ---@type fun(): r: integer, g: integer, b: integer, a: integer Returns 4 ints, indicating the color of the water. (RGBA)
 function getWaterColor() end
@@ -2038,23 +1698,6 @@ function xmlNodeSetName() end
 ---@type fun(thePed: ped): boolean Returns true if the ped is carrying a jetpack
 function isPedWearingJetpack() end
 
--- Default
----@alias setVehicleHandling_default fun(theVehicle: element, property: vehicleHandlingProperty, value: any): boolean
--- Reset one property to model handling value
----@alias setVehicleHandling_resetOneModelHandling fun(theVehicle: element, property: vehicleHandlingProperty, value:nil, gta_default:false): boolean
--- Reset one property to GTA default value
----@alias setVehicleHandling_resetOneGtaHandling fun(theVehicle: element, property: vehicleHandlingProperty, value:nil, gta_default:true): boolean
--- Reset all properties to model handling value
----@alias setVehicleHandling_resetAllModelHandling fun(theVehicle: element, gta_default:false): boolean
--- Reset all properties to GTA default value
----@alias setVehicleHandling_resetAllGtaHandling fun(theVehicle: element, gta_default:true): boolean
----@see vehicleHandlingProperty
---[[
-	Returns true if the handling was set successfully
-]]
----@type setVehicleHandling_default | setVehicleHandling_resetOneModelHandling | setVehicleHandling_resetOneGtaHandling | setVehicleHandling_resetAllModelHandling | setVehicleHandling_resetAllGtaHandling
-function setVehicleHandling() end
-
 -- Without callback
 ---@alias encodeString_default fun(algorithm:  "rsa" | "tea" | "aes128" | string, input: string, options: table): string
 -- With callback
@@ -2084,12 +1727,6 @@ function getElementsWithinRange() end
 
 ---@type fun(theShape: colshape, posX: number, posY: number, posZ: number): boolean Returns true if the position is inside the colshape
 function isInsideColShape() end
-
---[[
-	`speed`: a float containing the speed between 0.0–1.0 you want to apply to the animation. This limitation may be adjusted in the future, so do not provide speeds outside this boundary. The limit is now 0.0 to 10.0.
-]]
----@type fun(thePed: ped, anim?: pedAnimName, speed?: number): boolean Returns true if successful
-function setPedAnimationSpeed() end
 
 ---@type fun(shape: colshape, fX: number, fY: number, index?: integer): boolean Returns true if the polygon was changed
 function addColPolygonPoint() end
@@ -2123,19 +1760,6 @@ function hasElementData() end
 
 ---@type (fun(): {[1]: string, [2]: resource}[]) | (fun(theResource: resource): string[] ) Returns a table containing all the commands of the given resource or a table with subtables containing the command and theResource pointer.
 function getCommandHandlers() end
-
----@type fun(thePed: ped): fightingStyleId Returns the ped's current fighting style as an integer ID, false if it fails to retrieve a value.
-function getPedFightingStyle() end
-
---[[
-	`armor`: the amount of armor you want to set on the ped. Valid values are from 0 to 100.
-]]
----@type fun(thePed: ped, armor: number): boolean Returns true if the armor was changed succesfully. Returns false if an invalid ped was specified, or the armor value specified is out of acceptable range.
-function setPedArmor() end
-
----@see fightingStyleId
----@type fun(thePed: ped, style: fightingStyleId): boolean Returns true in case of success
-function setPedFightingStyle() end
 
 ---@type fun(thePickup: pickup, thePlayer: player): boolean
 function usePickup() end
@@ -2185,10 +1809,6 @@ function removeColPolygonPoint() end
 
 ---@type fun(shape: colshape, index: integer, fX: number, fY: number): boolean Returns true if the polygon was changed
 function setColPolygonPointPosition() end
-
---- See [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants) for the correct variants. Not all variants are available depending on the vehicle.
----@type fun(theVehicle: vehicle, variant1?: 0 | 1 | 2 | 3 | 4 | 5, variant2?: 0 | 1 | 2 | 3 | 4 | 5): boolean Returns true if the vehicle variants were successfully set, false otherwise (the specified vehicle doesn't exist or the specified variants are invalid).
-function setVehicleVariant() end
 
 --[[
 Returns
@@ -2259,18 +1879,6 @@ utf8 = {}
 ---@deprecated
 function getPlayerUserName() end
 
----@deprecated
-function setPedSkin() end
-
----@deprecated
-function getVehicleRotation() end
-
----@deprecated
-function getPedRotation() end
-
----@deprecated
-function setPedRotation() end
-
 ---@type fun(propertyName: worldSpecialProperty, enabled: boolean): boolean Returns true if successful
 function setWorldSpecialPropertyEnabled() end
 
@@ -2285,10 +1893,6 @@ function pathIsFile() end
 
 ---@type fun(path: string): boolean Returns true if a specified path points to a directory.
 function pathIsDirectory() end
-
----@deprecated
----@type fun(ped: player|ped): integer
-function getPedSkin() end
 
 ---@type fun(theMarker: marker, r?: integer, g?: integer, b?: integer, a?: integer, size?: number )
 function setMarkerTargetArrowProperties() end
@@ -2350,3 +1954,23 @@ function getObjectScale() end
 --- More info about the arguments can be found here: https://wiki.multitheftauto.com/wiki/SpawnVehicleFlyingComponent
 ---@type fun(theVehicle: vehicle, nodeIndex: vehicleFlyingComponentNodeIndex, collisionType?: vehicleFlyingComponentCollisionType, removalTime?: integer): boolean
 function spawnVehicleFlyingComponent() end
+
+--[[BUILD: 1.6.~ ~]]
+---@type fun(enabled: boolean): boolean
+function setDynamicPedShadowsEnabled() end
+
+--[[BUILD: 1.6.~ ~]]
+---@type fun(): boolean
+function isDynamicPedShadowsEnabled() end
+
+--[[BUILD: 1.6.~ ~]]
+---@type fun(): true
+function resetDynamicPedShadows() end
+
+--[[BUILD: 1.6.0 r22864]]
+---@type fun( theElement: element, bool: boolean ): boolean Returns true if successful
+function setElementOnFire() end
+
+--[[BUILD: 1.6.0 r22864]]
+---@type fun( theElement: element ): boolean Returns true if the element is on fire
+function isElementOnFire() end

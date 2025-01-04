@@ -200,7 +200,7 @@ function engineStreamingSetBufferSize() end
 ---@type fun(): integer
 function engineStreamingGetBufferSize() end
 
----@type fun(x: number, y: number, z: number, loadingOption?: "all" | "models" | "collisions")
+---@type fun(x: number, y: number, z: number, loadingOption?: "all" | "models" | "collisions"): nil
 function enginePreloadWorldArea() end
 
 ---@type fun(modelId: integer): "unloaded" | "loaded" | "requested" | "reading" | "finishing"

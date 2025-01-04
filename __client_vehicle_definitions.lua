@@ -96,9 +96,6 @@ function setVehicleComponentVisible() end
 ---@type fun(theVehicle: vehicle, x: number, y: number, z: number): boolean Returns true if successful
 function setVehicleGravity() end
 
----@type fun(theVehicle: vehicle, state: boolean): boolean Returns true if the nitro activation state was modified successfully
-function setVehicleNitroActivated() end
-
 ---@type fun(theVehicle: vehicle, count: integer): boolean `count` (from 0-100 times; 0 means that it can't be used and 101 means that it can be used infinite times) Returns true if the nitro count was set successfully to the vehicle
 function setVehicleNitroCount() end
 
@@ -163,3 +160,11 @@ function resetVehicleDummyPositions() end
 
 ---@type fun(theVehicle: vehicle, dummy: vehicleDummy, x: number, y: number, z: number): boolean Returns true if the dummy position has been successfully set
 function setVehicleDummyPosition() end
+
+--[[BUILD: 1.6.0 r22815]]
+---@type fun(theVehicle: vehicle, state: boolean): boolean
+function setVehicleSmokeTrailEnabled() end
+
+--[[BUILD: 1.6.0 r22815]]
+---@type fun(theVehicle: vehicle): boolean
+function isVehicleSmokeTrailEnabled() end
