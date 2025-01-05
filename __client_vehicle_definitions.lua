@@ -26,11 +26,19 @@ function setVehicleModelExhaustFumesPosition() end
 ---@type fun(Id: radioChannel): boolean  Returns true if channel was set successfully.
 function setRadioChannel() end
 
----@type fun(heli: vehicle): number Returns the rotor speed if successful. This is 0 when the helicopter is parked, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise
+---@deprecated Use getVehicleRotorSpeed instead
+---@type fun(theVehicle: vehicle): number Returns the rotor speed if successful. This is 0 when the helicopter is parked, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise
 function getHelicopterRotorSpeed() end
+
+---@deprecated Use setVehicleRotorSpeed instead
+---@type fun(theVehicle: vehicle, speed: number): boolean Returns true if successful
+function setHelicopterRotorSpeed() end
 
 ---@type fun(theVehicle: vehicle): boolean Returns true if the collisions are enabled for specified vehicle, false if the collisions aren't enabled for the specified vehicle, if the vehicle is not a helicopter or if invalid arguments are specified.
 function getHeliBladeCollisionsEnabled() end
+
+---@type fun(theVehicle: vehicle, collisions: boolean): boolean Returns true if the collisions are set for the specified vehicle, false if the collisions can't be set for the specified vehicle, if the vehicle is not a helicopter
+function setHeliBladeCollisionsEnabled() end
 
 ---@type fun(theVehicle: vehicle): integer Returns a value from 0 upwards representing adjustment. 0 is default position. Maximum varies per vehicle, for example hydra horizontal flight is 5000, while dump truck tray max tilt is 2500.
 function getVehicleAdjustableProperty() end
@@ -74,12 +82,6 @@ function resetVehicleComponentPosition() end
 
 ---@type fun(theVehicle: vehicle, theComponent: vehicleComponent): boolean Returns true if the rotation of the component was reset
 function resetVehicleComponentRotation() end
-
----@type fun(theVehicle: vehicle, collisions: boolean): boolean Returns true if the collisions are set for the specified vehicle, false if the collisions can't be set for the specified vehicle, if the vehicle is not a helicopter
-function setHeliBladeCollisionsEnabled() end
-
----@type fun(heli: vehicle, speed: number): boolean Returns true if successful
-function setHelicopterRotorSpeed() end
 
 ---@type fun(theVehicle: element, value: integer): boolean Returns true if the adjustable property was set
 function setVehicleAdjustableProperty() end
