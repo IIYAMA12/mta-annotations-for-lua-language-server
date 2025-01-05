@@ -394,13 +394,11 @@ function wasEventCancelled() end
 ---@type fun(theElement: ped | player | vehicle | object): health: number Returns a float indicating the element's health
 function getElementHealth() end
 
---- Serverside / clientside
----@alias setElementData_shared fun(theElement: element, key: string, value: unknownSyncAble, synchronize?: boolean): boolean
+--- Clientside
+---@alias setElementData_client fun(theElement: element, key: string, value: unknownSyncAble, synchronize?: boolean): boolean
 --- Serverside
----@alias setElementData_server_syntax_2 fun(theElement: element, key: string, value: unknownSyncAble, syncMode?: "broadcast" | "local" | "subscribe"): boolean
----@alias setElementData_server setElementData_server_syntax_2 | setElementData_shared
----@alias setElementData_client setElementData_shared
----@type setElementData_server | setElementData_shared Returns true if the data was set successfully
+---@alias setElementData_server  fun(theElement: element, key: string, value: unknownSyncAble, syncMode?: "broadcast" | "local" | "subscribe" | boolean, clientChangesPolicy?: "allow" | "deny" | "default"): boolean
+---@type setElementData_server | setElementData_client Returns true if the data was set successfully
 function setElementData() end
 
 ---@type fun(parent: element, index: integer): element | false Returns the requested element if it exists, or false if it doesn't.
@@ -661,11 +659,13 @@ function isPedOnGround() end
 ---@type fun(theValue: any): boolean Returns true if the passed value is an element
 function isElement() end
 
----Serverside
+--- Serverside
 ---@alias getValidPedModels_server fun(): pedId[]
----Clientside (argument includeCustom: specifies if the table returned should contain custom model IDs allocated with engineRequestModel.)
----@alias getValidPedModels_client fun(includeCustom?: boolean): pedId[]
----@type getValidPedModels_server | getValidPedModels_client Returns a table with all valid ped models.
+--- Clientside
+---@alias getValidPedModels_client_noCustom fun(includeCustom?: false): pedId[]
+--- Clientside (argument includeCustom: specifies if the table returned should contain custom model IDs allocated with engineRequestModel.)
+---@alias getValidPedModels_client_includeCustom fun(includeCustom: true): integer[]
+---@type getValidPedModels_server | getValidPedModels_client_noCustom | getValidPedModels_client_includeCustom Returns a table with all valid ped models.
 function getValidPedModels() end
 
 ---@type fun(theElement: element): element Returns a low LOD element if successful
@@ -1172,10 +1172,16 @@ function getTime() end
 ---@type fun(topRed?: integer, topGreen?: integer, topBlue?: integer, bottomRed?: integer, bottomGreen?: integer, bottomBlue?: integer): boolean Returns true if sky color was set correctly, false if invalid values were passed.
 function setSkyGradient() end
 
----@type fun(theTimer: timer): timeLeft: integer, leftToExecute: integer, timeInterval: integer
+--- Active timer
+---@alias getTimerDetails_default fun(theTimer: timer): timeLeft: integer, leftToExecute: integer, timeInterval: integer
+--- Inactive timer
+---@alias getTimerDetails_inActive fun(seconds: integer, theTimer: timer): timeLeft: false, leftToExecute: nil, timeInterval: nil
+---@type getTimerDetails_default | getTimerDetails_inActive Returns a table with the time left, left to execute, and the time interval.
 function getTimerDetails() end
 
+--- Default
 ---@alias getRealTime_default fun(localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer }
+--- When provided with seconds
 ---@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer } | false
 ---@type getRealTime_default | getRealTime_seconds Returns a table of substrings with different time format or false if the seconds argument is out of range.
 function getRealTime() end
@@ -1537,11 +1543,11 @@ function bitExtract() end
 function bitReplace() end
 
 --- hookType: "preFunction" or "postFunction"
----@alias debugHookCallback_func fun( sourceResource: resource, functionName: string, isAllowedByACL: boolean, luaFilename: string, luaLineNumber: integer, ...): nil | "skip"
+---@alias debugHookCallback_func fun( sourceResource: resource, functionName: string, isAllowedByACL: boolean, luaFilename: string, luaLineNumber: integer, ...): nil
 --- hookType: "preEvent" or "postEvent"
----@alias debugHookCallback_event fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, luaFilename: string, luaLineNumber: integer, ...): nil | "skip"
+---@alias debugHookCallback_event fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, luaFilename: string, luaLineNumber: integer, ...): nil
 --- hookType: "preEventFunction" or "postEventFunction"
----@alias debugHookCallback_eventFunc fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, eventFilename: string, eventLineNumber: integer, functionResource: resource, functionFilename: string, functionLineNumber: integer, ...): nil | "skip"
+---@alias debugHookCallback_eventFunc fun( sourceResource: resource, eventName: string, eventSource: element, eventClient: player, eventFilename: string, eventLineNumber: integer, functionResource: resource, functionFilename: string, functionLineNumber: integer, ...): nil
 
 --[[
 	Returns true if the hook was successfully added

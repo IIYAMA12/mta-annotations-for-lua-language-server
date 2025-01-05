@@ -72,7 +72,8 @@ function engineGetModelPhysicalPropertiesGroup() end
 ---@type fun(modelId: integer): boolean Returns true if there were no issues, if passed arguments were invalid an error is raised.
 function engineRestoreModelPhysicalPropertiesGroup() end
 
----@type fun(modelId: integer, groupId: integer): boolean Returns true if there were no issues with group change, otherwise an error is raised
+--- Use groupId -1 to disable model physics. <br>
+---@type fun(modelId: integer, groupId: integer | -1): boolean Returns true if there were no issues with group change, otherwise an error is raised
 function engineSetModelPhysicalPropertiesGroup() end
 
 ---@type fun(groupId: integer, property: string): ...:unknown Returns the value contained in given property if everything went well, error is raised otherwise.
@@ -84,7 +85,7 @@ function engineRestoreObjectGroupPhysicalProperties() end
 ---@type fun(groupId: integer, property: string, newValue: any): boolean Returns true if everything went well, error is raised otherwise.
 function engineSetObjectGroupPhysicalProperty() end
 
----@type fun(elementType: "ped" | "vehicle" | "object" | "timed-object" | "clump", parentID?: integer): integer | false Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
+---@type fun(elementType: "ped" | "vehicle" | "object" | "timed-object" | "clump" | "object-damageable", parentID?: integer): integer | false Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
 function engineRequestModel() end
 
 ---@type fun(modelId: integer): boolean Returns true if the model was successfully freed, false otherwise.

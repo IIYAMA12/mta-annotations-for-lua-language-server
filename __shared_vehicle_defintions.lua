@@ -199,7 +199,7 @@ function setVehiclePaintjob() end
 
 ---@see vehiclePanelId
 ---@see vehiclePanelStateId
----@type fun(theVehicle: vehicle, panelId: vehiclePanelId, state: vehiclePanelStateId): boolean Returns true if the panel state has been updated
+---@type fun(theVehicle: vehicle, panelId: vehiclePanelId, state: vehiclePanelStateId, spawnFlyingComponent?: boolean, breakGlass?: boolean): boolean Returns true if the panel state has been updated
 function setVehiclePanelState() end
 
 --[[
@@ -263,7 +263,7 @@ function setVehicleTaxiLightOn() end
 function setVehicleSirens() end
 
 -- Default
----@alias setVehicleHandling_default fun(theVehicle: element, property: vehicleHandlingProperty, value: any): boolean
+---@alias setVehicleHandling_default fun(theVehicle: element, property: vehicleHandlingProperty, value: number|integer|string|boolean): boolean
 -- Reset one property to model handling value
 ---@alias setVehicleHandling_resetOneModelHandling fun(theVehicle: element, property: vehicleHandlingProperty, value:nil, gta_default:false): boolean
 -- Reset one property to GTA default value

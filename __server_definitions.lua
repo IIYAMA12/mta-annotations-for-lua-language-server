@@ -156,7 +156,7 @@ function resetVehicleIdleTime() end
 ---@type fun(theElement: element, visibleTo: element, visible: boolean): boolean Returns true if the element's visibility was changed successfully, false otherwise, for example if you are trying to change the visibility of a vehicle, player or object.
 function setElementVisibleTo() end
 
----@type fun(bannedPlayer: player, IP?: boolean, Username?: boolean, Serial?: boolean, responsiblePlayer?: player | string, reason?: string, seconds?: integer): ban | false Returns a ban object if banned successfully, or false if unsuccessful.
+---@type fun(bannedPlayer: player, ip?: boolean, username?: boolean, serial?: boolean, responsiblePlayer?: player | string, reason?: string, seconds?: integer): ban | false Returns a ban object if banned successfully, or false if unsuccessful.
 function banPlayer() end
 
 ---@type fun(theVehicle: vehicle, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number): boolean Returns true if the vehicle spawned successfully, false if the passed argument does not exist or is not a vehicle.
@@ -346,10 +346,10 @@ function takeAllWeapons() end
 ---@type fun(theVehicle: vehicle, Respawn: boolean): boolean Returns true if the vehicle was found and edited.
 function toggleVehicleRespawn() end
 
----@type fun(weapon: string, enabled: boolean): boolean Returns true, else false if invalid arguments are passed.
+---@type fun(weapon: weaponName | weaponId, enabled: boolean): boolean Returns true, else false if invalid arguments are passed.
 function setJetpackWeaponEnabled() end
 
----@type fun(weapon: string): boolean Returns true if the weapon is enabled, else false if the weapon isn't or invalid arguments are passed.
+---@type fun(weapon: weaponName | weaponId): boolean Returns true if the weapon is enabled, else false if the weapon isn't or invalid arguments are passed.
 function getJetpackWeaponEnabled() end
 
 ---@type fun(): integer Returns the number of players connected to the server as an int.
@@ -551,7 +551,8 @@ function setServerPassword() end
 ---@type fun(reason?: string, exitCode?: number): boolean Returns false if it was not possible to shut down the server.
 function shutdown() end
 
----@type fun(databaseType: string, host: string, username?: string, password?: string, options?: string): databaseConnection | false Returns a database connection element unless there are problems, in which case it return false.
+-- More info: https://wiki.multitheftauto.com/wiki/DbConnect
+---@type fun(databaseType: "sqlite" | "mysql", host: string, username?: string, password?: string, options?: string): databaseConnection | false Returns a database connection element unless there are problems, in which case it return false.
 function dbConnect() end
 
 ---@type fun(databaseConnection: databaseConnection, query: string, ...: string | number): boolean Returns true unless the connection is incorrect, in which case it returns false.

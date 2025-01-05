@@ -999,12 +999,6 @@ function engineSetModelTXDID() end
 ---@type fun(theFile: file, verifyContents?: boolean): string | nil Returns the bytes that were read from the file, but only if verification was disabled or if the checksum comparison succeeded.
 function fileGetContents() end
 
----@type fun(theVehicle: vehicle): boolean Returns the rotor speed if successful. This is 0 when the helicopter or plane is stationary, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise. Returns false in case of failure (an invalid element or a vehicle element that is not a helicopter or plane was passed).
-function getVehicleRotorSpeed() end
-
----@type  fun(theVehicle: vehicle, speed: number) Returns true if successful
-function setVehicleRotorSpeed() end
-
 --[[
 Returns
 * hit: true if there is a collision with the given element's mesh, false otherwise [in which case all other values are nil]
@@ -1095,17 +1089,17 @@ function getCoronaReflectionsEnabled() end
 ---@type fun(): true
 function resetCoronaReflectionsEnabled() end
 
----@type fun(power: number, x?: number, y?: number, z?: number): true
+---@type fun(force: number, x?: number, y?: number, z?: number): true
 function shakeCamera() end
 
----@type fun(): boolean
+---@type fun(): true
 function resetShakeCamera() end
 
 --[[
 * Returns false if the vehicle has no entry points.
 * Returns the following data when the vehicle is streamed out:  { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
 ]]
----@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]:  {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}} | false
+---@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number}, [2]:  {[1]: number, [2]: number, [3]: number}, [3]: {[1]: number, [2]: number, [3]: number}, [4]: {[1]: number, [2]: number, [3]: number}} | false
 function getVehicleEntryPoints() end
 
 ---@type fun(state: boolean): true
@@ -1140,7 +1134,11 @@ function getElementBoneQuaternion() end
 ---@type resetWorldProperties_client | resetWorldProperties_server
 function resetWorldProperties() end
 
----@type fun(theElement: ped | player | vehicle | object ): number | false
+--[[BUILD: 1.6.0 r22862]]
+---@type fun(theElement: element, lighting: number): boolean
+function setElementLighting() end
+
+---@type fun(theElement: element ): lighting: number | false
 function getElementLighting() end
 
 --- Note: This function always returns true for spraycan and fire extinguisher.<br>
@@ -1149,3 +1147,59 @@ function isPlayerCrosshairVisible() end
 
 ---@type fun(): boolean
 function isBrowserGPUEnabled() end
+
+--[[BUILD: 1.6.0 r22868]]
+---@alias setPlayerHudComponentProperty_position fun(component: hudComponent, property: hudComponentProperty_position, x: number, y: number): boolean
+---@alias setPlayerHudComponentProperty_size fun(component: hudComponent, property: hudComponentProperty_size, width: number, height: number): boolean
+---@alias setPlayerHudComponentProperty_fillColor fun(component: hudComponent, property: hudComponentProperty_fillColor, color: color): boolean
+---@alias setPlayerHudComponentProperty_fillColorSecondary fun(component: hudComponent_money, property: hudComponentProperty_fillColorSecondary, color: color): boolean
+---@alias setPlayerHudComponentProperty_useCustomAlpha fun(component: hudComponent, property: hudComponentProperty_useCustomAlpha, useCustomAlpha: boolean): boolean
+---@alias setPlayerHudComponentProperty_drawBlackBorder fun(component: hudComponent, property: hudComponentProperty_drawBlackBorder, drawBlackBorder: boolean): boolean
+---@alias setPlayerHudComponentProperty_drawPercentage fun(component: hudComponent, property: hudComponentProperty_drawPercentage, drawPercentage: boolean): boolean
+---@alias setPlayerHudComponentProperty_blinkingValue fun(component: hudComponent, property: hudComponentProperty_blinkingValue, blinkingValue: number): boolean
+---@alias setPlayerHudComponentProperty_dropColor fun(component: hudComponent, property: hudComponentProperty_dropColor, dropColor: color): boolean
+---@alias setPlayerHudComponentProperty_fontOutline fun(component: hudComponent, property: hudComponentProperty_fontOutline, fontOutline: number): boolean
+---@alias setPlayerHudComponentProperty_fontShadow fun(component: hudComponent, property: hudComponentProperty_fontShadow, fontShadow: number): boolean
+---@alias setPlayerHudComponentProperty_fontStyle fun(component: hudComponent, property: hudComponentProperty_fontStyle, fontStyle: "menu" | "subtitles" | "pricedown" | "gothic"): boolean
+---@alias setPlayerHudComponentProperty_fontAlignment fun(component: hudComponent, property: hudComponentProperty_fontAlignment, fontAlignment: "left" | "center" | "right"): boolean
+---@alias setPlayerHudComponentProperty_proportional fun(component: hudComponent, property: hudComponentProperty_proportional, proportional: boolean): boolean
+---@alias setPlayerHudComponentProperty_textSize fun(component: hudComponent, property: hudComponentProperty_textSize, width: number, height: number): boolean
+---@type setPlayerHudComponentProperty_position | setPlayerHudComponentProperty_size | setPlayerHudComponentProperty_fillColor | setPlayerHudComponentProperty_fillColorSecondary | setPlayerHudComponentProperty_useCustomAlpha | setPlayerHudComponentProperty_drawBlackBorder | setPlayerHudComponentProperty_drawPercentage | setPlayerHudComponentProperty_blinkingValue | setPlayerHudComponentProperty_dropColor | setPlayerHudComponentProperty_fontOutline | setPlayerHudComponentProperty_fontShadow | setPlayerHudComponentProperty_fontStyle | setPlayerHudComponentProperty_fontAlignment | setPlayerHudComponentProperty_proportional | setPlayerHudComponentProperty_textSize Returns true if the property was set successfully
+function setPlayerHudComponentProperty() end
+
+--[[BUILD: 1.6.0 r22868]]
+---@alias getPlayerHudComponentProperty_position fun(component: hudComponent, property: hudComponentProperty_position): x: number, y: number
+---@alias getPlayerHudComponentProperty_size fun(component: hudComponent, property: hudComponentProperty_size): width: number, height: number
+---@alias getPlayerHudComponentProperty_fillColor fun(component: hudComponent, property: hudComponentProperty_fillColor): r: number, g: number, b: number, a: number
+---@alias getPlayerHudComponentProperty_fillColorSecondary fun(component: hudComponent, property: hudComponentProperty_fillColorSecondary): r: number, g: number, b: number, a: number
+---@alias getPlayerHudComponentProperty_useCustomAlpha fun(component: hudComponent, property: hudComponentProperty_useCustomAlpha): useCustomAlpha: boolean
+---@alias getPlayerHudComponentProperty_drawBlackBorder fun(component: hudComponent, property: hudComponentProperty_drawBlackBorder): drawBlackBorder: boolean
+---@alias getPlayerHudComponentProperty_drawPercentage fun(component: hudComponent, property: hudComponentProperty_drawPercentage): drawPercentage: boolean
+---@alias getPlayerHudComponentProperty_blinkingValue fun(component: hudComponent, property: hudComponentProperty_blinkingValue): blinkingValue: number
+---@alias getPlayerHudComponentProperty_dropColor fun(component: hudComponent, property: hudComponentProperty_dropColor): dropColor: color
+---@alias getPlayerHudComponentProperty_fontOutline fun(component: hudComponent, property: hudComponentProperty_fontOutline): fontOutline: number
+---@alias getPlayerHudComponentProperty_fontShadow fun(component: hudComponent, property: hudComponentProperty_fontShadow): fontShadow: number
+---@alias getPlayerHudComponentProperty_fontStyle fun(component: hudComponent, property: hudComponentProperty_fontStyle): fontStyle: "menu" | "subtitles" | "pricedown" | "gothic"
+---@alias getPlayerHudComponentProperty_fontAlignment fun(component: hudComponent, property: hudComponentProperty_fontAlignment): fontAlignment: "left" | "center" | "right"
+---@alias getPlayerHudComponentProperty_proportional fun(component: hudComponent, property: hudComponentProperty_proportional): proportional: boolean
+---@alias getPlayerHudComponentProperty_textSize fun(component: hudComponent, property: hudComponentProperty_textSize): width: number, height: number
+---@type getPlayerHudComponentProperty_position | getPlayerHudComponentProperty_size | getPlayerHudComponentProperty_fillColor | getPlayerHudComponentProperty_fillColorSecondary | getPlayerHudComponentProperty_useCustomAlpha | getPlayerHudComponentProperty_drawBlackBorder | getPlayerHudComponentProperty_drawPercentage | getPlayerHudComponentProperty_blinkingValue | getPlayerHudComponentProperty_dropColor | getPlayerHudComponentProperty_fontOutline | getPlayerHudComponentProperty_fontShadow | getPlayerHudComponentProperty_fontStyle | getPlayerHudComponentProperty_fontAlignment | getPlayerHudComponentProperty_proportional | getPlayerHudComponentProperty_textSize
+function getPlayerHudComponentProperty() end
+
+--[[BUILD: 1.6.0 r22868]]
+---@type fun(component: hudComponent, property: hudComponentProperty): boolean
+function resetPlayerHudComponentProperty() end
+
+---@type fun(state: boolean): true
+function setWeaponRenderEnabled() end
+
+---@type fun(): state: boolean
+function isWeaponRenderEnabled() end
+
+--- Primary
+---@alias killPedTask_primary fun(thePed: ped, taskName: pedPrimaryTasks, taskNumber: pedPrimaryTaskSlots, gracefully?: boolean): boolean
+--- Secondary
+---@alias killPedTask_secondary fun(thePed: ped, taskName: pedSecondaryTasks, taskNumber: pedSecondaryTaskSlots, gracefully?: boolean): boolean
+--- Gracefully: If set to true the animation will be cut in a smooth transition, false otherwise.
+---@type killPedTask_primary | killPedTask_secondary
+function killPedTask() end

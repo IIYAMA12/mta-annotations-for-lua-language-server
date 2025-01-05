@@ -168,3 +168,15 @@ function setVehicleSmokeTrailEnabled() end
 --[[BUILD: 1.6.0 r22815]]
 ---@type fun(theVehicle: vehicle): boolean
 function isVehicleSmokeTrailEnabled() end
+
+---@type fun(theVehicle: vehicle): boolean Returns the rotor speed if successful. This is 0 when the helicopter or plane is stationary, and about 0.2 when it is fully spun up. It can be negative if the rotor rotates counter-clockwise. Returns false in case of failure (an invalid element or a vehicle element that is not a helicopter or plane was passed).
+function getVehicleRotorSpeed() end
+
+---@type  fun(theVehicle: vehicle, speed: number) Returns true if successful
+function setVehicleRotorSpeed() end
+
+---@type fun(theVehicle: vehicle, state: boolean, stopRotor?: boolean): boolean
+function setVehicleRotorState() end
+
+---@type fun(theVehicle: vehicle): boolean
+function getVehicleRotorState() end
