@@ -282,14 +282,11 @@ function setVehicleHandling() end
 ---@deprecated
 function getVehicleRotation() end
 
---[[Serverside BUILD: 1.6.~ ~]]
 ---@type fun(theVehicle: vehicle, state: boolean): boolean Returns true if the nitro activation state was modified successfully
 function setVehicleNitroActivated() end
 
---[[Serverside BUILD: 1.6.~ ~]]
 ---@type fun(theVehicle: vehicle, sirenCount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8, sirenType: sirenTypeId, flag360?: boolean, checkLosFlag?: boolean, useRandomiser?: boolean, silentFlag?: boolean): boolean Returns true if sirens were successfully added to the vehicle, false otherwise.
 function addVehicleSirens() end
 
---[[Serverside BUILD: 1.6.~ ~]]
 ---@type fun(theVehicle: vehicle): boolean Returns true if sirens were successfully removed from the vehicle, false otherwise.
 function removeVehicleSirens() end

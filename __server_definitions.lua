@@ -698,3 +698,6 @@ function getAccountType() end
 
 ---@type fun(objectName: string): aclgroup[]
 function aclObjectGetGroups() end
+
+---@type fun(): ip:string
+function getServerIpFromMasterServer() end

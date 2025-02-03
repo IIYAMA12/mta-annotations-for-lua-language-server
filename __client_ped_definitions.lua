@@ -90,9 +90,6 @@ function getPedSimplestTask() end
 ---@type fun(thePed: ped, bone: integer): number, number, number Returns the x, y, z world position of the bone.
 function getPedBonePosition() end
 
----@type fun(thePed: ped): boolean Returns true if the ped is currently reloading a weapon, false otherwise.
-function isPedReloadingWeapon() end
-
 ---@type fun(): number This function returns a float containing the peds LOD distance.
 function getPedsLODDistance() end
 

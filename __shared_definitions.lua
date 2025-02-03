@@ -590,6 +590,7 @@ function createRadarArea() end
 ---@type fun(theElement: element, theMarker: marker): boolean Returns true if the element is within the marker
 function isElementWithinMarker() end
 
+---@deprecated
 ---@type fun(thePed: ped): boolean Returns true if the ped is on fire
 function isPedOnFire() end
 
@@ -1961,22 +1962,17 @@ function getObjectScale() end
 ---@type fun(theVehicle: vehicle, nodeIndex: vehicleFlyingComponentNodeIndex, collisionType?: vehicleFlyingComponentCollisionType, removalTime?: integer): boolean
 function spawnVehicleFlyingComponent() end
 
---[[BUILD: 1.6.~ ~]]
 ---@type fun(enabled: boolean): boolean
 function setDynamicPedShadowsEnabled() end
 
---[[BUILD: 1.6.~ ~]]
 ---@type fun(): boolean
 function isDynamicPedShadowsEnabled() end
 
---[[BUILD: 1.6.~ ~]]
 ---@type fun(): true
 function resetDynamicPedShadows() end
 
---[[BUILD: 1.6.0 r22864]]
 ---@type fun( theElement: element, bool: boolean ): boolean Returns true if successful
 function setElementOnFire() end
 
---[[BUILD: 1.6.0 r22864]]
 ---@type fun( theElement: element ): boolean Returns true if the element is on fire
 function isElementOnFire() end

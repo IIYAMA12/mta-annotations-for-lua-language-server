@@ -163,11 +163,9 @@ function resetVehicleDummyPositions() end
 ---@type fun(theVehicle: vehicle, dummy: vehicleDummy, x: number, y: number, z: number): boolean Returns true if the dummy position has been successfully set
 function setVehicleDummyPosition() end
 
---[[BUILD: 1.6.0 r22815]]
 ---@type fun(theVehicle: vehicle, state: boolean): boolean
 function setVehicleSmokeTrailEnabled() end
 
---[[BUILD: 1.6.0 r22815]]
 ---@type fun(theVehicle: vehicle): boolean
 function isVehicleSmokeTrailEnabled() end
 

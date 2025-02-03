@@ -1048,6 +1048,12 @@ function createBuilding() end
 ---@type fun(): nil
 function removeAllGameBuildings() end
 
+---@type fun(): nil
+function removeGameWorld() end
+
+---@type fun(): nil
+function restoreGameWorld() end
+
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARestoreGameBuildings&type=code
 ---@deprecated
 ---@type fun(): nil
@@ -1134,7 +1140,6 @@ function getElementBoneQuaternion() end
 ---@type resetWorldProperties_client | resetWorldProperties_server
 function resetWorldProperties() end
 
---[[BUILD: 1.6.0 r22862]]
 ---@type fun(theElement: element, lighting: number): boolean
 function setElementLighting() end
 
@@ -1186,7 +1191,6 @@ function setPlayerHudComponentProperty() end
 ---@type getPlayerHudComponentProperty_position | getPlayerHudComponentProperty_size | getPlayerHudComponentProperty_fillColor | getPlayerHudComponentProperty_fillColorSecondary | getPlayerHudComponentProperty_useCustomAlpha | getPlayerHudComponentProperty_drawBlackBorder | getPlayerHudComponentProperty_drawPercentage | getPlayerHudComponentProperty_blinkingValue | getPlayerHudComponentProperty_dropColor | getPlayerHudComponentProperty_fontOutline | getPlayerHudComponentProperty_fontShadow | getPlayerHudComponentProperty_fontStyle | getPlayerHudComponentProperty_fontAlignment | getPlayerHudComponentProperty_proportional | getPlayerHudComponentProperty_textSize
 function getPlayerHudComponentProperty() end
 
---[[BUILD: 1.6.0 r22868]]
 ---@type fun(component: hudComponent, property: hudComponentProperty): boolean
 function resetPlayerHudComponentProperty() end
 
@@ -1203,3 +1207,6 @@ function isWeaponRenderEnabled() end
 --- Gracefully: If set to true the animation will be cut in a smooth transition, false otherwise.
 ---@type killPedTask_primary | killPedTask_secondary
 function killPedTask() end
+
+---@type fun(includePort?: boolean): ip: string
+function getServerIp() end

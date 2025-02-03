@@ -116,3 +116,6 @@ function setPedArmor() end
 ---@see fightingStyleId
 ---@type fun(thePed: ped, style: fightingStyleId): boolean Returns true in case of success
 function setPedFightingStyle() end
+
+---@type fun(thePed: ped): boolean Returns true if the ped is currently reloading a weapon, false otherwise.
+function isPedReloadingWeapon() end
