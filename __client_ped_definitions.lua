@@ -125,3 +125,6 @@ function getPedAnimationProgress() end
 
 ---@type fun(ped: ped): boolean Returns true when the voice was successfully reset
 function resetPedVoice() end
+
+---@type fun(thePed: ped, lineId: integer, probability?: number): nil
+function playPedVoiceLine() end
