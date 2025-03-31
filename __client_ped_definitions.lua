@@ -60,7 +60,12 @@ function getPedControlState() end
 ---@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target ends according to his range, or false if it was unsuccessful.
 function getPedTargetEnd() end
 
----@type fun(thePed: ped, voiceType: string, voiceName: string): boolean Returns true when the voice was successfully set, false otherwise.
+-- Disabled voice type
+---@alias setPedVoice_disabled fun(thePed: ped, voiceType: "PED_TYPE_DISABLED", voiceName?: nil): boolean  Returns true when the voice was successfully set, false otherwise.
+-- Default voice type
+---@alias setPedVoice_default fun(thePed: ped, voiceType: string, voiceName: string): boolean  Returns true when the voice was successfully set, false otherwise.
+
+---@type setPedVoice_disabled | setPedVoice_default
 function setPedVoice() end
 
 ---@type fun(thePed: ped, controlName: controlName): number Returns a float between 0 (full release) and 1 (full push) indicating the amount the control is pushed.
