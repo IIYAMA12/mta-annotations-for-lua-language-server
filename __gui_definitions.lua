@@ -42,7 +42,9 @@ function guiGetPosition() end
 ---@type fun(guiElement: element): {[string] : string} If the function succeeds, the return value is a table. Its keys are property names, the corresponding values are the values of the properties (both names and values are always strings).
 function guiGetProperties() end
 
----@type fun(guiElement: element, property: string): string If the function succeeds, it returns a string with the value of the property.
+--- [WindowsLookProperties](http://static.cegui.org.uk/static/WindowsLookProperties.html)
+---@see CEGUI_property
+---@type fun(guiElement: element, property: CEGUI_property): string If the function succeeds, it returns a string with the value of the property.
 function guiGetProperty() end
 
 ---@type fun(guiElement: element): string Returns a string containing the requested element's text.
@@ -72,7 +74,9 @@ function guiGetSize() end
 ---@type fun(guiElement: element, enabled: boolean): boolean If the function succeeds it returns true, if it fails it returns false.
 function guiSetEnabled() end
 
----@type fun(guiElement: element, property: string, value: string): boolean If the function succeeds it returns true, if it fails it returns false.
+--- [WindowsLookProperties](http://static.cegui.org.uk/static/WindowsLookProperties.html)
+---@see CEGUI_property
+---@type fun(guiElement: element, property: CEGUI_property, value: string): boolean If the function succeeds it returns true, if it fails it returns false.
 function guiSetProperty() end
 
 ---@type fun(enabled: boolean): boolean Returns true if input mode could be changed, false if invalid parameters are passed.
@@ -171,7 +175,7 @@ function guiGridListGetRowCount() end
 ---@type fun(gridList: element): rowIndex: integer, columnIndex: integer Returns the row and column indexes of the selected item if the specified grid list is valid and has a selected item, (-1, -1) if no item is selected.
 function guiGridListGetSelectedItem() end
 
----@type fun(gridList: element, rowIndex: integer): integer Returns row id if the row was successfully added.
+---@type fun(gridList: element, rowIndex: integer, itemText1?: string|integer, itemText2?: string|integer, itemText3?: string|integer, itemText4?: string|integer, itemText5?: string|integer, itemText6?: string|integer, itemText7?: string|integer, itemText8?: string|integer, itemText9?: string|integer, itemText10?: string|integer, ...): integer Returns row id if the row was successfully added.
 function guiGridListInsertRowAfter() end
 
 ---@type fun(gridList: element, columnIndex: integer): boolean Returns true if the grid list column was successfully removed, false otherwise.
