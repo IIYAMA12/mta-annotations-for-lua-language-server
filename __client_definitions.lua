@@ -1210,3 +1210,12 @@ function killPedTask() end
 
 ---@type fun(includePort?: boolean): ip: string
 function getServerIp() end
+
+---@type fun(texture: string, modelName: string, clothingType: clothesType): boolean
+function removeClothingModel() end
+
+---@type fun(modelName: string): boolean
+function addClothingModel() end
+
+---@type fun(dff: dff, modelName: string): boolean
+function engineAddClothingModel() end
