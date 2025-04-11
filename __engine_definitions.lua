@@ -212,3 +212,6 @@ function engineStreamingRequestModel() end
 
 ---@type fun(modelId: integer, removeRef?: boolean): boolean
 function engineStreamingReleaseModel() end
+
+---@type fun(txd: txd, modelName: string): boolean
+function engineAddClothingTXD() end
