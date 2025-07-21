@@ -701,3 +701,6 @@ function aclObjectGetGroups() end
 
 ---@type fun(): ip:string
 function getServerIpFromMasterServer() end
+
+---@type fun(theAccount: account, serial: string): boolean Returns true if the serial is valid and was set successfully, false otherwise.
+function setAccountSerial() end

@@ -181,13 +181,13 @@ function setVehicleRotorState() end
 ---@type fun(theVehicle: vehicle): boolean
 function getVehicleRotorState() end
 
----@type fun(modelId: integer): table<vehicleSoundSetting, number>
+---@type fun(modelId: integer): table<vehicleSoundSetting, any>
 function getVehicleModelAudioSettings() end
 
----@type fun(modelId: integer, property: vehicleSoundSetting, value: number): boolean
+---@type fun(modelId: integer, property: vehicleSoundSetting, value: any): boolean
 function setVehicleModelAudioSetting() end
 
----@type fun(theVehicle: vehicle): table<vehicleSoundSetting, number>
+---@type fun(theVehicle: vehicle): table<vehicleSoundSetting, any>
 function getVehicleAudioSettings() end
 
 ---@type fun(modelId: integer): boolean
@@ -196,5 +196,5 @@ function resetVehicleModelAudioSettings() end
 ---@type fun(theVehicle: vehicle): boolean
 function resetVehicleAudioSettings() end
 
----@type fun(theVehicle: vehicle, property: vehicleSoundSetting, value: number): boolean
+---@type fun(theVehicle: vehicle, property: vehicleSoundSetting, value: any): boolean
 function setVehicleAudioSetting() end

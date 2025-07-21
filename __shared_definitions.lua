@@ -442,11 +442,12 @@ function getMarkerSize() end
 function setMarkerIcon() end
 
 --- Serverside syntax 1
----@alias bindKey_server_syntax_1 fun(thePlayer: player, key: keyName | controlName, keyState: keyState, handlerFunction: fun(keyPresser: player, key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+---@alias bindKey_server_syntax_1 fun(thePlayer: player, key: keyName | controlName, keyState: keyState, handlerFunction: fun(keyPresser: player, key: keyName | controlName,  keyState: keyState, ...:any), ...:any): boolean
 --- Serverside syntax 2
 ---@alias bindKey_server_syntax_2 fun(thePlayer: player, key: keyName, keyState: keyState, commandName: string, ...:any): boolean
+---@alias keyOrControlName keyName | controlName
 ---Clientside syntax 1
----@alias bindKey_client_syntax_1 fun(key: keyName | controlName, keyState: keyState, handlerFunction: fun(key: keyName,  keyState: keyState, ...:any), ...:any): boolean
+---@alias bindKey_client_syntax_1 fun(key: keyOrControlName, keyState: keyState, handlerFunction: fun(key: keyOrControlName,  keyState: keyState, ...:any), ...:any): boolean
 ---Clientside syntax 2
 ---@alias bindKey_client_syntax_2  fun(key: keyName, keyState: keyState, commandName: string, ...:any): boolean
 ---@alias bindKey_server bindKey_server_syntax_1 | bindKey_server_syntax_2
@@ -1976,3 +1977,7 @@ function setElementOnFire() end
 
 ---@type fun( theElement: element ): boolean Returns true if the element is on fire
 function isElementOnFire() end
+
+---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ACreateBuilding&type=code
+---@type fun(modelId: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, interior?: integer): building
+function createBuilding() end

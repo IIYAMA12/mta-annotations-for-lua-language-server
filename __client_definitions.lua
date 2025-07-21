@@ -1039,10 +1039,6 @@ function setChatboxCharacterLimit() end
 ---@type fun(): charLimit: integer
 function getChatboxCharacterLimit() end
 
----Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ACreateBuilding&type=code
----@type fun(modelId: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, interior?: integer): building
-function createBuilding() end
-
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARemoveAllGameBuildings&type=code
 ---@deprecated
 ---@type fun(): nil
