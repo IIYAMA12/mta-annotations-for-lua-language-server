@@ -942,9 +942,6 @@ function svgGetUpdateCallback() end
 ---@type fun(svgElement: svg, callback: function | boolean): boolean Returns true if successful
 function svgSetUpdateCallback() end
 
----@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ?: number, lighting?: 0|1 ): boolean Returns true if the operation was successful
-function dxDrawModel3D() end
-
 ---@type fun(): boolean Returns true if Discord Rich Presence is enabled on the client
 function isDiscordRichPresenceConnected() end
 

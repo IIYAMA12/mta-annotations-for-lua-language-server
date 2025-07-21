@@ -128,6 +128,9 @@ function dxDrawPrimitive3D() end
 ---@type fun(x: number, y: number, z: number, radius: number, theColor: color, fLineWidth: number, iterations: 1 | 2 | 3 | 4): boolean Returns a true if the operation was successful, false otherwise.
 function dxDrawWiredSphere() end
 
+---@type fun(modelId: integer, positionX: number, positionY: number, positionZ: number, rotationX: number, rotationY: number, rotationZ: number, scaleX?: number, scaleY?: number, scaleZ?: number, lighting?: 0|1 ): boolean Returns true if the operation was successful
+function dxDrawModel3D() end
+
 ---@type (fun(text: string | number): width: number, height: number) | (fun(text: string, width?: number, scaleXY?: number, font?: mixFont, wordBreak?: boolean, colorCoded?: boolean): width: number, height: number) | (fun(text: string, width?: number, scaleXY?: number, scaleY?, font?: mixFont, wordBreak?: boolean, colorCoded?: boolean): width: number, height: number) Returns two floats representing the width and height of the text in pixels.
 function dxGetTextSize() end
 
