@@ -1981,3 +1981,8 @@ function isElementOnFire() end
 ---Syntax reference: https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ACreateBuilding&type=code
 ---@type fun(modelId: integer, x: number, y: number, z: number, rx?: number, ry?: number, rz?: number, interior?: integer): building
 function createBuilding() end
+
+---@alias fileGetHash_withoutOptions fun(theFile: file, algorithm: "md5" | "sha1" | "sha224" | "sha256" | "sha384" | "sha512"): string|nil
+---@alias fileGetHash_withOptions fun(theFile: file, algorithm: "hmac", options: { algorithm: string, key: string }): string|nil
+---@type fileGetHash_withoutOptions | fileGetHash_withOptions
+function fileGetHash() end
