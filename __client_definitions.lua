@@ -654,7 +654,7 @@ function setCameraClip() end
 function setCameraViewMode() end
 
 --- `fieldOfView`: The field of view angle, 0 to 179.
----@type fun(cameraMode: cameraMode, fieldOfView: number): boolean Returns true if the arguments are valid
+---@type fun(cameraMode: cameraMode, fieldOfView: number, instant?: boolean): boolean Returns true if the arguments are valid
 function setCameraFieldOfView() end
 
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera drunk level was changed
