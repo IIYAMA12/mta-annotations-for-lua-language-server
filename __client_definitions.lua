@@ -660,7 +660,7 @@ function setCameraFieldOfView() end
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera drunk level was changed
 function setCameraDrunkLevel() end
 
----@deprecated Use setCameraShakeLevel instead. Deprecated as of 1.6.0 r21795.
+---@deprecated Use setCameraDrunkLevel instead. Deprecated as of 1.6.0 r21795.
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera shake level was changed.
 function setCameraShakeLevel() end
 
