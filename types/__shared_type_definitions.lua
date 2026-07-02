@@ -110,11 +110,11 @@ Vector3 = {}
 ---@field getW fun(vector: Vector4): number
 ---@field getX fun(vector: Vector4): number
 ---@field getY fun(vector: Vector4): number
----@field getZ fun(vector: Vector3): number
+---@field getZ fun(vector: Vector4): number
 ---@field setW fun(vector: Vector4, value: number): boolean
 ---@field setX fun(vector: Vector4, value: number): boolean
 ---@field setY fun(vector: Vector4, value: number): boolean
----@field setZ fun(vector: Vector3, value: number): boolean
+---@field setZ fun(vector: Vector4, value: number): boolean
 ---@field getNormalized fun(vector: Vector4): Vector4
 ---@field getLength fun(vector: Vector4): number
 ---@field getSquaredLength fun(vector: Vector4): number
@@ -140,7 +140,9 @@ Vector4 = {}
 --------------------------
 -- Predefined variables --
 --------------------------
--- https://wiki.multitheftauto.com/wiki/Predefined_variables_list
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Predefined_variables_list)
+]]
 
 -- Fake the variable values
 ---@type table
@@ -170,6 +172,7 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 -----------
 
 --[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Vehicle_IDs)
 | ID  | Name                        |
 |-----|-----------------------------|
 | 400 | Landstalker                 |
@@ -390,6 +393,7 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 ---@alias vehicleName "Landstalker"|"Bravura"|"Buffalo"|"Linerunner"|"Perennial"|"Sentinel"|"Dumper"|"Fire Truck"|"Trashmaster"|"Stretch"|"Manana"|"Infernus"|"Voodoo"|"Pony"|"Mule"|"Cheetah"|"Ambulance"|"Leviathan"|"Moonbeam"|"Esperanto"|"Taxi"|"Washington"|"Bobcat"|"Mr. Whoopee"|"BF Injection"|"Hunter"|"Premier"|"Enforcer"|"Securicar"|"Banshee"|"Predator"|"Bus"|"Rhino"|"Barracks"|"Hotknife"|"Trailer 1"|"Previon"|"Coach"|"Cabbie"|"Stallion"|"Rumpo"|"RC Bandit"|"Romero"|"Packer"|"Monster"|"Admiral"|"Squalo"|"Seasparrow"|"Pizzaboy"|"Tram"|"Trailer 2"|"Turismo"|"Speeder"|"Reefer"|"Tropic"|"Flatbed"|"Yankee"|"Caddy"|"Solair"|"Berkley's RC Van"|"Skimmer"|"PCJ-600"|"Faggio"|"Freeway"|"RC Baron"|"RC Raider"|"Glendale"|"Oceanic"|"Sanchez"|"Sparrow"|"Patriot"|"Quadbike"|"Coastguard"|"Dinghy"|"Hermes"|"Sabre"|"Rustler"|"ZR-350"|"Walton"|"Regina"|"Comet"|"BMX"|"Burrito"|"Camper"|"Marquis"|"Baggage"|"Dozer"|"Maverick"|"News Chopper"|"Rancher"|"FBI Rancher"|"Virgo"|"Greenwood"|"Jetmax"|"Hotring Racer"|"Sandking"|"Blista Compact"|"Police Maverick"|"Boxville"|"Benson"|"Mesa"|"RC Goblin"|"Hotring Racer 2"|"Hotring Racer 3"|"Bloodring Banger"|"Rancher Lure"|"Super GT"|"Elegant"|"Journey"|"Bike"|"Mountain Bike"|"Beagle"|"Cropduster"|"Stuntplane"|"Tanker"|"Roadtrain"|"Nebula"|"Majestic"|"Buccaneer"|"Shamal"|"Hydra"|"FCR-900"|"NRG-500"|"HPV1000"|"Cement Truck"|"Towtruck"|"Fortune"|"Cadrona"|"FBI Truck"|"Willard"|"Forklift"|"Tractor"|"Combine Harvester"|"Feltzer"|"Remington"|"Slamvan"|"Blade"|"Freight"|"Brown Streak"|"Vortex"|"Vincent"|"Bullet"|"Clover"|"Sadler"|"Fire Truck Ladder"|"Hustler"|"Intruder"|"Primo"|"Cargobob"|"Tampa"|"Sunrise"|"Merit"|"Utility Van"|"Nevada"|"Yosemite"|"Windsor"|"Monster 2"|"Monster 3"|"Uranus"|"Jester"|"Sultan"|"Stratum"|"Elegy"|"Raindance"|"RC Tiger"|"Flash"|"Tahoma"|"Savanna"|"Bandito"|"Freight Train Flatbed"|"Streak Train Trailer"|"Kart"|"Mower"|"Dune"|"Sweeper"|"Broadway"|"Tornado"|"AT-400"|"DFT-30"|"Huntley"|"Stafford"|"BF-400"|"Newsvan"|"Tug"|"Trailer (Tanker Commando)"|"Emperor"|"Wayfarer"|"Euros"|"Hotdog"|"Club"|"Box Freight"|"Trailer 3"|"Andromada"|"Dodo"|"RC Cam"|"Launch"|"Police LS"|"Police SF"|"Police LV"|"Police Ranger"|"Picador"|"S.W.A.T."|"Alpha"|"Phoenix"|"Glendale Damaged"|"Sadler Damaged"|"Baggage Trailer (covered)"|"Baggage Trailer (Uncovered)"|"Trailer (Stairs)"|"Boxville Mission"|"Farm Trailer"|"Street Clean Trailer
 
 --[[
+[Wiki](https://wiki.multitheftauto.com/wiki/All_Skins)
 | ID  | Name    |
 |-----|---------|
 | 0   | cj      |
@@ -697,6 +701,7 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 ---@alias worldSpecialProperty "hovercars" | "aircars" | "extrabunny" | "extrajump" | "randomfoliage" | "snipermoon" | "extraairresistance" | "underworldwarp" | "vehiclesunglare" | "coronaztest" | "watercreatures" |  "burnflippedcars" | "fireballdestruct" | "roadsignstext" | "extendedwatercannons" | "tunnelweatherblend" | "ignorefirestate" | "flyingcomponents" | "vehicleburnexplosions" | "vehicle_engine_autostart"
 
 --[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Weapons)
 | ID |        Name        |
 |:--:|:------------------:|
 |  0 | Fist               |
@@ -747,6 +752,9 @@ sourceResourceRoot = userData_ -- the root of the resource that called the event
 
 ---@alias weaponName "brassknuckle"|"golfclub"|"nightstick"|"knife"|"bat"|"shovel"|"poolstick"|"katana"|"chainsaw"|"dildo"|"vibrator"|"flower"|"cane"|"grenade"|"teargas"|"molotov"|"colt 45"|"silenced"|"deagle"|"shotgun"|"sawed-off"|"combat shotgun"|"uzi"|"mp5"|"ak-47"|"m4"|"tec-9"|"rifle"|"sniper"|"rocket launcher"|"rocket launcher hs"|"flamethrower"|"minigun"|"satchel"|"bomb"|"spraycan"|"fire extinguisher"|"camera"|"nightvision"|"infrared"|"parachute"
 
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Control_names)
+]]
 ---@alias controlName "fire"|"aim_weapon"|"next_weapon"|"previous_weapon"|"forwards"|"backwards"|"left"|"right"|"zoom_in"|"zoom_out"|"change_camera"|"jump"|"sprint"|"look_behind"|"crouch"|"action"|"walk"|"conversation_yes"|"conversation_no"|"group_control_forwards"|"group_control_back"|"enter_exit"|"vehicle_fire"|"vehicle_secondary_fire"|"vehicle_left"|"vehicle_right"|"steer_forward"|"steer_back"|"accelerate"|"brake_reverse"|"radio_next"|"radio_previous"|"radio_user_track_skip"|"horn"|"sub_mission"|"handbrake"|"vehicle_look_left"|"vehicle_look_right"|"vehicle_look_behind"|"vehicle_mouse_look"|"special_control_left"|"special_control_right"|"special_control_down"|"special_control_up"
 ---@alias controlNameHardCoded "enter_passenger" | "screenshot" | "chatbox" | "radar" | "radar_zoom_in" | "radar_zoom_out" | "radar_move_north" | "radar_move_south" | "radar_move_east" | "radar_move_west" | "radar_attach"
 
@@ -1123,7 +1131,7 @@ Use 3 to remove the paintjob.
 ---@alias weaponPropertyFlags "flag_aim_no_auto" | "flag_aim_arm" | "flag_aim_1st_person" | "flag_aim_free" | "flag_move_and_aim" | "flag_move_and_shoot" | "flag_type_throw" | "flag_type_heavy" | "flag_type_constant" | "flag_type_dual" | "flag_anim_reload" | "flag_anim_crouch" | "flag_anim_reload_loop" | "flag_anim_reload_long" | "flag_shot_slows" | "flag_shot_rand_speed" | "flag_shot_anim_abrupt" | "flag_shot_expands"
 
 --[[
-    [Wiki traffic light states](https://wiki.multitheftauto.com/wiki/Traffic_light_states)
+[Wiki](https://wiki.multitheftauto.com/wiki/Traffic_light_states)
 ]]
 ---@alias trafficLightStateId 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
@@ -1162,7 +1170,9 @@ Use 3 to remove the paintjob.
 
 ---@alias gameSpeed 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
----[wiki](https://wiki.multitheftauto.com/wiki/Radar_Blips)
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Radar_Blips)
+]]
 ---@alias blipIconId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63
 
 --[[
@@ -1218,7 +1228,9 @@ Use 3 to remove the paintjob.
 
 ---@alias elementRotOrder "default" | "ZXY" | "ZYX"
 
--- See [wiki](https://wiki.multitheftauto.com/wiki/GetPedStat) for ped stat definitions
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/GetPedStat)
+]]
 ---@alias pedStatId 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|33|35|36|37|38|39|40|41|44|45|46|47|48|49|51|52|53|54|55|56|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|194|195|196|197|198|200|225|229|230
 
 ---@alias elementTypeAutoComplete string|"player"|"ped"|"water"|"sound"|"vehicle"|"object"|"pickup"|"marker"|"colshape"|"blip"|"radararea"|"team"|"spawnpoint"|"console"|"projectile"|"effect"|"light"|"searchlight"|"shader"|"texture"
@@ -1326,6 +1338,9 @@ Use 3 to remove the paintjob.
 ]]
 ---@alias explosionType 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/CJ_Clothes)
+]]
 ---@alias clothesType 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9  | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17
 
 --[[
@@ -1349,7 +1364,8 @@ Use 3 to remove the paintjob.
 ---@alias playerWantedLevel 0 | 1 | 2 | 3 | 4 | 5 | 6
 
 --[[
-    [vehicle variants](https://wiki.multitheftauto.com/wiki/Vehicle_variants). Not all variants are available depending on the vehicle.
+[Wiki](https://wiki.multitheftauto.com/wiki/Vehicle_variants)
+	Not all variants are available depending on the vehicle.
 ]]
 ---@alias vehicleVariantId 0 | 1 | 2 | 3 | 4 | 5
 
@@ -1390,7 +1406,7 @@ Use 3 to remove the paintjob.
 ---@alias vehicleFlyingComponentCollisionType 0|1|2|3|4|5
 
 --[[
-Info about the components
-https://wiki.multitheftauto.com/wiki/Vehicle_Components#Component_nodes
+[Wiki](https://wiki.multitheftauto.com/wiki/Vehicle_Components#Component_nodes)
+	Info about the component nodes.
 ]]
 ---@alias vehicleFlyingComponentNodeIndex 1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24

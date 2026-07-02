@@ -28,7 +28,7 @@ Tahoma bold, 8px
 ### clear-normal
 Verdana regular, 9px
 
-![default-bold-small](..\images\type\31axpzs0.bmp)
+![clear-normal](..\images\type\31axpzs0.bmp)
 
 ### sa-header
 Diploma regular, 26px auto-scaled
@@ -173,7 +173,7 @@ localPlayer = userData_ -- returns the player element of the local player.
 
 ---@alias ambientSoundType "gunfire" | "general"
 ---@alias weaponFlag "disable_model" | "flags" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked"
----@alias weaponFlag_ "disable_model" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked" Synax without "flags"
+---@alias weaponFlag_ "disable_model" | "instant_reload" | "shoot_if_out_of_range" | "shoot_if_blocked" Syntax without "flags"
 ---@alias weaponState "reloading" | "firing" | "ready"
 ---@alias weaponCreateType "colt 45" | "silenced" | "deagle" | "uzi" | "mp5" | "ak-47" | "m4" | "tec-9" | "rifle" | "sniper" | "minigun"
 ---@alias cameraMode "player" | "vehicle" | "vehicle_max"
@@ -205,6 +205,7 @@ localPlayer = userData_ -- returns the player element of the local player.
 ---@alias lightType 0 | 1 | 2
 
 --[[
+[Wiki](https://wiki.multitheftauto.com/wiki/Garages)
 | ID  |                                            Garage Name (District)                                            |                    XYZ Position                     |
 |:---:|:------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------:|
 |  0  |                                  "Life's a Beach" Mission Garage (Commerce)                                  |              1643.43, -1520.3, 14.3438              |
@@ -586,6 +587,20 @@ radioChannel:
 ---@alias dxStageOrPostGUI boolean | "prefx" | "postfx" | "postgui"
 
 ---@alias fxParticles "blood" | "boat_splash" | "bubble" | "car_debris" | "collision_smoke" | "gunshell" | "sand" | "sand2" | "huge_smoke" | "smoke" | "spark" | "spark2" | "splash" | "wake" | "water_splash" | "wheel_dirt" | "glass"
+
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/GetPostFXValue)
+	Possible `fxType` values: **Gamma**, **Brightness**, **Contrast**, **Saturation**
+]]
+---@alias postFXType "Gamma" | "Brightness" | "Contrast" | "Saturation"
+
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/GetPostFXMode)
+* 0: Disabled
+* 1: Enabled in fullscreen mode
+* 2: Enabled in windowed/borderless mode
+]]
+---@alias postFXModeId 0 | 1 | 2
 
 --[[
 |           Name           | Default size | Resizable |                     Description                     |
