@@ -1,0 +1,26 @@
+{
+  "restoreAllGameBuildings": {
+    "reason": "deprecated",
+    "alt": "https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARestoreGameBuildings&type=code"
+  },
+  "removeAllGameBuildings": {
+    "reason": "deprecated",
+    "alt": "https://github.com/search?q=repo%3Amultitheftauto/mtasa-blue%20CLuaBuildingDefs%3A%3ARemoveAllGameBuildings&type=code"
+  },
+  "svgGetUpdateCallback": {
+    "reason": "no-wiki-page",
+    "alt": "https://github.com/multitheftauto/mtasa-blue/pull/2595"
+  },
+  "resetWorldProperties": {
+    "reason": "client-server-split",
+    "alt": "https://github.com/multitheftauto/mtasa-blue/pull/3692"
+  },
+  "injectBrowserMouseDown": {
+    "reason": "source-reference",
+    "alt": "https://github.com/multitheftauto/mtasa-blue/blob/81c939a4e047378d166da28dfce7dfa85bdc368d/Client/mods/deathmatch/logic/luadefs/CLuaBrowserDefs.cpp#L318C87-L318C98"
+  },
+  "removeClothingModel": {
+    "reason": "no-wiki-page",
+    "alt": "https://wiki.multitheftauto.com/wiki/AddClothingModel"
+  }
+}

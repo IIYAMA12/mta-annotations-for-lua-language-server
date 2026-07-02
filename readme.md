@@ -169,6 +169,10 @@ Find [here](https://luals.github.io/wiki/settings/#workspacelibrary) info about 
 
 
 
+## Maintenance scripts
+
+Definition files can include `[Wiki](https://wiki.multitheftauto.com/wiki/FunctionName)` links in `--[[ ]]` comment blocks (shown in LuaLS hover docs). To audit coverage or find missing MTA functions, see [`scripts/AGENTS.md`](scripts/AGENTS.md).
+
 ## Known issues ⚠️
 
 - Make sure to always have an empty new line at the end of your files, as recommended in this [issue](https://github.com/LuaLS/lua-language-server/issues/2326).

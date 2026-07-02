@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "scripts": {
+    "inventory": "node audit-inventory.js",
+    "wiki": "node check-wiki-links.js",
+    "gaps": "node find-gaps.js",
+    "stubs": "node suggest-stubs.js",
+    "mtasa-blue": "node mtasa-blue-functions.js",
+    "verify-syntax": "node verify-syntax.js"
+  }
+}
