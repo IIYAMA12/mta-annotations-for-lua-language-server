@@ -1137,7 +1137,7 @@ function setCameraFieldOfView() end
 ---@type fun(shakeLevel: integer): boolean Returns true if the camera drunk level was changed
 function setCameraDrunkLevel() end
 
----@deprecated Use setCameraShakeLevel instead. Deprecated as of 1.6.0 r21795.
+---@deprecated Use setCameraDrunkLevel instead. Deprecated as of 1.6.0 r21795.
 --[[
 [Wiki](https://wiki.multitheftauto.com/wiki/SetCameraShakeLevel)
 ]]
@@ -2160,4 +2160,3 @@ function addClothingModel() end
 ]]
 ---@type fun(dff: dff, modelName: string): boolean
 function engineAddClothingModel() end
-
