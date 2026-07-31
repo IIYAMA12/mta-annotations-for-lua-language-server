@@ -1863,6 +1863,19 @@ function setSunSize() end
 ---@type fun(category: performanceCategory, options?: string, filter?: string): string[], string[][] Returns two tables. First contains column names. The second contains result rows. Each row is table of cells.
 function getPerformanceStats() end
 
+--[[
+[Wiki](https://wiki.multitheftauto.com/wiki/GetProcessMemoryStats)
+	Returns a breakdown of the process memory usage. The reported numbers are always byte units and these numbers can be inaccurate.
+* virtual - total program size
+* resident - resident set size (memory in physical space/ram, also known as working set)
+* shared - size of resident shared memory (shared with other processes)
+* private - size of resident private memory (only for this process)
+
+	Note: Resident set size should be roughly shared + private from the table.
+]]
+---@type fun(): processMemoryStats | nil Returns a table if successful, otherwise returns nil.
+function getProcessMemoryStats() end
+
 --- Serverside
 ---@alias setCameraInterior_server fun(thePlayer: player, interior: integer): boolean
 --- Clientside
